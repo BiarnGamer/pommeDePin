@@ -48,5 +48,15 @@ int main() {
 
     Elephant Pikachu(1021, 365, 102, "Valentin", 4);
     cout << Pikachu;
+
+     cout << endl;
+
+    Aigle Roucarnage;
+    cout << Roucarnage;
+
+    cout << endl;
+
+    Aigle Piafabec(95, 6544, "Poussin", 5);
+    cout << Piafabec;
     return 0;
 }

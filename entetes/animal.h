@@ -175,7 +175,7 @@ class Tortue: public Animal {
     int iVitesseMax;
     int iAge;
     string sCouleur;
-    
+
     public:
     Tortue();
     Tortue(const int iVitesseMax, const int iAge, const string sCouleur, const string & nom, const int ID = -1);
@@ -201,7 +201,7 @@ class Loutre: public Animal {
     private:
     int iNbAmis;
     float fTaille;
-    
+
     public:
     Loutre();
     Loutre(const int iNbAmis, const float fTaille, const string & nom, const int ID = -1);
@@ -225,7 +225,7 @@ class Crocodile: public Animal {
     private:
     int iEnfantMange;
     int iNbDents;
-    
+
     public:
     Crocodile();
     Crocodile(const int iEnfantMange, const int iNbDents, const string & nom, const int ID = -1);
@@ -249,7 +249,7 @@ class Lapin: public Animal {
     private:
     int iNbCarotteMange;
     string sCouleur;
-    
+
     public:
     Lapin();
     Lapin(const int iNbCarotteMange, const string sCouleur, const string & nom, const int ID = -1);
@@ -273,7 +273,7 @@ class Girafe: public Animal {
     private:
     float fTaille;
     int iNbTaches;
-    
+
     public:
     Girafe();
     Girafe(const float fTaille, const int iNbTaches, const string & nom, const int ID = -1);
