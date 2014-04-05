@@ -169,4 +169,127 @@ class Aigle: public Animal {
 
     friend ostream & operator<<(ostream &, const Aigle &);
 };
+
+class Tortue: public Animal {
+    private:
+    int iVitesseMax;
+    int iAge;
+    string sCouleur;
+    
+    public:
+    Tortue();
+    Tortue(const int iVitesseMax, const int iAge, const string sCouleur, const string & nom, const int ID = -1);
+    Tortue(const Tortue &);
+    ~Tortue();
+
+    int getVitesseMax() const;
+    int getAge() const;
+    string getCouleur() const;
+
+    void setVitesseMax(const int);
+    void setAge(const int);
+    void setCouleur(const string);
+
+    Tortue & operator=(const Tortue &);
+    bool operator==(const Tortue &);
+    bool operator!=(const Tortue &);
+
+    friend ostream & operator<<(ostream &, const Tortue &);
+};
+
+class Loutre: public Animal {
+    private:
+    int iNbAmis;
+    float fTaille;
+    
+    public:
+    Loutre();
+    Loutre(const int iNbAmis, const float fTaille, const string & nom, const int ID = -1);
+    Loutre(const Loutre &);
+    ~Loutre();
+
+    int getNbAmis() const;
+    float getTaille() const;
+
+    void setTaille(const float);
+    void setNbAmis(const int);
+
+    Loutre & operator=(const Loutre &);
+    bool operator==(const Loutre &);
+    bool operator!=(const Loutre &);
+
+    friend ostream & operator<<(ostream &, const Loutre &);
+};
+
+class Crocodile: public Animal {
+    private:
+    int iEnfantMange;
+    int iNbDents;
+    
+    public:
+    Crocodile();
+    Crocodile(const int iEnfantMange, const int iNbDents, const string & nom, const int ID = -1);
+    Crocodile(const Crocodile &);
+    ~Crocodile();
+
+    int getEnfantMange() const;
+    int getNbDents() const;
+
+    void setEnfantMange(const int);
+    void setNbDents(const int);
+
+    Crocodile & operator=(const Crocodile &);
+    bool operator==(const Crocodile &);
+    bool operator!=(const Crocodile &);
+
+    friend ostream & operator<<(ostream &, const Crocodile &);
+};
+
+class Lapin: public Animal {
+    private:
+    int iNbCarotteMange;
+    string sCouleur;
+    
+    public:
+    Lapin();
+    Lapin(const int iNbCarotteMange, const string sCouleur, const string & nom, const int ID = -1);
+    Lapin(const Lapin &);
+    ~Lapin();
+
+    int getNbCarotteMange() const;
+    string getCouleur() const;
+
+    void setNbCarotteMange(const int);
+    void setCouleur(const string);
+
+    Lapin & operator=(const Lapin &);
+    bool operator==(const Lapin &);
+    bool operator!=(const Lapin &);
+
+    friend ostream & operator<<(ostream &, const Lapin &);
+};
+
+class Girafe: public Animal {
+    private:
+    float fTaille;
+    int iNbTaches;
+    
+    public:
+    Girafe();
+    Girafe(const float fTaille, const int iNbTaches, const string & nom, const int ID = -1);
+    Girafe(const Girafe &);
+    ~Girafe();
+
+    float getTaille() const;
+    int getNbTaches() const;
+
+    void setTaille(const float);
+    void setNbTaches(const int);
+
+    Girafe & operator=(const Girafe &);
+    bool operator==(const Girafe &);
+    bool operator!=(const Girafe &);
+
+    friend ostream & operator<<(ostream &, const Girafe &);
+};
 #endif
