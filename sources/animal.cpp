@@ -311,8 +311,6 @@ ostream & operator<<(ostream & flot, const Animal & a) {
 /**      Classe Marmotte                                      **/
 /***************************************************************/
 /***************************************************************/
-float fTaille;
-    int iNbTablettesChocolatEmballees;
 Marmotte::Marmotte():Animal(),fTaille(0),iNbTablettesChocolatEmballees(0) {
    setSaitVoler(false);
    setSaitNager(true);
@@ -382,5 +380,182 @@ Marmotte::Marmotte():Animal(),fTaille(0),iNbTablettesChocolatEmballees(0) {
    flot << (Animal&)t;
    flot << "Taille : " << t.getTaille() << "cm" << endl;
    flot << "Nombre de plaquettes de chocolat emballées : " << t.getNbTabChocolat() << endl;
+   return flot;
+ }
+
+
+
+
+/***************************************************************/
+/***************************************************************/
+/**      Classe Elephant                                      **/
+/***************************************************************/
+/***************************************************************/
+Elephant::Elephant():Animal(),fPoids(0),fLongueurTrompe(0),iNbBraconniersEmpales(0) {
+   setSaitVoler(false);
+   setSaitNager(true);
+   setEstCarnivore(false);
+}
+
+ Elephant::Elephant(const float poids, const float lTrompe, const int iNbVict, const string & nom, const int ID)
+   :Animal(nom, false, true, false, ID), fPoids(poids), fLongueurTrompe(lTrompe), iNbBraconniersEmpales(iNbVict) {}
+
+ Elephant::Elephant(const Elephant & t):Animal(t) {
+   fPoids = t.fPoids;
+   fLongueurTrompe = t.fLongueurTrompe;
+   iNbBraconniersEmpales = t.iNbBraconniersEmpales;
+ }
+
+ Elephant::~Elephant() {}
+
+
+ float Elephant::getPoids()const{
+   return fPoids;
+ }
+
+ float Elephant::getLongTrompe()const{
+   return fLongueurTrompe;
+ }
+
+ int Elephant::getNbVictimes() const {
+   return iNbBraconniersEmpales;
+ }
+
+
+ void Elephant::setPoids(const float poids) {
+   fPoids = poids;
+ }
+
+void Elephant::setLongTrompe(const float trompe) {
+   fLongueurTrompe = trompe;
+ }
+
+ void Elephant::setNbVictimes(const int vict) {
+   iNbBraconniersEmpales = vict;
+ }
+
+
+ Elephant & Elephant::operator=(const Elephant & t) {
+   Animal::operator=(t);
+   fLongueurTrompe = t.fLongueurTrompe;
+   fPoids = t.fPoids;
+   iNbBraconniersEmpales = t.iNbBraconniersEmpales;
+   return *this;
+ }
+
+ bool Elephant::operator==(const Elephant & t) {
+    if(Animal::operator==(t)
+       && fPoids == t.fPoids
+       && iNbBraconniersEmpales == t.iNbBraconniersEmpales
+       && fLongueurTrompe == t.fLongueurTrompe
+       ) {
+      return true;
+   }
+   else {
+      return false;
+   }
+ }
+
+ bool Elephant::operator!=(const Elephant & t) {
+   if(Animal::operator!=(t)
+      || fPoids != t.fPoids
+      || iNbBraconniersEmpales != t.iNbBraconniersEmpales
+      || fLongueurTrompe != t.fLongueurTrompe
+      ){
+      return true;
+   }
+   else {
+      return false;
+   }
+ }
+
+ ostream & operator<<(ostream & flot, const Elephant & t) {
+   flot << (Animal&)t;
+   flot << "Poids : " << t.getPoids() << "Kg" << endl;
+   flot << "Longueur de la trompe : " << t.getLongTrompe() << "cm" << endl;
+   flot << "Nombre de braconniers empalés : " << t.getNbVictimes() << endl;
+   return flot;
+ }
+
+
+
+
+/***************************************************************/
+/***************************************************************/
+/**      Classe Aigle                                         **/
+/***************************************************************/
+/***************************************************************/
+ float fLongueurBec;
+    int iNbLoopings;
+Aigle::Aigle():Animal(),fLongueurBec(0),iNbLoopings(0) {
+   setSaitVoler(true);
+   setSaitNager(false);
+   setEstCarnivore(true);
+}
+
+ Aigle::Aigle(const float bec, const int loopings, const string & nom, const int ID)
+   :Animal(nom, true, false, true, ID), fLongueurBec(bec), iNbLoopings(loopings) {}
+
+ Aigle::Aigle(const Aigle & t):Animal(t) {
+   fLongueurBec = t.fLongueurBec;
+   iNbLoopings = t.iNbLoopings;
+ }
+
+ Aigle::~Aigle() {}
+
+
+ float Aigle::getLongueurBec()const{
+   return fLongueurBec;
+ }
+
+ int Aigle::getNbLoopings() const {
+   return iNbLoopings;
+ }
+
+
+ void Aigle::setLongueurBec(const float bec) {
+   fLongueurBec = bec;
+ }
+
+ void Aigle::setNbLoopings(const int loopings) {
+   iNbLoopings = loopings;
+ }
+
+
+ Aigle & Aigle::operator=(const Aigle & t) {
+   Animal::operator=(t);
+   fLongueurBec = t.fLongueurBec;
+   iNbLoopings = t.iNbLoopings;
+   return *this;
+ }
+
+ bool Aigle::operator==(const Aigle & t) {
+    if(Animal::operator==(t)
+       && fLongueurBec == t.fLongueurBec
+       && iNbLoopings == t.iNbLoopings
+       ) {
+      return true;
+   }
+   else {
+      return false;
+   }
+ }
+
+ bool Aigle::operator!=(const Aigle & t) {
+   if(Animal::operator!=(t)
+      || fLongueurBec != t.fLongueurBec
+      || iNbLoopings != t.iNbLoopings
+      ){
+      return true;
+   }
+   else {
+      return false;
+   }
+ }
+
+ ostream & operator<<(ostream & flot, const Aigle & t) {
+   flot << (Animal&)t;
+   flot << "Longueur du bec : " << t.getLongueurBec() << "cm" << endl;
+   flot << "Nombre de loopings en vol : " << t.getNbLoopings() << endl;
    return flot;
  }
