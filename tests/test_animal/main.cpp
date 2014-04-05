@@ -36,7 +36,17 @@ int main() {
 
     cout << endl;
 
-    Marmotte Miam(95, 6544, "Diego", 001);
+    Marmotte Miam(95, 6544, "Purée", 3);
     cout << Miam;
+
+    cout << endl;
+
+    Elephant MamamDeValentin;
+    cout << MamamDeValentin;
+
+    cout << endl;
+
+    Elephant Pikachu(1021, 365, 102, "Valentin", 4);
+    cout << Pikachu;
     return 0;
 }
