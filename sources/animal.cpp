@@ -148,10 +148,14 @@ ostream & operator<<(ostream & flot, const Animal & a) {
 /**      Classe Tigre                                         **/
 /***************************************************************/
 /***************************************************************/
- Tigre::Tigre():Animal(),fHauteurGarot(0),iNbGazellesCroquees(0) {}
+ Tigre::Tigre():Animal(),fHauteurGarot(0),iNbGazellesCroquees(0) {
+   setSaitVoler(false);
+   setSaitNager(true);
+   setEstCarnivore(true);
+ }
 
- Tigre::Tigre(const float fGarot, const int iNbVict, const string & nom, const bool vole, const bool nage, const bool carnivore, const int ID)
-   :Animal(nom, vole, nage, carnivore, ID), fHauteurGarot(fGarot), iNbGazellesCroquees(iNbVict) {}
+ Tigre::Tigre(const float fGarot, const int iNbVict, const string & nom, const int ID)
+   :Animal(nom, false, true, true, ID), fHauteurGarot(fGarot), iNbGazellesCroquees(iNbVict) {}
 
  Tigre::Tigre(const Tigre & t):Animal(t) {
    fHauteurGarot = t.fHauteurGarot;
@@ -225,15 +229,14 @@ ostream & operator<<(ostream & flot, const Animal & a) {
 /**      Classe Basque                                        **/
 /***************************************************************/
 /***************************************************************/
-float fLargeurBeret;
-    float fTempsDeCuisson;
-    int iNbPartiesPeloteGagnees;
-    int iNbRicardBus;
+ Basque::Basque():Animal(), fLargeurBeret(0), fTempsDeCuisson(0), iNbPartiesPeloteGagnees(0), iNbRicardBus(0){
+   setSaitVoler(false);
+   setSaitNager(true);
+   setEstCarnivore(true);
+}
 
- Basque::Basque():Animal(), fLargeurBeret(0), fTempsDeCuisson(0), iNbPartiesPeloteGagnees(0), iNbRicardBus(0){}
-
- Basque::Basque(const float flBeret, const float fCuisson, const int iNbVictoires, const int iNbRicard, const string & nom, const bool vole, const bool nage, const bool carnivore, const int ID)
-   :Animal(nom, vole, nage, carnivore, ID), fLargeurBeret(flBeret), fTempsDeCuisson(fCuisson), iNbPartiesPeloteGagnees(iNbVictoires), iNbRicardBus(iNbRicard) {}
+ Basque::Basque(const float flBeret, const float fCuisson, const int iNbVictoires, const int iNbRicard, const string & nom, const int ID)
+   :Animal(nom, false, true, true, ID), fLargeurBeret(flBeret), fTempsDeCuisson(fCuisson), iNbPartiesPeloteGagnees(iNbVictoires), iNbRicardBus(iNbRicard) {}
 
  Basque::Basque(const Basque & b):Animal(b){
    fLargeurBeret = b.fLargeurBeret;
@@ -323,3 +326,84 @@ float fLargeurBeret;
    return flot;
  }
 
+
+
+/***************************************************************/
+/***************************************************************/
+/**      Classe Marmotte                                      **/
+/***************************************************************/
+/***************************************************************/
+float fTaille;
+    int iNbTablettesChocolatEmballees;
+Marmotte::Marmotte():Animal(),fTaille(0),iNbTablettesChocolatEmballees(0) {
+   setSaitVoler(false);
+   setSaitNager(true);
+   setEstCarnivore(false);
+}
+
+ Marmotte::Marmotte(const float taille, const int iNbTablettes, const string & nom, const int ID)
+   :Animal(nom, false, true, false, ID), fTaille(taille), iNbTablettesChocolatEmballees(iNbTablettes) {}
+
+ Marmotte::Marmotte(const Marmotte & t):Animal(t) {
+   fTaille = t.fTaille;
+   iNbTablettesChocolatEmballees = t.iNbTablettesChocolatEmballees;
+ }
+
+ Marmotte::~Marmotte() {}
+
+
+ float Marmotte::getTaille()const{
+   return fTaille;
+ }
+
+ int Marmotte::getNbTabChocolat() const {
+   return iNbTablettesChocolatEmballees;
+ }
+
+
+ void Marmotte::setTaille(const float taille) {
+   fTaille = taille;
+ }
+
+ void Marmotte::setNbTabChocolat(const int chocolat) {
+   iNbTablettesChocolatEmballees = chocolat;
+ }
+
+
+ Marmotte & Marmotte::operator=(const Marmotte & t) {
+   Animal::operator=(t);
+   fTaille = t.fTaille;
+   iNbTablettesChocolatEmballees = t.iNbTablettesChocolatEmballees;
+   return *this;
+ }
+
+ bool Marmotte::operator==(const Marmotte & t) {
+    if(Animal::operator==(t)
+       && fTaille == t.fTaille
+       && iNbTablettesChocolatEmballees == t.iNbTablettesChocolatEmballees
+       ) {
+      return true;
+   }
+   else {
+      return false;
+   }
+ }
+
+ bool Marmotte::operator!=(const Marmotte & t) {
+   if(Animal::operator!=(t)
+      || fTaille != t.fTaille
+      || iNbTablettesChocolatEmballees != t.iNbTablettesChocolatEmballees
+      ){
+      return true;
+   }
+   else {
+      return false;
+   }
+ }
+
+ ostream & operator<<(ostream & flot, const Marmotte & t) {
+   flot << (Animal&)t;
+   flot << "Taille : " << t.getTaille() << "cm" << endl;
+   flot << "Nombre de plaquettes de chocolat emballées : " << t.getNbTabChocolat() << endl;
+   return flot;
+ }

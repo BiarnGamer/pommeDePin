@@ -16,7 +16,7 @@ int main() {
 
     cout << endl;
 
-    Tigre Helico(105, 654, "Diego", false, true, true, 001);
+    Tigre Helico(105, 654, "Diego", 001);
     cout << Helico;
 
     cout << endl;
@@ -26,7 +26,17 @@ int main() {
 
     cout << endl;
 
-    Basque Xabi(125, 63, 1, 9999999, "Xabi", false, true, true, 2);
+    Basque Xabi(125, 63, 1, 9999999, "Xabi", 2);
     cout << Xabi;
+
+    cout << endl;
+
+    Marmotte Milka;
+    cout << Milka;
+
+    cout << endl;
+
+    Marmotte Miam(95, 6544, "Diego", 001);
+    cout << Miam;
     return 0;
 }
