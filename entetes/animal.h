@@ -47,7 +47,7 @@ class Tigre: public Animal {
 
     public:
     Tigre();
-    Tigre(const float fGarot, const int iNbVict, const string & nom, const bool vole, const bool nage, const bool carnivore, const int ID = -1);
+    Tigre(const float fGarot, const int iNbVict, const string & nom, const int ID = -1);
     Tigre(const Tigre &);
     ~Tigre();
 
@@ -74,7 +74,7 @@ class Basque: public Animal {
 
     public:
     Basque();
-    Basque(const float flBeret, const float fCuisson, const int iNbVictoires, const int iNbRicard, const string & nom, const bool vole, const bool nage, const bool carnivore, const int ID = -1);
+    Basque(const float flBeret, const float fCuisson, const int iNbVictoires, const int iNbRicard, const string & nom, const int ID = -1);
     Basque(const Basque &);
     ~Basque();
 
@@ -102,7 +102,7 @@ class Marmotte: public Animal {
 
     public:
     Marmotte();
-    Marmotte(const float taille, const int iNbTablettes, const string & nom, const bool vole, const bool nage, const bool carnivore, const int ID = -1);
+    Marmotte(const float taille, const int iNbTablettes, const string & nom, const int ID = -1);
     Marmotte(const Marmotte &);
     ~Marmotte();
 
@@ -127,7 +127,7 @@ class Elephant: public Animal {
 
     public:
     Elephant();
-    Elephant(const float poids, const float lTrompe, const int iNbVict, const string & nom, const bool vole, const bool nage, const bool carnivore, const int ID = -1);
+    Elephant(const float poids, const float lTrompe, const int iNbVict, const string & nom, const int ID = -1);
     Elephant(const Elephant &);
     ~Elephant();
 
@@ -153,7 +153,7 @@ class Aigle: public Animal {
 
     public:
     Aigle();
-    Aigle(const float fLBec, const int iNbLoopings, const string & nom, const bool vole, const bool nage, const bool carnivore, const int ID = -1);
+    Aigle(const float fLBec, const int iNbLoopings, const string & nom, const int ID = -1);
     Aigle(const Aigle &);
     ~Aigle();
 

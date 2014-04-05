@@ -16,10 +16,10 @@ int main() {
 
     cout << endl;
 
-    Tigre Helico(105, 654, "Diego", false, true, true, 001);
+    Tigre Helico(105, 654, "Diego", 001);
     cout << Helico;
 
-    cout << endl;
+  /*  cout << endl;
 
     Basque Pantxica;
     cout << Pantxica;
@@ -37,6 +37,6 @@ int main() {
     cout << endl;
 
     Marmotte Miam(95, 6544, "Diego", false, true, true, 001);
-    cout << Miam;
+    cout << Miam;*/
     return 0;
 }

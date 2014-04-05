@@ -148,10 +148,14 @@ ostream & operator<<(ostream & flot, const Animal & a) {
 /**      Classe Tigre                                         **/
 /***************************************************************/
 /***************************************************************/
- Tigre::Tigre():Animal(),fHauteurGarot(0),iNbGazellesCroquees(0) {}
+ Tigre::Tigre():Animal(),fHauteurGarot(0),iNbGazellesCroquees(0) {
+   setSaitVoler(false);
+   setSaitNager(true);
+   setEstCarnivore(true);
+ }
 
- Tigre::Tigre(const float fGarot, const int iNbVict, const string & nom, const bool vole, const bool nage, const bool carnivore, const int ID)
-   :Animal(nom, vole, nage, carnivore, ID), fHauteurGarot(fGarot), iNbGazellesCroquees(iNbVict) {}
+ Tigre::Tigre(const float fGarot, const int iNbVict, const string & nom, const int ID)
+   :Animal(nom, false, true, true, ID), fHauteurGarot(fGarot), iNbGazellesCroquees(iNbVict) {}
 
  Tigre::Tigre(const Tigre & t):Animal(t) {
    fHauteurGarot = t.fHauteurGarot;
@@ -225,7 +229,7 @@ ostream & operator<<(ostream & flot, const Animal & a) {
 /**      Classe Basque                                        **/
 /***************************************************************/
 /***************************************************************/
- Basque::Basque():Animal(), fLargeurBeret(0), fTempsDeCuisson(0), iNbPartiesPeloteGagnees(0), iNbRicardBus(0){}
+ /*Basque::Basque():Animal(), fLargeurBeret(0), fTempsDeCuisson(0), iNbPartiesPeloteGagnees(0), iNbRicardBus(0){}
 
  Basque::Basque(const float flBeret, const float fCuisson, const int iNbVictoires, const int iNbRicard, const string & nom, const bool vole, const bool nage, const bool carnivore, const int ID)
    :Animal(nom, vole, nage, carnivore, ID), fLargeurBeret(flBeret), fTempsDeCuisson(fCuisson), iNbPartiesPeloteGagnees(iNbVictoires), iNbRicardBus(iNbRicard) {}
@@ -325,7 +329,7 @@ ostream & operator<<(ostream & flot, const Animal & a) {
 /**      Classe Marmotte                                      **/
 /***************************************************************/
 /***************************************************************/
-float fTaille;
+/*float fTaille;
     int iNbTablettesChocolatEmballees;
 Marmotte::Marmotte():Animal(),fTaille(0),iNbTablettesChocolatEmballees(0) {}
 
@@ -395,3 +399,4 @@ Marmotte::Marmotte():Animal(),fTaille(0),iNbTablettesChocolatEmballees(0) {}
    flot << "Nombre de plaquettes de chocolat emballées : " << t.getNbTabChocolat() << endl;
    return flot;
  }
+*/
