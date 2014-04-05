@@ -229,10 +229,14 @@ ostream & operator<<(ostream & flot, const Animal & a) {
 /**      Classe Basque                                        **/
 /***************************************************************/
 /***************************************************************/
- /*Basque::Basque():Animal(), fLargeurBeret(0), fTempsDeCuisson(0), iNbPartiesPeloteGagnees(0), iNbRicardBus(0){}
+ Basque::Basque():Animal(), fLargeurBeret(0), fTempsDeCuisson(0), iNbPartiesPeloteGagnees(0), iNbRicardBus(0){
+   setSaitVoler(false);
+   setSaitNager(true);
+   setEstCarnivore(true);
+}
 
- Basque::Basque(const float flBeret, const float fCuisson, const int iNbVictoires, const int iNbRicard, const string & nom, const bool vole, const bool nage, const bool carnivore, const int ID)
-   :Animal(nom, vole, nage, carnivore, ID), fLargeurBeret(flBeret), fTempsDeCuisson(fCuisson), iNbPartiesPeloteGagnees(iNbVictoires), iNbRicardBus(iNbRicard) {}
+ Basque::Basque(const float flBeret, const float fCuisson, const int iNbVictoires, const int iNbRicard, const string & nom, const int ID)
+   :Animal(nom, false, true, true, ID), fLargeurBeret(flBeret), fTempsDeCuisson(fCuisson), iNbPartiesPeloteGagnees(iNbVictoires), iNbRicardBus(iNbRicard) {}
 
  Basque::Basque(const Basque & b):Animal(b){
    fLargeurBeret = b.fLargeurBeret;
@@ -329,12 +333,16 @@ ostream & operator<<(ostream & flot, const Animal & a) {
 /**      Classe Marmotte                                      **/
 /***************************************************************/
 /***************************************************************/
-/*float fTaille;
+float fTaille;
     int iNbTablettesChocolatEmballees;
-Marmotte::Marmotte():Animal(),fTaille(0),iNbTablettesChocolatEmballees(0) {}
+Marmotte::Marmotte():Animal(),fTaille(0),iNbTablettesChocolatEmballees(0) {
+   setSaitVoler(false);
+   setSaitNager(true);
+   setEstCarnivore(false);
+}
 
- Marmotte::Marmotte(const float taille, const int iNbTablettes, const string & nom, const bool vole, const bool nage, const bool carnivore, const int ID)
-   :Animal(nom, vole, nage, carnivore, ID), fTaille(taille), iNbTablettesChocolatEmballees(iNbTablettes) {}
+ Marmotte::Marmotte(const float taille, const int iNbTablettes, const string & nom, const int ID)
+   :Animal(nom, false, true, false, ID), fTaille(taille), iNbTablettesChocolatEmballees(iNbTablettes) {}
 
  Marmotte::Marmotte(const Marmotte & t):Animal(t) {
    fTaille = t.fTaille;
@@ -399,4 +407,3 @@ Marmotte::Marmotte():Animal(),fTaille(0),iNbTablettesChocolatEmballees(0) {}
    flot << "Nombre de plaquettes de chocolat emballées : " << t.getNbTabChocolat() << endl;
    return flot;
  }
-*/
