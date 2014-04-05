@@ -10,6 +10,29 @@ using namespace std;
 /***************************************************************/
 /***************************************************************/
 
+
+
+
+
+
+
+
+
+// C'est NUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUL
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Constructeurs et destructeur
 Animal::Animal():iID(-1), saitVoler(false), saitNager(false), estCarnivore(false), sNom("Nom indéfini") {}
 
