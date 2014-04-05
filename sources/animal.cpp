@@ -11,16 +11,17 @@ using namespace std;
 /***************************************************************/
 
 // Constructeurs et destructeur
-Animal::Animal():iID(-1), saitVoler(false), saitNager(false), sNom("Nom indéfini") {}
+Animal::Animal():iID(-1), saitVoler(false), saitNager(false), sNom("Nom indéfini"), sEspece("Espèce indéfinie") {}
 
-Animal::Animal(const string & nom, const string,t const int ID):
-    iID(ID), saitVoler(vole), saitNager(nage), sNom(nom) {}
+Animal::Animal(const string & nom, const string & espece, const bool vole, const bool nage, const int ID):
+    iID(ID), saitVoler(vole), saitNager(nage), sNom(nom), sEspece(espece) {}
 
 Animal::Animal(const Animal & a) {
     iID = a.iID;
     saitVoler = a.saitVoler;
     saitNager = a.saitNager;
     sNom = a.sNom;
+    sEspece = a.sEspece;
 }
 
 Animal::~Animal() {};
@@ -42,6 +43,10 @@ string Animal::getNom() const {
     return sNom;
 }
 
+string Animal::getEspece() const {
+    return sEspece;
+}
+
 
 // Setters
 void Animal::setID(const int i) {
@@ -60,6 +65,10 @@ void Animal::setNom(const string & n) {
     sNom = n;
 }
 
+void Animal::setEspece(const string & e) {
+    sEspece = e;
+}
+
 
 // Surcharges d'opérateurs
 Animal & Animal::operator=(const Animal & a) {
@@ -67,6 +76,7 @@ Animal & Animal::operator=(const Animal & a) {
     saitVoler = a.saitVoler;
     saitNager = a.saitNager;
     sNom = a.sNom;
+    sEspece = a.sEspece;
     return *this;
 }
 
@@ -76,6 +86,7 @@ bool Animal::operator==(const Animal & a) {
         && saitVoler == a.saitVoler
         && saitNager == a.saitNager
         && sNom == a.sNom
+        && sEspece == a.sEspece
     ) {
         return true;
     }
@@ -90,6 +101,7 @@ bool Animal::operator!=(const Animal & a) {
         || saitVoler != a.saitVoler
         || saitNager != a.saitNager
         || sNom != a.sNom
+        || sEspece != a.sEspece
     ) {
         return true;
     }
@@ -102,6 +114,7 @@ bool Animal::operator!=(const Animal & a) {
 // Fonctions amies
 ostream & operator<<(ostream & flot, const Animal & a) {
     flot << "N° animal : " << a.getID() << endl;
+    flot << "Espèce : " << a.getEspece() << endl;
     flot << "Nom : " << a.getNom() << endl;
 
     if(a.getSaitVoler()) {
@@ -131,10 +144,11 @@ ostream & operator<<(ostream & flot, const Animal & a) {
  Tigre::Tigre():Animal(),fHauteurGarot(0),iNbGazellesCroquees(0) {
    setSaitVoler(false);
    setSaitNager(true);
+   setEspece("Tigre");
  }
 
  Tigre::Tigre(const float fGarot, const int iNbVict, const string & nom, const int ID)
-   :Animal(nom, false, true, true, ID), fHauteurGarot(fGarot), iNbGazellesCroquees(iNbVict) {}
+   :Animal(nom, "Tigre", false, true, ID), fHauteurGarot(fGarot), iNbGazellesCroquees(iNbVict) {}
 
  Tigre::Tigre(const Tigre & t):Animal(t) {
    fHauteurGarot = t.fHauteurGarot;
@@ -211,10 +225,11 @@ ostream & operator<<(ostream & flot, const Animal & a) {
  Basque::Basque():Animal(), fLargeurBeret(0), fTempsDeCuisson(0), iNbPartiesPeloteGagnees(0), iNbRicardBus(0){
    setSaitVoler(false);
    setSaitNager(true);
+   setEspece("Basque");
 }
 
  Basque::Basque(const float flBeret, const float fCuisson, const int iNbVictoires, const int iNbRicard, const string & nom, const int ID)
-   :Animal(nom, false, true, true, ID), fLargeurBeret(flBeret), fTempsDeCuisson(fCuisson), iNbPartiesPeloteGagnees(iNbVictoires), iNbRicardBus(iNbRicard) {}
+   :Animal(nom, "Basque", false, true, ID), fLargeurBeret(flBeret), fTempsDeCuisson(fCuisson), iNbPartiesPeloteGagnees(iNbVictoires), iNbRicardBus(iNbRicard) {}
 
  Basque::Basque(const Basque & b):Animal(b){
    fLargeurBeret = b.fLargeurBeret;
@@ -314,10 +329,11 @@ ostream & operator<<(ostream & flot, const Animal & a) {
 Marmotte::Marmotte():Animal(),fTaille(0),iNbTablettesChocolatEmballees(0) {
    setSaitVoler(false);
    setSaitNager(true);
+   setEspece("Marmotte");
 }
 
  Marmotte::Marmotte(const float taille, const int iNbTablettes, const string & nom, const int ID)
-   :Animal(nom, false, true, false, ID), fTaille(taille), iNbTablettesChocolatEmballees(iNbTablettes) {}
+   :Animal(nom, "Marmotte", false, true, ID), fTaille(taille), iNbTablettesChocolatEmballees(iNbTablettes) {}
 
  Marmotte::Marmotte(const Marmotte & t):Animal(t) {
    fTaille = t.fTaille;
@@ -394,11 +410,11 @@ Marmotte::Marmotte():Animal(),fTaille(0),iNbTablettesChocolatEmballees(0) {
 Elephant::Elephant():Animal(),fPoids(0),fLongueurTrompe(0),iNbBraconniersEmpales(0) {
    setSaitVoler(false);
    setSaitNager(true);
-   setEstCarnivore(false);
+   setEspece("Élephant");
 }
 
  Elephant::Elephant(const float poids, const float lTrompe, const int iNbVict, const string & nom, const int ID)
-   :Animal(nom, false, true, false, ID), fPoids(poids), fLongueurTrompe(lTrompe), iNbBraconniersEmpales(iNbVict) {}
+   :Animal(nom, "Éléphant", false, true, ID), fPoids(poids), fLongueurTrompe(lTrompe), iNbBraconniersEmpales(iNbVict) {}
 
  Elephant::Elephant(const Elephant & t):Animal(t) {
    fPoids = t.fPoids;
@@ -490,11 +506,11 @@ void Elephant::setLongTrompe(const float trompe) {
 Aigle::Aigle():Animal(),fLongueurBec(0),iNbLoopings(0) {
    setSaitVoler(true);
    setSaitNager(false);
-   setEstCarnivore(true);
+   setEspece("Aigle");
 }
 
  Aigle::Aigle(const float bec, const int loopings, const string & nom, const int ID)
-   :Animal(nom, true, false, true, ID), fLongueurBec(bec), iNbLoopings(loopings) {}
+   :Animal(nom, "Aigle", true, false, ID), fLongueurBec(bec), iNbLoopings(loopings) {}
 
  Aigle::Aigle(const Aigle & t):Animal(t) {
    fLongueurBec = t.fLongueurBec;

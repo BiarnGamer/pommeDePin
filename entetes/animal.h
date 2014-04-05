@@ -18,7 +18,7 @@ class Animal{
 
     public:
     Animal();
-    Animal(const string & nom, const string & espece= "Inconnue", const int ID = -1);
+    Animal(const string & nom, const string & espece, const bool vole, const bool nage, const int ID = -1);
     Animal(const Animal &);
     virtual ~Animal();
 
@@ -26,10 +26,12 @@ class Animal{
     bool getSaitNager() const;
     bool getSaitVoler() const;
     string getNom() const;
+    string getEspece() const;
 
     void setSaitNager(const bool nage);
     void setSaitVoler(const bool vole);
     void setNom(const string & n);
+    void setEspece(const string & e);
 
     virtual Animal & operator=(const Animal &);
     virtual bool operator==(const Animal &);
