@@ -11,16 +11,15 @@ using namespace std;
 /***************************************************************/
 
 // Constructeurs et destructeur
-Animal::Animal():iID(-1), saitVoler(false), saitNager(false), estCarnivore(false), sNom("Nom indéfini") {}
+Animal::Animal():iID(-1), saitVoler(false), saitNager(false), sNom("Nom indéfini") {}
 
-Animal::Animal(const string & nom, const bool vole, const bool nage, const bool carnivore, const int ID):
-    iID(ID), saitVoler(vole), saitNager(nage), estCarnivore(carnivore), sNom(nom) {}
+Animal::Animal(const string & nom, const string,t const int ID):
+    iID(ID), saitVoler(vole), saitNager(nage), sNom(nom) {}
 
 Animal::Animal(const Animal & a) {
     iID = a.iID;
     saitVoler = a.saitVoler;
     saitNager = a.saitNager;
-    estCarnivore = a.estCarnivore;
     sNom = a.sNom;
 }
 
@@ -37,10 +36,6 @@ bool Animal::getSaitNager() const {
 
 bool Animal::getSaitVoler() const {
     return saitVoler;
-}
-
-bool Animal::getEstCarnivore() const {
-    return estCarnivore;
 }
 
 string Animal::getNom() const {
@@ -61,11 +56,6 @@ void Animal::setSaitVoler(const bool vole) {
     saitVoler = vole;
 }
 
-
-void Animal::setEstCarnivore(const bool carnivore) {
-    estCarnivore = carnivore;
-}
-
 void Animal::setNom(const string & n) {
     sNom = n;
 }
@@ -76,7 +66,6 @@ Animal & Animal::operator=(const Animal & a) {
     iID = a.iID;
     saitVoler = a.saitVoler;
     saitNager = a.saitNager;
-    estCarnivore = a.estCarnivore;
     sNom = a.sNom;
     return *this;
 }
@@ -86,7 +75,6 @@ bool Animal::operator==(const Animal & a) {
     if( iID == a.iID
         && saitVoler == a.saitVoler
         && saitNager == a.saitNager
-        && estCarnivore == a.estCarnivore
         && sNom == a.sNom
     ) {
         return true;
@@ -101,7 +89,6 @@ bool Animal::operator!=(const Animal & a) {
     if( iID != a.iID
         || saitVoler != a.saitVoler
         || saitNager != a.saitNager
-        || estCarnivore != a.estCarnivore
         || sNom != a.sNom
     ) {
         return true;
@@ -131,13 +118,6 @@ ostream & operator<<(ostream & flot, const Animal & a) {
         flot << "Nage : non" << endl;
     }
 
-    if(a.getEstCarnivore()) {
-        flot << "Carnivore : oui" << endl;
-    }
-    else {
-        flot << "Carnivore : non" << endl;
-    }
-
     return flot;
 }
 
@@ -151,7 +131,6 @@ ostream & operator<<(ostream & flot, const Animal & a) {
  Tigre::Tigre():Animal(),fHauteurGarot(0),iNbGazellesCroquees(0) {
    setSaitVoler(false);
    setSaitNager(true);
-   setEstCarnivore(true);
  }
 
  Tigre::Tigre(const float fGarot, const int iNbVict, const string & nom, const int ID)
@@ -232,7 +211,6 @@ ostream & operator<<(ostream & flot, const Animal & a) {
  Basque::Basque():Animal(), fLargeurBeret(0), fTempsDeCuisson(0), iNbPartiesPeloteGagnees(0), iNbRicardBus(0){
    setSaitVoler(false);
    setSaitNager(true);
-   setEstCarnivore(true);
 }
 
  Basque::Basque(const float flBeret, const float fCuisson, const int iNbVictoires, const int iNbRicard, const string & nom, const int ID)
@@ -336,7 +314,6 @@ ostream & operator<<(ostream & flot, const Animal & a) {
 Marmotte::Marmotte():Animal(),fTaille(0),iNbTablettesChocolatEmballees(0) {
    setSaitVoler(false);
    setSaitNager(true);
-   setEstCarnivore(false);
 }
 
  Marmotte::Marmotte(const float taille, const int iNbTablettes, const string & nom, const int ID)

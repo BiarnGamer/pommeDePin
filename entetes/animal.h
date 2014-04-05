@@ -10,7 +10,7 @@ class Animal{
     int iID;
     bool saitVoler;
     bool saitNager;
-    bool estCarnivore;
+    string sEspece;
     string sNom;
 
     void setID(const int i);
@@ -18,19 +18,17 @@ class Animal{
 
     public:
     Animal();
-    Animal(const string & nom, const bool vole, const bool nage, const bool carnivore, const int ID = -1);
+    Animal(const string & nom, const string & espece= "Inconnue", const int ID = -1);
     Animal(const Animal &);
     virtual ~Animal();
 
     int getID() const;
     bool getSaitNager() const;
     bool getSaitVoler() const;
-    bool getEstCarnivore() const;
     string getNom() const;
 
     void setSaitNager(const bool nage);
     void setSaitVoler(const bool vole);
-    void setEstCarnivore(const bool carnivore);
     void setNom(const string & n);
 
     virtual Animal & operator=(const Animal &);
