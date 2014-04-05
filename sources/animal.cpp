@@ -183,6 +183,7 @@ ostream & operator<<(ostream & flot, const Animal & a) {
    Animal::operator=(t);
    fHauteurGarot = t.fHauteurGarot;
    iNbGazellesCroquees = t.iNbGazellesCroquees;
+   return *this;
  }
 
  bool Tigre::operator==(const Tigre & t) {
@@ -224,3 +225,101 @@ ostream & operator<<(ostream & flot, const Animal & a) {
 /**      Classe Basque                                        **/
 /***************************************************************/
 /***************************************************************/
+float fLargeurBeret;
+    float fTempsDeCuisson;
+    int iNbPartiesPeloteGagnees;
+    int iNbRicardBus;
+
+ Basque::Basque():Animal(), fLargeurBeret(0), fTempsDeCuisson(0), iNbPartiesPeloteGagnees(0), iNbRicardBus(0){}
+
+ Basque::Basque(const float flBeret, const float fCuisson, const int iNbVictoires, const int iNbRicard, const string & nom, const bool vole, const bool nage, const bool carnivore, const int ID)
+   :Animal(nom, vole, nage, carnivore, ID), fLargeurBeret(flBeret), fTempsDeCuisson(fCuisson), iNbPartiesPeloteGagnees(iNbVictoires), iNbRicardBus(iNbRicard) {}
+
+ Basque::Basque(const Basque & b):Animal(b){
+   fLargeurBeret = b.fLargeurBeret;
+   fTempsDeCuisson = b.fTempsDeCuisson;
+   iNbPartiesPeloteGagnees = b.iNbPartiesPeloteGagnees;
+   iNbRicardBus = b.iNbRicardBus;
+ }
+
+ Basque::~Basque(){}
+
+ float Basque::getLargeurBeret() const{
+   return fLargeurBeret;
+ }
+
+ float Basque::getTempsCuisson() const{
+   return fTempsDeCuisson;
+ }
+
+ int Basque::getNbVictoires() const{
+   return iNbPartiesPeloteGagnees;
+ }
+
+ int Basque::getNbRicard() const{
+   return iNbRicardBus;
+ }
+
+
+ void Basque::setLargeurBeret(const float beret){
+   fLargeurBeret = beret;
+ }
+
+ void Basque::setTempsCuisson(const float cuisson){
+   fTempsDeCuisson = cuisson;
+ }
+
+ void Basque::setNbVictoires(const int victoires){
+   iNbPartiesPeloteGagnees = victoires;
+ }
+
+ void Basque::setNbRicard(const int ricard){
+   iNbRicardBus = ricard;
+ }
+
+
+ Basque & Basque::operator=(const Basque & b){
+   Animal::operator=(b);
+   fLargeurBeret = b.fLargeurBeret;
+   fTempsDeCuisson = b.fTempsDeCuisson;
+   iNbPartiesPeloteGagnees = b.iNbPartiesPeloteGagnees;
+   iNbRicardBus = b.iNbRicardBus;
+   return *this;
+ }
+
+ bool Basque::operator==(const Basque & b){
+   if(Animal::operator==(b)
+      && fLargeurBeret == b.fLargeurBeret
+      && fTempsDeCuisson == b.fTempsDeCuisson
+      && iNbPartiesPeloteGagnees == b.iNbPartiesPeloteGagnees
+      && iNbRicardBus == b.iNbRicardBus) {
+      return true;
+   }
+   else {
+      return false;
+   }
+ }
+
+ bool Basque::operator!=(const Basque & b){
+   if(Animal::operator!=(b)
+      || fLargeurBeret != b.fLargeurBeret
+      || fTempsDeCuisson != b.fTempsDeCuisson
+      || iNbPartiesPeloteGagnees != b.iNbPartiesPeloteGagnees
+      || iNbRicardBus != b.iNbRicardBus) {
+      return true;
+   }
+   else {
+      return false;
+   }
+ }
+
+
+ ostream & operator<<(ostream & flot, const Basque & b){
+   flot << (Animal&)b;
+   flot << "Largeur du béret : " << b.getLargeurBeret() << "cm" << endl;
+   flot << "Temps de cuisson : " << b.getTempsCuisson() << "min" << endl;
+   flot << "Nombre de parties de pelotes gagnées : " << b.getNbVictoires() << endl;
+   flot << "Nombre de Ricards bus : " << b.getNbRicard() << endl;
+   return flot;
+ }
+
