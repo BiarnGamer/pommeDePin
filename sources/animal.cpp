@@ -141,3 +141,86 @@ ostream & operator<<(ostream & flot, const Animal & a) {
     return flot;
 }
 
+
+
+/***************************************************************/
+/***************************************************************/
+/**      Classe Tigre                                         **/
+/***************************************************************/
+/***************************************************************/
+ Tigre::Tigre():Animal(),fHauteurGarot(0),iNbGazellesCroquees(0) {}
+
+ Tigre::Tigre(const float fGarot, const int iNbVict, const string & nom, const bool vole, const bool nage, const bool carnivore, const int ID)
+   :Animal(nom, vole, nage, carnivore, ID), fHauteurGarot(fGarot), iNbGazellesCroquees(iNbVict) {}
+
+ Tigre::Tigre(const Tigre & t):Animal(t) {
+   fHauteurGarot = t.fHauteurGarot;
+   iNbGazellesCroquees = t.iNbGazellesCroquees;
+ }
+
+ Tigre::~Tigre() {}
+
+
+ float Tigre::getGarot() const{
+   return fHauteurGarot;
+ }
+
+ int Tigre::getNbVictimes() const {
+   return iNbGazellesCroquees;
+ }
+
+
+ void Tigre::setGarot(const float garot) {
+   fHauteurGarot = garot;
+ }
+
+ void Tigre::setNbVictimes(const int nbVict) {
+   iNbGazellesCroquees = nbVict;
+ }
+
+
+ Tigre & Tigre::operator=(const Tigre & t) {
+   Animal::operator=(t);
+   fHauteurGarot = t.fHauteurGarot;
+   iNbGazellesCroquees = t.iNbGazellesCroquees;
+ }
+
+ bool Tigre::operator==(const Tigre & t) {
+    if(Animal::operator==(t)
+       && fHauteurGarot == t.fHauteurGarot
+       && iNbGazellesCroquees == t.iNbGazellesCroquees
+       ) {
+      return true;
+   }
+   else {
+      return false;
+   }
+ }
+
+ bool Tigre::operator!=(const Tigre & t) {
+   if(Animal::operator!=(t)
+      || fHauteurGarot != t.fHauteurGarot
+      || iNbGazellesCroquees != t.iNbGazellesCroquees
+      ){
+      return true;
+   }
+   else {
+      return false;
+   }
+ }
+
+ ostream & operator<<(ostream & flot, const Tigre & t) {
+   flot << (Animal&)t;
+   flot << "Hauteur au garot : " << t.getGarot() << "cm" << endl;
+   flot << "Nombre de gazelles croquées : " << t.getNbVictimes() << endl;
+   return flot;
+ }
+
+
+
+
+/***************************************************************/
+/***************************************************************/
+/**      Classe Basque                                        **/
+/***************************************************************/
+/***************************************************************/

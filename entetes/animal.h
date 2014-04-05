@@ -61,7 +61,7 @@ class Tigre: public Animal {
     bool operator==(const Tigre &);
     bool operator!=(const Tigre &);
 
-    friend ostream & operator<<(const ostream &, const Tigre &);
+    friend ostream & operator<<(ostream &, const Tigre &);
 };
 
 
@@ -92,7 +92,7 @@ class Basque: public Animal {
     bool operator==(const Basque &);
     bool operator!=(const Basque &);
 
-    friend ostream & operator<<(const ostream &, const Basque &);
+    friend ostream & operator<<(ostream &, const Basque &);
 };
 
 class Marmotte: public Animal {
@@ -116,7 +116,7 @@ class Marmotte: public Animal {
     bool operator==(const Marmotte &);
     bool operator!=(const Marmotte &);
 
-    friend ostream & operator<<(const ostream &, const Marmotte &);
+    friend ostream & operator<<(ostream &, const Marmotte &);
 };
 
 class Elephant: public Animal {
@@ -143,7 +143,7 @@ class Elephant: public Animal {
     bool operator==(const Elephant &);
     bool operator!=(const Elephant &);
 
-    friend ostream & operator<<(const ostream &, const Elephant &);
+    friend ostream & operator<<(ostream &, const Elephant &);
 };
 
 class Aigle: public Animal {
@@ -167,6 +167,6 @@ class Aigle: public Animal {
     bool operator==(const Aigle &);
     bool operator!=(const Aigle &);
 
-    friend ostream & operator<<(const ostream &, const Aigle &);
+    friend ostream & operator<<(ostream &, const Aigle &);
 };
 #endif
