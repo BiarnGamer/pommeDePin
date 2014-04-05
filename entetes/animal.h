@@ -2,7 +2,7 @@
 #define ANIMAL_H
 
 #include <string>
-
+ 
 class Animal{
     private:
     int iID;
