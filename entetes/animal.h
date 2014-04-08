@@ -3,6 +3,19 @@
 
 #include <string>
 
+#define INDEFINI 0
+#define TIGRE 1
+#define BASQUE 2
+#define MARMOTTE 3
+#define ELEPHANT 4
+#define AIGLE 5
+#define TORTUE 6
+#define LOUTRE 7
+#define CROCODILE 8
+#define LAPIN 9
+#define GIRAFE 10
+
+
 using namespace std;
 
 class Animal{
@@ -10,7 +23,7 @@ class Animal{
     int iID;
     bool saitVoler;
     bool saitNager;
-    string sEspece;
+    int iEspece;
     string sNom;
 
     void setID(const int i);
@@ -18,7 +31,7 @@ class Animal{
 
     public:
     Animal();
-    Animal(const string & nom, const string & espece, const bool vole, const bool nage, const int ID = -1);
+    Animal(const string & nom, const int & espece, const bool vole, const bool nage, const int ID = -1);
     Animal(const Animal &);
     virtual ~Animal();
 
@@ -26,12 +39,12 @@ class Animal{
     bool getSaitNager() const;
     bool getSaitVoler() const;
     string getNom() const;
-    string getEspece() const;
+    int getEspece() const;
 
     void setSaitNager(const bool nage);
     void setSaitVoler(const bool vole);
     void setNom(const string & n);
-    void setEspece(const string & e);
+    void setEspece(const int & e);
 
     virtual Animal & operator=(const Animal &);
     virtual bool operator==(const Animal &);
