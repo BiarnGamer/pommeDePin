@@ -53,7 +53,6 @@ int main() {
 
     // Redéfinition de tous les attributs (sauf ID qui est privé et dans Animal
     cout << endl << "*** Setters ***" << endl;
-    Diego.setEspece("Écureil");
     Diego.setNom("Paul");
     Diego.setGarot(452.3);
     Diego.setNbVictimes(12);
