@@ -504,8 +504,7 @@ void Elephant::setLongTrompe(const float trompe) {
 /**      Classe Aigle                                         **/
 /***************************************************************/
 /***************************************************************/
- float fLongueurBec;
-    int iNbLoopings;
+
 Aigle::Aigle():Animal(),fLongueurBec(0),iNbLoopings(0) {
    setSaitVoler(true);
    setSaitNager(false);
@@ -590,26 +589,76 @@ Aigle::Aigle():Animal(),fLongueurBec(0),iNbLoopings(0) {
     Tortue::Tortue():Animal(),iVitesseMax(0),iAge(0),sCouleur("Inconnue"){
      setSaitNager(true);
      setSaitVoler(false);
+     setEspece(6);
     }
     
-    Tortue::Tortue(const int vit, const int age, const string couleur, const string & nom, const int ID = -1):Animal(nom,true,false,ID),iVitesseMax(vit), iAge(age), sCouleur(couleur){}
+    Tortue::Tortue(const int vit, const int age, const string couleur, const string & nom, const int ID)
+    :Animal(nom,6 ,true,false,ID), iVitesseMax(vit), iAge(age), sCouleur(couleur) {}
     
-    Tortue::Tortue(const Tortue &){}
+    Tortue::Tortue(const Tortue & t):Animal(t){
+      iVitesseMax=t.iVitesseMax;
+      iAge=t.iAge;
+      sCouleur =t.sCouleur;
+    }
+    
     Tortue::~Tortue(){}
 
-    int Tortue::getVitesseMax() const{}
-    int Tortue::getAge() const{}
-    string Tortue::getCouleur() const{}
+    int Tortue::getVitesseMax() const{
+      return iVitesseMax;
+    }
+    int Tortue::getAge() const{
+      return iAge;
+    }
+    string Tortue::getCouleur() const{
+      return sCouleur;
+    }
 
-    void Tortue::setVitesseMax(const int){}
-    void Tortue::setAge(const int){}
-    void Tortue::setCouleur(const string){}
+    void Tortue::setVitesseMax(const int vit){
+      iVitesseMax=vit;
+    }
+    void Tortue::setAge(const int age){
+      iAge = age;
+    }
+    void Tortue::setCouleur(const string couleur){
+      sCouleur = couleur;
+    }
 
-    Tortue & Tortue::operator=(const Tortue &){}
-    bool Tortue::operator==(const Tortue &){}
-    bool Tortue::operator!=(const Tortue &){}
+    Tortue & Tortue::operator=(const Tortue & t){
+      // on reprend l'opérateur = de animal + les caractéristiques
+      Animal::operator=(t);
+      iVitesseMax=t.iVitesseMax;
+      iAge=t.iAge;
+      sCouleur=t.sCouleur;
+      //on retourne donc le pointeur vers cet objet
+      return *this;
+    }
+    bool Tortue::operator==(const Tortue & t){
+      if(Animal::operator==(t)
+       && iVitesseMax == t.iVitesseMax
+       && sCouleur == t.sCouleur
+       && iAge == t.iAge
+       ) {
+      return true;
+   }
+   else {
+      return false;
+   }
+    }
+    
+    bool Tortue::operator!=(const Tortue & t){
+      if(Animal::operator!=(t)
+       || iVitesseMax != t.iVitesseMax
+       || sCouleur != t.sCouleur
+       || iAge != t.iAge
+       ) {
+      return true;
+   }
+   else {
+      return false;
+   }
+    }
 
-    friend ostream & operator<<(ostream &, const Tortue &){}
+    ostream & operator<<(ostream &, const Tortue & t){}
 
 /***************************************************************/
 /***************************************************************/
@@ -617,22 +666,36 @@ Aigle::Aigle():Animal(),fLongueurBec(0),iNbLoopings(0) {
 /***************************************************************/
 /***************************************************************/
 
-Loutre::Loutre(){}
-    Loutre::Loutre(const int iNbAmis, const float fTaille, const string & nom, const int ID = -1){}
-    Loutre::Loutre(const Loutre &){}
+  Loutre::Loutre():Animal(nom, 7, false, true, ID),fTaille(0), iNbAmis(0){}
+    
+    Loutre::Loutre(const int amis, const float taille, const string & nom, const int ID):Animal(nom, 7, false, true, ID),fTaille(taille), iNbAmis(amis){}
+    
+    Loutre::Loutre(const Loutre & l):Animal(l){
+      iNbAmis=l.iNbAmis;
+      fTaille=l.fTaille;
+    }
+    
     Loutre::~Loutre(){}
 
-    int Loutre::getNbAmis() const{}
-    float Loutre::getTaille() const{}
+    int Loutre::getNbAmis() const{
+      return iNbAmis;
+    }
+    float Loutre::getTaille() const{
+      return fTaille;
+    }
 
-    void Loutre::setTaille(const float){}
-    void Loutre::setNbAmis(const int){}
+    void Loutre::setTaille(const float fa){
+      fTaille=fa;
+    }
+    void Loutre::setNbAmis(const int iAmis){
+      iNbAmis=iAmis;
+    }
 
-    Loutre & Loutre::operator=(const Loutre &){}
-    bool Loutre::operator==(const Loutre &){}
-    bool Loutre::operator!=(const Loutre &){}
+    Loutre & Loutre::operator=(const Loutre & l){}
+    bool Loutre::operator==(const Loutre & l){}
+    bool Loutre::operator!=(const Loutre & l){}
 
-    friend ostream & operator<<(ostream &, const Loutre &){}
+    ostream & operator<<(ostream &, const Loutre & l){}
 
 /***************************************************************/
 /***************************************************************/
@@ -641,7 +704,7 @@ Loutre::Loutre(){}
 /***************************************************************/
 
 Crocodile::Crocodile(){}
-    Crocodile::Crocodile(const int iEnfantMange, const int iNbDents, const string & nom, const int ID = -1){}
+    Crocodile::Crocodile(const int iEnfantMange, const int iNbDents, const string & nom, const int ID){}
     Crocodile::Crocodile(const Crocodile &){}
     Crocodile::~Crocodile(){}
 
@@ -651,11 +714,11 @@ Crocodile::Crocodile(){}
     void Crocodile::setEnfantMange(const int){}
     void Crocodile::setNbDents(const int){}
 
-    Crocodile & Crocodile::operator=(const Crocodile &){}
-    bool Crocodile::operator==(const Crocodile &){}
-    bool Crocodile::operator!=(const Crocodile &){}
+    Crocodile & Crocodile::operator=(const Crocodile & c){}
+    bool Crocodile::operator==(const Crocodile & c){}
+    bool Crocodile::operator!=(const Crocodile & c){}
 
-    friend ostream & operator<<(ostream &, const Crocodile &){}
+    ostream & operator<<(ostream &, const Crocodile & c){}
 
 /***************************************************************/
 /***************************************************************/
@@ -664,7 +727,7 @@ Crocodile::Crocodile(){}
 /***************************************************************/
 
 Lapin::Lapin(){}
-    Lapin::Lapin(const int iNbCarotteMange, const string sCouleur, const string & nom, const int ID = -1){}
+    Lapin::Lapin(const int iNbCarotteMange, const string sCouleur, const string & nom, const int ID){}
     Lapin::Lapin(const Lapin &){}
     Lapin::~Lapin(){}
 
@@ -674,11 +737,11 @@ Lapin::Lapin(){}
     void Lapin::setNbCarotteMange(const int){}
     void Lapin::setCouleur(const string){}
 
-    Lapin & Lapin::operator=(const Lapin &){}
-    bool Lapin::operator==(const Lapin &){}
-    bool Lapin::operator!=(const Lapin &){}
+    Lapin & Lapin::operator=(const Lapin & l){}
+    bool Lapin::operator==(const Lapin & l){}
+    bool Lapin::operator!=(const Lapin & l){}
 
-    friend ostream & operator<<(ostream &, const Lapin &){}
+    ostream & operator<<(ostream &, const Lapin & l){}
     
 /***************************************************************/
 /***************************************************************/
@@ -687,20 +750,20 @@ Lapin::Lapin(){}
 /***************************************************************/
 
 Girafe::Girafe(){}
-    Girafe::Girafe(const float fTaille, const int iNbTaches, const string & nom, const int ID = -1){}
+    Girafe::Girafe(const float fTaille, const int iNbTaches, const string & nom, const int ID){}
     Girafe::Girafe(const Girafe &){}
     Girafe::~Girafe(){}
 
-    float Girafe::getTaille(){}
-    int Girafe::getNbTaches(){}
+    float Girafe::getTaille() const {}
+    int Girafe::getNbTaches() const {}
 
     void Girafe::setTaille(const float){}
     void Girafe::setNbTaches(const int){}
 
-    Girafe & Girafe::operator=(const Girafe &){}
-    bool Girafe::operator==(const Girafe &){}
-    bool Girafe::operator!=(const Girafe &){}
-
-    friend ostream & operator<<(ostream &, const Girafe &){}
+    Girafe & Girafe::operator=(const Girafe & g){}
+    bool Girafe::operator==(const Girafe & g){}
+    bool Girafe::operator!=(const Girafe & g){}
+ 
+    ostream & operator<<(ostream &, const Girafe & g){}
     
   
