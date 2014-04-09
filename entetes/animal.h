@@ -42,7 +42,7 @@ class Animal{
     int getEspece() const;
 
     void setSaitNager(const bool nage);
-    void setSaitVoler(const bool vole);
+    void setSaitVoler(const bool v1ole);
     void setNom(const string & n);
     void setEspece(const int & e);
 
