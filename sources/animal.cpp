@@ -666,7 +666,7 @@ Aigle::Aigle():Animal(),fLongueurBec(0),iNbLoopings(0) {
 /***************************************************************/
 /***************************************************************/
 
-  Loutre::Loutre():Animal(nom, 7, false, true, ID),fTaille(0), iNbAmis(0){}
+  Loutre::Loutre():Animal(),fTaille(0), iNbAmis(0){}
     
     Loutre::Loutre(const int amis, const float taille, const string & nom, const int ID):Animal(nom, 7, false, true, ID),fTaille(taille), iNbAmis(amis){}
     
