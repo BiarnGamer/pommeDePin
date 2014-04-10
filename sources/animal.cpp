@@ -658,7 +658,15 @@ Aigle::Aigle():Animal(),fLongueurBec(0),iNbLoopings(0) {
    }
     }
 
-    ostream & operator<<(ostream &, const Tortue & t){}
+    ostream & operator<<(ostream & flux, const Tortue & t){
+      // forcage de l'utilisation << de animal
+      flux << (Animal&)t;
+      fux << "Espèce : Tortue "<< endl;
+      flux << "Vitesse max : " << t.getVitesseMax()<< endl;
+      flux << "Couleur : " << t.getCouleur()<< endl;
+      flux << "Age : " << t.getAge()<< endl;
+      return flux;
+    }
 
 /***************************************************************/
 /***************************************************************/
@@ -667,7 +675,14 @@ Aigle::Aigle():Animal(),fLongueurBec(0),iNbLoopings(0) {
 /***************************************************************/
 
   Loutre::Loutre():Animal(),fTaille(0), iNbAmis(0){}
+<<<<<<< HEAD
 
+=======
+      setSaitNager(true);
+      setSaitVoler(false);
+      setEspece(7);
+    
+>>>>>>> 35a5f70324f1e6f5d784acd098785b796b4b4d0e
     Loutre::Loutre(const int amis, const float taille, const string & nom, const int ID):Animal(nom, 7, false, true, ID),fTaille(taille), iNbAmis(amis){}
 
     Loutre::Loutre(const Loutre & l):Animal(l){
@@ -695,7 +710,12 @@ Aigle::Aigle():Animal(),fLongueurBec(0),iNbLoopings(0) {
     bool Loutre::operator==(const Loutre & l){}
     bool Loutre::operator!=(const Loutre & l){}
 
-    ostream & operator<<(ostream &, const Loutre & l){}
+    ostream & operator<<(ostream &, const Loutre & l){
+      flux << (Animal&)t;
+      flux << "Nombre Amis : " << iNbAmis<< endl;
+      flux << "Taille : " << fTaille << endl;
+      return flux;
+    }
 
 /***************************************************************/
 /***************************************************************/
@@ -703,22 +723,38 @@ Aigle::Aigle():Animal(),fLongueurBec(0),iNbLoopings(0) {
 /***************************************************************/
 /***************************************************************/
 
-Crocodile::Crocodile(){}
+Crocodile::Crocodile(){
+      setSaitNager(true);
+      setSaitVoler(false);
+      setEspece(8);
+}
     Crocodile::Crocodile(const int iEnfantMange, const int iNbDents, const string & nom, const int ID){}
     Crocodile::Crocodile(const Crocodile &){}
     Crocodile::~Crocodile(){}
 
-    int Crocodile::getEnfantMange() const{}
-    int Crocodile::getNbDents() const{}
+    int Crocodile::getEnfantMange() const{
+      return iEnfantMange;
+    }
+    int Crocodile::getNbDents() const{
+      return iNbDents;
+    }
 
-    void Crocodile::setEnfantMange(const int){}
-    void Crocodile::setNbDents(const int){}
+    void Crocodile::setEnfantMange(const int enfant){
+      iEnfantMange = enfant;
+    }
+    void Crocodile::setNbDents(const int dents){
+      iNbDents = dents;
+    }
 
     Crocodile & Crocodile::operator=(const Crocodile & c){}
     bool Crocodile::operator==(const Crocodile & c){}
     bool Crocodile::operator!=(const Crocodile & c){}
 
-    ostream & operator<<(ostream &, const Crocodile & c){}
+    ostream & operator<<(ostream &, const Crocodile & c){
+      flux << (Animal&)t;
+      
+      return flux;
+    }
 
 /***************************************************************/
 /***************************************************************/
@@ -726,40 +762,105 @@ Crocodile::Crocodile(){}
 /***************************************************************/
 /***************************************************************/
 
-Lapin::Lapin(){}
-    Lapin::Lapin(const int iNbCarotteMange, const string sCouleur, const string & nom, const int ID){}
-    Lapin::Lapin(const Lapin &){}
+    Lapin::Lapin():Animal(),iNbCarotteMange(0),sCouleur(""){
+      setSaitNager(false);
+      setSaitVoler(false);
+      setEspece(9);
+    }
+    
+    Lapin::Lapin(const int carotte, const string couleur, const string & nom, const int ID):Animal(nom,9,false,false,ID),sCouleur(couleur),iNbCarotteMange(carotte){}
+    
+    Lapin::Lapin(const Lapin &l){
+      Animal(l);
+      iNbCarotteMange=l.iNbCarotteMange;
+      sCouleur=l.sCouleur;
+    }
+    
     Lapin::~Lapin(){}
 
-    int Lapin::getNbCarotteMange() const{}
-    string Lapin::getCouleur() const{}
+    int Lapin::getNbCarotteMange() const{
+      return iNbCarotteMange;
+    }
+    string Lapin::getCouleur() const{
+      return sCouleur;
+    }
 
-    void Lapin::setNbCarotteMange(const int){}
-    void Lapin::setCouleur(const string){}
+    void Lapin::setNbCarotteMange(const int nbcarotte){
+      iNbCarotteMange = nbcarotte;
+    }
+    void Lapin::setCouleur(const string sChaine){
+      sCouleur = sChaine;
+    }
 
-    Lapin & Lapin::operator=(const Lapin & l){}
-    bool Lapin::operator==(const Lapin & l){}
-    bool Lapin::operator!=(const Lapin & l){}
+    Lapin & Lapin::operator=(const Lapin & l){
+      Animal::operator=(l);
+      iNbCarotteMange=l.iNbCarotteMange;
+      sCouleur=l.sCouleur;
+      return *this;
+    }
+    
+    bool Lapin::operator==(const Lapin & l){
+      if(Animal::operator==(l)
+	&& iNbCarotteMange==l.iNbCarotteMange
+        && sCouleur==l.sCouleur)
+	return true;
+      else return false;
+    }
+    bool Lapin::operator!=(const Lapin & l){
+      if(Animal::operator!=(l)
+	|| iNbCarotteMange!=l.iNbCarotteMange
+        || sCouleur!=l.sCouleur)
+	return true;
+      else return false;
+    }
 
+<<<<<<< HEAD
     ostream & operator<<(ostream &, const Lapin & l){}
 
+=======
+    ostream & operator<<(ostream &, const Lapin & l){
+      flux << (Animal&)t;
+      flux << "Espèce : Lapin " << endl;
+      flux << "Nombre de carotte(s) mangée(s) : " << l.getNbCarotteMange()<< endl;
+      flux << "Couleur : " << l.getCouleur()<< endl;
+      return flux;
+    }
+    
+>>>>>>> 35a5f70324f1e6f5d784acd098785b796b4b4d0e
 /***************************************************************/
 /***************************************************************/
 /**      Classe Girafe                                         **/
 /***************************************************************/
 /***************************************************************/
 
-Girafe::Girafe(){}
-    Girafe::Girafe(const float fTaille, const int iNbTaches, const string & nom, const int ID){}
-    Girafe::Girafe(const Girafe &){}
+  Girafe::Girafe():Animal(),fTaille(0),iNbTaches(0){
+    setSaitNager(false);
+    setSaitVoler(false);
+    setEspece(0);
+  }
+    Girafe::Girafe(const float taille, const int taches, const string & nom, const int ID):Animal(nom,0,false,false, ID),fTaille(taille),iNbTaches(taches){}
+    
+    Girafe::Girafe(const Girafe & g):Animal(g){
+      fTaille=g.fTaille;
+      iNbTaches=g.iNbTaches;
+    }
     Girafe::~Girafe(){}
 
-    float Girafe::getTaille() const {}
-    int Girafe::getNbTaches() const {}
+    float Girafe::getTaille() const {
+      return fTaille;
+    }
+    int Girafe::getNbTaches() const {
+      return iNbTaches;
+    }
 
-    void Girafe::setTaille(const float){}
-    void Girafe::setNbTaches(const int){}
+    void Girafe::setTaille(const float taille){
+      fTaille = taille;
+    }
+    void Girafe::setNbTaches(const int tache){
+      iNbTaches=tache;
+    }
 
+<<<<<<< HEAD
     Girafe & Girafe::operator=(const Girafe & g){}
     bool Girafe::operator==(const Girafe & g){}
     bool Girafe::operator!=(const Girafe & g){}
@@ -767,3 +868,33 @@ Girafe::Girafe(){}
     ostream & operator<<(ostream &, const Girafe & g){}
 
 
+=======
+    Girafe & Girafe::operator=(const Girafe & g){
+      Animal::operator=(g);
+      fTaille=g.fTaille;
+      iNbTaches=g.iNbTaches;
+      return *this;
+    }
+    bool Girafe::operator==(const Girafe & g){
+      if(Animal::operator==(g)
+	&& fTaille==g.fTaille
+        && iNbTaches==g.iNbTaches)
+	return true;
+      else return false;
+    }
+    bool Girafe::operator!=(const Girafe & g){
+      if(Animal::operator!=(g)
+	|| fTaille!=g.fTaille
+        || iNbTaches!=g.iNbTaches)
+	return true;
+      else return false;
+    }
+ 
+    ostream & operator<<(ostream &, const Girafe & g){
+      flux << (Animal&)t;
+      flux << "Espèce : Girafe"<< endl;
+      flux << "Taille : " << g.getTaille()<< endl;
+      flux << "iNbTaches " << g.getNbTaches()<< endl;
+      return flux;
+    }
+>>>>>>> 35a5f70324f1e6f5d784acd098785b796b4b4d0e
