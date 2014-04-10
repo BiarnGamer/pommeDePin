@@ -7,62 +7,127 @@
     iID=d;
   }
   
-  Enclos():iID(-1),({
+  //Comment s'en débarasser ?
+  Enclos(){    
+  iID=-1;
+  iCapacite=0;
+  iOccupation=0;
+  iTypeEnclos=-1;
+  sNom="";
+  for (int i=0; i< NB_ESPECES; i++){
+	tabComptageEspeces[i].iCodeEspece=i;
+	iNombreAnimaux = 0;
+    }
   }
   
-  Enclos(string &, int & type, int& capacite, int & ID){
-    
+  
+  Enclos(string & nom, int & type, int& capacite, int & ID){
+    iOccupation = 0;
+    sNom = nom;
+    iTypeEnclos = type;
+    iCapacite= capacite;
+    iID=ID;
+    for (int i=0; i< NB_ESPECES; i++){
+	tabComptageEspeces[i].iCodeEspece=i;
+	iNombreAnimaux = 0;
+    }
   }
   
-  Enclos(Enclos &){
-    
+  Enclos(Enclos &e1){
+    iOccupation = e1.iOccupation;
+    sNom = e1.sNom;
+    iTypeEnclos = e1.iTypeEnclos;
+    iCapacite= e1.iCapacite;
+    iID=e1.iID;
+    for (int i=0; i<iOccupation; i++)
+      tabAnimaux[i]=e1.tabAnimaux[i];
+    for (int i=0; i< NB_ESPECES; i++){
+	tabComptageEspeces[i].iCodeEspece=i;
+	tabComptageEspeces[i].iNombreAnimaux = e1.iNombreAnimaux;
+    }
   }
   
-  ~Enclos(){
-    
-  }
+  ~Enclos(){}
   
-  int getID(){
+  int getID() const{
     return iID;
   }
   
-  int getType(){
+  int getType() const{
     return iTypeEnclos;
   }
   
-  string getNom(){
+  string getNom() const{
     return sNom;
   }
   
-  int getOccupation(){
+  int getOccupation() const{
     return iOccupation;
   }
   
-  void setNom(string &){
-    
+  void setNom(string &nom){
+    sNom=nom;
   }
   
-  void setEspece(int &){
-    
+  int getCapacite() const{
+    return iCapacite;
   }
   
-  Enclos & operator=(Enclos &){
-    
+  void setTypeEnclos(int &type){
+    iTypeEnclos=type;
   }
   
-  bool operator==(Enclos &){
-    
+  Enclos & operator=(Enclos &e1){
+    iOccupation = e1.iOccupation;
+    sNom = e1.sNom;
+    iTypeEnclos = e1.iTypeEnclos;
+    iCapacite= e1.iCapacite;
+    iID=e1.iID;
+    for (int i=0; i<iOccupation; i++)
+      tabAnimaux[i]=e1.tabAnimaux[i];
+    for (int i=0; i< NB_ESPECES; i++){
+	tabComptageEspeces[i].iCodeEspece=i;
+	tabComptageEspeces[i].iNombreAnimaux = e1.iNombreAnimaux;
+    }
+    return *this;
   }
   
-  bool operator!=(Enclos &){
-    
+  //On sait que les ID sont sémantiquement différent, on pourrait s'arreter à la vérification, mais 
+  bool operator==(Enclos &e1) const{
+    if(iOccupation == e1.iOccupation
+    && sNom == e1.sNom 
+    && iTypeEnclos == e1.iTypeEnclos
+    && iCapacite== e1.iCapacite
+    && iID==e1.iID
+    &&   tabAnimaux==e1.tabAnimaux
+    ){
+      return true;
+    }
+      else {
+	return false;
+      }
   }
   
-  Animal getAnimal(int & rang){
-    return tabAnimaux[rang];
+  bool operator!=(Enclos &) const{
+    if(iOccupation != e1.iOccupation
+    || sNom != e1.sNom 
+    || iTypeEnclos != e1.iTypeEnclos
+    || iCapacite!= e1.iCapacite
+    || iID!=e1.iID
+    ||   tabAnimaux!=e1.tabAnimaux
+    ){
+      return true;
+    }
+      else {
+	return false;
+      }
   }
   
-  int getNombreAnimaux(int &codeEspece){
+  Animal getAnimal(int & rang) const{
+    return *tabAnimaux[rang];
+  }
+  
+  int getNombreAnimaux(int &codeEspece) const{
     return tabComptageEspeces[codeEspece].iNombreAnimaux;
   }
   

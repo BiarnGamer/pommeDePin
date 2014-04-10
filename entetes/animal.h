@@ -48,8 +48,8 @@ class Animal{
     void setEspece(const int & e);
 
     virtual Animal & operator=(const Animal &);
-    virtual bool operator==(const Animal &);
-    virtual bool operator!=(const Animal &);
+    virtual bool operator==(const Animal &) const;
+    virtual bool operator!=(const Animal &) const;
 
     friend ostream & operator<<(ostream &, const Animal &);
 };
@@ -72,8 +72,8 @@ class Tigre: public Animal {
     void setNbVictimes(const int);
 
     Tigre & operator=(const Tigre &);
-    bool operator==(const Tigre &);
-    bool operator!=(const Tigre &);
+    bool operator==(const Tigre &) const;
+    bool operator!=(const Tigre &) const;
 
     friend ostream & operator<<(ostream &, const Tigre &);
 };
@@ -103,8 +103,8 @@ class Basque: public Animal {
     void setNbRicard(const int);
 
     Basque & operator=(const Basque &);
-    bool operator==(const Basque &);
-    bool operator!=(const Basque &);
+    bool operator==(const Basque &) const;
+    bool operator!=(const Basque &) const;
 
     friend ostream & operator<<(ostream &, const Basque &);
 };
@@ -127,8 +127,8 @@ class Marmotte: public Animal {
     void setNbTabChocolat(const int);
 
     Marmotte & operator=(const Marmotte &);
-    bool operator==(const Marmotte &);
-    bool operator!=(const Marmotte &);
+    bool operator==(const Marmotte &) const;
+    bool operator!=(const Marmotte &) const;
 
     friend ostream & operator<<(ostream &, const Marmotte &);
 };
@@ -154,8 +154,8 @@ class Elephant: public Animal {
     void setNbVictimes(const int);
 
     Elephant & operator=(const Elephant &);
-    bool operator==(const Elephant &);
-    bool operator!=(const Elephant &);
+    bool operator==(const Elephant &) const;
+    bool operator!=(const Elephant &) const;
 
     friend ostream & operator<<(ostream &, const Elephant &);
 };
@@ -178,8 +178,8 @@ class Aigle: public Animal {
     void setNbLoopings(const int);
 
     Aigle & operator=(const Aigle &);
-    bool operator==(const Aigle &);
-    bool operator!=(const Aigle &);
+    bool operator==(const Aigle &) const;
+    bool operator!=(const Aigle &) const;
 
     friend ostream & operator<<(ostream &, const Aigle &);
 };
@@ -205,8 +205,8 @@ class Tortue: public Animal {
     void setCouleur(const string);
 
     Tortue & operator=(const Tortue &);
-    bool operator==(const Tortue &);
-    bool operator!=(const Tortue &);
+    bool operator==(const Tortue &) const;
+    bool operator!=(const Tortue &) const;
 
     friend ostream & operator<<(ostream &, const Tortue &);
 };
@@ -229,8 +229,8 @@ class Loutre: public Animal {
     void setNbAmis(const int);
 
     Loutre & operator=(const Loutre &);
-    bool operator==(const Loutre &);
-    bool operator!=(const Loutre &);
+    bool operator==(const Loutre &) const;
+    bool operator!=(const Loutre &) const;
 
     friend ostream & operator<<(ostream &, const Loutre &);
 };
@@ -253,8 +253,8 @@ class Crocodile: public Animal {
     void setNbDents(const int);
 
     Crocodile & operator=(const Crocodile &);
-    bool operator==(const Crocodile &);
-    bool operator!=(const Crocodile &);
+    bool operator==(const Crocodile &) const;
+    bool operator!=(const Crocodile &) const;
 
     friend ostream & operator<<(ostream &, const Crocodile &);
 };
@@ -277,8 +277,8 @@ class Lapin: public Animal {
     void setCouleur(const string);
 
     Lapin & operator=(const Lapin &);
-    bool operator==(const Lapin &);
-    bool operator!=(const Lapin &);
+    bool operator==(const Lapin &) const;
+    bool operator!=(const Lapin &) const;
 
     friend ostream & operator<<(ostream &, const Lapin &);
 };
@@ -301,8 +301,8 @@ class Girafe: public Animal {
     void setNbTaches(const int);
 
     Girafe & operator=(const Girafe &);
-    bool operator==(const Girafe &);
-    bool operator!=(const Girafe &);
+    bool operator==(const Girafe &) const;
+    bool operator!=(const Girafe &) const;
 
     friend ostream & operator<<(ostream &, const Girafe &);
 };

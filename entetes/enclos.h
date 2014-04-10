@@ -21,24 +21,26 @@ class Enclos{
   string sNom;
   Set <Animal *> tabAnimaux;
   compteEspeces tabComptageEspeces[NB_ESPECES];
+  //privé car on ne veut pas modifier le type après
+  void setTypeEnclos(int &);
+  void setID(int &);
   
 public: 
-  void setID(int &);
   Enclos();
   Enclos(string &, int & type, int& capacite, int & ID);
   Enclos(Enclos &);
   ~Enclos();
-  int getID();
-  int getType();
-  string getNom();
-  int getOccupation();
+  int getID() const;
+  int getType() const;
+  int getCapacite() const;
+  string getNom() const;
+  int getOccupation() const;
   void setNom(string &);
-  void setEspece(int &);
   Enclos & operator=(Enclos &);
-  bool operator==(Enclos &);
-  bool operator!=(Enclos &);
-  Animal getAnimal(int &);
-  int getNombreAnimaux(int &);
+  bool operator==(Enclos &) const;
+  bool operator!=(Enclos &) const;
+  Animal getAnimal(int &) const;
+  int getNombreAnimaux(int &) const;
 };
 
 
