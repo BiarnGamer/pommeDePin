@@ -593,7 +593,7 @@ Aigle::Aigle():Animal(),fLongueurBec(0),iNbLoopings(0) {
     }
 
     Tortue::Tortue(const int vit, const int age, const string couleur, const string & nom, const int ID)
-    :Animal(nom,6 ,true,false,ID), iVitesseMax(vit), iAge(age), sCouleur(couleur) {}
+    :Animal(nom,6 ,false,true,ID), iVitesseMax(vit), iAge(age), sCouleur(couleur) {}
 
     Tortue::Tortue(const Tortue & t):Animal(t){
       iVitesseMax=t.iVitesseMax;
@@ -703,12 +703,39 @@ Aigle::Aigle():Animal(),fLongueurBec(0),iNbLoopings(0) {
       iNbAmis=iAmis;
     }
 
-    Loutre & Loutre::operator=(const Loutre & l){}
-    bool Loutre::operator==(const Loutre & l){}
-    bool Loutre::operator!=(const Loutre & l){}
+    Loutre & Loutre::operator=(const Loutre & l){
+      Animal::operator=(l);
+      fTaille=l.fTaille;
+      iNbAmis=l.iNbAmis;
+      return *this;
+    }
+    bool Loutre::operator==(const Loutre & l){
+      if(Animal::operator==(l)
+       && fTaille == l.fTaille
+       && iNbAmis == l.iNbAmis
+       ){
+	  return true;
+      }
+      else {
+	  return false;
+      }
+    }
+    
+    bool Loutre::operator!=(const Loutre & l){
+      if(Animal::operator!=(l)
+       || fTaille != l.fTaille
+       || iNbAmis != l.iNbAmis
+       ){
+	  return true;
+      }
+      else {
+	  return false;
+      }
+    }
 
     ostream & operator<<(ostream & flux, const Loutre & l){
       flux << (Animal&)l;
+      flux << "Espèce : Loutre " <<endl;
       flux << "Nombre Amis : " << l.iNbAmis<< endl;
       flux << "Taille : " << l.fTaille << endl;
       return flux;
@@ -725,8 +752,13 @@ Crocodile::Crocodile(){
       setSaitVoler(false);
       setEspece(8);
 }
-    Crocodile::Crocodile(const int iEnfantMange, const int iNbDents, const string & nom, const int ID){}
-    Crocodile::Crocodile(const Crocodile &){}
+    Crocodile::Crocodile(const int Mange, const int Dents, const string & nom, const int ID):Animal(nom,8,false,true,ID), iEnfantMange(Mange),iNbDents(Dents){}
+    
+    Crocodile::Crocodile(const Crocodile &c);Animal(c){
+      iNbDents=c.iNbDents;
+      iEnfantMange=c.iEnfantMange;
+    }
+    
     Crocodile::~Crocodile(){}
 
     int Crocodile::getEnfantMange() const{
@@ -743,13 +775,41 @@ Crocodile::Crocodile(){
       iNbDents = dents;
     }
 
-    Crocodile & Crocodile::operator=(const Crocodile & c){}
-    bool Crocodile::operator==(const Crocodile & c){}
-    bool Crocodile::operator!=(const Crocodile & c){}
+    Crocodile & Crocodile::operator=(const Crocodile & c){
+      Animal::operator=(c);
+      iEnfantMange=c.iEnfantMange;
+      iNbDents=c.iNbDents;
+      return *this;
+    }
+    
+    bool Crocodile::operator==(const Crocodile & c){
+      if(Animal::operator==(c)
+       && iEnfantMange == c.iEnfantMange
+       && iNbDents == c.iNbDents
+       ){
+	  return true;
+      }
+      else {
+	  return false;
+      }
+    }
+    bool Crocodile::operator!=(const Crocodile & c){
+      if(Animal::operator!=(c)
+       || iEnfantMange != c.iEnfantMange
+       || iNbDents != c.iNbDents
+       ){
+	  return true;
+      }
+      else {
+	  return false;
+      }
+    }
 
     ostream & operator<<(ostream & flux, const Crocodile & c){
       flux << (Animal&)c;
-
+      flux << "Espèce : Crocodile"<< endl;
+      flux << "Nombre de dents : " << c.getNbDents() << endl;
+      flux << "Nombre d'enfant mangé : " << c.getEnfantMange() << endl;
       return flux;
     }
 
