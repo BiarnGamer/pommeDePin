@@ -747,7 +747,7 @@ Aigle::Aigle():Animal(),fLongueurBec(0),iNbLoopings(0) {
 /***************************************************************/
 /***************************************************************/
 
-Crocodile::Crocodile(){
+Crocodile::Crocodile():Animal(),iNbDents(0),iEnfantMange(0){
       setSaitNager(true);
       setSaitVoler(false);
       setEspece(8);
