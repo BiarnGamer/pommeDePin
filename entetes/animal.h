@@ -29,8 +29,10 @@ class Animal{
 
     void setID(const int i);
     // On met les deux setters suivant en privée car on ne veut pas que la classe fille puisse modifier la valeur. Si une espèce ne sait pas nager, il est illogique de pouvoir mettre la valeur à vrai pour un animal de cette espèce. Ainsi, la valeur ne peut être modifiée que lors de l'instanciation de l'objet car seul le constructeur d'Animal pourra appeler ces deux setters.
+    // Il en va de même pour l'espèce.
     void setSaitNager(const bool nage);
-    void setSaitVoler(const bool v1ole);
+    void setSaitVoler(const bool vole);
+    void setEspece(const int & e);
 
     public:
     Animal();
@@ -45,7 +47,6 @@ class Animal{
     int getEspece() const;
 
     void setNom(const string & n);
-    void setEspece(const int & e);
 
     virtual Animal & operator=(const Animal &);
     virtual bool operator==(const Animal &) const;
