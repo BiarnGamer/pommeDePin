@@ -754,7 +754,7 @@ Crocodile::Crocodile(){
 }
     Crocodile::Crocodile(const int Mange, const int Dents, const string & nom, const int ID):Animal(nom,8,false,true,ID), iEnfantMange(Mange),iNbDents(Dents){}
     
-    Crocodile::Crocodile(const Crocodile &c);Animal(c){
+    Crocodile::Crocodile(const Crocodile &c):Animal(c){
       iNbDents=c.iNbDents;
       iEnfantMange=c.iEnfantMange;
     }
