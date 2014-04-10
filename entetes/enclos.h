@@ -21,7 +21,28 @@ class Enclos{
   string sNom;
   Set <Animal *> tabAnimaux;
   compteEspeces tabComptageEspeces[NB_ESPECES];
-}
+  
+public: 
+  void setID(int &);
+  Enclos();
+  Enclos(string &, int & type, int& capacite, int & ID);
+  Enclos(Enclos &);
+  ~Enclos();
+  int getID();
+  int getType();
+  string getNom();
+  int getOccupation();
+  void setSaitNager(bool &);
+  void setSaitVoler(bool &);
+  void setNom(string &);
+  void setEspece(int &);
+  Enclos & operator=(Enclos &);
+  bool operator==(Enclos &);
+  bool operator!=(Enclos &);
+  Animal getAnimal(int &);
+  int getNbAnimal(int &);
+  int getNombreAnimaux(int &);
+};
 
 
 
