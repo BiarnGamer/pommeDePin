@@ -32,15 +32,12 @@ public:
   int getType();
   string getNom();
   int getOccupation();
-  void setSaitNager(bool &);
-  void setSaitVoler(bool &);
   void setNom(string &);
   void setEspece(int &);
   Enclos & operator=(Enclos &);
   bool operator==(Enclos &);
   bool operator!=(Enclos &);
   Animal getAnimal(int &);
-  int getNbAnimal(int &);
   int getNombreAnimaux(int &);
 };
 

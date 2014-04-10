@@ -38,14 +38,6 @@
     return iOccupation;
   }
   
-  void setSaitNager(bool &){
-    
-  }
-  
-  void setSaitVoler(bool &){
-    
-  }
-  
   void setNom(string &){
     
   }
@@ -66,15 +58,11 @@
     
   }
   
-  Animal getAnimal(int &){
-    
+  Animal getAnimal(int & rang){
+    return tabAnimaux[rang];
   }
   
-  int getNbAnimal(int &){
-    
-  }
-  
-  int getNombreAnimaux(int &){
-    
+  int getNombreAnimaux(int &codeEspece){
+    return tabComptageEspeces[codeEspece].iNombreAnimaux;
   }
   
