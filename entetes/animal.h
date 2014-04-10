@@ -3,7 +3,8 @@
 
 #include <string>
 
-#define INDEFINI 0
+#define INDEFINI -1
+#define GIRAFE 0
 #define TIGRE 1
 #define BASQUE 2
 #define MARMOTTE 3
@@ -13,7 +14,6 @@
 #define LOUTRE 7
 #define CROCODILE 8
 #define LAPIN 9
-#define GIRAFE 10
 
 
 using namespace std;

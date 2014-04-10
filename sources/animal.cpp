@@ -11,7 +11,7 @@ using namespace std;
 /***************************************************************/
 
 // Constructeurs et destructeur
-Animal::Animal():iID(-1), saitVoler(false), saitNager(false), sNom("Nom indéfini"), iEspece(0) {}
+Animal::Animal():iID(-1), saitVoler(false), saitNager(false), sNom("Nom indéfini"), iEspece(-1) {}
 
 Animal::Animal(const string & nom, const int & espece, const bool vole, const bool nage, const int ID):
     iID(ID), saitVoler(vole), saitNager(nage), sNom(nom), iEspece(espece) {}
@@ -579,7 +579,7 @@ Aigle::Aigle():Animal(),fLongueurBec(0),iNbLoopings(0) {
    return flot;
  }
 
- 
+
   /***************************************************************/
 /***************************************************************/
 /**      Classe Tortue                                         **/
@@ -591,16 +591,16 @@ Aigle::Aigle():Animal(),fLongueurBec(0),iNbLoopings(0) {
      setSaitVoler(false);
      setEspece(6);
     }
-    
+
     Tortue::Tortue(const int vit, const int age, const string couleur, const string & nom, const int ID)
     :Animal(nom,6 ,true,false,ID), iVitesseMax(vit), iAge(age), sCouleur(couleur) {}
-    
+
     Tortue::Tortue(const Tortue & t):Animal(t){
       iVitesseMax=t.iVitesseMax;
       iAge=t.iAge;
       sCouleur =t.sCouleur;
     }
-    
+
     Tortue::~Tortue(){}
 
     int Tortue::getVitesseMax() const{
@@ -644,7 +644,7 @@ Aigle::Aigle():Animal(),fLongueurBec(0),iNbLoopings(0) {
       return false;
    }
     }
-    
+
     bool Tortue::operator!=(const Tortue & t){
       if(Animal::operator!=(t)
        || iVitesseMax != t.iVitesseMax
@@ -667,14 +667,14 @@ Aigle::Aigle():Animal(),fLongueurBec(0),iNbLoopings(0) {
 /***************************************************************/
 
   Loutre::Loutre():Animal(),fTaille(0), iNbAmis(0){}
-    
+
     Loutre::Loutre(const int amis, const float taille, const string & nom, const int ID):Animal(nom, 7, false, true, ID),fTaille(taille), iNbAmis(amis){}
-    
+
     Loutre::Loutre(const Loutre & l):Animal(l){
       iNbAmis=l.iNbAmis;
       fTaille=l.fTaille;
     }
-    
+
     Loutre::~Loutre(){}
 
     int Loutre::getNbAmis() const{
@@ -742,7 +742,7 @@ Lapin::Lapin(){}
     bool Lapin::operator!=(const Lapin & l){}
 
     ostream & operator<<(ostream &, const Lapin & l){}
-    
+
 /***************************************************************/
 /***************************************************************/
 /**      Classe Girafe                                         **/
@@ -763,7 +763,7 @@ Girafe::Girafe(){}
     Girafe & Girafe::operator=(const Girafe & g){}
     bool Girafe::operator==(const Girafe & g){}
     bool Girafe::operator!=(const Girafe & g){}
- 
+
     ostream & operator<<(ostream &, const Girafe & g){}
-    
-  
+
+
