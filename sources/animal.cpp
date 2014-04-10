@@ -702,7 +702,12 @@ Aigle::Aigle():Animal(),fLongueurBec(0),iNbLoopings(0) {
       iNbAmis=iAmis;
     }
 
-    Loutre & Loutre::operator=(const Loutre & l){}
+    Loutre & Loutre::operator=(const Loutre & l){
+      Animal::operator=(t);
+      fTaille=l.fTaille;
+      iNbAmis=l.iNbAmis;
+      return *this;
+    }
     bool Loutre::operator==(const Loutre & l){}
     bool Loutre::operator!=(const Loutre & l){}
 
