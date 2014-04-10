@@ -593,7 +593,7 @@ Aigle::Aigle():Animal(),fLongueurBec(0),iNbLoopings(0) {
     }
 
     Tortue::Tortue(const int vit, const int age, const string couleur, const string & nom, const int ID)
-    :Animal(nom,6 ,true,false,ID), iVitesseMax(vit), iAge(age), sCouleur(couleur) {}
+    :Animal(nom,6 ,false,true,ID), iVitesseMax(vit), iAge(age), sCouleur(couleur) {}
 
     Tortue::Tortue(const Tortue & t):Animal(t){
       iVitesseMax=t.iVitesseMax;
@@ -752,8 +752,13 @@ Crocodile::Crocodile(){
       setSaitVoler(false);
       setEspece(8);
 }
-    Crocodile::Crocodile(const int iEnfantMange, const int iNbDents, const string & nom, const int ID){}
-    Crocodile::Crocodile(const Crocodile &){}
+    Crocodile::Crocodile(const int Mange, const int Dents, const string & nom, const int ID):Animal(nom,8,false,true,ID), iEnfantMange(Mange),iNbDents(Dents){}
+    
+    Crocodile::Crocodile(const Crocodile &c);Animal(c){
+      iNbDents=c.iNbDents;
+      iEnfantMange=c.iEnfantMange;
+    }
+    
     Crocodile::~Crocodile(){}
 
     int Crocodile::getEnfantMange() const{
