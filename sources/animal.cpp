@@ -81,7 +81,7 @@ Animal & Animal::operator=(const Animal & a) {
 }
 
 // Ici, on regarde tous les attributs, cela servira lors d'une recherche dans un tableau par exemple donc on veut une égalité entre tous les attributs
-bool Animal::operator==(const Animal & a) {
+bool Animal::operator==(const Animal & a)  const{
     if( iID == a.iID
         && saitVoler == a.saitVoler
         && saitNager == a.saitNager
@@ -96,7 +96,7 @@ bool Animal::operator==(const Animal & a) {
 
 }
 
-bool Animal::operator!=(const Animal & a) {
+bool Animal::operator!=(const Animal & a)  const{
     if( iID != a.iID
         || saitVoler != a.saitVoler
         || saitNager != a.saitNager
@@ -182,7 +182,7 @@ ostream & operator<<(ostream & flot, const Animal & a) {
    return *this;
  }
 
- bool Tigre::operator==(const Tigre & t) {
+ bool Tigre::operator==(const Tigre & t)  const{
     if(Animal::operator==(t)
        && fHauteurGarot == t.fHauteurGarot
        && iNbGazellesCroquees == t.iNbGazellesCroquees
@@ -194,7 +194,7 @@ ostream & operator<<(ostream & flot, const Animal & a) {
    }
  }
 
- bool Tigre::operator!=(const Tigre & t) {
+ bool Tigre::operator!=(const Tigre & t)  const{
    if(Animal::operator!=(t)
       || fHauteurGarot != t.fHauteurGarot
       || iNbGazellesCroquees != t.iNbGazellesCroquees
@@ -283,7 +283,7 @@ ostream & operator<<(ostream & flot, const Animal & a) {
    return *this;
  }
 
- bool Basque::operator==(const Basque & b){
+ bool Basque::operator==(const Basque & b) const{
    if(Animal::operator==(b)
       && fLargeurBeret == b.fLargeurBeret
       && fTempsDeCuisson == b.fTempsDeCuisson
@@ -296,7 +296,7 @@ ostream & operator<<(ostream & flot, const Animal & a) {
    }
  }
 
- bool Basque::operator!=(const Basque & b){
+ bool Basque::operator!=(const Basque & b) const{
    if(Animal::operator!=(b)
       || fLargeurBeret != b.fLargeurBeret
       || fTempsDeCuisson != b.fTempsDeCuisson
@@ -369,7 +369,7 @@ Marmotte::Marmotte():Animal(),fTaille(0),iNbTablettesChocolatEmballees(0) {
    return *this;
  }
 
- bool Marmotte::operator==(const Marmotte & t) {
+ bool Marmotte::operator==(const Marmotte & t)  const{
     if(Animal::operator==(t)
        && fTaille == t.fTaille
        && iNbTablettesChocolatEmballees == t.iNbTablettesChocolatEmballees
@@ -381,7 +381,7 @@ Marmotte::Marmotte():Animal(),fTaille(0),iNbTablettesChocolatEmballees(0) {
    }
  }
 
- bool Marmotte::operator!=(const Marmotte & t) {
+ bool Marmotte::operator!=(const Marmotte & t) const {
    if(Animal::operator!=(t)
       || fTaille != t.fTaille
       || iNbTablettesChocolatEmballees != t.iNbTablettesChocolatEmballees
@@ -461,7 +461,7 @@ void Elephant::setLongTrompe(const float trompe) {
    return *this;
  }
 
- bool Elephant::operator==(const Elephant & t) {
+ bool Elephant::operator==(const Elephant & t) const {
     if(Animal::operator==(t)
        && fPoids == t.fPoids
        && iNbBraconniersEmpales == t.iNbBraconniersEmpales
@@ -474,7 +474,7 @@ void Elephant::setLongTrompe(const float trompe) {
    }
  }
 
- bool Elephant::operator!=(const Elephant & t) {
+ bool Elephant::operator!=(const Elephant & t)  const{
    if(Animal::operator!=(t)
       || fPoids != t.fPoids
       || iNbBraconniersEmpales != t.iNbBraconniersEmpales
@@ -547,7 +547,7 @@ Aigle::Aigle():Animal(),fLongueurBec(0),iNbLoopings(0) {
    return *this;
  }
 
- bool Aigle::operator==(const Aigle & t) {
+ bool Aigle::operator==(const Aigle & t) const {
     if(Animal::operator==(t)
        && fLongueurBec == t.fLongueurBec
        && iNbLoopings == t.iNbLoopings
@@ -559,7 +559,7 @@ Aigle::Aigle():Animal(),fLongueurBec(0),iNbLoopings(0) {
    }
  }
 
- bool Aigle::operator!=(const Aigle & t) {
+ bool Aigle::operator!=(const Aigle & t) const {
    if(Animal::operator!=(t)
       || fLongueurBec != t.fLongueurBec
       || iNbLoopings != t.iNbLoopings
@@ -632,7 +632,7 @@ Aigle::Aigle():Animal(),fLongueurBec(0),iNbLoopings(0) {
       //on retourne donc le pointeur vers cet objet
       return *this;
     }
-    bool Tortue::operator==(const Tortue & t){
+    bool Tortue::operator==(const Tortue & t) const{
       if(Animal::operator==(t)
        && iVitesseMax == t.iVitesseMax
        && sCouleur == t.sCouleur
@@ -645,7 +645,7 @@ Aigle::Aigle():Animal(),fLongueurBec(0),iNbLoopings(0) {
    }
     }
 
-    bool Tortue::operator!=(const Tortue & t){
+    bool Tortue::operator!=(const Tortue & t) const{
       if(Animal::operator!=(t)
        || iVitesseMax != t.iVitesseMax
        || sCouleur != t.sCouleur
@@ -709,7 +709,7 @@ Aigle::Aigle():Animal(),fLongueurBec(0),iNbLoopings(0) {
       iNbAmis=l.iNbAmis;
       return *this;
     }
-    bool Loutre::operator==(const Loutre & l){
+    bool Loutre::operator==(const Loutre & l) const{
       if(Animal::operator==(l)
        && fTaille == l.fTaille
        && iNbAmis == l.iNbAmis
@@ -721,7 +721,7 @@ Aigle::Aigle():Animal(),fLongueurBec(0),iNbLoopings(0) {
       }
     }
 
-    bool Loutre::operator!=(const Loutre & l){
+    bool Loutre::operator!=(const Loutre & l) const{
       if(Animal::operator!=(l)
        || fTaille != l.fTaille
        || iNbAmis != l.iNbAmis
@@ -782,7 +782,7 @@ Crocodile::Crocodile():Animal(),iNbDents(0),iEnfantMange(0){
       return *this;
     }
 
-    bool Crocodile::operator==(const Crocodile & c){
+    bool Crocodile::operator==(const Crocodile & c) const{
       if(Animal::operator==(c)
        && iEnfantMange == c.iEnfantMange
        && iNbDents == c.iNbDents
@@ -793,7 +793,7 @@ Crocodile::Crocodile():Animal(),iNbDents(0),iEnfantMange(0){
 	  return false;
       }
     }
-    bool Crocodile::operator!=(const Crocodile & c){
+    bool Crocodile::operator!=(const Crocodile & c) const{
       if(Animal::operator!=(c)
        || iEnfantMange != c.iEnfantMange
        || iNbDents != c.iNbDents
@@ -855,14 +855,14 @@ Crocodile::Crocodile():Animal(),iNbDents(0),iEnfantMange(0){
       return *this;
     }
 
-    bool Lapin::operator==(const Lapin & l){
+    bool Lapin::operator==(const Lapin & l) const{
       if(Animal::operator==(l)
 	&& iNbCarotteMange==l.iNbCarotteMange
         && sCouleur==l.sCouleur)
 	return true;
       else return false;
     }
-    bool Lapin::operator!=(const Lapin & l){
+    bool Lapin::operator!=(const Lapin & l) const{
       if(Animal::operator!=(l)
 	|| iNbCarotteMange!=l.iNbCarotteMange
         || sCouleur!=l.sCouleur)
@@ -916,14 +916,14 @@ Crocodile::Crocodile():Animal(),iNbDents(0),iEnfantMange(0){
       iNbTaches=g.iNbTaches;
       return *this;
     }
-    bool Girafe::operator==(const Girafe & g){
+    bool Girafe::operator==(const Girafe & g) const{
       if(Animal::operator==(g)
 	&& fTaille==g.fTaille
         && iNbTaches==g.iNbTaches)
 	return true;
       else return false;
     }
-    bool Girafe::operator!=(const Girafe & g){
+    bool Girafe::operator!=(const Girafe & g) const{
       if(Animal::operator!=(g)
 	|| fTaille!=g.fTaille
         || iNbTaches!=g.iNbTaches)
