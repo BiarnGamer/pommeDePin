@@ -15,7 +15,7 @@
 #define CROCODILE 8
 #define LAPIN 9
 
-#define NB_ESPECES
+#define NB_ESPECES 10
 
 using namespace std;
 
