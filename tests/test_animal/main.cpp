@@ -327,5 +327,52 @@ int main() {
     cout << endl;
     cout << endl;
 
+
+
+
+
+   /* *************************** */
+   /* CRÉATION D'UN CROCODILE     */
+   /* *************************** */
+   cout << "***************************" << endl;
+   cout << "* CRÉATION D'UN CROCODILE *" << endl;
+   cout << "***************************" << endl;
+   // Par défaut, normal, recopie
+   cout << "*** Par défaut, normal, recopie ***" << endl;
+    Tortue Crocro;
+    Tortue GrosseDent(3045, 124, "Mange de l'herbe", 8);
+    Tortue Chicos(GrosseDent);
+    cout << Crocro << endl;
+    cout << GrosseDent<< endl;
+    cout << Chicos << endl;
+
+   // Test égalité/différence
+    cout << endl <<  "*** Tests égalité / différence ****" << endl;
+    if(Crocro == GrosseDent) {cout << "Égalité (ERREUR)" << endl;}
+    else {cout << "Pas égalité (OK)" << endl;}
+
+    if(GrosseDent == Chicos) {cout << "Égalité (OK)" << endl;}
+    else {cout << "Pas égalité (ERREUR)" << endl;}
+
+    if(Crocro != GrosseDent) {cout << "Différence (OK)" << endl;}
+    else {cout << "Pas différence (ERREUR)" << endl;}
+
+    if(Chicos != GrosseDent) {cout << "Différence (ERREUR)" << endl;}
+    else {cout << "Pas différence (OK)" << endl;}
+    cout << endl;
+
+    // Affectation
+    cout << endl << "*** Affectation ****" << endl;
+    Crocro = Chicos;
+    cout << Crocro << endl;
+
+    // Redéfinition des attributs de la classe
+    cout << endl << "*** Setters ***" << endl;
+    Crocro.setEnfantMange(362);
+    Crocro.setNbDents(4);
+    cout << Crocro << endl;
+    cout << endl;
+    cout << endl;
+
     return 0;
 }
