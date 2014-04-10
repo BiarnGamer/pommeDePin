@@ -193,6 +193,7 @@ int main() {
     cout << endl;
 
 
+
    /* *************************** */
    /* CRÉATION D'UN AIGLE         */
    /* *************************** */
@@ -233,6 +234,96 @@ int main() {
     Roucarnage.setLongueurBec(428);
     Roucarnage.setNbLoopings(1);
     cout << Roucarnage << endl;
+    cout << endl;
+    cout << endl;
+
+
+   /* *************************** */
+   /* CRÉATION D'UN LAPIN         */
+   /* *************************** */
+   cout << "***************************" << endl;
+   cout << "* CRÉATION D'UN LAPIN     *" << endl;
+   cout << "***************************" << endl;
+   // Par défaut, normal, recopie
+   cout << "*** Par défaut, normal, recopie ***" << endl;
+    Lapin Lapine;
+    Lapin Valou(64, "Rouge", "Mimie Matti", 6);
+    Lapin BuggsBunny(Valou);
+    cout << Lapine << endl;
+    cout << Valou << endl;
+    cout << BuggsBunny << endl;
+
+   // Test égalité/différence
+    cout << endl <<  "*** Tests égalité / différence ****" << endl;
+    if(Lapine == Valou) {cout << "Égalité (ERREUR)" << endl;}
+    else {cout << "Pas égalité (OK)" << endl;}
+
+    if(Valou == BuggsBunny) {cout << "Égalité (OK)" << endl;}
+    else {cout << "Pas égalité (ERREUR)" << endl;}
+
+    if(Lapine != Valou) {cout << "Différence (OK)" << endl;}
+    else {cout << "Pas différence (ERREUR)" << endl;}
+
+    if(BuggsBunny != Valou) {cout << "Différence (ERREUR)" << endl;}
+    else {cout << "Pas différence (OK)" << endl;}
+    cout << endl;
+
+    // Affectation
+    cout << endl << "*** Affectation ****" << endl;
+    Lapine = BuggsBunny;
+    cout << Lapine << endl;
+
+    // Redéfinition des attributs de la classe
+    cout << endl << "*** Setters ***" << endl;
+    Lapine.setNbCarotteMange(428);
+    Lapine.setCouleur("Gris");
+    cout << Lapine << endl;
+    cout << endl;
+    cout << endl;
+
+
+
+   /* *************************** */
+   /* CRÉATION D'UNE TORTUE       */
+   /* *************************** */
+   cout << "***************************" << endl;
+   cout << "* CRÉATION D'UNE TORTUE   *" << endl;
+   cout << "***************************" << endl;
+   // Par défaut, normal, recopie
+   cout << "*** Par défaut, normal, recopie ***" << endl;
+    Tortue Franklin;
+    Tortue Toto(35, 1201, "Arc-end-ciel", "Speedy Gonzalez", 7);
+    Tortue Chirac(Toto);
+    cout << Franklin << endl;
+    cout << Toto<< endl;
+    cout << Chirac << endl;
+
+   // Test égalité/différence
+    cout << endl <<  "*** Tests égalité / différence ****" << endl;
+    if(Franklin == Toto) {cout << "Égalité (ERREUR)" << endl;}
+    else {cout << "Pas égalité (OK)" << endl;}
+
+    if(Toto == Chirac) {cout << "Égalité (OK)" << endl;}
+    else {cout << "Pas égalité (ERREUR)" << endl;}
+
+    if(Franklin != Toto) {cout << "Différence (OK)" << endl;}
+    else {cout << "Pas différence (ERREUR)" << endl;}
+
+    if(Chirac != Toto) {cout << "Différence (ERREUR)" << endl;}
+    else {cout << "Pas différence (OK)" << endl;}
+    cout << endl;
+
+    // Affectation
+    cout << endl << "*** Affectation ****" << endl;
+    Franklin = Chirac;
+    cout << Franklin << endl;
+
+    // Redéfinition des attributs de la classe
+    cout << endl << "*** Setters ***" << endl;
+    Franklin.setVitesseMax(362);
+    Franklin.setAge(23);
+    Franklin.setCouleur("Vert");
+    cout << Franklin << endl;
     cout << endl;
     cout << endl;
 
