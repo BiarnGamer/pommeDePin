@@ -662,9 +662,9 @@ Aigle::Aigle():Animal(),fLongueurBec(0),iNbLoopings(0) {
       // forcage de l'utilisation << de animal
       flux << (Animal&)t;
       flux << "Espèce : Tortue "<< endl;
-      flux << "Vitesse max : " << t.getVitesseMax()<< endl;
+      flux << "Vitesse max : " << t.getVitesseMax() << "km/h"<< endl;
       flux << "Couleur : " << t.getCouleur()<< endl;
-      flux << "Age : " << t.getAge()<< endl;
+      flux << "Age : " << t.getAge() << "ans" << endl;
       return flux;
     }
 
@@ -720,7 +720,7 @@ Aigle::Aigle():Animal(),fLongueurBec(0),iNbLoopings(0) {
 	  return false;
       }
     }
-    
+
     bool Loutre::operator!=(const Loutre & l){
       if(Animal::operator!=(l)
        || fTaille != l.fTaille
@@ -737,7 +737,7 @@ Aigle::Aigle():Animal(),fLongueurBec(0),iNbLoopings(0) {
       flux << (Animal&)l;
       flux << "Espèce : Loutre " <<endl;
       flux << "Nombre Amis : " << l.iNbAmis<< endl;
-      flux << "Taille : " << l.fTaille << endl;
+      flux << "Taille : " << l.fTaille << "cm" << endl;
       return flux;
     }
 
@@ -753,12 +753,12 @@ Crocodile::Crocodile():Animal(),iNbDents(0),iEnfantMange(0){
       setEspece(8);
 }
     Crocodile::Crocodile(const int Mange, const int Dents, const string & nom, const int ID):Animal(nom,8,false,true,ID), iEnfantMange(Mange),iNbDents(Dents){}
-    
+
     Crocodile::Crocodile(const Crocodile &c):Animal(c){
       iNbDents=c.iNbDents;
       iEnfantMange=c.iEnfantMange;
     }
-    
+
     Crocodile::~Crocodile(){}
 
     int Crocodile::getEnfantMange() const{
@@ -781,7 +781,7 @@ Crocodile::Crocodile():Animal(),iNbDents(0),iEnfantMange(0){
       iNbDents=c.iNbDents;
       return *this;
     }
-    
+
     bool Crocodile::operator==(const Crocodile & c){
       if(Animal::operator==(c)
        && iEnfantMange == c.iEnfantMange
@@ -934,7 +934,7 @@ Crocodile::Crocodile():Animal(),iNbDents(0),iEnfantMange(0){
     ostream & operator<<(ostream & flux, const Girafe & g){
       flux << (Animal&)g;
       flux << "Espèce : Girafe"<< endl;
-      flux << "Taille : " << g.getTaille()<< endl;
+      flux << "Taille : " << g.getTaille() << "m" << endl;
       flux << "iNbTaches " << g.getNbTaches()<< endl;
       return flux;
     }
