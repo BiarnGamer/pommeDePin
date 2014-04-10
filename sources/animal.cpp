@@ -704,16 +704,38 @@ Aigle::Aigle():Animal(),fLongueurBec(0),iNbLoopings(0) {
     }
 
     Loutre & Loutre::operator=(const Loutre & l){
-      Animal::operator=(t);
+      Animal::operator=(l);
       fTaille=l.fTaille;
       iNbAmis=l.iNbAmis;
       return *this;
     }
-    bool Loutre::operator==(const Loutre & l){}
-    bool Loutre::operator!=(const Loutre & l){}
+    bool Loutre::operator==(const Loutre & l){
+      if(Animal::operator==(l)
+       && fTaille == l.fTaille
+       && iNbAmis == l.iNbAmis
+       ){
+	  return true;
+      }
+      else {
+	  return false;
+      }
+    }
+    
+    bool Loutre::operator!=(const Loutre & l){
+      if(Animal::operator!=(l)
+       || fTaille != l.fTaille
+       || iNbAmis != l.iNbAmis
+       ){
+	  return true;
+      }
+      else {
+	  return false;
+      }
+    }
 
     ostream & operator<<(ostream & flux, const Loutre & l){
       flux << (Animal&)l;
+      flux << "Espèce : Loutre " <<endl;
       flux << "Nombre Amis : " << l.iNbAmis<< endl;
       flux << "Taille : " << l.fTaille << endl;
       return flux;
@@ -748,13 +770,41 @@ Crocodile::Crocodile(){
       iNbDents = dents;
     }
 
-    Crocodile & Crocodile::operator=(const Crocodile & c){}
-    bool Crocodile::operator==(const Crocodile & c){}
-    bool Crocodile::operator!=(const Crocodile & c){}
+    Crocodile & Crocodile::operator=(const Crocodile & c){
+      Animal::operator=(c);
+      iEnfantMange=c.iEnfantMange;
+      iNbDents=c.iNbDents;
+      return *this;
+    }
+    
+    bool Crocodile::operator==(const Crocodile & c){
+      if(Animal::operator==(c)
+       && iEnfantMange == c.iEnfantMange
+       && iNbDents == c.iNbDents
+       ){
+	  return true;
+      }
+      else {
+	  return false;
+      }
+    }
+    bool Crocodile::operator!=(const Crocodile & c){
+      if(Animal::operator!=(c)
+       || iEnfantMange != c.iEnfantMange
+       || iNbDents != c.iNbDents
+       ){
+	  return true;
+      }
+      else {
+	  return false;
+      }
+    }
 
     ostream & operator<<(ostream & flux, const Crocodile & c){
       flux << (Animal&)c;
-
+      flux << "Espèce : Crocodile"<< endl;
+      flux << "Nombre de dents : " << c.getNbDents() << endl;
+      flux << "Nombre d'enfant mangé : " << c.getEnfantMange() << endl;
       return flux;
     }
 
