@@ -339,9 +339,9 @@ int main() {
    cout << "***************************" << endl;
    // Par défaut, normal, recopie
    cout << "*** Par défaut, normal, recopie ***" << endl;
-    Tortue Crocro;
-    Tortue GrosseDent(3045, 124, "Mange de l'herbe", 8);
-    Tortue Chicos(GrosseDent);
+    Crocodile Crocro;
+    Crocodile GrosseDent(3045, 124, "Mange de l'herbe", 8);
+    Crocodile Chicos(GrosseDent);
     cout << Crocro << endl;
     cout << GrosseDent<< endl;
     cout << Chicos << endl;
@@ -371,6 +371,99 @@ int main() {
     Crocro.setEnfantMange(362);
     Crocro.setNbDents(4);
     cout << Crocro << endl;
+    cout << endl;
+    cout << endl;
+
+
+
+
+
+   /* *************************** */
+   /* CRÉATION D'UNE LOUTRE       */
+   /* *************************** */
+   cout << "***************************" << endl;
+   cout << "* CRÉATION D'UNE LOUTRE   *" << endl;
+   cout << "***************************" << endl;
+   // Par défaut, normal, recopie
+   cout << "*** Par défaut, normal, recopie ***" << endl;
+    Loutre Loulou;
+    Loutre Coucou(28, 205, "Doudou", 9);
+    Loutre Toutou(Coucou);
+    cout << Loulou << endl;
+    cout << Coucou<< endl;
+    cout << Toutou << endl;
+
+   // Test égalité/différence
+    cout << endl <<  "*** Tests égalité / différence ****" << endl;
+    if(Loulou == Coucou) {cout << "Égalité (ERREUR)" << endl;}
+    else {cout << "Pas égalité (OK)" << endl;}
+
+    if(Coucou == Toutou) {cout << "Égalité (OK)" << endl;}
+    else {cout << "Pas égalité (ERREUR)" << endl;}
+
+    if(Loulou != Coucou) {cout << "Différence (OK)" << endl;}
+    else {cout << "Pas différence (ERREUR)" << endl;}
+
+    if(Toutou != Coucou) {cout << "Différence (ERREUR)" << endl;}
+    else {cout << "Pas différence (OK)" << endl;}
+    cout << endl;
+
+    // Affectation
+    cout << endl << "*** Affectation ****" << endl;
+    Loulou = Toutou;
+    cout << Loulou << endl;
+
+    // Redéfinition des attributs de la classe
+    cout << endl << "*** Setters ***" << endl;
+    Loulou.setTaille(362);
+    Loulou.setNbAmis(4);
+    cout << Loulou << endl;
+    cout << endl;
+    cout << endl;
+
+
+
+
+   /* *************************** */
+   /* CRÉATION D'UNE GIRAFE       */
+   /* *************************** */
+   cout << "***************************" << endl;
+   cout << "* CRÉATION D'UNE GIRAFE   *" << endl;
+   cout << "***************************" << endl;
+   // Par défaut, normal, recopie
+   cout << "*** Par défaut, normal, recopie ***" << endl;
+    Girafe LongCoup;
+    Girafe PetiteB(120, 5412, "Gigi", 9);
+    Girafe Gneeee(PetiteB);
+    cout << LongCoup << endl;
+    cout << PetiteB<< endl;
+    cout << Gneeee << endl;
+
+   // Test égalité/différence
+    cout << endl <<  "*** Tests égalité / différence ****" << endl;
+    if(LongCoup == PetiteB) {cout << "Égalité (ERREUR)" << endl;}
+    else {cout << "Pas égalité (OK)" << endl;}
+
+    if(PetiteB == Gneeee) {cout << "Égalité (OK)" << endl;}
+    else {cout << "Pas égalité (ERREUR)" << endl;}
+
+    if(LongCoup != PetiteB) {cout << "Différence (OK)" << endl;}
+    else {cout << "Pas différence (ERREUR)" << endl;}
+
+    if(Gneeee != PetiteB) {cout << "Différence (ERREUR)" << endl;}
+    else {cout << "Pas différence (OK)" << endl;}
+    cout << endl;
+
+    // Affectation
+    cout << endl << "*** Affectation ****" << endl;
+    LongCoup = Gneeee;
+    cout << LongCoup << endl;
+
+    // Redéfinition des attributs de la classe
+    cout << endl << "*** Setters ***" << endl;
+    LongCoup.setTaille(362);
+    LongCoup.setNbTaches(4);
+    cout << LongCoup << endl;
     cout << endl;
     cout << endl;
 
