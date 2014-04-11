@@ -40,6 +40,7 @@ public:
   string getNom() const;
   int getOccupation() const;
   Animal getAnimal(const int &) const;
+  Animal * getPtrAnimal(const int &) const;
   int getNombreAnimaux(const int &) const;
   void setNom(const string &);
   void ajoutAnimal(Animal * ptrAnimal);
