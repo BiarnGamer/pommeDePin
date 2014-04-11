@@ -2,6 +2,7 @@
 #define SET_H
 
 #include <iostream>
+#include <cstring> // pour le memcpy
 using namespace std;
 
 template <class T> class Set {
@@ -53,9 +54,10 @@ template <class T> Set<T>::Set(const Set & s1) {
 template <class T> void Set<T>::ajouter(const T & t1) {
    if(!appartient(t1)) {
       T * tab2 = new T [++iNbElem];
-      for(int i=0; i<iNbElem-1; i++) {
+      /*for(int i=0; i<iNbElem-1; i++) {
          tab2[i] = tab[i];
-      }
+      }*/
+      memcpy(tab2, tab, sizeof(T)*(iNbElem-1));
       tab2[iNbElem-1] = t1;
       delete [] tab;
       tab = tab2;
@@ -141,9 +143,10 @@ template <class T> Set<T>& Set<T>::operator=(const Set & s1) {
    iNbElem = s1.iNbElem;
    delete [] tab;
    tab = new T [iNbElem];
-   for(int i=0; i<iNbElem; i++) {
+   /*for(int i=0; i<iNbElem; i++) {
       tab[i] = s1.tab[i];
-   }
+   }*/
+   memcpy(tab, s1.tab, sizeof(T)*(iNbElem-1));
    return (*this);
 }
 
