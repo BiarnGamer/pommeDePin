@@ -44,9 +44,13 @@ int main() {
     Animal toto;
     cout << endl << "*** Setters ***" << endl;
     Zozo.setNom("Paul, l'enclos");
-   /* Zozo.ajoutAnimal(&toto);
+   Zozo.ajoutAnimal(&toto);
+   Zozo.ajoutAnimal(&toto);
     cout << Zozo << endl;
-    Zozo.retirerAnimal(&toto);*/
+    cout << Zozo.getAnimal(0);
+    Zozo.supprimerAnimal(&toto);
+    Zozo.supprimerAnimal(&toto);
+    Zozo.supprimerAnimal(&toto);
     cout << Zozo << endl;
 
     return 0;

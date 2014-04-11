@@ -39,12 +39,14 @@ public:
   int getCapacite() const;
   string getNom() const;
   int getOccupation() const;
+  Animal getAnimal(const int &) const;
+  int getNombreAnimaux(const int &) const;
   void setNom(const string &);
+  void ajoutAnimal(Animal * ptrAnimal);
+  void supprimerAnimal(Animal * ptrAnimal);
   Enclos & operator=(const Enclos &);
   bool operator==(const Enclos &) const;
   bool operator!=(const Enclos &) const;
-  Animal getAnimal(const int &) const;
-  int getNombreAnimaux(const int &) const;
   friend ostream & operator<<(ostream & flot, const Enclos & e);
 };
 
