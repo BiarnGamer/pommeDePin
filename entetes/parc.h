@@ -22,12 +22,22 @@ class Parc {
     int iNbEnclos;
     Set <Animal *> listeAnimaux;
     Set <Enclos *> listeEnclos;
+    Set <Set <Proie> > tabProies;
 
     void animauxMangesOuTuesDansEnclos(const int iCodeEspeceModifiee, Enclos * ptrEnclos);
+
     void supprimerUnAnimal(Animal * ptrAnimal);
     // Supprimme l'animal indiqué. Cette fonction est appelée après la suppr peut  intervenir après la noyade, bouffée, mort d'un animal,
     // libération/évasion d'un animal. L'animal ne fait donc plus parti d'un enclos à ce moment là.
     // C'EST TRÈS IMPORTANT DE RESPECTER LE POINT CI-DESSUS, SINON CORE DUMP ASSURÉ
+
+    void initTabProies();
+    // Pour chaque espèce,
+       // on crée une structure Proie pour chacune de ses proies
+       // on ajoute toutes ces Proies dans un set
+       // on ajoute ce set dans tabProie
+       // on réinitialise les variables temporaires locales
+    // Ainsi, dans le Set de plus haut niveau, on a un set de proies par animal. La position de ces set correspond au code de l'espèce concernée
 
     public:
     Parc();
