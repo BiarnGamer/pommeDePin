@@ -55,6 +55,8 @@ class Animal{
     virtual bool operator!=(const Animal &) const;
 
     friend ostream & operator<<(ostream &, const Animal &);
+
+    virtual void affiche(ostream & flot) const;
 };
 
 class Tigre: public Animal {
@@ -79,6 +81,7 @@ class Tigre: public Animal {
     bool operator!=(const Tigre &) const;
 
     friend ostream & operator<<(ostream &, const Tigre &);
+    void affiche(ostream & flot) const;
 };
 
 
@@ -110,6 +113,7 @@ class Basque: public Animal {
     bool operator!=(const Basque &) const;
 
     friend ostream & operator<<(ostream &, const Basque &);
+    void affiche(ostream & flot) const;
 };
 
 class Marmotte: public Animal {
@@ -134,6 +138,7 @@ class Marmotte: public Animal {
     bool operator!=(const Marmotte &) const;
 
     friend ostream & operator<<(ostream &, const Marmotte &);
+    void affiche(ostream & flot) const;
 };
 
 class Elephant: public Animal {
@@ -161,6 +166,7 @@ class Elephant: public Animal {
     bool operator!=(const Elephant &) const;
 
     friend ostream & operator<<(ostream &, const Elephant &);
+    void affiche(ostream & flot) const;
 };
 
 class Aigle: public Animal {
@@ -185,6 +191,7 @@ class Aigle: public Animal {
     bool operator!=(const Aigle &) const;
 
     friend ostream & operator<<(ostream &, const Aigle &);
+    void affiche(ostream & flot) const;
 };
 
 class Tortue: public Animal {
@@ -212,6 +219,7 @@ class Tortue: public Animal {
     bool operator!=(const Tortue &) const;
 
     friend ostream & operator<<(ostream &, const Tortue &);
+    void affiche(ostream & flot) const;
 };
 
 class Loutre: public Animal {
@@ -236,6 +244,7 @@ class Loutre: public Animal {
     bool operator!=(const Loutre &) const;
 
     friend ostream & operator<<(ostream &, const Loutre &);
+    void affiche(ostream & flot) const;
 };
 
 class Crocodile: public Animal {
@@ -260,6 +269,7 @@ class Crocodile: public Animal {
     bool operator!=(const Crocodile &) const;
 
     friend ostream & operator<<(ostream &, const Crocodile &);
+    void affiche(ostream & flot) const;
 };
 
 class Lapin: public Animal {
@@ -284,6 +294,7 @@ class Lapin: public Animal {
     bool operator!=(const Lapin &) const;
 
     friend ostream & operator<<(ostream &, const Lapin &);
+    void affiche(ostream & flot) const;
 };
 
 class Girafe: public Animal {
@@ -308,5 +319,6 @@ class Girafe: public Animal {
     bool operator!=(const Girafe &) const;
 
     friend ostream & operator<<(ostream &, const Girafe &);
+    void affiche(ostream & flot) const;
 };
 #endif

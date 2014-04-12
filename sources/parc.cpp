@@ -4,7 +4,23 @@
 
 using namespace std;
 
-bool operator==(const Proie p1, const Proie p2) {
+/*bool Proie::operator==(const Proie & p) {
+   if(iCodeProie == p.iCodeProie) {
+      return true;
+   }
+   else {
+      return false;
+   }
+}
+
+Proie & Proie::operator=(const Proie & p) {
+   iCodeProie = p.iCodeProie;
+   iSeuil1 = p.iSeuil1;
+   iSeuil2 = p.iSeuil2;
+   return *this;
+}*/
+
+bool operator==(const Proie & p1, const Proie & p2) {
    if(p1.iCodeProie == p2.iCodeProie) {
       return true;
    }
@@ -32,6 +48,10 @@ Parc::~Parc() {
     for (int i=0; i<iNbEnclos; i++) {
         delete listeEnclos[i];
     }
+    // On vide le tableau de Proies pour libérer la mémoire
+    while(tabProies.getNbElem() != 0) {
+      tabProies.enlever(tabProies[0]);
+    }
 }
 
 int Parc::getIDAnimaux() const {
@@ -50,6 +70,11 @@ int Parc::getNbEnclos() const {
     return iNbEnclos;
 }
 
+Enclos Parc::getEnclos(int i) const {
+   if(0<=i && i<iNbEnclos) {
+      return *listeEnclos[i];
+   }
+}
 
 void Parc::animauxMangesOuTuesDansEnclos(const int iCodeEspeceModifiee, Enclos * ptrEnclos)  {
    int iActionAFaire;
@@ -320,7 +345,7 @@ void Parc::initTabProies() {
       // Proies de la girafe : aucune
       tabProies.ajouter(proiesEspece);
 
-      // Proies du tigre
+     // Proies du tigre
       // girafe
       proie1.iCodeProie = 0;
       proie1.iSeuil1 = 4;

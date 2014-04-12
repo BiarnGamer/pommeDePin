@@ -8,7 +8,16 @@
 
 using namespace std;
 
-typedef struct {
+/*class Proie {
+    public:
+    int iCodeProie;
+    int iSeuil1;
+    int iSeuil2;
+    Proie & operator=(const Proie & p);
+    bool operator==(const Proie & p);
+};*/
+
+typedef struct{
     int iCodeProie;
     int iSeuil1;
     int iSeuil2;
@@ -48,6 +57,8 @@ class Parc {
     int getIDEnclos() const;
     int getNbAnimaux() const;
     int getNbEnclos() const;
+    // On permet un accès aux enclos "en lecture seule"
+    Enclos getEnclos(int) const;
 
     void creerUnEnclos(const string &,const int & type, const int& capacite);
 

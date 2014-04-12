@@ -45,9 +45,10 @@ template <class T> Set<T>::~Set() {
 template <class T> Set<T>::Set(const Set & s1) {
    iNbElem = s1.iNbElem;
    tab = new T [iNbElem];
-   for(int i=0; i<iNbElem; i++) {
+   /*for(int i=0; i<iNbElem; i++) {
       tab[i] = s1.tab[i];
-   }
+   }*/
+   memcpy(tab, s1.tab, sizeof(T)*iNbElem);
 }
 
 
@@ -146,7 +147,7 @@ template <class T> Set<T>& Set<T>::operator=(const Set & s1) {
    /*for(int i=0; i<iNbElem; i++) {
       tab[i] = s1.tab[i];
    }*/
-   memcpy(tab, s1.tab, sizeof(T)*(iNbElem-1));
+   memcpy(tab, s1.tab, sizeof(T)*iNbElem);
    return (*this);
 }
 

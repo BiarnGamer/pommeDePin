@@ -7,51 +7,35 @@ using namespace std;
 
 int main() {
    /* *************************** */
-   /* CRÉATION D'UN ENCLOS        */
+   /* CRÉATION D'UN PARC          */
    /* *************************** */
    cout << "*************************" << endl;
-   cout << "* CRÉATION D'UN ENCLOS  *" << endl;
+   cout << "* CRÉATION D'UN PARC    *" << endl;
    cout << "*************************" << endl;
-   // Par défaut, normal, recopie
-   cout << "*** Par défaut, normal, recopie ***" << endl;
-    Enclos Zozo;
-    Enclos Zoo("Mon bel enclos", 1, 23 , 1);
-    Enclos Zoro(Zoo);
-    cout << Zozo << endl;
-    cout << Zoo << endl;
-    cout << Zoro << endl;
+   // Par défaut
+   cout << "*** Par défaut ***" << endl;
+   Parc Parc1;
 
-    // Test égalité/différence
-    cout << endl <<  "*** Tests égalité / différence ****" << endl;
-    if(Zozo == Zoo) {cout << "Égalité (ERREUR)" << endl;}
-    else {cout << "Pas égalité (OK)" << endl;}
+   // Création d'un enclos
+   Parc1.creerUnEnclos("Mon enclos",1, 25);
+   cout << Parc1.getEnclos(0) << endl;
 
-    if(Zoo == Zoro) {cout << "Égalité (OK)" << endl;}
-    else {cout << "Pas égalité (ERREUR)" << endl;}
+   Parc1.creerUnEnclos("Mon autre enclos", 2, 32);
+   cout << Parc1.getEnclos(1);
+   cout << Parc1.getNbEnclos() << endl;
 
-    if(Zozo != Zoo) {cout << "Différence (OK)" << endl;}
-    else {cout << "Pas différence (ERREUR)" << endl;}
+   Tigre t(44,4,"Diego",1);
+   Animal * p = &t;
 
-    if(Zoro != Zoo) {cout << "Différence (ERREUR)" << endl;}
-    else {cout << "Pas différence (OK)" << endl;}
+   cout << *p;
 
-    // Affectation
-    cout << endl << "*** Affectation ****" << endl;
-    Zozo = Zoo;
-    cout << Zozo << endl;
+   Parc1.Barney();
 
-    // Redéfinition de tous les attributs
-    Animal toto;
-    cout << endl << "*** Setters ***" << endl;
-    Zozo.setNom("Paul, l'enclos");
-   Zozo.ajoutAnimal(&toto);
-   Zozo.ajoutAnimal(&toto);
-    cout << Zozo << endl;
-    cout << Zozo.getAnimal(0);
-    Zozo.supprimerAnimal(&toto);
-    Zozo.supprimerAnimal(&toto);
-    Zozo.supprimerAnimal(&toto);
-    cout << Zozo << endl;
+
+   cout << Parc1.getEnclos(0);
+   cout << *Parc1.getEnclos(0).getPtrAnimal(0);
+   int a;
+   cin >> a;
 
     return 0;
 }
