@@ -112,7 +112,7 @@ bool Animal::operator!=(const Animal & a)  const{
 
 
 // Fonctions amies
-ostream & operator<<(ostream & flot, const Animal & a) {
+/*ostream & operator<<(ostream & flot, const Animal & a) {
     flot << "N° animal : " << a.getID() << endl;
     flot << "Nom : " << a.getNom() << endl;
 
@@ -132,7 +132,31 @@ ostream & operator<<(ostream & flot, const Animal & a) {
 
     return flot;
 }
+*/
 
+void Animal::affiche(ostream & flot) const{
+    flot << "N° animal : " << getID() << endl;
+    flot << "Nom : " << getNom() << endl;
+
+    if(getSaitVoler()) {
+        flot << "Vole : oui" << endl;
+    }
+    else {
+        flot << "Vole : non" << endl;
+    }
+
+    if(getSaitNager()) {
+        flot << "Nage : oui" << endl;
+    }
+    else {
+        flot << "Nage : non" << endl;
+    }
+}
+
+ostream& operator<<(ostream& flot, const Animal & a) {
+  a.affiche(flot);
+  return flot;
+}
 
 
 /***************************************************************/
@@ -206,14 +230,25 @@ ostream & operator<<(ostream & flot, const Animal & a) {
    }
  }
 
- ostream & operator<<(ostream & flot, const Tigre & t) {
+/* ostream & operator<<(ostream & flot, const Tigre & t) {
    flot << (Animal&)t;
    flot << "Espèce : Tigre" << endl;
    flot << "Hauteur au garot : " << t.getGarot() << "cm" << endl;
    flot << "Nombre de gazelles croquées : " << t.getNbVictimes() << endl;
    return flot;
- }
+ }*/
 
+void Tigre::affiche(ostream & flot) const{
+   Animal::affiche(flot);
+   flot << "Espèce : Tigre" << endl;
+   flot << "Hauteur au garot : " << getGarot() << "cm" << endl;
+   flot << "Nombre de gazelles croquées : " << getNbVictimes() << endl;
+}
+
+ostream& operator<<(ostream& flot, const Tigre & a) {
+  a.affiche(flot);
+  return flot;
+}
 
 
 
@@ -310,7 +345,7 @@ ostream & operator<<(ostream & flot, const Animal & a) {
  }
 
 
- ostream & operator<<(ostream & flot, const Basque & b){
+ /*ostream & operator<<(ostream & flot, const Basque & b){
    flot << (Animal&)b;
    flot << "Espèce : Basque" << endl;
    flot << "Largeur du béret : " << b.getLargeurBeret() << "cm" << endl;
@@ -318,8 +353,21 @@ ostream & operator<<(ostream & flot, const Animal & a) {
    flot << "Nombre de parties de pelotes gagnées : " << b.getNbVictoires() << endl;
    flot << "Nombre de Ricards bus : " << b.getNbRicard() << endl;
    return flot;
- }
+ }*/
 
+void Basque::affiche(ostream & flot) const{
+   Animal::affiche(flot);
+   flot << "Espèce : Basque" << endl;
+   flot << "Largeur du béret : " << getLargeurBeret() << "cm" << endl;
+   flot << "Temps de cuisson : " << getTempsCuisson() << "min" << endl;
+   flot << "Nombre de parties de pelotes gagnées : " << getNbVictoires() << endl;
+   flot << "Nombre de Ricards bus : " << getNbRicard() << endl;
+}
+
+ostream& operator<<(ostream& flot, const Basque & a) {
+  a.affiche(flot);
+  return flot;
+}
 
 
 /***************************************************************/
@@ -393,14 +441,26 @@ Marmotte::Marmotte():Animal(),fTaille(0),iNbTablettesChocolatEmballees(0) {
    }
  }
 
- ostream & operator<<(ostream & flot, const Marmotte & t) {
+ /*ostream & operator<<(ostream & flot, const Marmotte & t) {
    flot << (Animal&)t;
    flot << "Espèce : Marmotte" << endl;
    flot << "Taille : " << t.getTaille() << "cm" << endl;
    flot << "Nombre de plaquettes de chocolat emballées : " << t.getNbTabChocolat() << endl;
    return flot;
- }
+ }*/
 
+void Marmotte::affiche(ostream & flot) const{
+   Animal::affiche(flot);
+   flot << "Espèce : Basque" << endl;
+   flot << "Espèce : Marmotte" << endl;
+   flot << "Taille : " << getTaille() << "cm" << endl;
+   flot << "Nombre de plaquettes de chocolat emballées : " << getNbTabChocolat() << endl;
+}
+
+ostream& operator<<(ostream& flot, const Marmotte & a) {
+  a.affiche(flot);
+  return flot;
+}
 
 
 
@@ -487,14 +547,27 @@ void Elephant::setLongTrompe(const float trompe) {
    }
  }
 
- ostream & operator<<(ostream & flot, const Elephant & t) {
+ /*ostream & operator<<(ostream & flot, const Elephant & t) {
    flot << (Animal&)t;
    flot << "Espèce : Éléphant" << endl;
    flot << "Poids : " << t.getPoids() << "Kg" << endl;
    flot << "Longueur de la trompe : " << t.getLongTrompe() << "cm" << endl;
    flot << "Nombre de braconniers empalés : " << t.getNbVictimes() << endl;
    return flot;
- }
+ }*/
+
+ void Elephant::affiche(ostream & flot) const{
+   Animal::affiche(flot);
+   flot << "Espèce : Éléphant" << endl;
+   flot << "Poids : " << getPoids() << "Kg" << endl;
+   flot << "Longueur de la trompe : " << getLongTrompe() << "cm" << endl;
+   flot << "Nombre de braconniers empalés : " << getNbVictimes() << endl;
+}
+
+ostream& operator<<(ostream& flot, const Elephant & a) {
+  a.affiche(flot);
+  return flot;
+}
 
 
 
@@ -571,13 +644,25 @@ Aigle::Aigle():Animal(),fLongueurBec(0),iNbLoopings(0) {
    }
  }
 
- ostream & operator<<(ostream & flot, const Aigle & t) {
+ /*ostream & operator<<(ostream & flot, const Aigle & t) {
    flot << (Animal&)t;
    flot << "Espèce : Aigle" << endl;
    flot << "Longueur du bec : " << t.getLongueurBec() << "cm" << endl;
    flot << "Nombre de loopings en vol : " << t.getNbLoopings() << endl;
    return flot;
- }
+ }*/
+
+ void Aigle::affiche(ostream & flot) const{
+   Animal::affiche(flot);
+   flot << "Espèce : Aigle" << endl;
+   flot << "Longueur du bec : " << getLongueurBec() << "cm" << endl;
+   flot << "Nombre de loopings en vol : " << getNbLoopings() << endl;
+}
+
+ostream& operator<<(ostream& flot, const Aigle & a) {
+  a.affiche(flot);
+  return flot;
+}
 
 
 /***************************************************************/
@@ -658,7 +743,7 @@ Aigle::Aigle():Animal(),fLongueurBec(0),iNbLoopings(0) {
    }
     }
 
-    ostream & operator<<(ostream & flux, const Tortue & t){
+    /*ostream & operator<<(ostream & flux, const Tortue & t){
       // forcage de l'utilisation << de animal
       flux << (Animal&)t;
       flux << "Espèce : Tortue "<< endl;
@@ -666,7 +751,20 @@ Aigle::Aigle():Animal(),fLongueurBec(0),iNbLoopings(0) {
       flux << "Couleur : " << t.getCouleur()<< endl;
       flux << "Age : " << t.getAge() << "ans" << endl;
       return flux;
-    }
+    }*/
+
+void Tortue::affiche(ostream & flux) const{
+   Animal::affiche(flux);
+   flux << "Espèce : Tortue "<< endl;
+   flux << "Vitesse max : " << getVitesseMax() << "km/h"<< endl;
+   flux << "Couleur : " << getCouleur()<< endl;
+   flux << "Age : " << getAge() << "ans" << endl;
+}
+
+ostream& operator<<(ostream& flux, const Tortue & a) {
+  a.affiche(flux);
+  return flux;
+}
 
 /***************************************************************/
 /***************************************************************/
@@ -733,13 +831,25 @@ Aigle::Aigle():Animal(),fLongueurBec(0),iNbLoopings(0) {
       }
     }
 
-    ostream & operator<<(ostream & flux, const Loutre & l){
+    /*ostream & operator<<(ostream & flux, const Loutre & l){
       flux << (Animal&)l;
       flux << "Espèce : Loutre " <<endl;
       flux << "Nombre Amis : " << l.iNbAmis<< endl;
       flux << "Taille : " << l.fTaille << "cm" << endl;
       return flux;
-    }
+    }*/
+
+void Loutre::affiche(ostream & flux) const{
+   Animal::affiche(flux);
+   flux << "Espèce : Loutre " <<endl;
+   flux << "Nombre Amis : " << iNbAmis<< endl;
+   flux << "Taille : " << fTaille << "cm" << endl;
+}
+
+ostream& operator<<(ostream& flux, const Loutre & a) {
+  a.affiche(flux);
+  return flux;
+}
 
 /***************************************************************/
 /***************************************************************/
@@ -805,13 +915,25 @@ Crocodile::Crocodile():Animal(),iNbDents(0),iEnfantMange(0){
       }
     }
 
-    ostream & operator<<(ostream & flux, const Crocodile & c){
+    /*ostream & operator<<(ostream & flux, const Crocodile & c){
       flux << (Animal&)c;
       flux << "Espèce : Crocodile"<< endl;
       flux << "Nombre de dents : " << c.getNbDents() << endl;
       flux << "Nombre d'enfant mangé : " << c.getEnfantMange() << endl;
       return flux;
-    }
+    }*/
+
+void Crocodile::affiche(ostream & flux) const{
+   Animal::affiche(flux);
+   flux << "Espèce : Crocodile"<< endl;
+   flux << "Nombre de dents : " << getNbDents() << endl;
+   flux << "Nombre d'enfant mangé : " << getEnfantMange() << endl;
+}
+
+ostream& operator<<(ostream& flux, const Crocodile & a) {
+  a.affiche(flux);
+  return flux;
+}
 
 /***************************************************************/
 /***************************************************************/
@@ -870,13 +992,25 @@ Crocodile::Crocodile():Animal(),iNbDents(0),iEnfantMange(0){
       else return false;
     }
 
-    ostream & operator<<(ostream & flux, const Lapin & l){
+    /*ostream & operator<<(ostream & flux, const Lapin & l){
       flux << (Animal&)l;
       flux << "Espèce : Lapin " << endl;
       flux << "Nombre de carotte(s) mangée(s) : " << l.getNbCarotteMange()<< endl;
       flux << "Couleur : " << l.getCouleur()<< endl;
       return flux;
-    }
+    }*/
+
+void Lapin::affiche(ostream & flux) const{
+   Animal::affiche(flux);
+   flux << "Espèce : Lapin " << endl;
+   flux << "Nombre de carotte(s) mangée(s) : " << getNbCarotteMange()<< endl;
+   flux << "Couleur : " << getCouleur()<< endl;
+}
+
+ostream& operator<<(ostream& flux, const Lapin & a) {
+  a.affiche(flux);
+  return flux;
+}
 
 /***************************************************************/
 /***************************************************************/
@@ -931,10 +1065,22 @@ Crocodile::Crocodile():Animal(),iNbDents(0),iEnfantMange(0){
       else return false;
     }
 
-    ostream & operator<<(ostream & flux, const Girafe & g){
+    /*ostream & operator<<(ostream & flux, const Girafe & g){
       flux << (Animal&)g;
       flux << "Espèce : Girafe"<< endl;
       flux << "Taille : " << g.getTaille() << "m" << endl;
       flux << "iNbTaches " << g.getNbTaches()<< endl;
       return flux;
-    }
+    }*/
+
+void Girafe::affiche(ostream & flux) const{
+   Animal::affiche(flux);
+   flux << "Espèce : Girafe"<< endl;
+   flux << "Taille : " << getTaille() << "m" << endl;
+   flux << "iNbTaches " << getNbTaches()<< endl;
+}
+
+ostream& operator<<(ostream& flux, const Girafe & a) {
+  a.affiche(flux);
+  return flux;
+}

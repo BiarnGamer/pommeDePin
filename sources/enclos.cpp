@@ -149,6 +149,10 @@ using namespace std;
   Animal Enclos::getAnimal(const int & rang) const{
     return *tabAnimaux[rang];
   }
+   // Retourner un pointeur facilite les traitements dans la classe enclos
+  Animal * Enclos::getPtrAnimal(const int & rang) const{
+    return tabAnimaux[rang];
+  }
 
   int Enclos::getNombreAnimaux(const int &codeEspece) const{
     return tabComptageEspeces[codeEspece].iNombreAnimaux;

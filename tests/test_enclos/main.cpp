@@ -41,11 +41,12 @@ int main() {
     cout << Zozo << endl;
 
     // Redéfinition de tous les attributs
-    Animal toto;
+    Animal toto, tata;
     cout << endl << "*** Setters ***" << endl;
     Zozo.setNom("Paul, l'enclos");
    Zozo.ajoutAnimal(&toto);
    Zozo.ajoutAnimal(&toto);
+   Zozo.ajoutAnimal(&tata);
     cout << Zozo << endl;
     cout << Zozo.getAnimal(0);
     Zozo.supprimerAnimal(&toto);
