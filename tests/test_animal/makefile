@@ -6,3 +6,6 @@ all: ../../objets/animal.o ../../objets/main.o
 	
 ../../objets/main.o: ../../entetes/animal.h main.cpp
 	g++ -c main.cpp -o ../../objets/main.o
+	
+clean : 
+	rm -r ../../objets/*.o
