@@ -204,14 +204,16 @@ void Parc::triAnimauxAlpha() {
     }
 }
 
-// tri par sélection du minimum -> À FAIRE CAR DOUBLE CRITÈRE DE TRI !
-/**void Parc::triAnimauxEspece() {
+// tri par sélection du minimum -> À VÉRIFIER CAR DOUBLE CRITÈRE DE TRI !
+/void Parc::triAnimauxEspece() {
     Animal * tmp;
     int iRangMin = 0;
     for(int i=0; i<iNbAnimaux-1; i++) {
         iRangMin = i;
         for(int j=i+1; j<iNbAnimaux; j++) {
-            if(listeAnimaux[j]->getNom() < listeAnimaux[iRangMin]->getNom()) {
+            if( listeAnimaux[j]->getEspece() <= listeAnimaux[iRangMin]->getEspece()
+                && listeAnimaux[j]->getNom() < listeAnimaux[iRangMin]->getNom()
+               ) {
                 iRangMin = j;
             }
         }
@@ -220,10 +222,11 @@ void Parc::triAnimauxAlpha() {
         listeAnimaux[i] = listeAnimaux[iRangMin];
         listeAnimaux[iRangMin] = tmp;
     }
-}**/
+}
 
-// tri par sélection du minimum -> À FAIRE CAR DOUBLE CRITÈRE DE TRI !
-/**void Parc::triAnimauxEspece(const int IDEnclos) {
+
+// tri par sélection du minimum
+void Parc::triAnimauxAlpha(const int IDEnclos) {
     int iRangEnclos = rechercherEnclos(IDEnclos);
     if(iRangEnclos == -1) {
         cout << "Erreur, enclos introuvable." << endl;
@@ -246,7 +249,36 @@ void Parc::triAnimauxAlpha() {
             ptrEnclos->tabAnimaux[iRangMin] = tmp;
         }
     }
-}**/
+}
+
+
+// tri par sélection du minimum -> À VÉRIFIER CAR DOUBLE CRITÈRE DE TRI !
+/void Parc::triAnimauxEspece(const int IDEnclos) {
+    int iRangEnclos = rechercherEnclos(IDEnclos);
+    if(iRangEnclos == -1) {
+        cout << "Erreur, enclos introuvable." << endl;
+    }
+    else {
+        Enclos * ptrEnclos = listeEnclos[iRangEnclos];
+        Animal * tmp;
+        int iRangMin = 0;
+        int iNbAnimaux = ptrEnclos->getNbAnimaux();
+        for(int i=0; i<iNbAnimaux-1; i++) {
+            iRangMin = i;
+            for(int j=i+1; j<iNbAnimaux; j++) {
+                if( ptrEnclos->tabAnimaux[j]->getEspece() <= ptrEnclos->tabAnimaux[iRangMin]->getEspece()
+                    && ptrEnclos->tabAnimaux[j]->getNom() < ptrEnclos->tabAnimaux[iRangMin]->getNom()
+                   ) {
+                    iRangMin = j;
+                }
+            }
+            // Ici, on échange les contenus des pointeurs
+            tmp = ptrEnclos->tabAnimaux[i];
+            ptrEnclos->tabAnimaux[i] = ptrEnclos->tabAnimaux[iRangMin];
+            ptrEnclos->tabAnimaux[iRangMin] = tmp;
+        }
+    }
+}
 
 // tri par sélection du minimum
 void Parc::triEnclosAlpha() {
