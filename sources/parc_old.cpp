@@ -207,10 +207,11 @@ int Parc::predateurMangeProie(const int iCodePredateur, const int iCodeProie, co
       // Cas où le prédateur mange la proie
       if(iNbProies < tabProies[iCodePredateur][i].iSeuil1) {
          // on veut 75% de chances de le manger
+	// 2 il ne se passe rien, 1 il le mange
          return (resultatRand > 75) ? 2 : 1;
       }
       // Cas où tout est possible
-      else if(iNbProies < tabProies[iCodePredateur][i].iSeuil1) {
+      else if(iNbProies < tabProies[iCodePredateur][i].iSeuil2) {
          // 50% chances de sympatiser, 25% pour les deux autres cas
          if(resultatRand < 25) {
             return 1;
