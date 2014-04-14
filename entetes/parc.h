@@ -1,0 +1,133 @@
+#ifndef PARC_H
+#define PARC_H
+
+#include "enclos.h"
+#include "animal.h"
+#include "set.h"
+
+using namespace std;
+
+typedef struct {
+   int iCodeProie;
+   int iSeuil1;
+   int iSeuil2;
+}Proie;
+
+class Parc{
+   private:
+
+   /*********************/
+   /**   ATTRIBUTS     **/
+   /*********************/
+   int iNbAnimaux;
+   int iNbEnclos;
+   int iIDAnimaux;
+   int iIDEnclos;
+   Set <Enclos *> listeEnclos;
+   Set <Animal *> listeAnimaux;
+   Set <Set <Proie> > tabProies;
+
+   /************************/
+   /**  MÉTHODES PRIVÉES  **/
+   /************************/
+   // Ici, on utilise directement les pointeurs, comme ces fonctions seront appelées par la classe, on aura cette information
+   void ajouterAnimalDansEnclos(Animal * animalAPlacer, Enclos * enclosDAccueil);
+   void enleverAnimalEnclos(Animal * animalAEnlever, Enclos * enclos);
+   // Donne la relations qu'auront les proies et prédateurs indiqués
+   void relationsProiesPredateurs(const int iCodePredateur, const int iNbPredateurs, const int iCodeProie, const int iNbProies);
+   // Initialise le tableau de proie
+   void initTabProies();
+
+
+   public:
+
+   /**************************/
+   /**  MÉTHODES PUBLIQUES  **/
+   /**************************/
+   Parc();
+   Parc(const Parc &);
+   ~Parc();
+
+   int getNbAnimaux() const;
+   int getNbEnclos() const;
+   int getIDAnimaux() const;
+   int getIDEnclos() const;
+
+   Enclos getEnclos(int i) const;
+   // Retourne un pointeur sur un animal constant, ainsi on ne peut pas le modifier
+   Animal const * getAnimal(int i) const;
+
+   // On crée un enclos en se basant sur celui donné en paramètres. On crée un enclos du même
+   // type et avec les mêmes informations, en pensant à mettre le bon Identifiant et pas celui
+   // de l'enclos passé en paramètres. L'enclos créé sera vide peut-importe l'informations contenue
+   // dans l'enclos passé en paramètres
+   void creerEnclos(const Enclos & e);
+
+   // Supprime tous les animaux contenus dans l'enclos indiqué, puis supprime l'enclos
+   void supprimerEnclos(const int ID);
+
+   // Modifie le nom de l'enclos dont l'ID est indiqué, c'est la seule donnée modifiable.
+   void mofidierEnclos(const int IDEnclosAModifier, const string nom);
+
+   // Retourne le rang dans la liste de l'enclos dont l'ID est donné. Gestion erreur si absent
+   int rechercherEnclos(const int ID) const;
+
+   // On crée un animal en se basant sur l'animal donné en paramètres. On crée un animal de la même
+   // espèce et avec les mêmes informations, en pensant à mettre le bon Identifiant et pas celui
+   // de l'animal passé en paramètres. On ajoute ensuite l'animal dans l'enclos dont l'ID est donné
+   // (si cela est possible). Si l'enclos est plein, on ne fait rien, on ne crée même pas l'animal et
+   // on fait de la gestion d'erreur.
+   void creerAnimal(Animal const * a, const int IDEnclosAccueil);
+
+   // Pareil que ci-dessus, mais on crée un nouvel enclos pour y placer l'animal. On appelle donc la
+   // fonction de création d'enclos et on lui transmet l'enclos donné en paramètres
+   void creerAnimal(Animal const * a, const Enclos enclosDAccueil);
+
+
+
+   // Supprime l'animal indiqué, s'il existe. On commence par le virer de son enclos (après recherche)
+   // Puis on dégage l'animal du jardin d'Eden)
+   void supprimerAnimal(const int ID);
+
+   // Modifie l'animal dont l'ID est indiqué en recopiant les informations de l'animal donné en paramètres
+   // On recherche l'animal à modifier, si on le trouve on modifie, sinon gestion erreurs. On vérifie que
+   // l'espèce est bien la bonne. On autorise à modifier : nom et infos propres à chaque espèce.
+   void modifierAnimal(const int IDAnimalAModifier, Animal const * nouvelAnimal);
+
+   // Retourne le rang dans la liste de l'animal dont l'ID est donné. Gestion erreur si absent
+   int rechercherAnimal(const int ID) const;
+
+   // Déplace un animal d'un enclos A vers un enclos B. Ici, on vérifie uniquement si l'enclos B a de la place pour
+   // recevoir un animal supplémentaire. On déplace l'animal, on regarde s'il se noit, s'échappe et s'il faut, on
+   // regarde ses relations avec les autres espèces pour savoir qui mange qui, et on applique les conséquences de l'ajout.
+   // On enlève ensuite l'animal de l'enclos de départ et on regarde aussi les conséquences du déplacement sur l'enclos
+   // de départ, là aussi pour savoir qui mange qui.
+   void deplacerAnimal(const int IDEnclosDepart, const int IDAnimal, const int IDEnclosArrivee);
+
+   // On reçoit en paramètres le code espèce de l’animal et l’ID de l’enclos où on veut le mettre.
+   // On effectue ensuite les tests appropriés et on retourne une valeur pour chacun des cas suivants :
+   // - Si l’enclos ou le type ne sont pas valide (enclos inexistant ou type faux) : -1
+   // - Si tout est OK : 0
+   // - Si l’enclos est plein : 1
+   // - Si l’animal se noierait : 2
+   // - Si l’animal s’envolerait : 3
+   // - Si l’animal possède des prédateurs dans l’enlcos : 4
+   // - Si l’animal possède des proies dans l’enclos : 5
+   // - Si l’animal poss`de des proies et des pr ́dateurs dans l’enclos : 6
+   void consequenceDeplacementAnimal(const int iCodeEspece, const int IDEnclos) const;
+
+   // Les fonctions suivantes trient la liste d'animaux/d'enclos selon le critère indiqué
+   void triAnimauxAlpha();
+   void triAnimauxEspece();
+   // Trient la liste des animaux de l'enclos indiqué
+   void triAnimauxAlpha(const int IDEnclos);
+   void triAnimauxEspece(const int IDEnclos);
+
+   void triEnclosAlpha();
+   void triEnclosOccupation();
+   void triEnclosCapacite();
+   void triEnclosTauxOccupation();
+
+   friend ostream & operator<<(ostream &, const Parc &);
+};
+#endif
