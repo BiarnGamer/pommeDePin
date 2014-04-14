@@ -77,12 +77,7 @@ class Parc{
    // de l'animal passé en paramètres. On ajoute ensuite l'animal dans l'enclos dont l'ID est donné
    // (si cela est possible). Si l'enclos est plein, on ne fait rien, on ne crée même pas l'animal et
    // on fait de la gestion d'erreur.
-   void creerAnimal(Animal const * a, const int IDEnclosAccueil);
-
-   // Pareil que ci-dessus, mais on crée un nouvel enclos pour y placer l'animal. On appelle donc la
-   // fonction de création d'enclos et on lui transmet l'enclos donné en paramètres
-   void creerAnimal(Animal const * a, const Enclos enclosDAccueil);
-
+   void creerAnimal(Animal * a, const int IDEnclosAccueil);
 
 
    // Supprime l'animal indiqué, s'il existe. On commence par le virer de son enclos (après recherche)
@@ -92,10 +87,13 @@ class Parc{
    // Modifie l'animal dont l'ID est indiqué en recopiant les informations de l'animal donné en paramètres
    // On recherche l'animal à modifier, si on le trouve on modifie, sinon gestion erreurs. On vérifie que
    // l'espèce est bien la bonne. On autorise à modifier : nom et infos propres à chaque espèce.
-   void modifierAnimal(const int IDAnimalAModifier, Animal const * nouvelAnimal);
+   void modifierAnimal(const int IDAnimalAModifier, Animal * nouvelAnimal);
 
    // Retourne le rang dans la liste de l'animal dont l'ID est donné. Gestion erreur si absent
    int rechercherAnimal(const int ID) const;
+
+   // Retourne le rang de l'enclos dans lequel est l'animal
+   int rechercheEnclosAnimal(const int ID);
 
    // Déplace un animal d'un enclos A vers un enclos B. Ici, on vérifie uniquement si l'enclos B a de la place pour
    // recevoir un animal supplémentaire. On déplace l'animal, on regarde s'il se noit, s'échappe et s'il faut, on
@@ -115,6 +113,7 @@ class Parc{
    // - Si l’animal possède des proies dans l’enclos : 5
    // - Si l’animal poss`de des proies et des pr ́dateurs dans l’enclos : 6
    void consequenceDeplacementAnimal(const int iCodeEspece, const int IDEnclos) const;
+
 
    // Les fonctions suivantes trient la liste d'animaux/d'enclos selon le critère indiqué
    void triAnimauxAlpha();

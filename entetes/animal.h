@@ -57,6 +57,47 @@ class Animal{
     friend ostream & operator<<(ostream &, const Animal &);
 
     virtual void affiche(ostream & flot) const;
+
+    // Fonctions virtuelles pour héritage ; obligatoire pour utiliser sans souci le pointeur sur animal
+    virtual float getTaille(){}
+    virtual int getNbTaches(){}
+    virtual int getNbVictimes(){}
+    virtual float getLargeurBeret(){}
+    virtual int getTempsCuisson(){}
+    virtual int getNbRicardBus(){}
+    virtual int getNbVictoires(){}
+    virtual int getNbTabChocolat(){}
+    virtual float getPoids(){}
+    virtual float getLongTrompe(){}
+    virtual float getLongueurBec(){}
+    virtual int getNbLoopings(){}
+    virtual int getVitesseMax(){}
+    virtual int getAge(){}
+    virtual string getCouleur(){}
+    virtual int getNbAmis(){}
+    virtual int getEnfantMange(){}
+    virtual int getNbDents(){}
+    virtual int getNbCarotteMange(){}
+
+    virtual void setTaille(const float){}
+    virtual void setNbTaches(const int){}
+    virtual void setNbVictimes(const int){}
+    virtual void setLargeurBeret(const float){}
+    virtual void setTempsCuisson(const float){}
+    virtual void setNbRicardBus(const int){}
+    virtual void setNbVictoires(const int){}
+    virtual void setNbTabChocolat(const int){}
+    virtual void setPoids(const float){}
+    virtual void setLongTrompe(const float){}
+    virtual void setLongueurBec(const float){}
+    virtual void setNbLoopings(const int){}
+    virtual void setVitesseMax(const int){}
+    virtual void setAge(const int){}
+    virtual void setCouleur(const string &){}
+    virtual void setNbAmis(const int){}
+    virtual void setEnfantMange(const int){}
+    virtual void setNbDents(const int){}
+    virtual void setNbCarotteMange(const int){}
 };
 
 class Tigre: public Animal {

@@ -1,8 +1,8 @@
 #include "../entetes/parc.h"
 
 
-void Parc::creerAnimal(Animal const * a, const int IDEnclosAccueil) {
-    int iEspece = a.iEspece;
+void Parc::creerAnimal(Animal * a, const int IDEnclosAccueil) {
+    int iEspece = a->getEspece();
     int iRangEnclos = rechercherEnclos(IDEnclosAccueil);
     Enclos * ptrEnclos = listeEnclos[iRangEnclos];
     bool succes = true;
@@ -10,43 +10,43 @@ void Parc::creerAnimal(Animal const * a, const int IDEnclosAccueil) {
     if(ptrEnclos->getOccupation() < ptrEnclos->getCapacite()) {
         switch(iEspece) {
           case GIRAFE:
-             listeAnimaux.ajouter(new Girafe(a.getTaille(), a.getNbTaches(), a.getNom(), iIDAnimaux++));
+             listeAnimaux.ajouter(new Girafe(a->getTaille(), a->getNbTaches(), a->getNom(), iIDAnimaux++));
              iNbAnimaux++;
              break;
           case TIGRE:
-             listeAnimaux.ajouter(new Tigre(a.getTaille(), a.getNbVictimes(), a.getNom(), iIDAnimaux++));
+             listeAnimaux.ajouter(new Tigre(a->getTaille(), a->getNbVictimes(), a->getNom(), iIDAnimaux++));
              iNbAnimaux++;
              break;
           case BASQUE:
-             listeAnimaux.ajouter(new Basque(a.getLargeurBeret(), a.getTempsCuisson(), a.getNbVictoires(), a.getNbRicardBus(), a.getNom(), iIDAnimaux++));
+             listeAnimaux.ajouter(new Basque(a->getLargeurBeret(), a->getTempsCuisson(), a->getNbVictoires(), a->getNbRicardBus(), a->getNom(), iIDAnimaux++));
              iNbAnimaux++;
              break;
           case MARMOTTE:
-             listeAnimaux.ajouter(new Marmotte(a.getTaille(), a.getNbTabChocolat(), a.getNom(), iIDAnimaux++));
+             listeAnimaux.ajouter(new Marmotte(a->getTaille(), a->getNbTabChocolat(), a->getNom(), iIDAnimaux++));
              iNbAnimaux++;
              break;
           case ELEPHANT:
-             listeAnimaux.ajouter(new Elephant(a.getPoids(), a.getLongTrompe(), a.getNbVictimes(), a.getNom(), iIDAnimaux++));
+             listeAnimaux.ajouter(new Elephant(a->getPoids(), a->getLongTrompe(), a->getNbVictimes(), a->getNom(), iIDAnimaux++));
              iNbAnimaux++;
              break;
           case AIGLE:
-             listeAnimaux.ajouter(new Aigle(a.getLongueurBec(), a.getNbLoopings(), a.getNom(), iIDAnimaux++));
+             listeAnimaux.ajouter(new Aigle(a->getLongueurBec(), a->getNbLoopings(), a->getNom(), iIDAnimaux++));
              iNbAnimaux++;
              break;
           case TORTUE:
-             listeAnimaux.ajouter(new Tortue(a.getVitesseMax(), a.getAge(), a.getCouleur(), a.getNom(), iIDAnimaux++));
+             listeAnimaux.ajouter(new Tortue(a->getVitesseMax(), a->getAge(), a->getCouleur(), a->getNom(), iIDAnimaux++));
              iNbAnimaux++;
              break;
           case LOUTRE:
-             listeAnimaux.ajouter(new Loutre(a.getNbAmis(), a.getTaille(), a.getNom(), iIDAnimaux++));
+             listeAnimaux.ajouter(new Loutre(a->getNbAmis(), a->getTaille(), a->getNom(), iIDAnimaux++));
              iNbAnimaux++;
              break;
           case CROCODILE:
-             listeAnimaux.ajouter(new Crocodile(a.getEnfantMange(), a.getNbDents(), a.getNom(), iIDAnimaux++));
+             listeAnimaux.ajouter(new Crocodile(a->getEnfantMange(), a->getNbDents(), a->getNom(), iIDAnimaux++));
              iNbAnimaux++;
              break;
           case LAPIN:
-             listeAnimaux.ajouter(new Lapin(a.getNbCarotteMange(), a.getCouleur(), a.getNom(), iIDAnimaux++));
+             listeAnimaux.ajouter(new Lapin(a->getNbCarotteMange(), a->getCouleur(), a->getNom(), iIDAnimaux++));
              iNbAnimaux++;
              break;
           default:
@@ -75,12 +75,12 @@ void Parc::supprimerAnimal(const int ID) {
     else {
         Animal * ptrAnimal = listeAnimaux[rechercherAnimal(ID)];
         listeEnclos[iRangEnclos]->supprimerAnimal(ptrAnimal);
-        listeAnimaux->enlever[ptrAnimal];
+        listeAnimaux.enlever(ptrAnimal);
         delete ptrAnimal;
     }
 }
 
-void Parc::modifierAnimal(const int IDAnimalAModifier, Animal const * nouvelAnimal) {
+void Parc::modifierAnimal(const int IDAnimalAModifier, Animal * nouvelAnimal) {
     // FAIRE GESTION ERREUR ICI !!
     int iRangAnimal = rechercheAnimal(IDAnimalAModifier);
     if(iRangAnimal == -1) {
@@ -88,7 +88,7 @@ void Parc::modifierAnimal(const int IDAnimalAModifier, Animal const * nouvelAnim
     }
     else {
         Animal * ptrAnimal = listeAnimaux[iRangAnimal];
-        iEspece = ptrAnimal->getEspece();
+        int iEspece = ptrAnimal->getEspece();
         if(iEspece != nouvelAnimal->getEspece()) {
             cout << "Erreur, l'animal à modifier n'est pas de la bonne espèce." << endl;
         }
@@ -156,16 +156,15 @@ int Parc::rechercherAnimal(const int ID) const {
     return -1;
 }
 
-// Retourne le rang de l'enclos dans lequel est l'animal
-void Parc::rechercheEnclosAnimal(const int ID) {
+int Parc::rechercheEnclosAnimal(const int ID) {
     bool enclosTrouve = false;
     int i=0;
     int j=0;
     // Parcours chaque enclos
     while(i<iNbEnclos && !enclosTrouve) {
-        j=0
+        j=0;
         // Parcours chaque animal de cet enclos
-        while(j<listeEnclos[i]->getNbAnimaux() && !enclosTrouve) {
+        while(j<listeEnclos[i]->getOccupation() && !enclosTrouve) {
             if(listeEnclos[i]->getAnimal(j).getID() == ID) {
                 enclosTrouve = true;
             }
@@ -188,7 +187,7 @@ void Parc::rechercheEnclosAnimal(const int ID) {
 
 // tri par sélection du minimum
 void Parc::triAnimauxAlpha() {
-    Animal * tmp;
+    Animal tmp;
     int iRangMin = 0;
     for(int i=0; i<iNbAnimaux-1; i++) {
         iRangMin = i;
@@ -198,15 +197,15 @@ void Parc::triAnimauxAlpha() {
             }
         }
         // Ici, on échange les contenus des pointeurs
-        tmp = listeAnimaux[i];
-        listeAnimaux[i] = listeAnimaux[iRangMin];
-        listeAnimaux[iRangMin] = tmp;
+        tmp = *listeAnimaux[i];
+        *listeAnimaux[i] = *listeAnimaux[iRangMin];
+        *listeAnimaux[iRangMin] = tmp;
     }
 }
 
 // tri par sélection du minimum -> À VÉRIFIER CAR DOUBLE CRITÈRE DE TRI !
-/void Parc::triAnimauxEspece() {
-    Animal * tmp;
+void Parc::triAnimauxEspece() {
+    Animal tmp;
     int iRangMin = 0;
     for(int i=0; i<iNbAnimaux-1; i++) {
         iRangMin = i;
@@ -218,14 +217,14 @@ void Parc::triAnimauxAlpha() {
             }
         }
         // Ici, on échange les contenus des pointeurs
-        tmp = listeAnimaux[i];
-        listeAnimaux[i] = listeAnimaux[iRangMin];
-        listeAnimaux[iRangMin] = tmp;
+        tmp = *listeAnimaux[i];
+        *listeAnimaux[i] = *listeAnimaux[iRangMin];
+        *listeAnimaux[iRangMin] = tmp;
     }
 }
 
 
-// tri par sélection du minimum
+/*// tri par sélection du minimum
 void Parc::triAnimauxAlpha(const int IDEnclos) {
     int iRangEnclos = rechercherEnclos(IDEnclos);
     if(iRangEnclos == -1) {
@@ -233,36 +232,36 @@ void Parc::triAnimauxAlpha(const int IDEnclos) {
     }
     else {
         Enclos * ptrEnclos = listeEnclos[iRangEnclos];
-        Animal * tmp;
+        Animal tmp;
         int iRangMin = 0;
-        int iNbAnimaux = ptrEnclos->getNbAnimaux();
+        int iNbAnimaux = ptrEnclos->getOccupation();
         for(int i=0; i<iNbAnimaux-1; i++) {
             iRangMin = i;
             for(int j=i+1; j<iNbAnimaux; j++) {
-                if(ptrEnclos->tabAnimaux[j]->getNom() < ptrEnclos->tabAnimaux[iRangMin]->getNom()) {
+                if(ptrEnclos->getAnimal(j).getNom() < ptrEnclos->getAnimal(iRangMin).getNom()) {
                     iRangMin = j;
                 }
             }
             // Ici, on échange les contenus des pointeurs
-            tmp = ptrEnclos->tabAnimaux[i];
-            ptrEnclos->tabAnimaux[i] = ptrEnclos->tabAnimaux[iRangMin];
-            ptrEnclos->tabAnimaux[iRangMin] = tmp;
+            tmp = *(ptrEnclos->getAnimal(i));
+            *(ptrEnclos->getAnimal(i)) = *(ptrEnclos->getAnimal(iRangMin));
+            *(ptrEnclos->getAnimal(iRangMin) = tmp;
         }
     }
-}
+}*/
 
-
+/*
 // tri par sélection du minimum -> À VÉRIFIER CAR DOUBLE CRITÈRE DE TRI !
-/void Parc::triAnimauxEspece(const int IDEnclos) {
+void Parc::triAnimauxEspece(const int IDEnclos) {
     int iRangEnclos = rechercherEnclos(IDEnclos);
     if(iRangEnclos == -1) {
         cout << "Erreur, enclos introuvable." << endl;
     }
     else {
         Enclos * ptrEnclos = listeEnclos[iRangEnclos];
-        Animal * tmp;
+        Animal tmp;
         int iRangMin = 0;
-        int iNbAnimaux = ptrEnclos->getNbAnimaux();
+        int iNbAnimaux = ptrEnclos->getOccupation();
         for(int i=0; i<iNbAnimaux-1; i++) {
             iRangMin = i;
             for(int j=i+1; j<iNbAnimaux; j++) {
@@ -273,16 +272,16 @@ void Parc::triAnimauxAlpha(const int IDEnclos) {
                 }
             }
             // Ici, on échange les contenus des pointeurs
-            tmp = ptrEnclos->tabAnimaux[i];
-            ptrEnclos->tabAnimaux[i] = ptrEnclos->tabAnimaux[iRangMin];
-            ptrEnclos->tabAnimaux[iRangMin] = tmp;
+            tmp = *(ptrEnclos->tabAnimaux[i]);
+            *(ptrEnclos->tabAnimaux[i]) = *(ptrEnclos->tabAnimaux[iRangMin]);
+            *(ptrEnclos->tabAnimaux[iRangMin]) = tmp;
         }
     }
-}
+}*/
 
 // tri par sélection du minimum
 void Parc::triEnclosAlpha() {
-    Enclos * tmp;
+    Enclos tmp;
     int iRangMin = 0;
     for(int i=0; i<iNbEnclos-1; i++) {
         iRangMin = i;
@@ -292,15 +291,15 @@ void Parc::triEnclosAlpha() {
             }
         }
         // Ici, on échange les contenus des pointeurs
-        tmp = listeEnclos[i];
-        listeEnclos[i] = listeEnclos[iRangMin];
-        listeEnclos[iRangMin] = tmp;
+        tmp = *listeEnclos[i];
+        *listeEnclos[i] = *listeEnclos[iRangMin];
+        *listeEnclos[iRangMin] = tmp;
     }
 }
 
 // tri par sélection du minimum
 void Parc::triEnclosOccupation() {
-    Enclos * tmp;
+    Enclos tmp;
     int iRangMin = 0;
     for(int i=0; i<iNbEnclos-1; i++) {
         iRangMin = i;
@@ -310,15 +309,15 @@ void Parc::triEnclosOccupation() {
             }
         }
         // Ici, on échange les contenus des pointeurs
-        tmp = listeEnclos[i];
-        listeEnclos[i] = listeEnclos[iRangMin];
-        listeEnclos[iRangMin] = tmp;
+        tmp = *listeEnclos[i];
+        *listeEnclos[i] = *listeEnclos[iRangMin];
+        *listeEnclos[iRangMin] = tmp;
     }
 }
 
 // tri par sélection du minimum
 void Parc::triEnclosCapacite() {
-    Enclos * tmp;
+    Enclos tmp;
     int iRangMin = 0;
     for(int i=0; i<iNbEnclos-1; i++) {
         iRangMin = i;
@@ -328,15 +327,15 @@ void Parc::triEnclosCapacite() {
             }
         }
         // Ici, on échange les contenus des pointeurs
-        tmp = listeEnclos[i];
-        listeEnclos[i] = listeEnclos[iRangMin];
-        listeEnclos[iRangMin] = tmp;
+        tmp = *listeEnclos[i];
+        *listeEnclos[i] = *listeEnclos[iRangMin];
+        *listeEnclos[iRangMin] = tmp;
     }
 }
 
 // tri par sélection du minimum
 void Parc::triEnclosTauxOccupation() {
-    Enclos * tmp;
+    Enclos tmp;
     int iRangMin = 0;
     int iTauxOccMin = 0;
     int iTauxOcc = 0;
@@ -351,8 +350,8 @@ void Parc::triEnclosTauxOccupation() {
             }
         }
         // Ici, on échange les contenus des pointeurs
-        tmp = listeEnclos[i];
-        listeEnclos[i] = listeEnclos[iRangMin];
-        listeEnclos[iRangMin] = tmp;
+        tmp = *listeEnclos[i];
+        *listeEnclos[i] = *listeEnclos[iRangMin];
+        *listeEnclos[iRangMin] = tmp;
     }
 }
