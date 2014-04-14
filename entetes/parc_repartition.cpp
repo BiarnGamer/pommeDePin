@@ -17,7 +17,6 @@
 /**************************************************/
 /******* JB           *****************************/
    void creerAnimal(Animal const * a, const int IDEnclosAccueil);
-   void creerAnimal(Animal const * a, const Enclos enclosDAccueil);
    void supprimerAnimal(const int ID);
    void modifierAnimal(const int IDAnimalAModifier, Animal const * nouvelAnimal);
    int rechercherAnimal(const int ID) const;
