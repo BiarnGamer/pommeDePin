@@ -4,78 +4,6 @@
 
 using namespace std;
 
-/*bool Proie::operator==(const Proie & p) {
-   if(iCodeProie == p.iCodeProie) {
-      return true;
-   }
-   else {
-      return false;
-   }
-}
-
-Proie & Proie::operator=(const Proie & p) {
-   iCodeProie = p.iCodeProie;
-   iSeuil1 = p.iSeuil1;
-   iSeuil2 = p.iSeuil2;
-   return *this;
-}*/
-
-bool operator==(const Proie & p1, const Proie & p2) {
-   if(p1.iCodeProie == p2.iCodeProie) {
-      return true;
-   }
-   else {
-      return false;
-   }
-}
-
-Parc::Parc():iIDAnimaux(0), iIDEnclos(0), iNbAnimaux(0), iNbEnclos(0){initTabProies();}
-
-Parc::Parc(const Parc & p) {
-    iIDAnimaux = p.iIDAnimaux;
-    iIDEnclos = p.iIDEnclos;
-    iNbAnimaux = p.iNbAnimaux;
-    iNbEnclos = p.iNbEnclos;
-    listeAnimaux = p.listeAnimaux;
-    listeEnclos = p.listeEnclos;
-    tabProies = p.tabProies;
-}
-
-Parc::~Parc() {
-    for (int i=0; i<iNbAnimaux; i++) {
-        delete listeAnimaux[i];
-    }
-    for (int i=0; i<iNbEnclos; i++) {
-        delete listeEnclos[i];
-    }
-    // On vide le tableau de Proies pour libérer la mémoire
-    while(tabProies.getNbElem() != 0) {
-      tabProies.enlever(tabProies[0]);
-    }
-}
-
-int Parc::getIDAnimaux() const {
-    return iIDAnimaux;
-}
-
-int Parc::getIDEnclos() const {
-    return iIDEnclos;
-}
-
-int Parc::getNbAnimaux() const {
-    return iNbAnimaux;
-}
-
-int Parc::getNbEnclos() const {
-    return iNbEnclos;
-}
-
-Enclos Parc::getEnclos(int i) const {
-   if(0<=i && i<iNbEnclos) {
-      return *listeEnclos[i];
-   }
-}
-
 void Parc::animauxMangesOuTuesDansEnclos(const int iCodeEspeceModifiee, Enclos * ptrEnclos)  {
    int iActionAFaire;
    int iCodeProie;
@@ -110,11 +38,6 @@ void Parc::animauxMangesOuTuesDansEnclos(const int iCodeEspeceModifiee, Enclos *
    }
 }
 
-void Parc::creerUnEnclos(const string & nom,const int & type, const int& capacite) {
-    Enclos * enclosTmp = new Enclos(nom, type, capacite, iIDEnclos++);
-    iNbEnclos++;
-    listeEnclos.ajouter(enclosTmp);
-}
 
 void Parc::supprimerUnEnclos(Enclos * ptrEnclos) {
     if(iNbAnimaux != 0) {
@@ -129,9 +52,6 @@ void Parc::supprimerUnEnclos(Enclos * ptrEnclos) {
     iNbEnclos--;
 }
 
-void Parc::ajoutAnimalEnclos(Animal * ptrAnimal, Enclos * ptrEnclos) {
-    ptrEnclos->ajoutAnimal(ptrAnimal);
-}
 
 void Parc::Barney() {
     bool succes = true;
@@ -261,30 +181,6 @@ void Parc::Barney() {
     }
 }
 
-void Parc::choixEnclos(Animal * ptrAnimal) {
-    // Note : proposer de créer un nouvel enclos ou de relâcher l'animal
-    // Appelé après création animal ou avant déplacement pour choisir le nouvel enclos
-    // Dans ce dernier cas, ne pas proposer l'enclos actuel !
-    cout << "Voici les enclos disponibles --- AFFICHER CEUX QUI NE SONT PAS PLEINS ET PROPOSER TRI" << endl;
-    verifChoixEnclos(ptrAnimal, listeEnclos[0]);
-    listeEnclos[0]->ajoutAnimal(ptrAnimal);
-}
-
-void Parc::verifChoixEnclos(Animal * ptrAnimal, Enclos * ptrEnclos) {
-
-}
-
-void Parc::supprimerUnAnimal(Animal * ptrAnimal) {
-    listeAnimaux.enlever(ptrAnimal);
-    delete ptrAnimal;
-    iNbAnimaux--;
-}
-
-void Parc::deplacerUnAnimal(Animal * ptrAnimal, Enclos * ptrEnclosDepart, Enclos * ptrEnclosArrivee) {
-    ptrEnclosDepart->supprimerAnimal(ptrAnimal);
-    ptrEnclosArrivee->ajoutAnimal(ptrAnimal);
-}
-
 int Parc::predateurMangeProie(const int iCodePredateur, const int iCodeProie, const int iNbPredateurs, const int iNbProies) const {
    // On vérifie que le prédateur et la proie donnés sont liés
    int resultatRand;
@@ -333,101 +229,3 @@ int Parc::predateurMangeProie(const int iCodePredateur, const int iCodeProie, co
       }
    }
 }
-
-void Parc::initTabProies() {
-   // Si le tableau n'a pas déjà été créé
-   if(tabProies.getNbElem() == 0) {
-      // Initialisation des variables
-      Set <Proie> setVide;
-      Set <Proie> proiesEspece;
-      Proie proie1, proie2, proie3, proie4, proie5, proie6;
-
-      // Proies de la girafe : aucune
-      tabProies.ajouter(proiesEspece);
-
-     // Proies du tigre
-      // girafe
-      proie1.iCodeProie = 0;
-      proie1.iSeuil1 = 4;
-      proie1.iSeuil2 = 15;
-      // basque
-      proie2.iCodeProie = 2;
-      proie2.iSeuil1 = 50;
-      proie2.iSeuil2 = 36542;
-      // marmotte
-      proie3.iCodeProie = 3;
-      proie3.iSeuil1 = 50;
-      proie3.iSeuil2 = 400;
-      // elephant
-      proie4.iCodeProie = 4;
-      proie4.iSeuil1 = 3;
-      proie4.iSeuil2 = 8;
-      // loutre
-      proie5.iCodeProie = 7;
-      proie5.iSeuil1 = 50;
-      proie5.iSeuil2 = 400;
-      // lapin
-      proie6.iCodeProie = 9;
-      proie6.iSeuil1 = 50;
-      proie6.iSeuil2 = 400;
-      // Ajout des proies
-      proiesEspece.ajouter(proie1);
-      proiesEspece.ajouter(proie2);
-      proiesEspece.ajouter(proie3);
-      proiesEspece.ajouter(proie4);
-      proiesEspece.ajouter(proie5);
-      proiesEspece.ajouter(proie6);
-      // Enregistrement et éinitialisation de proiesEspece
-      tabProies.ajouter(proiesEspece);
-      proiesEspece = setVide;
-
-      // Proies des Basque, Marmotte, Elephant, Aigle, Tortue, Loutre : acune
-      tabProies.ajouter(proiesEspece);
-      tabProies.ajouter(proiesEspece);
-      tabProies.ajouter(proiesEspece);
-      tabProies.ajouter(proiesEspece);
-      tabProies.ajouter(proiesEspece);
-      tabProies.ajouter(proiesEspece);
-
-      // Proies du crocodile
-      // girafe
-      proie1.iCodeProie = 0;
-      proie1.iSeuil1 = 4;
-      proie1.iSeuil2 = 18;
-      // basque
-      proie2.iCodeProie = 2;
-      proie2.iSeuil1 = 50;
-      proie2.iSeuil2 = 36542;
-      // marmotte
-      proie3.iCodeProie = 3;
-      proie3.iSeuil1 = 50;
-      proie3.iSeuil2 = 400;
-      // elephant
-      proie4.iCodeProie = 4;
-      proie4.iSeuil1 = 1;
-      proie4.iSeuil2 = 4;
-      // loutre
-      proie5.iCodeProie = 7;
-      proie5.iSeuil1 = 50;
-      proie5.iSeuil2 = 400;
-      // lapin
-      proie6.iCodeProie = 9;
-      proie6.iSeuil1 = 50;
-      proie6.iSeuil2 = 400;
-      // Ajout des proies
-      proiesEspece.ajouter(proie1);
-      proiesEspece.ajouter(proie2);
-      proiesEspece.ajouter(proie3);
-      proiesEspece.ajouter(proie4);
-      proiesEspece.ajouter(proie5);
-      proiesEspece.ajouter(proie6);
-      // Enregistrement et éinitialisation de proiesEspece
-      tabProies.ajouter(proiesEspece);
-      proiesEspece = setVide;
-
-      // Proies du lapin : aucune
-      tabProies.ajouter(proiesEspece);
-   }
-}
-
-ostream & operator<<(ostream &, const Parc &);

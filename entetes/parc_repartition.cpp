@@ -15,7 +15,7 @@
 /**************************************************/
 
 /**************************************************/
-/******* JB     *****************************/
+/******* JB           *****************************/
    void creerAnimal(Animal const * a, const int IDEnclosAccueil);
    void creerAnimal(Animal const * a, const Enclos enclosDAccueil);
    void supprimerAnimal(const int ID);
