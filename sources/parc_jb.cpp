@@ -14,11 +14,11 @@ void Parc::creerAnimal(Animal * a, const int IDEnclosAccueil) {
              iNbAnimaux++;
              break;
           case TIGRE:
-             listeAnimaux.ajouter(new Tigre(a->getTaille(), a->getNbVictimes(), a->getNom(), iIDAnimaux++));
+             listeAnimaux.ajouter(new Tigre(a->getGarot(), a->getNbVictimes(), a->getNom(), iIDAnimaux++));
              iNbAnimaux++;
              break;
           case BASQUE:
-             listeAnimaux.ajouter(new Basque(a->getLargeurBeret(), a->getTempsCuisson(), a->getNbVictoires(), a->getNbRicardBus(), a->getNom(), iIDAnimaux++));
+             listeAnimaux.ajouter(new Basque(a->getLargeurBeret(), a->getTempsCuisson(), a->getNbVictoires(), a->getNbRicard(), a->getNom(), iIDAnimaux++));
              iNbAnimaux++;
              break;
           case MARMOTTE:
@@ -100,14 +100,14 @@ void Parc::modifierAnimal(const int IDAnimalAModifier, Animal * nouvelAnimal) {
                 ptrAnimal->setNbTaches(nouvelAnimal->getNbTaches());
                 break;
               case TIGRE:
-                ptrAnimal->setTaille(nouvelAnimal->getTaille());
+                ptrAnimal->setGarot(nouvelAnimal->getGarot());
                 ptrAnimal->setNbVictimes(nouvelAnimal->getNbVictimes());
                 break;
               case BASQUE:
                 ptrAnimal->setLargeurBeret(nouvelAnimal->getLargeurBeret());
                 ptrAnimal->setTempsCuisson(nouvelAnimal->getTempsCuisson());
                 ptrAnimal->setNbVictoires(nouvelAnimal->getNbVictoires());
-                ptrAnimal->setNbRicardBus(nouvelAnimal->getNbRicardBus());
+                ptrAnimal->setNbRicard(nouvelAnimal->getNbRicard());
                 break;
               case MARMOTTE:
                 ptrAnimal->setTaille(nouvelAnimal->getTaille());
