@@ -13,6 +13,7 @@ void Parc::creerAnimal(Girafe const * a, const int IDEnclosAccueil) {
     Enclos * ptrEnclos = listeEnclos[iRangEnclos];
 
     if(ptrEnclos->getOccupation() < ptrEnclos->getCapacite()) {
+<<<<<<< HEAD
          listeGirafe.ajouter(new Girafe(a->getTaille(), a->getNbTaches(), a->getNom(), iIDAnimaux++));
          listeAnimaux.ajouter(listeGirafe[listeGirafe.getNbElem()-1]);
          iNbAnimaux++;
@@ -22,6 +23,53 @@ void Parc::creerAnimal(Girafe const * a, const int IDEnclosAccueil) {
         cout << "Erreur, enclos plein." << endl;
     }
 }
+=======
+        switch(iEspece) {
+          case GIRAFE:
+             listeAnimaux.ajouter(new Girafe(a->getTaille(), a->getNbTaches(), a->getNom(), iIDAnimaux++));
+             iNbAnimaux++;
+             break;
+          case TIGRE:
+             listeAnimaux.ajouter(new Tigre(a->getGarot(), a->getNbVictimes(), a->getNom(), iIDAnimaux++));
+             iNbAnimaux++;
+             break;
+          case BASQUE:
+             listeAnimaux.ajouter(new Basque(a->getLargeurBeret(), a->getTempsCuisson(), a->getNbVictoires(), a->getNbRicard(), a->getNom(), iIDAnimaux++));
+             iNbAnimaux++;
+             break;
+          case MARMOTTE:
+             listeAnimaux.ajouter(new Marmotte(a->getTaille(), a->getNbTabChocolat(), a->getNom(), iIDAnimaux++));
+             iNbAnimaux++;
+             break;
+          case ELEPHANT:
+             listeAnimaux.ajouter(new Elephant(a->getPoids(), a->getLongTrompe(), a->getNbVictimes(), a->getNom(), iIDAnimaux++));
+             iNbAnimaux++;
+             break;
+          case AIGLE:
+             listeAnimaux.ajouter(new Aigle(a->getLongueurBec(), a->getNbLoopings(), a->getNom(), iIDAnimaux++));
+             iNbAnimaux++;
+             break;
+          case TORTUE:
+             listeAnimaux.ajouter(new Tortue(a->getVitesseMax(), a->getAge(), a->getCouleur(), a->getNom(), iIDAnimaux++));
+             iNbAnimaux++;
+             break;
+          case LOUTRE:
+             listeAnimaux.ajouter(new Loutre(a->getNbAmis(), a->getTaille(), a->getNom(), iIDAnimaux++));
+             iNbAnimaux++;
+             break;
+          case CROCODILE:
+             listeAnimaux.ajouter(new Crocodile(a->getEnfantMange(), a->getNbDents(), a->getNom(), iIDAnimaux++));
+             iNbAnimaux++;
+             break;
+          case LAPIN:
+             listeAnimaux.ajouter(new Lapin(a->getNbCarotteMange(), a->getCouleur(), a->getNom(), iIDAnimaux++));
+             iNbAnimaux++;
+             break;
+          default:
+             succes = false;
+             break;
+        }
+>>>>>>> 1933c347bee97bf1eb2c328f0d91094ae358857f
 
 
 void Parc::creerAnimal(Tigre const * a, const int IDEnclosAccueil) {
@@ -191,6 +239,7 @@ void Parc::supprimerAnimal(const int ID) {
 
         // Supprime l'animal de son tableau d'espèce
         int iEspece = ptrAnimal->getEspece();
+<<<<<<< HEAD
         switch (iEspece) {
             case GIRAFE:
                 ptrGirafe = listeGirafe[rechercherGirafe(ID)];
@@ -199,6 +248,27 @@ void Parc::supprimerAnimal(const int ID) {
             case TIGRE:
                 ptrTigre = listeTigre[rechercherTigre(ID)];
                 listeTigre.enlever(ptrTigre);
+=======
+        if(iEspece != nouvelAnimal->getEspece()) {
+            cout << "Erreur, l'animal à modifier n'est pas de la bonne espèce." << endl;
+        }
+        else {
+            ptrAnimal->setNom(nouvelAnimal->getNom());
+            switch(iEspece) {
+              case GIRAFE:
+                ptrAnimal->setTaille(nouvelAnimal->getTaille());
+                ptrAnimal->setNbTaches(nouvelAnimal->getNbTaches());
+                break;
+              case TIGRE:
+                ptrAnimal->setGarot(nouvelAnimal->getGarot());
+                ptrAnimal->setNbVictimes(nouvelAnimal->getNbVictimes());
+                break;
+              case BASQUE:
+                ptrAnimal->setLargeurBeret(nouvelAnimal->getLargeurBeret());
+                ptrAnimal->setTempsCuisson(nouvelAnimal->getTempsCuisson());
+                ptrAnimal->setNbVictoires(nouvelAnimal->getNbVictoires());
+                ptrAnimal->setNbRicard(nouvelAnimal->getNbRicard());
+>>>>>>> 1933c347bee97bf1eb2c328f0d91094ae358857f
                 break;
             case BASQUE:
                 ptrBasque = listeBasque[rechercherBasque(ID)];
