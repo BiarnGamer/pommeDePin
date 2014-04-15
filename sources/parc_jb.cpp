@@ -1,5 +1,12 @@
 #include "../entetes/parc.h"
 
+/******************************************************/
+/******************************************************/
+/**                                                  **/
+/**    FONCTIONS DE CRÉATION D'ANIMAUX               **/
+/**                                                  **/
+/******************************************************/
+/******************************************************/
 
 void Parc::creerAnimal(Girafe const * a, const int IDEnclosAccueil) {
     int iRangEnclos = rechercherEnclos(IDEnclosAccueil);
@@ -153,19 +160,94 @@ void Parc::creerAnimal(Lapin const * a, const int IDEnclosAccueil) {
 }
 
 
+/******************************************************/
+/******************************************************/
+/**                                                  **/
+/**    FONCTIONS DE SUPPRESSION D'ANIMAUX            **/
+/**                                                  **/
+/******************************************************/
+/******************************************************/
 
 void Parc::supprimerAnimal(const int ID) {
     int iRangEnclos = rechercheEnclosAnimal(ID);
     if(iRangEnclos == -1) {
-        cout << "Erreur, animal non trouvé." << endl;
+        cout << "Erreur, enclos de l'animal non trouvé." << endl;
     }
     else {
         Animal * ptrAnimal = listeAnimaux[rechercherAnimal(ID)];
+        Girafe * ptrGirafe = NULL;
+        Tigre * ptrTigre = NULL;
+        Basque * ptrBasque = NULL;
+        Marmotte * ptrMarmotte = NULL;
+        Elephant * ptrElephant = NULL;
+        Aigle * ptrAigle = NULL;
+        Tortue * ptrTortue = NULL;
+        Loutre * ptrLoutre = NULL;
+        Crocodile * ptrCrocodile = NULL;
+        Lapin * ptrLapin = NULL;
+
+        // Supprime l'animal de son enclos
         listeEnclos[iRangEnclos]->supprimerAnimal(ptrAnimal);
+
+        // Supprime l'animal de son tableau d'espèce
+        int iEspece = ptrAnimal->getEspece();
+        switch (iEspece) {
+            case GIRAFE:
+                ptrGirafe = listeGirafe[rechercherGirafe(ID)];
+                listeGirafe.enlever(ptrGirafe);
+                break;
+            case TIGRE:
+                ptrTigre = listeTigre[rechercherTigre(ID)];
+                listeTigre.enlever(ptrTigre);
+                break;
+            case BASQUE:
+                ptrBasque = listeBasque[rechercherBasque(ID)];
+                listeBasque.enlever(ptrBasque);
+                break;
+            case MARMOTTE:
+                ptrMarmotte = listeMarmotte[rechercherMarmotte(ID)];
+                listeMarmotte.enlever(ptrMarmotte);
+                break;
+            case ELEPHANT:
+                ptrElephant = listeElephant[rechercherElephant(ID)];
+                listeElephant.enlever(ptrElephant);
+                break;
+            case AIGLE:
+                ptrAigle = listeAigle[rechercherAigle(ID)];
+                listeAigle.enlever(ptrAigle);
+                break;
+            case TORTUE:
+                ptrTortue = listeTortue[rechercherTortue(ID)];
+                listeTortue.enlever(ptrTortue);
+                break;
+            case LOUTRE:
+                ptrLoutre = listeLoutre[rechercherLoutre(ID)];
+                listeLoutre.enlever(ptrLoutre);
+                break;
+            case CROCODILE:
+                ptrCrocodile = listeCrocodile[rechercherCrocodile(ID)];
+                listeCrocodile.enlever(ptrCrocodile);
+                break;
+            case LAPIN:
+                ptrLapin = listeLapin[rechercherLapin(ID)];
+                listeLapin.enlever(ptrLapin);
+                break;
+        }
+
+        // Supprime l'animal
         listeAnimaux.enlever(ptrAnimal);
         delete ptrAnimal;
     }
 }
+
+
+/******************************************************/
+/******************************************************/
+/**                                                  **/
+/**    FONCTIONS DE MODIFICATION D'ANIMAUX           **/
+/**                                                  **/
+/******************************************************/
+/******************************************************/
 
 void Parc::modifierAnimal(const int IDAnimalAModifier, Girafe const * nouvelAnimal) {
     // FAIRE GESTION ERREUR ICI !!
@@ -310,6 +392,14 @@ void Parc::modifierAnimal(const int IDAnimalAModifier, Lapin const * nouvelAnima
 
     }
 }
+
+/******************************************************/
+/******************************************************/
+/**                                                  **/
+/**    FONCTIONS DE RECHERCHE D'ANIMAUX              **/
+/**                                                  **/
+/******************************************************/
+/******************************************************/
 
 int Parc::rechercherAnimal(const int ID) const {
     for(int i=0; i<iNbAnimaux; i++) {
@@ -457,6 +547,14 @@ int Parc::rechercheEnclosAnimal(const int ID) {
     }
 }
 
+
+/******************************************************/
+/******************************************************/
+/**                                                  **/
+/**    FONCTIONS DE TRI                              **/
+/**                                                  **/
+/******************************************************/
+/******************************************************/
 
 // tri par sélection du minimum
 void Parc::triAnimauxAlpha() {
