@@ -163,7 +163,7 @@ void Parc::creerAnimal(Lapin const * a, const int IDEnclosAccueil) {
 /******************************************************/
 /******************************************************/
 /**                                                  **/
-/**    FONCTIONS DE SUPPRESSION D'ANIMAUX            **/
+/**    FONCTION DE SUPPRESSION D'ANIMAUX             **/
 /**                                                  **/
 /******************************************************/
 /******************************************************/
@@ -567,10 +567,10 @@ void Parc::triAnimauxAlpha() {
                 iRangMin = j;
             }
         }
-        // Ici, on échange les contenus des pointeurs
-        tmp = *listeAnimaux[i];
+        listeAnimaux.intervertir(listeAnimaux[iRangMin], listeAnimaux[i]);
+        /*tmp = *listeAnimaux[i];
         *listeAnimaux[i] = *listeAnimaux[iRangMin];
-        *listeAnimaux[iRangMin] = tmp;
+        *listeAnimaux[iRangMin] = tmp;*/
     }
 }
 
@@ -587,14 +587,15 @@ void Parc::triAnimauxEspece() {
                 iRangMin = j;
             }
         }
-        // Ici, on échange les contenus des pointeurs
-        tmp = *listeAnimaux[i];
+        listeAnimaux.intervertir(listeAnimaux[iRangMin], listeAnimaux[i]);
+/*        tmp = *listeAnimaux[i];
         *listeAnimaux[i] = *listeAnimaux[iRangMin];
-        *listeAnimaux[iRangMin] = tmp;
+        *listeAnimaux[iRangMin] = tmp;*/
     }
 }
 
 
+// tri dans un enclos impossible pour le moment, rajouter la méthode pour intervertir dans Enclos
 /*// tri par sélection du minimum
 void Parc::triAnimauxAlpha(const int IDEnclos) {
     int iRangEnclos = rechercherEnclos(IDEnclos);
@@ -661,10 +662,10 @@ void Parc::triEnclosAlpha() {
                 iRangMin = j;
             }
         }
-        // Ici, on échange les contenus des pointeurs
-        tmp = *listeEnclos[i];
+        listeEnclos.intervertir(listeEnclos[iRangMin], listeEnclos[i]);
+        /*tmp = *listeEnclos[i];
         *listeEnclos[i] = *listeEnclos[iRangMin];
-        *listeEnclos[iRangMin] = tmp;
+        *listeEnclos[iRangMin] = tmp;*/
     }
 }
 
@@ -679,10 +680,10 @@ void Parc::triEnclosOccupation() {
                 iRangMin = j;
             }
         }
-        // Ici, on échange les contenus des pointeurs
-        tmp = *listeEnclos[i];
+        listeEnclos.intervertir(listeEnclos[iRangMin], listeEnclos[i]);
+/*        tmp = *listeEnclos[i];
         *listeEnclos[i] = *listeEnclos[iRangMin];
-        *listeEnclos[iRangMin] = tmp;
+        *listeEnclos[iRangMin] = tmp;*/
     }
 }
 
@@ -697,10 +698,10 @@ void Parc::triEnclosCapacite() {
                 iRangMin = j;
             }
         }
-        // Ici, on échange les contenus des pointeurs
-        tmp = *listeEnclos[i];
+        listeEnclos.intervertir(listeEnclos[iRangMin], listeEnclos[i]);
+        /*tmp = *listeEnclos[i];
         *listeEnclos[i] = *listeEnclos[iRangMin];
-        *listeEnclos[iRangMin] = tmp;
+        *listeEnclos[iRangMin] = tmp;*/
     }
 }
 
@@ -720,9 +721,9 @@ void Parc::triEnclosTauxOccupation() {
                 iTauxOccMin = listeEnclos[iRangMin]->getOccupation() / listeEnclos[iRangMin]->getCapacite();
             }
         }
-        // Ici, on échange les contenus des pointeurs
-        tmp = *listeEnclos[i];
+        listeEnclos.intervertir(listeEnclos[iRangMin], listeEnclos[i]);
+/*        tmp = *listeEnclos[i];
         *listeEnclos[i] = *listeEnclos[iRangMin];
-        *listeEnclos[iRangMin] = tmp;
+        *listeEnclos[iRangMin] = tmp;*/
     }
 }

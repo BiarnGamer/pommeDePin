@@ -19,6 +19,8 @@ template <class T> class Set {
 
    void ajouter(const T &);
    void enlever(const T &);
+   // Échange la position de deux éléments dans le Set
+   void intervertir(const T &, const T &);
 
    bool appartient(const T &) const;
    bool estVide() const;
@@ -80,6 +82,33 @@ template <class T> void Set<T>::enlever(const T & t1) {
       delete [] tab;
       tab = tab2;
    }
+}
+
+template <class T> void Set<T>::intervertir(const T & t1, const T & t2) {
+    T tmp;
+    int t1Trouve = false;
+    int t2Trouve = false;
+    int iRangT1 = 0;
+    int iRangT2 = 0;
+    int i=0;
+
+    while(!t1Trouve && !t2Trouve && i<getNbElem()) {
+        if(tab[i] == t1) {
+            t1Trouve = true;
+            iRangT1 = i;
+        }
+        if(tab[i] == t2) {
+            t2Trouve = true;
+            iRangT2 = i;
+        }
+        i++;
+    }
+
+    if(t1Trouve && t2Trouve) {
+        tmp = tab[iRangT1];
+        tab[iRangT1] = tab[iRangT2];
+        tab[iRangT2] = tmp;
+    }
 }
 
 template <class T> bool Set<T>::appartient(const T & t1) const {
