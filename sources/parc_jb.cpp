@@ -1,70 +1,147 @@
 #include "../entetes/parc.h"
 
 
-void Parc::creerAnimal(Animal * a, const int IDEnclosAccueil) {
-    int iEspece = a->getEspece();
+void Parc::creerAnimal(Girafe const * a, const int IDEnclosAccueil) {
     int iRangEnclos = rechercherEnclos(IDEnclosAccueil);
     Enclos * ptrEnclos = listeEnclos[iRangEnclos];
-    bool succes = true;
 
     if(ptrEnclos->getOccupation() < ptrEnclos->getCapacite()) {
-        switch(iEspece) {
-          case GIRAFE:
-             listeAnimaux.ajouter(new Girafe(a->getTaille(), a->getNbTaches(), a->getNom(), iIDAnimaux++));
-             iNbAnimaux++;
-             break;
-          case TIGRE:
-             listeAnimaux.ajouter(new Tigre(a->getTaille(), a->getNbVictimes(), a->getNom(), iIDAnimaux++));
-             iNbAnimaux++;
-             break;
-          case BASQUE:
-             listeAnimaux.ajouter(new Basque(a->getLargeurBeret(), a->getTempsCuisson(), a->getNbVictoires(), a->getNbRicardBus(), a->getNom(), iIDAnimaux++));
-             iNbAnimaux++;
-             break;
-          case MARMOTTE:
-             listeAnimaux.ajouter(new Marmotte(a->getTaille(), a->getNbTabChocolat(), a->getNom(), iIDAnimaux++));
-             iNbAnimaux++;
-             break;
-          case ELEPHANT:
-             listeAnimaux.ajouter(new Elephant(a->getPoids(), a->getLongTrompe(), a->getNbVictimes(), a->getNom(), iIDAnimaux++));
-             iNbAnimaux++;
-             break;
-          case AIGLE:
-             listeAnimaux.ajouter(new Aigle(a->getLongueurBec(), a->getNbLoopings(), a->getNom(), iIDAnimaux++));
-             iNbAnimaux++;
-             break;
-          case TORTUE:
-             listeAnimaux.ajouter(new Tortue(a->getVitesseMax(), a->getAge(), a->getCouleur(), a->getNom(), iIDAnimaux++));
-             iNbAnimaux++;
-             break;
-          case LOUTRE:
-             listeAnimaux.ajouter(new Loutre(a->getNbAmis(), a->getTaille(), a->getNom(), iIDAnimaux++));
-             iNbAnimaux++;
-             break;
-          case CROCODILE:
-             listeAnimaux.ajouter(new Crocodile(a->getEnfantMange(), a->getNbDents(), a->getNom(), iIDAnimaux++));
-             iNbAnimaux++;
-             break;
-          case LAPIN:
-             listeAnimaux.ajouter(new Lapin(a->getNbCarotteMange(), a->getCouleur(), a->getNom(), iIDAnimaux++));
-             iNbAnimaux++;
-             break;
-          default:
-             succes = false;
-             break;
-        }
-
-        if(succes) {
-          ajouterAnimalDansEnclos(listeAnimaux[iNbAnimaux-1], ptrEnclos);
-        }
-        else {
-            cout << "Erreur, espèce inconnue." << endl;
-        }
+         listeAnimaux.ajouter(new Girafe(a->getTaille(), a->getNbTaches(), a->getNom(), iIDAnimaux++));
+         iNbAnimaux++;
+         ajouterAnimalDansEnclos(listeAnimaux[iNbAnimaux-1], ptrEnclos);
     }
     else {
         cout << "Erreur, enclos plein." << endl;
     }
 }
+
+
+void Parc::creerAnimal(Tigre const * a, const int IDEnclosAccueil) {
+    int iRangEnclos = rechercherEnclos(IDEnclosAccueil);
+    Enclos * ptrEnclos = listeEnclos[iRangEnclos];
+
+    if(ptrEnclos->getOccupation() < ptrEnclos->getCapacite()) {
+         listeAnimaux.ajouter(new Tigre(a->getGarot(), a->getNbVictimes(), a->getNom(), iIDAnimaux++));
+         iNbAnimaux++;
+         ajouterAnimalDansEnclos(listeAnimaux[iNbAnimaux-1], ptrEnclos);
+    }
+    else {
+        cout << "Erreur, enclos plein." << endl;
+    }
+}
+
+void Parc::creerAnimal(Basque const * a, const int IDEnclosAccueil) {
+    int iRangEnclos = rechercherEnclos(IDEnclosAccueil);
+    Enclos * ptrEnclos = listeEnclos[iRangEnclos];
+
+    if(ptrEnclos->getOccupation() < ptrEnclos->getCapacite()) {
+         listeAnimaux.ajouter(new Basque(a->getLargeurBeret(), a->getTempsCuisson(), a->getNbVictoires(), a->getNbRicard(), a->getNom(), iIDAnimaux++));
+         iNbAnimaux++;
+         ajouterAnimalDansEnclos(listeAnimaux[iNbAnimaux-1], ptrEnclos);
+    }
+    else {
+        cout << "Erreur, enclos plein." << endl;
+    }
+}
+
+void Parc::creerAnimal(Marmotte const * a, const int IDEnclosAccueil) {
+    int iRangEnclos = rechercherEnclos(IDEnclosAccueil);
+    Enclos * ptrEnclos = listeEnclos[iRangEnclos];
+
+    if(ptrEnclos->getOccupation() < ptrEnclos->getCapacite()) {
+         listeAnimaux.ajouter(new Marmotte(a->getTaille(), a->getNbTabChocolat(), a->getNom(), iIDAnimaux++));
+         iNbAnimaux++;
+         ajouterAnimalDansEnclos(listeAnimaux[iNbAnimaux-1], ptrEnclos);
+    }
+    else {
+        cout << "Erreur, enclos plein." << endl;
+    }
+}
+
+void Parc::creerAnimal(Elephant const * a, const int IDEnclosAccueil) {
+    int iRangEnclos = rechercherEnclos(IDEnclosAccueil);
+    Enclos * ptrEnclos = listeEnclos[iRangEnclos];
+
+    if(ptrEnclos->getOccupation() < ptrEnclos->getCapacite()) {
+         listeAnimaux.ajouter(new Elephant(a->getPoids(), a->getLongTrompe(), a->getNbVictimes(), a->getNom(), iIDAnimaux++));
+         iNbAnimaux++;
+         ajouterAnimalDansEnclos(listeAnimaux[iNbAnimaux-1], ptrEnclos);
+    }
+    else {
+        cout << "Erreur, enclos plein." << endl;
+    }
+}
+
+void Parc::creerAnimal(Aigle const * a, const int IDEnclosAccueil) {
+    int iRangEnclos = rechercherEnclos(IDEnclosAccueil);
+    Enclos * ptrEnclos = listeEnclos[iRangEnclos];
+
+    if(ptrEnclos->getOccupation() < ptrEnclos->getCapacite()) {
+         listeAnimaux.ajouter(new Aigle(a->getLongueurBec(), a->getNbLoopings(), a->getNom(), iIDAnimaux++));
+         iNbAnimaux++;
+         ajouterAnimalDansEnclos(listeAnimaux[iNbAnimaux-1], ptrEnclos);
+    }
+    else {
+        cout << "Erreur, enclos plein." << endl;
+    }
+}
+
+void Parc::creerAnimal(Tortue const * a, const int IDEnclosAccueil) {
+    int iRangEnclos = rechercherEnclos(IDEnclosAccueil);
+    Enclos * ptrEnclos = listeEnclos[iRangEnclos];
+
+    if(ptrEnclos->getOccupation() < ptrEnclos->getCapacite()) {
+         listeAnimaux.ajouter(new Tortue(a->getVitesseMax(), a->getAge(), a->getCouleur(), a->getNom(), iIDAnimaux++));
+         iNbAnimaux++;
+         ajouterAnimalDansEnclos(listeAnimaux[iNbAnimaux-1], ptrEnclos);
+    }
+    else {
+        cout << "Erreur, enclos plein." << endl;
+    }
+}
+
+void Parc::creerAnimal(Loutre const * a, const int IDEnclosAccueil) {
+    int iRangEnclos = rechercherEnclos(IDEnclosAccueil);
+    Enclos * ptrEnclos = listeEnclos[iRangEnclos];
+
+    if(ptrEnclos->getOccupation() < ptrEnclos->getCapacite()) {
+         listeAnimaux.ajouter(new Loutre(a->getNbAmis(), a->getTaille(), a->getNom(), iIDAnimaux++));
+         iNbAnimaux++;
+         ajouterAnimalDansEnclos(listeAnimaux[iNbAnimaux-1], ptrEnclos);
+    }
+    else {
+        cout << "Erreur, enclos plein." << endl;
+    }
+}
+
+void Parc::creerAnimal(Crocodile const * a, const int IDEnclosAccueil) {
+    int iRangEnclos = rechercherEnclos(IDEnclosAccueil);
+    Enclos * ptrEnclos = listeEnclos[iRangEnclos];
+
+    if(ptrEnclos->getOccupation() < ptrEnclos->getCapacite()) {
+         listeAnimaux.ajouter(new Crocodile(a->getEnfantMange(), a->getNbDents(), a->getNom(), iIDAnimaux++));
+         iNbAnimaux++;
+         ajouterAnimalDansEnclos(listeAnimaux[iNbAnimaux-1], ptrEnclos);
+    }
+    else {
+        cout << "Erreur, enclos plein." << endl;
+    }
+}
+
+void Parc::creerAnimal(Lapin const * a, const int IDEnclosAccueil) {
+    int iRangEnclos = rechercherEnclos(IDEnclosAccueil);
+    Enclos * ptrEnclos = listeEnclos[iRangEnclos];
+
+    if(ptrEnclos->getOccupation() < ptrEnclos->getCapacite()) {
+         listeAnimaux.ajouter(new Lapin(a->getNbCarotteMange(), a->getCouleur(), a->getNom(), iIDAnimaux++));
+         iNbAnimaux++;
+         ajouterAnimalDansEnclos(listeAnimaux[iNbAnimaux-1], ptrEnclos);
+    }
+    else {
+        cout << "Erreur, enclos plein." << endl;
+    }
+}
+
 
 
 void Parc::supprimerAnimal(const int ID) {
@@ -80,7 +157,22 @@ void Parc::supprimerAnimal(const int ID) {
     }
 }
 
-void Parc::modifierAnimal(const int IDAnimalAModifier, Animal * nouvelAnimal) {
+void Parc::modifierAnimal(const int IDAnimalAModifier, Girafe const * nouvelAnimal) {
+    // FAIRE GESTION ERREUR ICI !!
+    int iRangAnimal = rechercheAnimal(IDAnimalAModifier);
+    if(iRangAnimal == -1) {
+        cout << "Erreur, animal non trouvé."<< endl;
+    }
+    else {
+        Girafe * ptrAnimal = listeAnimaux[iRangAnimal];
+        ptrAnimal->setNom(nouvelAnimal->getNom());
+        ptrAnimal->setTaille(nouvelAnimal->getTaille());
+        ptrAnimal->setNbTaches(nouvelAnimal->getNbTaches());
+
+    }
+}
+
+void Parc::modifierAnimal(const int IDAnimalAModifier, Tigre const * nouvelAnimal) {
     // FAIRE GESTION ERREUR ICI !!
     int iRangAnimal = rechercheAnimal(IDAnimalAModifier);
     if(iRangAnimal == -1) {
@@ -88,62 +180,124 @@ void Parc::modifierAnimal(const int IDAnimalAModifier, Animal * nouvelAnimal) {
     }
     else {
         Animal * ptrAnimal = listeAnimaux[iRangAnimal];
-        int iEspece = ptrAnimal->getEspece();
-        if(iEspece != nouvelAnimal->getEspece()) {
-            cout << "Erreur, l'animal à modifier n'est pas de la bonne espèce." << endl;
-        }
-        else {
-            ptrAnimal->setNom(nouvelAnimal->getNom());
-            switch(iEspece) {
-              case GIRAFE:
-                ptrAnimal->setTaille(nouvelAnimal->getTaille());
-                ptrAnimal->setNbTaches(nouvelAnimal->getNbTaches());
-                break;
-              case TIGRE:
-                ptrAnimal->setTaille(nouvelAnimal->getTaille());
-                ptrAnimal->setNbVictimes(nouvelAnimal->getNbVictimes());
-                break;
-              case BASQUE:
-                ptrAnimal->setLargeurBeret(nouvelAnimal->getLargeurBeret());
-                ptrAnimal->setTempsCuisson(nouvelAnimal->getTempsCuisson());
-                ptrAnimal->setNbVictoires(nouvelAnimal->getNbVictoires());
-                ptrAnimal->setNbRicardBus(nouvelAnimal->getNbRicardBus());
-                break;
-              case MARMOTTE:
-                ptrAnimal->setTaille(nouvelAnimal->getTaille());
-                ptrAnimal->setNbTabChocolat(nouvelAnimal->getNbTabChocolat());
-                break;
-              case ELEPHANT:
-                ptrAnimal->setPoids(nouvelAnimal->getPoids());
-                ptrAnimal->setLongTrompe(nouvelAnimal->getLongTrompe());
-                ptrAnimal->setNbVictimes(nouvelAnimal->getNbVictimes());
-                break;
-              case AIGLE:
-                ptrAnimal->setLongueurBec(nouvelAnimal->getLongueurBec());
-                ptrAnimal->setNbLoopings(nouvelAnimal->getNbLoopings());
-                break;
-              case TORTUE:
-                ptrAnimal->setVitesseMax(nouvelAnimal->getVitesseMax());
-                ptrAnimal->setAge(nouvelAnimal->getAge());
-                ptrAnimal->setCouleur(nouvelAnimal->getCouleur());
-                break;
-              case LOUTRE:
-                ptrAnimal->setNbAmis(nouvelAnimal->getNbAmis());
-                ptrAnimal->setTaille(nouvelAnimal->getTaille());
-                break;
-              case CROCODILE:
-                ptrAnimal->setEnfantMange(nouvelAnimal->getEnfantMange());
-                ptrAnimal->setNbDents(nouvelAnimal->getNbDents());
-                break;
-              case LAPIN:
-                ptrAnimal->setNbCarotteMange(nouvelAnimal->getNbCarotteMange());
-                ptrAnimal->setCouleur(nouvelAnimal->getCouleur());
-                break;
-              default:
-                break;
-            }
+        ptrAnimal->setTaille(nouvelAnimal->getTaille());
+        ptrAnimal->setNbVictimes(nouvelAnimal->getNbVictimes());
+    }
+}
 
-        }
+void Parc::modifierAnimal(const int IDAnimalAModifier, Basque const * nouvelAnimal) {
+    // FAIRE GESTION ERREUR ICI !!
+    int iRangAnimal = rechercheAnimal(IDAnimalAModifier);
+    if(iRangAnimal == -1) {
+        cout << "Erreur, animal non trouvé."<< endl;
+    }
+    else {
+        Animal * ptrAnimal = listeAnimaux[iRangAnimal];
+        ptrAnimal->setLargeurBeret(nouvelAnimal->getLargeurBeret());
+        ptrAnimal->setTempsCuisson(nouvelAnimal->getTempsCuisson());
+        ptrAnimal->setNbVictoires(nouvelAnimal->getNbVictoires());
+        ptrAnimal->setNbRicardBus(nouvelAnimal->getNbRicardBus());
+
+    }
+}
+
+void Parc::modifierAnimal(const int IDAnimalAModifier, Marmotte const * nouvelAnimal) {
+    // FAIRE GESTION ERREUR ICI !!
+    int iRangAnimal = rechercheAnimal(IDAnimalAModifier);
+    if(iRangAnimal == -1) {
+        cout << "Erreur, animal non trouvé."<< endl;
+    }
+    else {
+        Animal * ptrAnimal = listeAnimaux[iRangAnimal];
+        ptrAnimal->setTaille(nouvelAnimal->getTaille());
+        ptrAnimal->setNbTabChocolat(nouvelAnimal->getNbTabChocolat());
+
+    }
+}
+
+void Parc::modifierAnimal(const int IDAnimalAModifier, Elephant const * nouvelAnimal) {
+    // FAIRE GESTION ERREUR ICI !!
+    int iRangAnimal = rechercheAnimal(IDAnimalAModifier);
+    if(iRangAnimal == -1) {
+        cout << "Erreur, animal non trouvé."<< endl;
+    }
+    else {
+        Animal * ptrAnimal = listeAnimaux[iRangAnimal];
+        ptrAnimal->setPoids(nouvelAnimal->getPoids());
+        ptrAnimal->setLongTrompe(nouvelAnimal->getLongTrompe());
+        ptrAnimal->setNbVictimes(nouvelAnimal->getNbVictimes());
+
+    }
+}
+
+void Parc::modifierAnimal(const int IDAnimalAModifier, Aigle const * nouvelAnimal) {
+    // FAIRE GESTION ERREUR ICI !!
+    int iRangAnimal = rechercheAnimal(IDAnimalAModifier);
+    if(iRangAnimal == -1) {
+        cout << "Erreur, animal non trouvé."<< endl;
+    }
+    else {
+        Animal * ptrAnimal = listeAnimaux[iRangAnimal];
+        ptrAnimal->setLongueurBec(nouvelAnimal->getLongueurBec());
+        ptrAnimal->setNbLoopings(nouvelAnimal->getNbLoopings());
+
+    }
+}
+
+void Parc::modifierAnimal(const int IDAnimalAModifier, Tortue const * nouvelAnimal) {
+    // FAIRE GESTION ERREUR ICI !!
+    int iRangAnimal = rechercheAnimal(IDAnimalAModifier);
+    if(iRangAnimal == -1) {
+        cout << "Erreur, animal non trouvé."<< endl;
+    }
+    else {
+        Animal * ptrAnimal = listeAnimaux[iRangAnimal];
+        ptrAnimal->setVitesseMax(nouvelAnimal->getVitesseMax());
+        ptrAnimal->setAge(nouvelAnimal->getAge());
+        ptrAnimal->setCouleur(nouvelAnimal->getCouleur());
+
+    }
+}
+
+void Parc::modifierAnimal(const int IDAnimalAModifier, Loutre const * nouvelAnimal) {
+    // FAIRE GESTION ERREUR ICI !!
+    int iRangAnimal = rechercheAnimal(IDAnimalAModifier);
+    if(iRangAnimal == -1) {
+        cout << "Erreur, animal non trouvé."<< endl;
+    }
+    else {
+        Animal * ptrAnimal = listeAnimaux[iRangAnimal];
+        ptrAnimal->setNbAmis(nouvelAnimal->getNbAmis());
+        ptrAnimal->setTaille(nouvelAnimal->getTaille());
+
+    }
+}
+
+void Parc::modifierAnimal(const int IDAnimalAModifier, Crocodile const * nouvelAnimal) {
+    // FAIRE GESTION ERREUR ICI !!
+    int iRangAnimal = rechercheAnimal(IDAnimalAModifier);
+    if(iRangAnimal == -1) {
+        cout << "Erreur, animal non trouvé."<< endl;
+    }
+    else {
+        Animal * ptrAnimal = listeAnimaux[iRangAnimal];
+        ptrAnimal->setEnfantMange(nouvelAnimal->getEnfantMange());
+        ptrAnimal->setNbDents(nouvelAnimal->getNbDents());
+
+    }
+}
+
+void Parc::modifierAnimal(const int IDAnimalAModifier, Lapin const * nouvelAnimal) {
+    // FAIRE GESTION ERREUR ICI !!
+    int iRangAnimal = rechercheAnimal(IDAnimalAModifier);
+    if(iRangAnimal == -1) {
+        cout << "Erreur, animal non trouvé."<< endl;
+    }
+    else {
+        Animal * ptrAnimal = listeAnimaux[iRangAnimal];
+        ptrAnimal->setNbCarotteMange(nouvelAnimal->getNbCarotteMange());
+                ptrAnimal->setCouleur(nouvelAnimal->getCouleur());
+
     }
 }
 

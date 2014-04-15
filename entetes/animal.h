@@ -59,7 +59,7 @@ class Animal{
     virtual void affiche(ostream & flot) const;
 
     // Fonctions virtuelles pour héritage ; obligatoire pour utiliser sans souci le pointeur sur animal
-    virtual float getTaille(){}
+   /* virtual float getTaille(){}
     virtual int getNbTaches(){}
     virtual int getNbVictimes(){}
     virtual float getLargeurBeret(){}
@@ -97,7 +97,7 @@ class Animal{
     virtual void setNbAmis(const int){}
     virtual void setEnfantMange(const int){}
     virtual void setNbDents(const int){}
-    virtual void setNbCarotteMange(const int){}
+    virtual void setNbCarotteMange(const int){}*/
 };
 
 class Tigre: public Animal {
