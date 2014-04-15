@@ -24,7 +24,22 @@ class Parc{
    int iIDAnimaux;
    int iIDEnclos;
    Set <Enclos *> listeEnclos;
+
+    // Chaque animal est ajouté dans listeAnimaux et dans sa liste.
+    // Ça permet de conserver les infos de chaque animal et d'avoir quand même une seule liste pour les traitements généraux
+
    Set <Animal *> listeAnimaux;
+   Set <Tigre *> listeTigre;
+   Set <Basque *> listeBasque;
+   Set <Marmotte *> listeMarmotte;
+   Set <Elephant *> listeElephant;
+   Set <Aigle *> listeAigle;
+   Set <Tortue *> listeTortue;
+   Set <Crocodile *> listeCrocodile;
+   Set <Girafe *> listeGirafe;
+   Set <Loutre *> listeLoutre;
+   Set <Lapin *> listeLapin;
+
    Set <Set <Proie> > tabProies;
 
    /************************/
@@ -38,6 +53,17 @@ class Parc{
    // Initialise le tableau de proie
    void initTabProies();
 
+   // Retourne le rang de l'animal recherché dans la liste de son espèce
+   int rechercherGirafe(const int ID) const;
+   int rechercherTigre(const int ID) const;
+   int rechercherBasque(const int ID) const;
+   int rechercherMarmotte(const int ID) const;
+   int rechercherAigle(const int ID) const;
+   int rechercherElephant(const int ID) const;
+   int rechercherTortue(const int ID) const;
+   int rechercherLoutre(const int ID) const;
+   int rechercherCrocodile(const int ID) const;
+   int rechercherLapin(const int ID) const;
 
    public:
 
