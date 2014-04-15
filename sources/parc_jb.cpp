@@ -727,3 +727,10 @@ void Parc::triEnclosTauxOccupation() {
         *listeEnclos[iRangMin] = tmp;*/
     }
 }
+
+ostream & operator<<(ostream & flot, const Parc & p) {
+    flot << "***  Informations sur le parc  ***" << endl;
+    flot << "Nombre d'animaux : " << p.getNbAnimaux()<< endl;
+    flot << "Nombre d'enclos : " << p.getNbEnclos()<< endl;
+    return flot;
+}
