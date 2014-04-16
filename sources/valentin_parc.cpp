@@ -112,6 +112,20 @@ int Parc::rechercheAnimalEnclos(const int IDEnclos, const int IDAnimal)){
 	return -1;
 }
 
+void Parc::consequenceDeplacementAnimal(const int iCodeEspece, const int IDEnclos) const{
+	/* 	Type Invalide (enclos inexistant et type faux ) : -1
+		Tout est ok : 0
+		Animal se noit <=> ! saitNager && listeEnclos[iRangEnclos].getType() == BASSIN && ! saitVoler     (car s'il sait voler il s'échappe)        : 2
+		Animal s'envole <=> saitVoler && listeEnclos[iRangEnclos].getType() == ENCLOS || listeEnclos[iRangEnclos].getType() == BASSIN (car le bassin n'est pas fermé) : 3
+		Animal possède des prédateurs dans l'enclos : 4
+		Animal possède des proies dans l'enclos : 5
+		Animal possède des proies et des prédateurs dans l'enclos : 6
+		
+	*/
+	int iRangEnclos = rechercherEnclos(IDEnclos);
+  
+}
+
 void Parc::deplacerAnimal(const int IDEnclosDepart, const int IDAnimal, const int IDEnclosArrivee){
   // Je récupère l'enclos de départ (recherche) ainsi que celui d'arriver
 	// Je récupère l'animal dans l'enclos de départ (pointeur)
@@ -121,9 +135,9 @@ void Parc::deplacerAnimal(const int IDEnclosDepart, const int IDAnimal, const in
 	int iRangEnclosArrivee = rechercherEnclos(IDEnclosArrivee);
 	// Il faut récupérér l'animal dans l'enclos
 	int iRangAnimal = rechercheAnimalEnclos(IDAnimal); // listeEnclos[iRangEnclos].tabAnimaux[iRangAnimal] est l'animal considéré
-	listeEnclos[iRangEnclosArrivee].ajouterAnimal(listeEnclos[iRangEnclosDepart].getElem(iRangAnimal));
+	if (listeEnclos[iRangEnclosArrivee].getOccupation() < listeEnclos[iRangEnclosArrivee].getCapacite())
+		listeEnclos[iRangEnclosArrivee].ajouterAnimal(listeEnclos[iRangEnclosDepart].getElem(iRangAnimal)); 
+	// Par la suite on gère les conséquences des déplacements (erreur de type = se noie etc ou bien prédateurs etcs)   ATTENTION : On gère les conséquences dans l'enclos de départ ET celui d'arrivé !
+	
 }
 
-void Parc::consequenceDeplacementAnimal(const int iCodeEspece, const int IDEnclos) const{
-  
-}

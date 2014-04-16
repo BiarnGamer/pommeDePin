@@ -25,7 +25,7 @@ class Enclos{
   string sNom;
   Set <Animal *> tabAnimaux;
   compteEspeces tabComptageEspeces[NB_ESPECES];
-  //privé car on ne veut pas modifier le type après
+  //privé car on ne veut pas modifier le type ni les ID après
   void setTypeEnclos(const int &);
   void setID(const int &);
 
