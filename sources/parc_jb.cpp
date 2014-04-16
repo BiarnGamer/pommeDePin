@@ -556,7 +556,6 @@ int Parc::rechercheEnclosAnimal(const int ID) {
 
 // tri par sélection du minimum
 void Parc::triAnimauxAlpha() {
-    Animal tmp;
     int iRangMin = 0;
     for(int i=0; i<iNbAnimaux-1; i++) {
         iRangMin = i;
@@ -571,7 +570,6 @@ void Parc::triAnimauxAlpha() {
 
 // tri par sélection du minimum -> À VÉRIFIER CAR DOUBLE CRITÈRE DE TRI !
 void Parc::triAnimauxEspece() {
-    Animal tmp;
     int iRangMin = 0;
     for(int i=0; i<iNbAnimaux-1; i++) {
         iRangMin = i;

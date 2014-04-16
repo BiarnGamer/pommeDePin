@@ -4,10 +4,11 @@
 
 void Parc::creerEnclos(const Enclos & e){
   // On crée l'enclos qui appartient à la classe car elle seule doit pouvoir le modifier
-  Enclos e1(e.getNom(), e.getType(), e.getCapacite(), iIDEnclos);
+	Enclos * e1;
+  e1 = new Enclos(e.getNom(), e.getType(), e.getCapacite(), iIDEnclos);
   iIDEnclos++;
   //On ajoute l'enclos dans notre classe
-  listeEnclos[iNbEnclos].ajouter(&e1);
+  listeEnclos[iNbEnclos].ajouter(e1);
   iNbEnclos++;
 }
 
@@ -36,11 +37,11 @@ void Parc::mofidierEnclos(const int IDEnclosAModifier, const string nom){
 }
 
 void Parc::ajouterAnimalDansEnclos(Animal * animalAPlacer, Enclos * enclosDAccueil){
-  enclosDAccueil->ajoutAnimal(&animalAPlacer);
+  enclosDAccueil->ajoutAnimal(animalAPlacer);
 }
 
 void Parc::enleverAnimalEnclos(Animal * animalAEnlever, Enclos * enclos){
-  enclos->supprimerAnimal(&animalAEnlever);
+  enclos->supprimerAnimal(animalAEnlever);
 }
 
 void Parc::relationsProiesPredateurs(const int iCodePredateur, const int iNbPredateurs, const int iCodeProie, const int iNbProies){
@@ -70,13 +71,13 @@ void Parc::relationsProiesPredateurs(const int iCodePredateur, const int iNbPred
       srand(time(NULL));
       resultatRand = rand()%(100);
       // Cas où le prédateur mange la proie
-      if(iNbProies < tabProies[iCodePredateur][i].iSeuil1) {
+      if(iNbProies < tabProies[iCodePredateur][i].iSeuil1*iNbPredateurs) {
          // on veut 75% de chances de le manger
 	// 2 il ne se passe rien, 1 il le mange
          return (resultatRand > 75) ? 2 : 1;
       }
       // Cas où tout est possible
-      else if(iNbProies < tabProies[iCodePredateur][i].iSeuil2) {
+      else if(iNbProies < tabProies[iCodePredateur][i].iSeuil2*iNbPredateurs) {
          // 50% chances de sympatiser, 25% pour les deux autres cas
          if(resultatRand < 25) {
             return 1;
@@ -112,15 +113,16 @@ int Parc::rechercheAnimalEnclos(const int IDEnclos, const int IDAnimal)){
 	return -1;
 }
 
+// peut etre mettre directement animal * a1
 void Parc::consequenceDeplacementAnimal(const int iCodeEspece, const int IDEnclos) const{
 	/* 	Type Invalide (enclos inexistant et type faux ) : -1
 		Tout est ok : 0
+		Si l'enclos est plein : 1
 		Animal se noit <=> ! saitNager && listeEnclos[iRangEnclos].getType() == BASSIN && ! saitVoler     (car s'il sait voler il s'échappe)        : 2
 		Animal s'envole <=> saitVoler && listeEnclos[iRangEnclos].getType() == ENCLOS || listeEnclos[iRangEnclos].getType() == BASSIN (car le bassin n'est pas fermé) : 3
 		Animal possède des prédateurs dans l'enclos : 4
 		Animal possède des proies dans l'enclos : 5
 		Animal possède des proies et des prédateurs dans l'enclos : 6
-		
 	*/
 	int iRangEnclos = rechercherEnclos(IDEnclos);
   
@@ -133,8 +135,10 @@ void Parc::deplacerAnimal(const int IDEnclosDepart, const int IDAnimal, const in
 	// puis de supprimer dans l'ancien enclos. Pour cela les fonctions des sets suffisent.
 	int iRangEnclosDepart = rechercherEnclos(IDEnclosDepart); //listeEnclos[iRangEnclosDepart]
 	int iRangEnclosArrivee = rechercherEnclos(IDEnclosArrivee);
-	// Il faut récupérér l'animal dans l'enclos
-	int iRangAnimal = rechercheAnimalEnclos(IDAnimal); // listeEnclos[iRangEnclos].tabAnimaux[iRangAnimal] est l'animal considéré
+	// Il faut récupérér l'animal avec cet id dans listeanimaux car c'est le meme que dans l'enclos
+	
+	//int iRangAnimal = rechercheAnimalEnclos(IDAnimal); // listeEnclos[iRangEnclos].tabAnimaux[iRangAnimal] est l'animal considéré
+	
 	if (listeEnclos[iRangEnclosArrivee].getOccupation() < listeEnclos[iRangEnclosArrivee].getCapacite())
 		listeEnclos[iRangEnclosArrivee].ajouterAnimal(listeEnclos[iRangEnclosDepart].getElem(iRangAnimal)); 
 	// Par la suite on gère les conséquences des déplacements (erreur de type = se noie etc ou bien prédateurs etcs)   ATTENTION : On gère les conséquences dans l'enclos de départ ET celui d'arrivé !
