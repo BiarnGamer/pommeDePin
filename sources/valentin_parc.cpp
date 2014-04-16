@@ -96,8 +96,32 @@ void Parc::relationsProiesPredateurs(const int iCodePredateur, const int iNbPred
    }
 }
 
+// J'ai besoin de la recherche des animaux dans mon enclo afin de trouver son rang dans le tabAnimaux de l'enclo considéré.
+int Parc::rechercheAnimalEnclos(const int IDEnclos, const int IDAnimal)){
+	int iRangEnclos = rechercherEnclos(IDEnclos);
+	bool trouver = false;
+	int i=0;
+	int iNbAnimaux = listeEnclos[iRangEnclos].getOccupation();
+	// presque pas obligatoire de laisser la condition !trouver car s'il le trouve alors return stopera la boucle, mais on fait attention on le laisse quand même
+	while (!trouver && i < iNbAnimaux){
+		if (listeEnclos[iRangEnclos].tabAnimaux[i].getID == IDAnimal)
+			return i;
+		else 
+			i++;
+	}
+	return -1;
+}
+
 void Parc::deplacerAnimal(const int IDEnclosDepart, const int IDAnimal, const int IDEnclosArrivee){
-  
+  // Je récupère l'enclos de départ (recherche) ainsi que celui d'arriver
+	// Je récupère l'animal dans l'enclos de départ (pointeur)
+	// Etant donné que ce sont des pointeurs et que l'animal à déjà été crée par la classe Parc il suffira d'ajouter le pointeur sur le nouvel enclos 
+	// puis de supprimer dans l'ancien enclos. Pour cela les fonctions des sets suffisent.
+	int iRangEnclosDepart = rechercherEnclos(IDEnclosDepart); //listeEnclos[iRangEnclosDepart]
+	int iRangEnclosArrivee = rechercherEnclos(IDEnclosArrivee);
+	// Il faut récupérér l'animal dans l'enclos
+	int iRangAnimal = rechercheAnimalEnclos(IDAnimal); // listeEnclos[iRangEnclos].tabAnimaux[iRangAnimal] est l'animal considéré
+	listeEnclos[iRangEnclosArrivee].ajouterAnimal(listeEnclos[iRangEnclosDepart].getElem(iRangAnimal));
 }
 
 void Parc::consequenceDeplacementAnimal(const int iCodeEspece, const int IDEnclos) const{

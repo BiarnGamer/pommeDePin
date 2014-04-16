@@ -566,9 +566,6 @@ void Parc::triAnimauxAlpha() {
             }
         }
         listeAnimaux.intervertir(listeAnimaux[iRangMin], listeAnimaux[i]);
-        /*tmp = *listeAnimaux[i];
-        *listeAnimaux[i] = *listeAnimaux[iRangMin];
-        *listeAnimaux[iRangMin] = tmp;*/
     }
 }
 
@@ -586,23 +583,21 @@ void Parc::triAnimauxEspece() {
             }
         }
         listeAnimaux.intervertir(listeAnimaux[iRangMin], listeAnimaux[i]);
-/*        tmp = *listeAnimaux[i];
-        *listeAnimaux[i] = *listeAnimaux[iRangMin];
-        *listeAnimaux[iRangMin] = tmp;*/
     }
 }
 
 
 // tri dans un enclos impossible pour le moment, rajouter la méthode pour intervertir dans Enclos
-/*// tri par sélection du minimum
+// tri par sélection du minimum
 void Parc::triAnimauxAlpha(const int IDEnclos) {
     int iRangEnclos = rechercherEnclos(IDEnclos);
     if(iRangEnclos == -1) {
         cout << "Erreur, enclos introuvable." << endl;
     }
     else {
+		// On se garde ptrEnclos pour simplifier la visualisation 
         Enclos * ptrEnclos = listeEnclos[iRangEnclos];
-        Animal tmp;
+		// On procède alors a l'échange des pointeurs
         int iRangMin = 0;
         int iNbAnimaux = ptrEnclos->getOccupation();
         for(int i=0; i<iNbAnimaux-1; i++) {
@@ -612,16 +607,15 @@ void Parc::triAnimauxAlpha(const int IDEnclos) {
                     iRangMin = j;
                 }
             }
-            // Ici, on échange les contenus des pointeurs
-            tmp = *(ptrEnclos->getAnimal(i));
-            *(ptrEnclos->getAnimal(i)) = *(ptrEnclos->getAnimal(iRangMin));
-            *(ptrEnclos->getAnimal(iRangMin) = tmp;
+            // Ici, on échange les pointeurs et plus les contenus
+            ptrEnclos.intervertir(tabAnimaux[iRangMin],tabAnimaux[i]);
         }
     }
-}*/
+}
 
-/*
+
 // tri par sélection du minimum -> À VÉRIFIER CAR DOUBLE CRITÈRE DE TRI !
+// val : me parait bien pour ma part
 void Parc::triAnimauxEspece(const int IDEnclos) {
     int iRangEnclos = rechercherEnclos(IDEnclos);
     if(iRangEnclos == -1) {
@@ -629,7 +623,6 @@ void Parc::triAnimauxEspece(const int IDEnclos) {
     }
     else {
         Enclos * ptrEnclos = listeEnclos[iRangEnclos];
-        Animal tmp;
         int iRangMin = 0;
         int iNbAnimaux = ptrEnclos->getOccupation();
         for(int i=0; i<iNbAnimaux-1; i++) {
@@ -642,16 +635,13 @@ void Parc::triAnimauxEspece(const int IDEnclos) {
                 }
             }
             // Ici, on échange les contenus des pointeurs
-            tmp = *(ptrEnclos->tabAnimaux[i]);
-            *(ptrEnclos->tabAnimaux[i]) = *(ptrEnclos->tabAnimaux[iRangMin]);
-            *(ptrEnclos->tabAnimaux[iRangMin]) = tmp;
+             ptrEnclos.intervertir(tabAnimaux[iRangMin],tabAnimaux[i]);
         }
     }
-}*/
+}
 
 // tri par sélection du minimum
 void Parc::triEnclosAlpha() {
-    Enclos tmp;
     int iRangMin = 0;
     for(int i=0; i<iNbEnclos-1; i++) {
         iRangMin = i;
@@ -661,15 +651,11 @@ void Parc::triEnclosAlpha() {
             }
         }
         listeEnclos.intervertir(listeEnclos[iRangMin], listeEnclos[i]);
-        /*tmp = *listeEnclos[i];
-        *listeEnclos[i] = *listeEnclos[iRangMin];
-        *listeEnclos[iRangMin] = tmp;*/
     }
 }
 
 // tri par sélection du minimum
 void Parc::triEnclosOccupation() {
-    Enclos tmp;
     int iRangMin = 0;
     for(int i=0; i<iNbEnclos-1; i++) {
         iRangMin = i;
@@ -679,15 +665,11 @@ void Parc::triEnclosOccupation() {
             }
         }
         listeEnclos.intervertir(listeEnclos[iRangMin], listeEnclos[i]);
-/*        tmp = *listeEnclos[i];
-        *listeEnclos[i] = *listeEnclos[iRangMin];
-        *listeEnclos[iRangMin] = tmp;*/
     }
 }
 
 // tri par sélection du minimum
 void Parc::triEnclosCapacite() {
-    Enclos tmp;
     int iRangMin = 0;
     for(int i=0; i<iNbEnclos-1; i++) {
         iRangMin = i;
@@ -697,15 +679,11 @@ void Parc::triEnclosCapacite() {
             }
         }
         listeEnclos.intervertir(listeEnclos[iRangMin], listeEnclos[i]);
-        /*tmp = *listeEnclos[i];
-        *listeEnclos[i] = *listeEnclos[iRangMin];
-        *listeEnclos[iRangMin] = tmp;*/
     }
 }
 
 // tri par sélection du minimum
 void Parc::triEnclosTauxOccupation() {
-    Enclos tmp;
     int iRangMin = 0;
     int iTauxOccMin = 0;
     int iTauxOcc = 0;
@@ -720,9 +698,6 @@ void Parc::triEnclosTauxOccupation() {
             }
         }
         listeEnclos.intervertir(listeEnclos[iRangMin], listeEnclos[i]);
-/*        tmp = *listeEnclos[i];
-        *listeEnclos[i] = *listeEnclos[iRangMin];
-        *listeEnclos[iRangMin] = tmp;*/
     }
 }
 
