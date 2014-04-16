@@ -369,6 +369,7 @@ int Parc::consequenceDeplacementAnimal(Animal const * a1, const int IDEnclos) co
     }
 }
 
+// DÉPLACERANIMAL À  FAIRE
 
 /*****************************************/
 /********		JB						*/

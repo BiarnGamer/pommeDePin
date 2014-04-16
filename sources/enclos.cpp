@@ -89,6 +89,7 @@ void Enclos::ajoutAnimal(Animal * ptrAnimal) {
     }
     else {
         tabAnimaux.ajouter(ptrAnimal);
+        tabComptageEspeces[ptrAnimal->getEspece()].iNombreAnimaux++;
         iOccupation++;
     }
 }
@@ -96,6 +97,7 @@ void Enclos::ajoutAnimal(Animal * ptrAnimal) {
 void Enclos::supprimerAnimal(Animal * ptrAnimal) {
     if(tabAnimaux.appartient(ptrAnimal)) {
         tabAnimaux.enlever(ptrAnimal);
+        tabComptageEspeces[ptrAnimal->getEspece()].iNombreAnimaux--;
         iOccupation--;
     }
 }
