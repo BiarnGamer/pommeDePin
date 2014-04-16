@@ -2,10 +2,10 @@
 /**                 VALENTIN                    */
 /************************************************/
 
-void Parc::creerEnclos(const Enclos & e){
+void Parc::creerEnclos(const string & nom, const int type, cons int capacite){
   // On crée l'enclos qui appartient à la classe car elle seule doit pouvoir le modifier
 	Enclos * e1;
-  e1 = new Enclos(e.getNom(), e.getType(), e.getCapacite(), iIDEnclos);
+  e1 = new Enclos(nom, type, capacite, iIDEnclos);
   iIDEnclos++;
   //On ajoute l'enclos dans notre classe
   listeEnclos[iNbEnclos].ajouter(e1);
