@@ -3,17 +3,18 @@
 /************************************************/
 
 void Parc::creerEnclos(const Enclos & e){
-  // On crée l'enclos qui appartient à la classe
+  // On crée l'enclos qui appartient à la classe car elle seule doit pouvoir le modifier
   Enclos e1(e.getNom(), e.getType(), e.getCapacite(), iIDEnclos);
   iIDEnclos++;
   //On ajoute l'enclos dans notre classe
-  listeEnclos[iNbEnclos].ajouter(*e1);
+  listeEnclos[iNbEnclos].ajouter(&e1);
   iNbEnclos++;
 }
 
 int Parc::rechercherEnclos(const int ID) const{
   bool trouver=false;
-  while ( !trouver && i < getNbEnclos(){
+  int i =0;
+  while ( !trouver && i < getNbEnclos()){
    if (listeEnclos[i].getIDEnclos() == ID){
      trouver = true;
      return i;
@@ -23,10 +24,11 @@ int Parc::rechercherEnclos(const int ID) const{
 }
 
 void Parc::supprimerEnclos(const int ID){
-  if (rechercherEnclos(ID) == -1)
+ int rang = rechercherEnclos(ID);
+  if (rang == -1)
     cout >> "Cet ID d'enclos n'existe pas." << endl;
   else 
-    listeEnclos.enlever(listeEnclos[rechercherEnclos(ID)]);
+    listeEnclos.enlever(listeEnclos[rang]);
 }
 
 void Parc::mofidierEnclos(const int IDEnclosAModifier, const string nom){
@@ -34,11 +36,11 @@ void Parc::mofidierEnclos(const int IDEnclosAModifier, const string nom){
 }
 
 void Parc::ajouterAnimalDansEnclos(Animal * animalAPlacer, Enclos * enclosDAccueil){
-  enclosDAccueil->ajoutAnimal(animalAPlacer);
+  enclosDAccueil->ajoutAnimal(&animalAPlacer);
 }
 
 void Parc::enleverAnimalEnclos(Animal * animalAEnlever, Enclos * enclos){
-  enclos->supprimerAnimal(animalAEnlever);
+  enclos->supprimerAnimal(&animalAEnlever);
 }
 
 void Parc::relationsProiesPredateurs(const int iCodePredateur, const int iNbPredateurs, const int iCodeProie, const int iNbProies){
@@ -47,8 +49,10 @@ void Parc::relationsProiesPredateurs(const int iCodePredateur, const int iNbPred
    int resultatRand;
    bool trouve = false;
    int i=0;
+   // on récupère le nombre de proies que peut tuer le prédateur
    int iNbProiesAnimal = tabProies[iCodePredateur].getNbElem();
    while(i<iNbProiesAnimal && !trouve){
+	   // on regarde maintenant si une de ses proies correspond
       if(tabProies[iCodePredateur][i].iCodeProie == iCodeProie) {
          trouve = true;
       }
