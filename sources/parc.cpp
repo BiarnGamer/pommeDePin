@@ -18,8 +18,7 @@ using namespace std;
 bool operator==(const Proie & p1, const Proie & p2) {
     if(p1.iCodeProie == p2.iCodeProie) {
         return true;
-    }
-    else {
+    } else {
         return false;
     }
 }
@@ -231,8 +230,7 @@ int Parc::rechercherEnclos(const int ID) const {
         if (listeEnclos[i].getIDEnclos() == ID) {
             trouver = true;
             return i;
-        }
-        else return -1;
+        } else return -1;
     }
 }
 
@@ -268,8 +266,7 @@ void Parc::relationsProiesPredateurs(const int iCodePredateur, const int iNbPred
         // on regarde maintenant si une de ses proies correspond
         if(tabProies[iCodePredateur][i].iCodeProie == iCodeProie) {
             trouve = true;
-        }
-        else {
+        } else {
             i++;
         }
     }
@@ -277,8 +274,7 @@ void Parc::relationsProiesPredateurs(const int iCodePredateur, const int iNbPred
     // Si ce n'est pas le cas ou si une espèce est en quantité nulle, on renvoie 2 pour dire qu'il ne se passe rien
     if(!trouve || iNbPredateurs==0 || iNbProies==0) {
         return 2;
-    }
-    else {
+    } else {
         // On prend un nombre aléatoire dans [0; 100[
         srand(time(NULL));
         resultatRand = rand()%(100);
@@ -293,11 +289,9 @@ void Parc::relationsProiesPredateurs(const int iCodePredateur, const int iNbPred
             // 50% chances de sympatiser, 25% pour les deux autres cas
             if(resultatRand < 25) {
                 return 1;
-            }
-            else if(resultatRand <= 75) {
+            } else if(resultatRand <= 75) {
                 return 2;
-            }
-            else {
+            } else {
                 return 3;
             }
         }
@@ -308,6 +302,73 @@ void Parc::relationsProiesPredateurs(const int iCodePredateur, const int iNbPred
         }
     }
 }
+
+
+
+int Parc::consequenceDeplacementAnimal(Animal const * a1, const int IDEnclos) const {
+    /* 	Type Invalide (enclos inexistant et type faux ) : -1
+    	Tout est ok : 0
+    	Si l'enclos est plein : 1
+    	Animal se noit <=> ! saitNager && listeEnclos[iRangEnclos].getType() == BASSIN      : 2
+    	Animal s'envole <=> saitVoler && (listeEnclos[iRangEnclos].getType() == ENCLOS || listeEnclos[iRangEnclos].getType() == BASSIN) (car le bassin n'est pas fermé) : 3
+    	Animal possède des prédateurs dans l'enclos : 4
+    	Animal possède des proies dans l'enclos : 5
+    	Animal possède des proies et des prédateurs dans l'enclos : 6
+    */
+    int iRangEnclos = rechercherEnclos(IDEnclos);
+    int i=0;
+    bool YaTilDesProies = false;
+    bool YaTilDesPredateurs =false;
+    int nbProiesDeAnimal = tabProies[a1->getEspece()].getNbElem;
+    int iEspeceA = a1->getEspece();
+    int nbElemTabProies = tabProies.getNbElem();
+    int nbElem;
+
+    if (iRangEnclos == -1)
+        return -1;
+    else {
+        if (listeEnclos[iRangEnclos]->getOccupation() == listeEnclos[iRangEnclos]->getCapacite() )
+            return 1;
+        else {
+            if (a1->getSaitVoler && (listeEnclos[iRangEnclos].getType() == ENCLOS || listeEnclos[iRangEnclos].getType() == BASSIN) )
+                return 3;
+            else {
+                if (!a1->getSaitNager() && listeEnclos[iRangEnclos].getType() == BASSIN)
+                    return 2;
+                else {
+                    // Pour chacun des animaux dans l'enclos, regarder si l'animal a1 est une proie et si a1 possède des proies présentes
+                    while (i < listeEnclos[iRangEnclos].getOccupation() && !YaTilDesPredateurs) {
+                        // je cherche dans quels tableaux a1 est une proie et je vérifie si l'animal est présent, si oui bool = true sinon on continue jusqu'a bool = true ou fin du tableau
+                        for (int j = 0; j < nbElemTabProies; j++) {
+                            nbElem = tabProies[j].getNbElem();
+                            for(int k = 0; k < nbElem; k++) {
+                                if (tabProies[j][k].iCodeProie == a1.getEspece()) {
+                                    // On regarde maintenant si le prédateur est présent dans l'enclos
+                                    if (listeEnclos[iRangEnclos].getNombreAnimaux(tabProies[j][k].iCodeProie) != 0)
+                                        YaTilDesPredateurs = true;
+                                }
+                            }
+                        }
+                        i++;
+                    }
+                    // maintenant je cherche donc si y'a des proies de notre animal
+                    for (int j = 0; j  < nbProiesDeAnimal; j++) {
+                        // pour chaque proies, on regarde si elle est présente dans le tableau
+                        if (listeEnclos[iRangEnclos].getNombreAnimaux(tabProies[iEspeceA][j].iCodeEspece) != 0)
+                            YaTilDesProies = true;
+                    }
+                    // maintenant on sait si y'a des proies et si y'a des prédateurs
+                    if (YaTilDesPredateurs && YaTilDesProies)
+                        return 6;
+                    else if (YaTilDesPredateurs)
+                        return 4;
+                    else return 5;
+                }
+            }
+        }
+    }
+}
+
 
 /*****************************************/
 /********		JB						*/

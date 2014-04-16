@@ -156,7 +156,7 @@ public:
     // - Si l’animal possède des prédateurs dans l’enlcos : 4
     // - Si l’animal possède des proies dans l’enclos : 5
     // - Si l’animal poss`de des proies et des pr ́dateurs dans l’enclos : 6
-    void consequenceDeplacementAnimal(const int iCodeEspece, const int IDEnclos) const;
+    int consequenceDeplacementAnimal(const int iCodeEspece, const int IDEnclos) const;
 
 
     // Les fonctions suivantes trient la liste d'animaux/d'enclos selon le critère indiqué
