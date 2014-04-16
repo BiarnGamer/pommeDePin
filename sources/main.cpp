@@ -15,8 +15,8 @@ using namespace std;
 
 
 int main() {
-     //Parc parc;
-     menuPrincipal();
+    //Parc parc;
+    menuPrincipal();
 
 
     return 0;

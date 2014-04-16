@@ -13,10 +13,10 @@ void Parc::creerAnimal(Girafe const * a, const int IDEnclosAccueil) {
     Enclos * ptrEnclos = listeEnclos[iRangEnclos];
 
     if(ptrEnclos->getOccupation() < ptrEnclos->getCapacite()) {
-         listeGirafe.ajouter(new Girafe(a->getTaille(), a->getNbTaches(), a->getNom(), iIDAnimaux++));
-         listeAnimaux.ajouter(listeGirafe[listeGirafe.getNbElem()-1]);
-         iNbAnimaux++;
-         ajouterAnimalDansEnclos(listeAnimaux[iNbAnimaux-1], ptrEnclos);
+        listeGirafe.ajouter(new Girafe(a->getTaille(), a->getNbTaches(), a->getNom(), iIDAnimaux++));
+        listeAnimaux.ajouter(listeGirafe[listeGirafe.getNbElem()-1]);
+        iNbAnimaux++;
+        ajouterAnimalDansEnclos(listeAnimaux[iNbAnimaux-1], ptrEnclos);
     }
     else {
         cout << "Erreur, enclos plein." << endl;
@@ -27,10 +27,10 @@ void Parc::creerAnimal(Tigre const * a, const int IDEnclosAccueil) {
     Enclos * ptrEnclos = listeEnclos[iRangEnclos];
 
     if(ptrEnclos->getOccupation() < ptrEnclos->getCapacite()) {
-         listeTigre.ajouter(new Tigre(a->getGarot(), a->getNbVictimes(), a->getNom(), iIDAnimaux++));
-         listeAnimaux.ajouter(listeTigre[listeTigre.getNbElem()-1]);
-         iNbAnimaux++;
-         ajouterAnimalDansEnclos(listeAnimaux[iNbAnimaux-1], ptrEnclos);
+        listeTigre.ajouter(new Tigre(a->getGarot(), a->getNbVictimes(), a->getNom(), iIDAnimaux++));
+        listeAnimaux.ajouter(listeTigre[listeTigre.getNbElem()-1]);
+        iNbAnimaux++;
+        ajouterAnimalDansEnclos(listeAnimaux[iNbAnimaux-1], ptrEnclos);
     }
     else {
         cout << "Erreur, enclos plein." << endl;
@@ -42,10 +42,10 @@ void Parc::creerAnimal(Basque const * a, const int IDEnclosAccueil) {
     Enclos * ptrEnclos = listeEnclos[iRangEnclos];
 
     if(ptrEnclos->getOccupation() < ptrEnclos->getCapacite()) {
-         listeBasque.ajouter(new Basque(a->getLargeurBeret(), a->getTempsCuisson(), a->getNbVictoires(), a->getNbRicard(), a->getNom(), iIDAnimaux++));
-         listeAnimaux.ajouter(listeBasque[listeBasque.getNbElem()-1]);
-         iNbAnimaux++;
-         ajouterAnimalDansEnclos(listeAnimaux[iNbAnimaux-1], ptrEnclos);
+        listeBasque.ajouter(new Basque(a->getLargeurBeret(), a->getTempsCuisson(), a->getNbVictoires(), a->getNbRicard(), a->getNom(), iIDAnimaux++));
+        listeAnimaux.ajouter(listeBasque[listeBasque.getNbElem()-1]);
+        iNbAnimaux++;
+        ajouterAnimalDansEnclos(listeAnimaux[iNbAnimaux-1], ptrEnclos);
     }
     else {
         cout << "Erreur, enclos plein." << endl;
@@ -57,10 +57,10 @@ void Parc::creerAnimal(Marmotte const * a, const int IDEnclosAccueil) {
     Enclos * ptrEnclos = listeEnclos[iRangEnclos];
 
     if(ptrEnclos->getOccupation() < ptrEnclos->getCapacite()) {
-         listeMarmotte.ajouter(new Marmotte(a->getTaille(), a->getNbTabChocolat(), a->getNom(), iIDAnimaux++));
-         listeAnimaux.ajouter(listeMarmotte[listeMarmotte.getNbElem()-1]);
-         iNbAnimaux++;
-         ajouterAnimalDansEnclos(listeAnimaux[iNbAnimaux-1], ptrEnclos);
+        listeMarmotte.ajouter(new Marmotte(a->getTaille(), a->getNbTabChocolat(), a->getNom(), iIDAnimaux++));
+        listeAnimaux.ajouter(listeMarmotte[listeMarmotte.getNbElem()-1]);
+        iNbAnimaux++;
+        ajouterAnimalDansEnclos(listeAnimaux[iNbAnimaux-1], ptrEnclos);
     }
     else {
         cout << "Erreur, enclos plein." << endl;
@@ -72,10 +72,10 @@ void Parc::creerAnimal(Elephant const * a, const int IDEnclosAccueil) {
     Enclos * ptrEnclos = listeEnclos[iRangEnclos];
 
     if(ptrEnclos->getOccupation() < ptrEnclos->getCapacite()) {
-         listeElephant.ajouter(new Elephant(a->getPoids(), a->getLongTrompe(), a->getNbVictimes(), a->getNom(), iIDAnimaux++));
-         listeAnimaux.ajouter(listeElephant[listeElephant.getNbElem()-1]);
-         iNbAnimaux++;
-         ajouterAnimalDansEnclos(listeAnimaux[iNbAnimaux-1], ptrEnclos);
+        listeElephant.ajouter(new Elephant(a->getPoids(), a->getLongTrompe(), a->getNbVictimes(), a->getNom(), iIDAnimaux++));
+        listeAnimaux.ajouter(listeElephant[listeElephant.getNbElem()-1]);
+        iNbAnimaux++;
+        ajouterAnimalDansEnclos(listeAnimaux[iNbAnimaux-1], ptrEnclos);
     }
     else {
         cout << "Erreur, enclos plein." << endl;
@@ -87,10 +87,10 @@ void Parc::creerAnimal(Aigle const * a, const int IDEnclosAccueil) {
     Enclos * ptrEnclos = listeEnclos[iRangEnclos];
 
     if(ptrEnclos->getOccupation() < ptrEnclos->getCapacite()) {
-         listeAigle.ajouter(new Aigle(a->getLongueurBec(), a->getNbLoopings(), a->getNom(), iIDAnimaux++));
-         listeAnimaux.ajouter(listeAigle[listeAigle.getNbElem()-1]);
-         iNbAnimaux++;
-         ajouterAnimalDansEnclos(listeAnimaux[iNbAnimaux-1], ptrEnclos);
+        listeAigle.ajouter(new Aigle(a->getLongueurBec(), a->getNbLoopings(), a->getNom(), iIDAnimaux++));
+        listeAnimaux.ajouter(listeAigle[listeAigle.getNbElem()-1]);
+        iNbAnimaux++;
+        ajouterAnimalDansEnclos(listeAnimaux[iNbAnimaux-1], ptrEnclos);
     }
     else {
         cout << "Erreur, enclos plein." << endl;
@@ -102,10 +102,10 @@ void Parc::creerAnimal(Tortue const * a, const int IDEnclosAccueil) {
     Enclos * ptrEnclos = listeEnclos[iRangEnclos];
 
     if(ptrEnclos->getOccupation() < ptrEnclos->getCapacite()) {
-         listeTortue.ajouter(new Tortue(a->getVitesseMax(), a->getAge(), a->getCouleur(), a->getNom(), iIDAnimaux++));
-         listeAnimaux.ajouter(listeTortue[listeTortue.getNbElem()-1]);
-         iNbAnimaux++;
-         ajouterAnimalDansEnclos(listeAnimaux[iNbAnimaux-1], ptrEnclos);
+        listeTortue.ajouter(new Tortue(a->getVitesseMax(), a->getAge(), a->getCouleur(), a->getNom(), iIDAnimaux++));
+        listeAnimaux.ajouter(listeTortue[listeTortue.getNbElem()-1]);
+        iNbAnimaux++;
+        ajouterAnimalDansEnclos(listeAnimaux[iNbAnimaux-1], ptrEnclos);
     }
     else {
         cout << "Erreur, enclos plein." << endl;
@@ -117,10 +117,10 @@ void Parc::creerAnimal(Loutre const * a, const int IDEnclosAccueil) {
     Enclos * ptrEnclos = listeEnclos[iRangEnclos];
 
     if(ptrEnclos->getOccupation() < ptrEnclos->getCapacite()) {
-         listeLoutre.ajouter(new Loutre(a->getNbAmis(), a->getTaille(), a->getNom(), iIDAnimaux++));
-         listeAnimaux.ajouter(listeLoutre[listeLoutre.getNbElem()-1]);
-         iNbAnimaux++;
-         ajouterAnimalDansEnclos(listeAnimaux[iNbAnimaux-1], ptrEnclos);
+        listeLoutre.ajouter(new Loutre(a->getNbAmis(), a->getTaille(), a->getNom(), iIDAnimaux++));
+        listeAnimaux.ajouter(listeLoutre[listeLoutre.getNbElem()-1]);
+        iNbAnimaux++;
+        ajouterAnimalDansEnclos(listeAnimaux[iNbAnimaux-1], ptrEnclos);
     }
     else {
         cout << "Erreur, enclos plein." << endl;
@@ -132,10 +132,10 @@ void Parc::creerAnimal(Crocodile const * a, const int IDEnclosAccueil) {
     Enclos * ptrEnclos = listeEnclos[iRangEnclos];
 
     if(ptrEnclos->getOccupation() < ptrEnclos->getCapacite()) {
-         listeCrocodile.ajouter(new Crocodile(a->getEnfantMange(), a->getNbDents(), a->getNom(), iIDAnimaux++));
-         listeAnimaux.ajouter(listeCrocodile[listeCrocodile.getNbElem()-1]);
-         iNbAnimaux++;
-         ajouterAnimalDansEnclos(listeAnimaux[iNbAnimaux-1], ptrEnclos);
+        listeCrocodile.ajouter(new Crocodile(a->getEnfantMange(), a->getNbDents(), a->getNom(), iIDAnimaux++));
+        listeAnimaux.ajouter(listeCrocodile[listeCrocodile.getNbElem()-1]);
+        iNbAnimaux++;
+        ajouterAnimalDansEnclos(listeAnimaux[iNbAnimaux-1], ptrEnclos);
     }
     else {
         cout << "Erreur, enclos plein." << endl;
@@ -147,10 +147,10 @@ void Parc::creerAnimal(Lapin const * a, const int IDEnclosAccueil) {
     Enclos * ptrEnclos = listeEnclos[iRangEnclos];
 
     if(ptrEnclos->getOccupation() < ptrEnclos->getCapacite()) {
-         listeLapin.ajouter(new Lapin(a->getNbCarotteMange(), a->getCouleur(), a->getNom(), iIDAnimaux++));
-         listeAnimaux.ajouter(listeLapin[listeLapin.getNbElem()-1]);
-         iNbAnimaux++;
-         ajouterAnimalDansEnclos(listeAnimaux[iNbAnimaux-1], ptrEnclos);
+        listeLapin.ajouter(new Lapin(a->getNbCarotteMange(), a->getCouleur(), a->getNom(), iIDAnimaux++));
+        listeAnimaux.ajouter(listeLapin[listeLapin.getNbElem()-1]);
+        iNbAnimaux++;
+        ajouterAnimalDansEnclos(listeAnimaux[iNbAnimaux-1], ptrEnclos);
     }
     else {
         cout << "Erreur, enclos plein." << endl;
@@ -190,46 +190,46 @@ void Parc::supprimerAnimal(const int ID) {
         // Supprime l'animal de son tableau d'espèce
         int iEspece = ptrAnimal->getEspece();
         switch (iEspece) {
-            case GIRAFE:
-                ptrGirafe = listeGirafe[rechercherGirafe(ID)];
-                listeGirafe.enlever(ptrGirafe);
-                break;
-            case TIGRE:
-                ptrTigre = listeTigre[rechercherTigre(ID)];
-                listeTigre.enlever(ptrTigre);
-                break;
-            case BASQUE:
-                ptrBasque = listeBasque[rechercherBasque(ID)];
-                listeBasque.enlever(ptrBasque);
-                break;
-            case MARMOTTE:
-                ptrMarmotte = listeMarmotte[rechercherMarmotte(ID)];
-                listeMarmotte.enlever(ptrMarmotte);
-                break;
-            case ELEPHANT:
-                ptrElephant = listeElephant[rechercherElephant(ID)];
-                listeElephant.enlever(ptrElephant);
-                break;
-            case AIGLE:
-                ptrAigle = listeAigle[rechercherAigle(ID)];
-                listeAigle.enlever(ptrAigle);
-                break;
-            case TORTUE:
-                ptrTortue = listeTortue[rechercherTortue(ID)];
-                listeTortue.enlever(ptrTortue);
-                break;
-            case LOUTRE:
-                ptrLoutre = listeLoutre[rechercherLoutre(ID)];
-                listeLoutre.enlever(ptrLoutre);
-                break;
-            case CROCODILE:
-                ptrCrocodile = listeCrocodile[rechercherCrocodile(ID)];
-                listeCrocodile.enlever(ptrCrocodile);
-                break;
-            case LAPIN:
-                ptrLapin = listeLapin[rechercherLapin(ID)];
-                listeLapin.enlever(ptrLapin);
-                break;
+        case GIRAFE:
+            ptrGirafe = listeGirafe[rechercherGirafe(ID)];
+            listeGirafe.enlever(ptrGirafe);
+            break;
+        case TIGRE:
+            ptrTigre = listeTigre[rechercherTigre(ID)];
+            listeTigre.enlever(ptrTigre);
+            break;
+        case BASQUE:
+            ptrBasque = listeBasque[rechercherBasque(ID)];
+            listeBasque.enlever(ptrBasque);
+            break;
+        case MARMOTTE:
+            ptrMarmotte = listeMarmotte[rechercherMarmotte(ID)];
+            listeMarmotte.enlever(ptrMarmotte);
+            break;
+        case ELEPHANT:
+            ptrElephant = listeElephant[rechercherElephant(ID)];
+            listeElephant.enlever(ptrElephant);
+            break;
+        case AIGLE:
+            ptrAigle = listeAigle[rechercherAigle(ID)];
+            listeAigle.enlever(ptrAigle);
+            break;
+        case TORTUE:
+            ptrTortue = listeTortue[rechercherTortue(ID)];
+            listeTortue.enlever(ptrTortue);
+            break;
+        case LOUTRE:
+            ptrLoutre = listeLoutre[rechercherLoutre(ID)];
+            listeLoutre.enlever(ptrLoutre);
+            break;
+        case CROCODILE:
+            ptrCrocodile = listeCrocodile[rechercherCrocodile(ID)];
+            listeCrocodile.enlever(ptrCrocodile);
+            break;
+        case LAPIN:
+            ptrLapin = listeLapin[rechercherLapin(ID)];
+            listeLapin.enlever(ptrLapin);
+            break;
         }
 
         // Supprime l'animal
@@ -386,7 +386,7 @@ void Parc::modifierAnimal(const int IDAnimalAModifier, Lapin const * nouvelAnima
     else {
         Lapin * ptrAnimal = listeLapin[iRangAnimal];
         ptrAnimal->setNbCarotteMange(nouvelAnimal->getNbCarotteMange());
-                ptrAnimal->setCouleur(nouvelAnimal->getCouleur());
+        ptrAnimal->setCouleur(nouvelAnimal->getCouleur());
 
     }
 }
@@ -575,8 +575,8 @@ void Parc::triAnimauxEspece() {
         iRangMin = i;
         for(int j=i+1; j<iNbAnimaux; j++) {
             if( listeAnimaux[j]->getEspece() <= listeAnimaux[iRangMin]->getEspece()
-                && listeAnimaux[j]->getNom() < listeAnimaux[iRangMin]->getNom()
-               ) {
+                    && listeAnimaux[j]->getNom() < listeAnimaux[iRangMin]->getNom()
+              ) {
                 iRangMin = j;
             }
         }
@@ -593,9 +593,9 @@ void Parc::triAnimauxAlpha(const int IDEnclos) {
         cout << "Erreur, enclos introuvable." << endl;
     }
     else {
-		// On se garde ptrEnclos pour simplifier la visualisation 
+        // On se garde ptrEnclos pour simplifier la visualisation
         Enclos * ptrEnclos = listeEnclos[iRangEnclos];
-		// On procède alors a l'échange des pointeurs
+        // On procède alors a l'échange des pointeurs
         int iRangMin = 0;
         int iNbAnimaux = ptrEnclos->getOccupation();
         for(int i=0; i<iNbAnimaux-1; i++) {
@@ -627,13 +627,13 @@ void Parc::triAnimauxEspece(const int IDEnclos) {
             iRangMin = i;
             for(int j=i+1; j<iNbAnimaux; j++) {
                 if( ptrEnclos->tabAnimaux[j]->getEspece() <= ptrEnclos->tabAnimaux[iRangMin]->getEspece()
-                    && ptrEnclos->tabAnimaux[j]->getNom() < ptrEnclos->tabAnimaux[iRangMin]->getNom()
-                   ) {
+                        && ptrEnclos->tabAnimaux[j]->getNom() < ptrEnclos->tabAnimaux[iRangMin]->getNom()
+                  ) {
                     iRangMin = j;
                 }
             }
             // Ici, on échange les contenus des pointeurs
-             ptrEnclos.intervertir(tabAnimaux[iRangMin],tabAnimaux[i]);
+            ptrEnclos.intervertir(tabAnimaux[iRangMin],tabAnimaux[i]);
         }
     }
 }

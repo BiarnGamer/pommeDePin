@@ -17,14 +17,14 @@ using namespace std;
     bool operator==(const Proie & p);
 };*/
 
-typedef struct{
+typedef struct {
     int iCodeProie;
     int iSeuil1;
     int iSeuil2;
-}Proie;
+} Proie;
 
 class Parc {
-    private:
+private:
     int iIDAnimaux;
     int iIDEnclos;
     int iNbAnimaux;
@@ -42,13 +42,13 @@ class Parc {
 
     void initTabProies();
     // Pour chaque espèce,
-       // on crée une structure Proie pour chacune de ses proies
-       // on ajoute toutes ces Proies dans un set
-       // on ajoute ce set dans tabProie
-       // on réinitialise les variables temporaires locales
+    // on crée une structure Proie pour chacune de ses proies
+    // on ajoute toutes ces Proies dans un set
+    // on ajoute ce set dans tabProie
+    // on réinitialise les variables temporaires locales
     // Ainsi, dans le Set de plus haut niveau, on a un set de proies par animal. La position de ces set correspond au code de l'espèce concernée
 
-    public:
+public:
     Parc();
     Parc(const Parc &);
     ~Parc();

@@ -19,8 +19,8 @@
 
 using namespace std;
 
-class Animal{
-    private:
+class Animal {
+private:
     int iID;
     bool saitVoler;
     bool saitNager;
@@ -29,14 +29,14 @@ class Animal{
 
     void setID(const int i);
 
-    protected:
+protected:
     // On met les deux setters suivant en protected car on ne veut pas que la classe fille puisse modifier la valeur. Si une espèce ne sait pas nager, il est illogique de pouvoir mettre la valeur à vrai pour un animal de cette espèce. Ainsi, la valeur ne peut être modifiée que lors de l'instanciation de l'objet car seul le constructeur d'Animal pourra appeler ces deux setters.
     // Il en va de même pour l'espèce.
     void setSaitNager(const bool nage);
     void setSaitVoler(const bool vole);
     void setEspece(const int & e);
 
-    public:
+public:
     Animal();
     Animal(const string & nom, const int & espece, const bool vole, const bool nage, const int ID = -1);
     Animal(const Animal &);
@@ -59,53 +59,53 @@ class Animal{
     virtual void affiche(ostream & flot) const;
 
     // Fonctions virtuelles pour héritage ; obligatoire pour utiliser sans souci le pointeur sur animal
-   /* virtual float getTaille(){}
-    virtual int getNbTaches(){}
-    virtual int getNbVictimes(){}
-    virtual float getLargeurBeret(){}
-    virtual int getTempsCuisson(){}
-    virtual int getNbRicardBus(){}
-    virtual int getNbVictoires(){}
-    virtual int getNbTabChocolat(){}
-    virtual float getPoids(){}
-    virtual float getLongTrompe(){}
-    virtual float getLongueurBec(){}
-    virtual int getNbLoopings(){}
-    virtual int getVitesseMax(){}
-    virtual int getAge(){}
-    virtual string getCouleur(){}
-    virtual int getNbAmis(){}
-    virtual int getEnfantMange(){}
-    virtual int getNbDents(){}
-    virtual int getNbCarotteMange(){}
+    /* virtual float getTaille(){}
+     virtual int getNbTaches(){}
+     virtual int getNbVictimes(){}
+     virtual float getLargeurBeret(){}
+     virtual int getTempsCuisson(){}
+     virtual int getNbRicardBus(){}
+     virtual int getNbVictoires(){}
+     virtual int getNbTabChocolat(){}
+     virtual float getPoids(){}
+     virtual float getLongTrompe(){}
+     virtual float getLongueurBec(){}
+     virtual int getNbLoopings(){}
+     virtual int getVitesseMax(){}
+     virtual int getAge(){}
+     virtual string getCouleur(){}
+     virtual int getNbAmis(){}
+     virtual int getEnfantMange(){}
+     virtual int getNbDents(){}
+     virtual int getNbCarotteMange(){}
 
-    virtual void setTaille(const float){}
-    virtual void setNbTaches(const int){}
-    virtual void setNbVictimes(const int){}
-    virtual void setLargeurBeret(const float){}
-    virtual void setTempsCuisson(const float){}
-    virtual void setNbRicardBus(const int){}
-    virtual void setNbVictoires(const int){}
-    virtual void setNbTabChocolat(const int){}
-    virtual void setPoids(const float){}
-    virtual void setLongTrompe(const float){}
-    virtual void setLongueurBec(const float){}
-    virtual void setNbLoopings(const int){}
-    virtual void setVitesseMax(const int){}
-    virtual void setAge(const int){}
-    virtual void setCouleur(const string &){}
-    virtual void setNbAmis(const int){}
-    virtual void setEnfantMange(const int){}
-    virtual void setNbDents(const int){}
-    virtual void setNbCarotteMange(const int){}*/
+     virtual void setTaille(const float){}
+     virtual void setNbTaches(const int){}
+     virtual void setNbVictimes(const int){}
+     virtual void setLargeurBeret(const float){}
+     virtual void setTempsCuisson(const float){}
+     virtual void setNbRicardBus(const int){}
+     virtual void setNbVictoires(const int){}
+     virtual void setNbTabChocolat(const int){}
+     virtual void setPoids(const float){}
+     virtual void setLongTrompe(const float){}
+     virtual void setLongueurBec(const float){}
+     virtual void setNbLoopings(const int){}
+     virtual void setVitesseMax(const int){}
+     virtual void setAge(const int){}
+     virtual void setCouleur(const string &){}
+     virtual void setNbAmis(const int){}
+     virtual void setEnfantMange(const int){}
+     virtual void setNbDents(const int){}
+     virtual void setNbCarotteMange(const int){}*/
 };
 
 class Tigre: public Animal {
-    private:
+private:
     float fHauteurGarot;
     int iNbGazellesCroquees;
 
-    public:
+public:
     Tigre();
     Tigre(const float fGarot, const int iNbVict, const string & nom, const int ID = -1);
     Tigre(const Tigre &);
@@ -127,13 +127,13 @@ class Tigre: public Animal {
 
 
 class Basque: public Animal {
-    private:
+private:
     float fLargeurBeret;
     float fTempsDeCuisson;
     int iNbPartiesPeloteGagnees;
     int iNbRicardBus;
 
-    public:
+public:
     Basque();
     Basque(const float flBeret, const float fCuisson, const int iNbVictoires, const int iNbRicard, const string & nom, const int ID = -1);
     Basque(const Basque &);
@@ -158,11 +158,11 @@ class Basque: public Animal {
 };
 
 class Marmotte: public Animal {
-    private:
+private:
     float fTaille;
     int iNbTablettesChocolatEmballees;
 
-    public:
+public:
     Marmotte();
     Marmotte(const float taille, const int iNbTablettes, const string & nom, const int ID = -1);
     Marmotte(const Marmotte &);
@@ -183,12 +183,12 @@ class Marmotte: public Animal {
 };
 
 class Elephant: public Animal {
-    private:
+private:
     float fPoids;
     float fLongueurTrompe;
     int iNbBraconniersEmpales;
 
-    public:
+public:
     Elephant();
     Elephant(const float poids, const float lTrompe, const int iNbVict, const string & nom, const int ID = -1);
     Elephant(const Elephant &);
@@ -211,11 +211,11 @@ class Elephant: public Animal {
 };
 
 class Aigle: public Animal {
-    private:
+private:
     float fLongueurBec;
     int iNbLoopings;
 
-    public:
+public:
     Aigle();
     Aigle(const float fLBec, const int iNbLoopings, const string & nom, const int ID = -1);
     Aigle(const Aigle &);
@@ -236,12 +236,12 @@ class Aigle: public Animal {
 };
 
 class Tortue: public Animal {
-    private:
+private:
     int iVitesseMax;
     int iAge;
     string sCouleur;
 
-    public:
+public:
     Tortue();
     Tortue(const int iVitesseMax, const int iAge, const string sCouleur, const string & nom, const int ID = -1);
     Tortue(const Tortue &);
@@ -264,11 +264,11 @@ class Tortue: public Animal {
 };
 
 class Loutre: public Animal {
-    private:
+private:
     int iNbAmis;
     float fTaille;
 
-    public:
+public:
     Loutre();
     Loutre(const int iNbAmis, const float fTaille, const string & nom, const int ID = -1);
     Loutre(const Loutre &);
@@ -289,11 +289,11 @@ class Loutre: public Animal {
 };
 
 class Crocodile: public Animal {
-    private:
+private:
     int iEnfantMange;
     int iNbDents;
 
-    public:
+public:
     Crocodile();
     Crocodile(const int iEnfantMange, const int iNbDents, const string & nom, const int ID = -1);
     Crocodile(const Crocodile &);
@@ -314,11 +314,11 @@ class Crocodile: public Animal {
 };
 
 class Lapin: public Animal {
-    private:
+private:
     int iNbCarotteMange;
     string sCouleur;
 
-    public:
+public:
     Lapin();
     Lapin(const int iNbCarotteMange, const string sCouleur, const string & nom, const int ID = -1);
     Lapin(const Lapin &);
@@ -339,11 +339,11 @@ class Lapin: public Animal {
 };
 
 class Girafe: public Animal {
-    private:
+private:
     float fTaille;
     int iNbTaches;
 
-    public:
+public:
     Girafe();
     Girafe(const float fTaille, const int iNbTaches, const string & nom, const int ID = -1);
     Girafe(const Girafe &);

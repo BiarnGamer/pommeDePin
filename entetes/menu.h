@@ -27,9 +27,9 @@
 #define MENU_AFFICHE_ANIMAUX_TOUS_PARC 3
 #define MENU_AFFICHE_ANIMAUX_RETOUR 9
 
-    void retourMenu();
-    void menuPrincipal();
-    void menuGestion();
-    void menuAffichageEnclos();
-    void menuAffichageAnimaux();
+void retourMenu();
+void menuPrincipal();
+void menuGestion();
+void menuAffichageEnclos();
+void menuAffichageAnimaux();
 #endif
