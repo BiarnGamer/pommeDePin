@@ -1248,7 +1248,7 @@ void Parc::triAnimauxEspece() {
 
         // recherche codeEspeceMin
         for(int j=i; i<iNbAnimaux; i++) {
-            if(listeAnimaux[j]->getEspece() < listeAnimaux[iRangMin]->getEspece()) {
+            if(listeAnimaux[j]->getEspece() < iCodeEspeceMin) {
                 iCodeEspeceMin = listeAnimaux[j]->getEspece();
             }
         }
