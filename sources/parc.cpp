@@ -359,7 +359,7 @@ int Parc::relationsProiesPredateurs(const int iCodePredateur, const int iNbPreda
 int Parc::consequenceDeplacementAnimal(Animal const * a1, const int IDEnclos) const {
     /* 	Invalide (enclos inexistant) : -1
     	Tout est ok : 0
-    	Si l'enclos est plei"valou"n : 1
+    	Si l'enclos est plein : 1
     	Animal se noit <=> ! saitNager && listeEnclos[iRangEnclos].getType() == BASSIN      : 2
     	Animal s'envole <=> saitVoler && (listeEnclos[iRangEnclos].getType() == ENCLOS || listeEnclos[iRangEnclos].getType() == BASSIN) (car le bassin n'est pas fermé) : 3
     	Animal possède des prédateurs dans l'enclos : 4
@@ -437,23 +437,17 @@ int Parc::consequenceDeplacementAnimal(Animal const * a1, const int IDEnclos) co
         // Pour chacune des espèces dans l'enclos, regarder si c'est un prédateur de a1 et s'il est présent
         // je pour quels espèces a1 est une proie et je vérifie si l'animal est présent, si oui bool = true sinon on continue jusqu'a bool = true ou fin du tableau
         // Pour chaque espèce
-		int j = 0;
-		int k = 0;
-		while (j< nbElemTabProies && !YaTilDesPredateurs) {
-        //for (int j = 0; j < nbElemTabProies; j++) {
+        for (int j = 0; j < nbElemTabProies; j++) {
             nbElem = tabProies[j].getNbElem();
             // Pour chaque proie de cette espèce
-			while ( k < nbElem && !YaTilDesPredateurs) {
-            //for(int k = 0; k < nbElem; k++) {
+            for(int k = 0; k < nbElem; k++) {
                 // Si c'est un prédateur de a1
                 if (tabProies[j][k].iCodeProie == a1->getEspece()) {
                     // On regarde maintenant si le prédateur est présent dans l'enclos
                     if (listeEnclos[iRangEnclos]->getNombreAnimaux(tabProies[j][k].iCodeProie) != 0)
                         YaTilDesPredateurs = true;
                 }
-                k++;
             }
-            j++;
         }
 
         // maintenant je cherche s'il y a des proies de notre animal
@@ -578,6 +572,9 @@ void Parc::creerAnimal(Girafe const * a, const int IDEnclosAccueil) {
             cout << "Erreur, enclos plein." << endl;
         }
     }
+    else {
+        cout << "Erreur, enclos non trouvé." << endl;
+    }
 }
 void Parc::creerAnimal(Tigre const * a, const int IDEnclosAccueil) {
     int iRangEnclos = rechercherEnclos(IDEnclosAccueil);
@@ -593,6 +590,9 @@ void Parc::creerAnimal(Tigre const * a, const int IDEnclosAccueil) {
         else {
             cout << "Erreur, enclos plein." << endl;
         }
+    }
+    else {
+        cout << "Erreur, enclos non trouvé." << endl;
     }
 }
 
@@ -611,6 +611,9 @@ void Parc::creerAnimal(Basque const * a, const int IDEnclosAccueil) {
             cout << "Erreur, enclos plein." << endl;
         }
     }
+    else {
+        cout << "Erreur, enclos non trouvé." << endl;
+    }
 }
 
 void Parc::creerAnimal(Marmotte const * a, const int IDEnclosAccueil) {
@@ -627,6 +630,9 @@ void Parc::creerAnimal(Marmotte const * a, const int IDEnclosAccueil) {
         else {
             cout << "Erreur, enclos plein." << endl;
         }
+    }
+    else {
+        cout << "Erreur, enclos non trouvé." << endl;
     }
 }
 
@@ -645,6 +651,9 @@ void Parc::creerAnimal(Elephant const * a, const int IDEnclosAccueil) {
             cout << "Erreur, enclos plein." << endl;
         }
     }
+    else {
+        cout << "Erreur, enclos non trouvé." << endl;
+    }
 }
 
 void Parc::creerAnimal(Aigle const * a, const int IDEnclosAccueil) {
@@ -661,6 +670,9 @@ void Parc::creerAnimal(Aigle const * a, const int IDEnclosAccueil) {
         else {
             cout << "Erreur, enclos plein." << endl;
         }
+    }
+    else {
+        cout << "Erreur, enclos non trouvé." << endl;
     }
 }
 
@@ -679,6 +691,9 @@ void Parc::creerAnimal(Tortue const * a, const int IDEnclosAccueil) {
             cout << "Erreur, enclos plein." << endl;
         }
     }
+    else {
+        cout << "Erreur, enclos non trouvé." << endl;
+    }
 }
 
 void Parc::creerAnimal(Loutre const * a, const int IDEnclosAccueil) {
@@ -695,6 +710,9 @@ void Parc::creerAnimal(Loutre const * a, const int IDEnclosAccueil) {
         else {
             cout << "Erreur, enclos plein." << endl;
         }
+    }
+    else {
+        cout << "Erreur, enclos non trouvé." << endl;
     }
 }
 
@@ -713,6 +731,9 @@ void Parc::creerAnimal(Crocodile const * a, const int IDEnclosAccueil) {
             cout << "Erreur, enclos plein." << endl;
         }
     }
+    else {
+        cout << "Erreur, enclos non trouvé." << endl;
+    }
 }
 
 void Parc::creerAnimal(Lapin const * a, const int IDEnclosAccueil) {
@@ -729,6 +750,9 @@ void Parc::creerAnimal(Lapin const * a, const int IDEnclosAccueil) {
         else {
             cout << "Erreur, enclos plein." << endl;
         }
+    }
+    else {
+        cout << "Erreur, enclos non trouvé." << endl;
     }
 }
 
