@@ -1374,3 +1374,80 @@ ostream & operator<<(ostream & flot, const Parc & p) {
     flot << "Nombre d'enclos : " << p.getNbEnclos()<< endl;
     return flot;
 }
+
+Tigre const * Parc::getTigre(const int irang) const{
+	if (irang >= 0 && irang < listeTigre.getNbElem())
+		return listeTigre[irang];
+	Tigre t;
+	return t;
+}
+
+Basque const * Parc::getBasque(const int irang) const{
+	if (irang >= 0 && irang < listeBasque.getNbElem())
+		return listeBasque[irang];
+	Basque t;
+	return t;
+}
+
+Marmotte const * Parc::getMarmotte(const int irang) const{
+	if (irang >= 0 && irang < listeMarmotte.getNbElem())
+		return listeMarmotte[irang];
+	Marmotte t;
+	return t;
+}
+
+Elephant const * Parc::getElephant(const int irang) const{
+	if (irang >= 0 && irang < listeElephant.getNbElem())
+		return listeElephant[irang];
+	Elephant t;
+	return t;
+}
+
+Aigle const * Parc::getAigle(const int irang) const{
+	if (irang >= 0 && irang < listeAigle.getNbElem())
+		return listeAigle[irang];
+	Aigle t;
+	return t;
+}
+
+Lapin const * Parc::getLapin(const int irang) const{
+	if (irang >= 0 && irang < listeLapin.getNbElem())
+		return listeLapin[irang];
+	Lapin t;
+	return t;
+}
+
+Tortue const * Parc::getLapin(const int irang) const{
+	if (irang >= 0 && irang < listeTortue.getNbElem())
+		return listeTortue[irang];
+	Tortue t;
+	return t;
+}
+
+Crocodile const * Parc::getLapin(const int irang) const{
+	if (irang >= 0 && irang < listeCrocodile.getNbElem())
+		return listeCrocodile[irang];
+	Crocodile t;
+	return t;
+}
+
+Girafe const * Parc::getLapin(const int irang) const{
+	if (irang >= 0 && irang < listeGirafe.getNbElem())
+		return listeGirafe[irang];
+	Girafe t;
+	return t;
+}
+
+Loutre const * Parc::getLapin(const int irang) const{
+	if (irang >= 0 && irang < listeLoutre.getNbElem())
+		return listeGirafe[irang];
+	Loutre t;
+	return t;
+}
+
+
+/*********************************/
+/** Getters sur les != Animaux ***/
+/*********************************/
+
+

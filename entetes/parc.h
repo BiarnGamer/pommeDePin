@@ -57,17 +57,7 @@ private:
     // Initialise le tableau de proie
     void initTabProies();
 
-    // Retourne le rang de l'animal recherché dans la liste de son espèce
-    int rechercherGirafe(const int ID) const;
-    int rechercherTigre(const int ID) const;
-    int rechercherBasque(const int ID) const;
-    int rechercherMarmotte(const int ID) const;
-    int rechercherAigle(const int ID) const;
-    int rechercherElephant(const int ID) const;
-    int rechercherTortue(const int ID) const;
-    int rechercherLoutre(const int ID) const;
-    int rechercherCrocodile(const int ID) const;
-    int rechercherLapin(const int ID) const;
+    
 
 public:
 
@@ -163,7 +153,19 @@ public:
     // - Si l’animal poss`de des proies et des pr ́dateurs dans l’enclos : 6
     int consequenceDeplacementAnimal(Animal const *, const int IDEnclos) const;
 
-
+	// Retourne le rang de l'animal recherché dans la liste de son espèce
+    int rechercherGirafe(const int ID) const;
+    int rechercherTigre(const int ID) const;
+    int rechercherBasque(const int ID) const;
+    int rechercherMarmotte(const int ID) const;
+    int rechercherAigle(const int ID) const;
+    int rechercherElephant(const int ID) const;
+    int rechercherTortue(const int ID) const;
+    int rechercherLoutre(const int ID) const;
+    int rechercherCrocodile(const int ID) const;
+    int rechercherLapin(const int ID) const;
+	
+	
     // Les fonctions suivantes trient la liste d'animaux/d'enclos selon le critère indiqué
     void triAnimauxAlpha();
     void triAnimauxEspece();
