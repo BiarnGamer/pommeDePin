@@ -204,14 +204,14 @@ int main() {
     Parc1.creerAnimal(&QuiVeutDesTalons, 5);
 
     cout << "Enclos avant ajout prédateur : " << endl;
-    cout << Parc1.getEnclos(4) << endl;
+    cout << Parc1.getEnclos(3) << endl;
 
 
     Parc1.creerAnimal(&Paul, 5);
 
     cout << "Enclos après ajout prédateur : " << endl;
-    cout << Parc1.getEnclos(4) << endl;
-    cout << *Parc1.getEnclos(4).getPtrAnimal(0) << endl;
+    cout << Parc1.getEnclos(3) << endl;
+    cout << *Parc1.getEnclos(3).getPtrAnimal(0) << endl;
 
 
     /* ******************************* */
@@ -234,6 +234,31 @@ int main() {
     cout << "Enclos après ajout prédateur : " << endl;
     cout << Parc1.getEnclos(2) << endl;
     cout << *Parc1.getEnclos(2).getPtrAnimal(0) << endl;
+
+
+
+/** Prochains tets :
+- déplacement sans conséquence
+- déplacement avec envol/noyade animal
+- déplacement avec conséquences au départ et à l'arrivée
+
+- suppression animal sans conséquence
+- suppression animal avec conséquence
+
+- déplacement/suppression animaux/enclos inexistants
+
+- modifier enclos
+
+- supprimer enclos contenant des animaux
+
+- fonction conséquences déplacement
+
+- tri des listes d'animaux (donc listes suffisament variées) et affichage complet à chaque fois
+
+- setters : modifier un animal de chaque espèce et l'afficher
+
+- Recherche et getters : OK, pas besoin
+**/
 
 
     //cout << *Parc1.getEnclos(2).getPtrAnimal(1) << endl;
