@@ -160,6 +160,10 @@ int Enclos::getNombreAnimaux(const int &codeEspece) const {
     return tabComptageEspeces[codeEspece].iNombreAnimaux;
 }
 
+void Enclos::intervertir(Animal * a1, Animal * a2) {
+    tabAnimaux.intervertir(a1,a2);
+}
+
 ostream & operator<<(ostream & flot, const Enclos & e) {
     flot << "N° Enclos : " << e.getID() << endl;
     flot << "Nom : " << e.getNom() << endl;

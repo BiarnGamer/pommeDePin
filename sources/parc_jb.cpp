@@ -518,31 +518,17 @@ int Parc::rechercherGirafe(const int ID) const {
 
 
 int Parc::rechercheEnclosAnimal(const int ID) {
-    bool enclosTrouve = false;
-    int i=0;
-    int j=0;
     // Parcours chaque enclos
-    while(i<iNbEnclos && !enclosTrouve) {
-        j=0;
+    for(int i=0; i<iNbEnclos; i++) {
         // Parcours chaque animal de cet enclos
-        while(j<listeEnclos[i]->getOccupation() && !enclosTrouve) {
+        for(int j=0; j<listeEnclos[i]->getOccupation(); j++) {
+            // Si on a trouvé l'animal cherché
             if(listeEnclos[i]->getAnimal(j).getID() == ID) {
-                enclosTrouve = true;
-            }
-            else {
-                j++;
+                return i;
             }
         }
-        if(!enclosTrouve) {
-            i++;
-        }
     }
-    if(enclosTrouve) {
-        return i;
-    }
-    else {
-        return -1;
-    }
+    return -1;
 }
 
 
@@ -593,7 +579,7 @@ void Parc::triAnimauxAlpha(const int IDEnclos) {
         cout << "Erreur, enclos introuvable." << endl;
     }
     else {
-        // On se garde ptrEnclos pour simplifier la visualisation
+        // On se garde ptrEnclos pour simplifier le code
         Enclos * ptrEnclos = listeEnclos[iRangEnclos];
         // On procède alors a l'échange des pointeurs
         int iRangMin = 0;
@@ -606,7 +592,7 @@ void Parc::triAnimauxAlpha(const int IDEnclos) {
                 }
             }
             // Ici, on échange les pointeurs et plus les contenus
-            ptrEnclos.intervertir(tabAnimaux[iRangMin],tabAnimaux[i]);
+            ptrEnclos->intervertir(ptrEnclos->getAnimal(iRangMin),ptrEnclos->getAnimal(i);
         }
     }
 }
@@ -633,7 +619,7 @@ void Parc::triAnimauxEspece(const int IDEnclos) {
                 }
             }
             // Ici, on échange les contenus des pointeurs
-            ptrEnclos.intervertir(tabAnimaux[iRangMin],tabAnimaux[i]);
+            ptrEnclos->intervertir(ptrEnclos->getAnimal(iRangMin),ptrEnclos->getAnimal(i);
         }
     }
 }

@@ -45,6 +45,7 @@ public:
     void setNom(const string &);
     void ajoutAnimal(Animal * ptrAnimal);
     void supprimerAnimal(Animal * ptrAnimal);
+    void intervertir(Animal *, Animal *);
     Enclos & operator=(const Enclos &);
     bool operator==(const Enclos &) const;
     bool operator!=(const Enclos &) const;
