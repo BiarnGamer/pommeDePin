@@ -148,6 +148,7 @@ int main() {
     Parc1.creerAnimal(&MoiJaiFaim, 3);
     cout << Parc1.getEnclos(2) << endl;
     cout << *Parc1.getEnclos(2).getPtrAnimal(0) << endl;
+    cout << *Parc1.getEnclos(2).getPtrAnimal(1) << endl;
    // Parc1.creerAnimal(&Helico, 5);
     //
     //cout << Parc1.getEnclos(0).getAnimal(1) << endl;
