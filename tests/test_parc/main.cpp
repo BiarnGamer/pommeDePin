@@ -324,12 +324,20 @@ int main() {
     cout << "Enclos 8 après déplacement :" << endl;
     cout << Parc1.getEnclos(6) << endl;
 
-    cout << Parc1;
+
+    /* ********************** */
+    /* Suppression d'animaux  */
+    /* ********************** */
+    cout << "*************************" << endl;
+    cout << "* Suppression d'animaux *" << endl;
+    cout << "*************************" << endl;
+
+    Parc1.supprimerAnimal(Parc1.getEnclos(6).getAnimal(0).getID());
+
+    cout << "Enclos 8 après déplacement :" << endl;
+    cout << Parc1.getEnclos(6) << endl;
+
 /** Prochains tets :
-
-
-- suppression animal sans conséquence
-- suppression animal avec conséquence
 
 - déplacement/suppression animaux/enclos inexistants
 
@@ -346,12 +354,12 @@ int main() {
 	cout << "************************************" << endl;
     cout << "* VALENTIN *" << endl;
     cout << "************************************" << endl;
-	
+
 	Parc Parc2;
-	
+
 	Parc2.creerEnclos("Viens", 3, 23);
 	cout << Parc2 << endl;
-	
+
 	Tigre Helico1(105, 654, "Diego", 1);
     Basque Xabi1(125, 63, 1, 9999999, "Xabi", 3);
     Marmotte Miam1(95, 6544, "Shakira", 5);
@@ -363,31 +371,31 @@ int main() {
 	Girafe QuiVeutDesTalons1(21, 6854, "Tour Eiffel", 19);
 	Loutre PasDeSequelles1(1,4,"Gnééé !", 150);
 
-	Parc2.creerAnimal(&MoiJaiFaim1, 1); // crocodile 
+	Parc2.creerAnimal(&MoiJaiFaim1, 1); // crocodile
 	Parc2.creerAnimal(&Helico1, 1);	    // tigre
 	cout << Parc2.getEnclos(0) << endl;
-	
+
 	cout << " AVANT MODIFICATION " <<*Parc2.getEnclos(0).getPtrAnimal(1) <<endl;
 	int ID = Parc2.getEnclos(0).getPtrAnimal(1)->getID();
 	Tigre * t1;
 	t1 = new Tigre(12.6465456, 125, "valou", ID);
 	Parc2.modifierAnimal(ID,t1);
 	cout << "APRES MODIFICAFICATION " << *Parc2.getEnclos(0).getPtrAnimal(1) <<endl;
-	
+
 	cout << "AVANT MODIFICATION " <<*Parc2.getEnclos(0).getPtrAnimal(0) <<endl;
 	ID = Parc2.getEnclos(0).getPtrAnimal(0)->getID();
 	Crocodile * c1;
 	c1 = new Crocodile(12, 15, "moi", ID);
 	Parc2.modifierAnimal(ID,c1);
 	cout << "APRES MODIFICAFICATION " << *Parc2.getEnclos(0).getPtrAnimal(0) <<endl;
-	
+
 	Parc2.supprimerAnimal(1);
 	Parc2.supprimerAnimal(2);
 
 	cout << Parc2.getEnclos(0) << endl;
 	cout << Parc2 << endl;
-	
-	// On fait les 8 derniers 
+
+	// On fait les 8 derniers
 	Parc2.creerAnimal(&Xabi1, 1);
 	Parc2.creerAnimal(&Miam1, 1);
 	Parc2.creerAnimal(&Pikachu1, 1);
@@ -396,67 +404,65 @@ int main() {
 	Parc2.creerAnimal(&Toutou1, 1);
 	Parc2.creerAnimal(&QuiVeutDesTalons1, 1);
 	Parc2.creerAnimal(&PasDeSequelles1, 1);
-	
+
 	cout << Parc2.getEnclos(0) << endl;
-	
+
 	cout << " AVANT MODIFICATION " <<*Parc2.getEnclos(0).getPtrAnimal(0) <<endl;
 	ID = Parc2.getEnclos(0).getPtrAnimal(0)->getID();
 	Basque * b1;
 	b1 = new Basque(12.6465456, 125,1,5, "valou", ID);
 	Parc2.modifierAnimal(ID,b1);
 	cout << "APRES MODIFICAFICATION " << *Parc2.getEnclos(0).getPtrAnimal(0) <<endl;
-	
+
 	cout << " AVANT MODIFICATION " <<*Parc2.getEnclos(0).getPtrAnimal(1) <<endl;
 	ID = Parc2.getEnclos(0).getPtrAnimal(1)->getID();
 	Marmotte * m1;
 	m1 = new Marmotte(12.6465456, 125, "valou", ID);
 	Parc2.modifierAnimal(ID,m1);
 	cout << "APRES MODIFICAFICATION " << *Parc2.getEnclos(0).getPtrAnimal(1) <<endl;
-	
+
 	cout << " AVANT MODIFICATION " <<*Parc2.getEnclos(0).getPtrAnimal(2) <<endl;
 	ID = Parc2.getEnclos(0).getPtrAnimal(2)->getID();
 	Elephant * e1;
 	e1 = new Elephant(12.6465456, 125, 12, "valou", ID);
 	Parc2.modifierAnimal(ID,e1);
 	cout << "APRES MODIFICAFICATION " << *Parc2.getEnclos(0).getPtrAnimal(2) <<endl;
-	
+
 	cout << " AVANT MODIFICATION " <<*Parc2.getEnclos(0).getPtrAnimal(3) <<endl;
 	ID = Parc2.getEnclos(0).getPtrAnimal(3)->getID();
 	Aigle * A1;
 	A1 = new Aigle(12.6465456, 125, "valou", ID);
 	Parc2.modifierAnimal(ID,A1);
 	cout << "APRES MODIFICAFICATION " << *Parc2.getEnclos(0).getPtrAnimal(3) <<endl;
-	
+
 	cout << " AVANT MODIFICATION " <<*Parc2.getEnclos(0).getPtrAnimal(4) <<endl;
 	ID = Parc2.getEnclos(0).getPtrAnimal(4)->getID();
 	Lapin * L1;
 	L1 = new Lapin(12, "couleur", "valou", ID);
 	Parc2.modifierAnimal(ID,L1);
 	cout << "APRES MODIFICAFICATION " << *Parc2.getEnclos(0).getPtrAnimal(4) <<endl;
-	
+
 	cout << " AVANT MODIFICATION " <<*Parc2.getEnclos(0).getPtrAnimal(5) <<endl;
 	ID = Parc2.getEnclos(0).getPtrAnimal(5)->getID();
 	Tortue * T1;
 	T1 = new Tortue (12, 125, "couleur", "valou", ID);
 	Parc2.modifierAnimal(ID,T1);
 	cout << "APRES MODIFICAFICATION " << *Parc2.getEnclos(0).getPtrAnimal(5) <<endl;
-	
+
 	cout << " AVANT MODIFICATION " <<*Parc2.getEnclos(0).getPtrAnimal(6) <<endl;
 	ID = Parc2.getEnclos(0).getPtrAnimal(6)->getID();
 	Girafe * g1;
 	g1 = new Girafe(12.6465456, 125, "valou", ID);
 	Parc2.modifierAnimal(ID,g1);
 	cout << "APRES MODIFICAFICATION " << *Parc2.getEnclos(0).getPtrAnimal(6) <<endl;
-	
+
 	cout << " AVANT MODIFICATION " <<*Parc2.getEnclos(0).getPtrAnimal(7) <<endl;
 	ID = Parc2.getEnclos(0).getPtrAnimal(7)->getID();
 	Loutre * l1;
 	l1 = new Loutre(125,12.6465456, "valou", ID);
 	Parc2.modifierAnimal(ID,l1);
 	cout << "APRES MODIFICAFICATION " << *Parc2.getEnclos(0).getPtrAnimal(7) <<endl;
-	
 	cout << Parc2.getEnclos(1)<<endl;
-	
 	
 	//tri des listes d'animaux (donc listes suffisament variées) et affichage complet à chaque fois
 	cout << "AU DEPART ************************ " << endl;
@@ -488,6 +494,7 @@ int main() {
 	for (int i=0; i< Parc1.getEnclos(4).getOccupation() ; i++){
 		cout << Parc1.getEnclos(4).getAnimal(i).getEspece() << endl;
 	}
+	
 	/*
 	cout << "******** TRI ENCLOS OCCUPATION ********" << endl;
 
@@ -508,11 +515,5 @@ int main() {
 	}
 	
 	*/
-    //cout << *Parc1.getEnclos(2).getPtrAnimal(1) << endl;
-   // Parc1.creerAnimal(&Helico, 5);
-    //
-    //cout << Parc1.getEnclos(0).getAnimal(1) << endl;
-   // int a;
-   // cin >> a;
     return 0;
 }
