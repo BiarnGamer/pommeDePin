@@ -1,7 +1,4 @@
-#include <iostream>
-#include <string>
-#include <cstdlib>
-
+#include "../entetes/affichage.h"
 #include "../entetes/animal.h"
 #include "../entetes/enclos.h"
 #include "../entetes/parc.h"

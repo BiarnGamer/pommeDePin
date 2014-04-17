@@ -27,9 +27,12 @@
 #define MENU_AFFICHE_ANIMAUX_TOUS_PARC 3
 #define MENU_AFFICHE_ANIMAUX_RETOUR 9
 
+#include "../entetes/parc.h"
+#include "../entetes/affichage.h"
+
 void retourMenu();
-void menuPrincipal();
-void menuGestion();
-void menuAffichageEnclos();
-void menuAffichageAnimaux();
+void menuPrincipal(Parc &);
+void menuGestion(Parc &);
+void menuAffichageEnclos(Parc &);
+void menuAffichageAnimaux(Parc &);
 #endif

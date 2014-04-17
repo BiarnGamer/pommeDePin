@@ -11,7 +11,7 @@ void retourMenu() {
     scanf("%*c%*c");
 }
 
-void menuPrincipal() {
+void menuPrincipal(Parc &Parc1){
     int iChoix;
     do {
         system("clear");
@@ -37,13 +37,13 @@ void menuPrincipal() {
 
         switch (iChoix) {
         case MENU_PRINCIPAL_GESTION:
-            menuGestion();
+            menuGestion(Parc1);
             break;
         case MENU_PRINCIPAL_AFFICHAGE_ENCLOS:
-            menuAffichageEnclos();
+            menuAffichageEnclos(Parc1);
             break;
         case MENU_PRINCIPAL_AFFICHAGE_ANIMAUX:
-            menuAffichageAnimaux();
+            menuAffichageAnimaux(Parc1);
             break;
         case MENU_PRINCIPAL_SAUVEGARDE:
             //parc.sauvegarde();
@@ -57,7 +57,7 @@ void menuPrincipal() {
     } while(iChoix != MENU_PRINCIPAL_QUITTER);
 }
 
-void menuGestion() {
+void menuGestion(Parc &Parc1) {
     int iChoix;
     do {
         system("clear");
@@ -101,7 +101,7 @@ void menuGestion() {
     } while(iChoix != MENU_GESTION_RETOUR);
 }
 
-void menuAffichageEnclos() {
+void menuAffichageEnclos(Parc &Parc1) {
     int iChoix;
     do {
         system("clear");
@@ -127,25 +127,30 @@ void menuAffichageEnclos() {
 
         switch (iChoix) {
         case MENU_AFFICHE_ENCLOS_TAUX:
+			afficherTauxRemplissageEnclos(Parc1);
             retourMenu();
             break;
         case MENU_AFFICHE_ENCLOS_DETAIL_UN:
+			rechercheEnclos(Parc1);
             retourMenu();
             break;
         case MENU_AFFICHE_ENCLOS_DETAIL_TOUS:
+			afficherDetailDeTousLesEnclos(Parc1);
             retourMenu();
             break;
         case MENU_AFFICHE_ENCLOS_ANIMAUX_UN:
+			afficherDetailEnclosEtAnimaux(Parc1);
             retourMenu();
             break;
         case MENU_AFFICHE_ENCLOS_ANIMAUX_TOUS:
+			afficherDetailEtAnimauxDeTousLesEnclos(Parc1);
             retourMenu();
             break;
         }
     } while(iChoix != MENU_AFFICHE_ENCLOS_RETOUR);
 }
 
-void menuAffichageAnimaux() {
+void menuAffichageAnimaux(Parc &Parc1) {
     int iChoix;
     do {
         system("clear");
