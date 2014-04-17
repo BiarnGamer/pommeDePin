@@ -256,8 +256,6 @@ int main() {
 - tri des listes d'animaux (donc listes suffisament variées) et affichage complet à chaque fois
 
 - setters : modifier un animal de chaque espèce et l'afficher
-
-- Recherche et getters : OK, pas besoin
 **/
 
 
