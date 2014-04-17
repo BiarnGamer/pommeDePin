@@ -49,7 +49,7 @@ private:
     void ajouterAnimalDansEnclos(Animal * animalAPlacer, Enclos * enclosDAccueil);
     void enleverAnimalEnclos(Animal * animalAEnlever, Enclos * enclos);
     // Donne la relations qu'auront les proies et prédateurs indiqués
-    void relationsProiesPredateurs(const int iCodePredateur, const int iNbPredateurs, const int iCodeProie, const int iNbProies);
+    int relationsProiesPredateurs(const int iCodePredateur, const int iNbPredateurs, const int iCodeProie, const int iNbProies);
     // Initialise le tableau de proie
     void initTabProies();
 
@@ -156,7 +156,7 @@ public:
     // - Si l’animal possède des prédateurs dans l’enlcos : 4
     // - Si l’animal possède des proies dans l’enclos : 5
     // - Si l’animal poss`de des proies et des pr ́dateurs dans l’enclos : 6
-    int consequenceDeplacementAnimal(const int iCodeEspece, const int IDEnclos) const;
+    int consequenceDeplacementAnimal(Animal const *, const int IDEnclos) const;
 
 
     // Les fonctions suivantes trient la liste d'animaux/d'enclos selon le critère indiqué

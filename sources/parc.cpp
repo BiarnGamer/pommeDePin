@@ -225,13 +225,13 @@ ostream & operator<<(ostream &, const Parc &);
 /***             Valentin              */
 /***************************************/
 
-void Parc::creerEnclos(const string & nom, const int type, cons int capacite) {
+void Parc::creerEnclos(const string & nom, const int type, const int capacite) {
     // On crée l'enclos qui appartient à la classe car elle seule doit pouvoir le modifier
     Enclos * e1;
     e1 = new Enclos(nom, type, capacite, iIDEnclos);
     iIDEnclos++;
     //On ajoute l'enclos dans notre classe
-    listeEnclos[iNbEnclos].ajouter(e1);
+    listeEnclos.ajouter(e1);
     iNbEnclos++;
 }
 
@@ -248,13 +248,13 @@ int Parc::rechercherEnclos(const int ID) const {
 void Parc::supprimerEnclos(const int ID) {
     int rang = rechercherEnclos(ID);
     if (rang == -1) {
-        cout >> "Cet ID d'enclos n'existe pas." << endl;
+        cout << "Cet ID d'enclos n'existe pas." << endl;
     }
     else {
         Enclos * ptrEnclos = listeEnclos[rang];
         // Suppression des animaux
-        for(int i=0; i<ptrEnclos->getOccupation()) {
-            supprimerAnimal(ptrEnclos->getAnimal(i).getID())
+        for(int i=0; i<ptrEnclos->getOccupation(); i++) {
+            supprimerAnimal(ptrEnclos->getAnimal(i).getID());
         }
         // Suppression de l'enclos
         listeEnclos.enlever(ptrEnclos);
@@ -265,7 +265,7 @@ void Parc::supprimerEnclos(const int ID) {
 void Parc::mofidierEnclos(const int IDEnclosAModifier, const string nom) {
     int iRang = rechercherEnclos(IDEnclosAModifier);
     if(iRang == -1) {
-        cout >> "Cet ID d'enclos n'existe pas." << endl;
+        cout << "Cet ID d'enclos n'existe pas." << endl;
     }
     else {
         listeEnclos[iRang]->setNom(nom);
@@ -273,7 +273,7 @@ void Parc::mofidierEnclos(const int IDEnclosAModifier, const string nom) {
 }
 
 void Parc::ajouterAnimalDansEnclos(Animal * animalAPlacer, Enclos * enclosDAccueil) {
-    if(enclosDAccueil->getOccupation == enclosDAccueil->getCapacite) {
+    if(enclosDAccueil->getOccupation() == enclosDAccueil->getCapacite()) {
         cout << "Erreur, enclos plein." << endl;
     }
     else {
@@ -283,7 +283,7 @@ void Parc::ajouterAnimalDansEnclos(Animal * animalAPlacer, Enclos * enclosDAccue
 }
 
 void Parc::enleverAnimalEnclos(Animal * animalAEnlever, Enclos * enclos) {
-    if(enclos->getOccupation == enclos->getCapacite) {
+    if(enclos->getOccupation() == enclos->getCapacite()) {
         cout << "Erreur, enclos plein." << endl;
     }
     else {
@@ -292,7 +292,7 @@ void Parc::enleverAnimalEnclos(Animal * animalAEnlever, Enclos * enclos) {
     }
 }
 
-void Parc::relationsProiesPredateurs(const int iCodePredateur, const int iNbPredateurs, const int iCodeProie, const int iNbProies) {
+int Parc::relationsProiesPredateurs(const int iCodePredateur, const int iNbPredateurs, const int iCodeProie, const int iNbProies) {
     // Retourne 1(les prédateurs mangent les proies) 2(rien ne se passe) ou 3(les proies se défendent et tuent les prédateurs)
     // On vérifie que le prédateur et la proie donnés sont liés
     int resultatRand;
@@ -363,7 +363,7 @@ int Parc::consequenceDeplacementAnimal(Animal const * a1, const int IDEnclos) co
    /** Ne sert plus maintenant que le clandestin est mort : int i=0; **/
     bool YaTilDesProies = false;
     bool YaTilDesPredateurs =false;
-    int nbProiesDeAnimal = tabProies[a1->getEspece()].getNbElem;
+    int nbProiesDeAnimal = tabProies[a1->getEspece()].getNbElem();
     int iEspeceA = a1->getEspece();
     int nbElemTabProies = tabProies.getNbElem();
     int nbElem;
@@ -420,10 +420,10 @@ int Parc::consequenceDeplacementAnimal(Animal const * a1, const int IDEnclos) co
     else if (listeEnclos[iRangEnclos]->getOccupation() == listeEnclos[iRangEnclos]->getCapacite() ) {
         return 1;
     }
-    else if (a1->getSaitVoler && (listeEnclos[iRangEnclos].getType() == ENCLOS || listeEnclos[iRangEnclos].getType() == BASSIN) ) {
+    else if (a1->getSaitVoler() && (listeEnclos[iRangEnclos]->getType() == ENCLOS || listeEnclos[iRangEnclos]->getType() == BASSIN) ) {
         return 3;
     }
-    else if (!a1->getSaitNager() && listeEnclos[iRangEnclos].getType() == BASSIN) {
+    else if (!a1->getSaitNager() && listeEnclos[iRangEnclos]->getType() == BASSIN) {
         return 2;
     }
     else {
@@ -435,9 +435,9 @@ int Parc::consequenceDeplacementAnimal(Animal const * a1, const int IDEnclos) co
             // Pour chaque proie de cette espèce
             for(int k = 0; k < nbElem; k++) {
                 // Si c'est un prédateur de a1
-                if (tabProies[j][k].iCodeProie == a1.getEspece()) {
+                if (tabProies[j][k].iCodeProie == a1->getEspece()) {
                     // On regarde maintenant si le prédateur est présent dans l'enclos
-                    if (listeEnclos[iRangEnclos].getNombreAnimaux(tabProies[j][k].iCodeProie) != 0)
+                    if (listeEnclos[iRangEnclos]->getNombreAnimaux(tabProies[j][k].iCodeProie) != 0)
                         YaTilDesPredateurs = true;
                 }
             }
@@ -446,7 +446,7 @@ int Parc::consequenceDeplacementAnimal(Animal const * a1, const int IDEnclos) co
         // maintenant je cherche s'il y a des proies de notre animal
         for (int j = 0; j  < nbProiesDeAnimal; j++) {
             // pour chaque proies, on regarde si elle est présente dans le tableau
-            if (listeEnclos[iRangEnclos].getNombreAnimaux(tabProies[iEspeceA][j].iCodeEspece) != 0)
+            if (listeEnclos[iRangEnclos]->getNombreAnimaux(tabProies[iEspeceA][j].iCodeProie) != 0)
                 YaTilDesProies = true;
         }
         // maintenant on sait si y'a des proies et si y'a des prédateurs
