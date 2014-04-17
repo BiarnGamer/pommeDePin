@@ -173,12 +173,15 @@ void menuAffichageAnimaux(Parc &Parc1) {
 
         switch (iChoix) {
         case MENU_AFFICHE_ANIMAUX_UN:
+			rechercheAnimal(Parc1);
             retourMenu();
             break;
         case MENU_AFFICHE_ANIMAUX_TOUS_ENCLOS:
+			afficherDetailEnclosEtAnimaux(Parc1);
             retourMenu();
             break;
         case MENU_AFFICHE_ANIMAUX_TOUS_PARC:
+			afficheAnimauxParc(Parc1);
             retourMenu();
             break;
         }
