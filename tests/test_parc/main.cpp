@@ -456,7 +456,6 @@ int main() {
 	Parc2.modifierAnimal(ID,l1);
 	cout << "APRES MODIFICAFICATION " << *Parc2.getEnclos(0).getPtrAnimal(7) <<endl;
 	
-	cout << Parc2.getNbEnclos() << endl;
 	cout << Parc2.getEnclos(1)<<endl;
 	
     //cout << *Parc1.getEnclos(2).getPtrAnimal(1) << endl;
