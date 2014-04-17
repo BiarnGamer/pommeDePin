@@ -106,19 +106,28 @@ int main() {
     /* *************************** */
     /* AJOUT D'ANIMAUX             */
     /* *************************** */
-    cout << "*************************" << endl;
-    cout << "* AJOUT D'ANIMAUX       *" << endl;
-    cout << "*************************" << endl;
+    cout << "********************" << endl;
+    cout << "* AJOUT D'ANIMAUX  *" << endl;
+    cout << "********************" << endl;
 
-    // Test ajout 1 animal dans 1 enclos
-    cout << "**  Ajout d'un animal dans 1 enclos  **" << endl;
+
+    /* ******************************* */
+    /* Ajout d'un animal dans 1 enclos */
+    /* ******************************* */
+    cout << "***********************************" << endl;
+    cout << "* Ajout d'un animal dans 1 enclos *" << endl;
+    cout << "***********************************" << endl;
     Parc1.creerAnimal(&Helico, 1);
     cout << Parc1.getEnclos(0) << endl;
     cout << Parc1.getEnclos(0).getAnimal(0) << endl;
 
 
-    // Test surpeupler enclos
-    cout << "**  Surpeupler un enclos **" << endl;
+    /* ******************** */
+    /* Surpeupler un enclos */
+    /* ******************** */
+    cout << "************************" << endl;
+    cout << "* Surpeupler un enclos *" << endl;
+    cout << "************************" << endl;
     Parc1.creerAnimal(&Pikachu, 2);
     Parc1.creerAnimal(&Tuture, 2);
     Parc1.creerAnimal(&Valou, 2);
@@ -127,23 +136,38 @@ int main() {
     cout << Parc1.getEnclos(1).getAnimal(0) << endl;
     cout << Parc1.getEnclos(1).getAnimal(1) << endl;
 
-    // Test ajout aigle dans enclos
-    cout << "**  Ajout d'un animal qui s'échappe  **" << endl;
+
+    /* ******************************* */
+    /* Ajout d'un animal qui s'échappe */
+    /* ******************************* */
+    cout << "***********************************" << endl;
+    cout << "* Ajout d'un animal qui s'échappe *" << endl;
+    cout << "***********************************" << endl;
     Parc1.creerAnimal(&Roucarnage, 1);
     Parc1.creerAnimal(&Roucarnage, 1);
     cout << Parc1.getEnclos(0) << endl;
     cout << Parc1.getEnclos(0).getAnimal(0) << endl;
 
-    // Test ajout proie dans enclos 1
-    cout << "**  Ajout d'une proie qui se fait manger 75% des fois **" << endl;
+
+    /* ******************************* */
+    /* Test ajout proie dans enclos 1 */
+    /* ******************************* */
+    cout << "*****************************************************" << endl;
+    cout << "* Ajout d'une proie qui se fait manger 75% des fois *" << endl;
+    cout << "*****************************************************" << endl;
     Parc1.creerAnimal(&Valou, 1);
     cout << Parc1.getEnclos(0) << endl;
     cout << Parc1.getEnclos(0).getAnimal(0) << endl;
     if(Parc1.getEnclos(0).getOccupation() == 2) {cout << Parc1.getEnclos(0).getAnimal(1) << endl;}
 
 
-    // Tests nombreuses proies se font manger
-    cout << "**  De nombreuses proies vont se faire manger  **" << endl;
+
+    /* ************************************** */
+    /* Tests nombreuses proies se font manger */
+    /* ************************************** */
+    cout << "*********************************************" << endl;
+    cout << "* De nombreuses proies vont se faire manger *" << endl;
+    cout << "*********************************************" << endl;
     Parc1.creerAnimal(&Xabi, 6);
     Parc1.creerAnimal(&Ninicolas, 6);
     Parc1.creerAnimal(&Ninicolas, 6);
@@ -165,8 +189,12 @@ int main() {
     cout << *Parc1.getEnclos(4).getPtrAnimal(0) << endl;
 
 
-    // Test situation équilibre
-    cout << "**  Situation d'équilibre entre proies et prédateurs  **" << endl;
+    /* ************************ */
+    /* Test situation équilibre */
+    /* ************************ */
+    cout << "****************************************************" << endl;
+    cout << "* Situation d'équilibre entre proies et prédateurs *" << endl;
+    cout << "****************************************************" << endl;
     Parc1.creerAnimal(&QuiVeutDesTalons, 5);
     Parc1.creerAnimal(&QuiVeutDesTalons, 5);
     Parc1.creerAnimal(&PetiteB, 5);
@@ -186,8 +214,12 @@ int main() {
     cout << *Parc1.getEnclos(4).getPtrAnimal(0) << endl;
 
 
-    // Test proies doivent se défendre
-    cout << "**  Tel est pris qui croyait prendre **" << endl;
+    /* ******************************* */
+    /* Test proies doivent se défendre */
+    /* ******************************* */
+    cout << "************************************" << endl;
+    cout << "* Tel est pris qui croyait prendre *" << endl;
+    cout << "************************************" << endl;
     Parc1.creerAnimal(&PHP, 3);
     Parc1.creerAnimal(&PHP, 3);
     Parc1.creerAnimal(&Pikachu, 3);
