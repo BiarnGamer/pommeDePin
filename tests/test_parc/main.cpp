@@ -340,11 +340,15 @@ int main() {
 - fonction conséquences déplacement
 
 - tri des listes d'animaux (donc listes suffisament variées) et affichage complet à chaque fois
-
-- setters : modifier un animal de chaque espèce et l'afficher
-
-- Recherche et getters : OK, pas besoin
 **/
+
+// - setters : modifier un animal de chaque espèce et l'afficher
+	cout << *Parc1.getEnclos(0).getPtrAnimal(0) <<endl;
+	int ID = Parc1.getEnclos(0).getPtrAnimal(0)->getID();
+	Tigre * t1;
+	t1 = new Tigre(12.6465456, 125, "valou", ID);
+	Parc1.modifierAnimal(ID,t1);
+	cout << *Parc1.getEnclos(0).getPtrAnimal(0) <<endl;
 
 
     //cout << *Parc1.getEnclos(2).getPtrAnimal(1) << endl;

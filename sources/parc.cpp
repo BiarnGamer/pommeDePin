@@ -359,7 +359,7 @@ int Parc::relationsProiesPredateurs(const int iCodePredateur, const int iNbPreda
 int Parc::consequenceDeplacementAnimal(Animal const * a1, const int IDEnclos) const {
     /* 	Invalide (enclos inexistant) : -1
     	Tout est ok : 0
-    	Si l'enclos est plein : 1
+    	Si l'enclos est plei"valou"n : 1
     	Animal se noit <=> ! saitNager && listeEnclos[iRangEnclos].getType() == BASSIN      : 2
     	Animal s'envole <=> saitVoler && (listeEnclos[iRangEnclos].getType() == ENCLOS || listeEnclos[iRangEnclos].getType() == BASSIN) (car le bassin n'est pas fermé) : 3
     	Animal possède des prédateurs dans l'enclos : 4
@@ -437,17 +437,23 @@ int Parc::consequenceDeplacementAnimal(Animal const * a1, const int IDEnclos) co
         // Pour chacune des espèces dans l'enclos, regarder si c'est un prédateur de a1 et s'il est présent
         // je pour quels espèces a1 est une proie et je vérifie si l'animal est présent, si oui bool = true sinon on continue jusqu'a bool = true ou fin du tableau
         // Pour chaque espèce
-        for (int j = 0; j < nbElemTabProies; j++) {
+		int j = 0;
+		int k = 0;
+		while (j< nbElemTabProies && !YaTilDesPredateurs) {
+        //for (int j = 0; j < nbElemTabProies; j++) {
             nbElem = tabProies[j].getNbElem();
             // Pour chaque proie de cette espèce
-            for(int k = 0; k < nbElem; k++) {
+			while ( k < nbElem && !YaTilDesPredateurs) {
+            //for(int k = 0; k < nbElem; k++) {
                 // Si c'est un prédateur de a1
                 if (tabProies[j][k].iCodeProie == a1->getEspece()) {
                     // On regarde maintenant si le prédateur est présent dans l'enclos
                     if (listeEnclos[iRangEnclos]->getNombreAnimaux(tabProies[j][k].iCodeProie) != 0)
                         YaTilDesPredateurs = true;
                 }
+                k++;
             }
+            j++;
         }
 
         // maintenant je cherche s'il y a des proies de notre animal
