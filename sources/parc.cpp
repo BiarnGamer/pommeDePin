@@ -461,6 +461,40 @@ int Parc::consequenceDeplacementAnimal(Animal const * a1, const int IDEnclos) co
     }
 }
 
+// Ici on vérifie que les trois éléments existent, que l'animal est bien dans l'enclos de départ et qu'il y a de la
+// place dans celui d'arrivée
+void Parc::deplacerAnimal(const int IDEnclosDepart, const int IDAnimal, const int IDEnclosArrivee) {
+    int iRangEnclosDepart = rechercherEnclos(IDEnclosDepart);
+    int iRangAnimal = rechercherAnimal(IDAnimal);
+    int iRangEnclosArrivee = rechercherEnclos(IDEnclosArrivee);
+    Enclos * ptrEnclosD = NULL;
+    Animal * ptrAnimal = NULL;
+    Enclos * ptrEnclosA = NULL;
+
+    if(iRangEnclosDepart == -1
+       || iRangAnimal == -1
+       || iRangEnclosArrivee == -1
+    ) {
+       cout << "Erreur, enclos ou animal non trouvés." << endl;
+    }
+    else if(rechercheEnclosAnimal(IDAnimal) != iRangEnclosDepart) {
+       cout << "Erreur, l'animal à déplacer n'est pas dans l'enclos indiqué." << endl;
+    }
+    else {
+        ptrEnclosD = listeEnclos[iRangEnclosDepart];
+        ptrAnimal = listeAnimaux[iRangAnimal];
+        ptrEnclosA = listeEnclos[iRangEnclosArrivee];
+
+        if(ptrEnclosA->getOccupation() == ptrEnclosA->getCapacite()) {
+            cout << "Erreur, l'enclos de destination est plein." << endl;
+        }
+        else {
+            ptrEnclosA->ajoutAnimal(ptrAnimal);
+            ptrEnclosD->supprimerAnimal(ptrAnimal);
+        }
+    }
+}
+
 // DÉPLACERANIMAL À  FAIRE
 // Tuer les animaux dans l'enclos après une modification des effectifs (ajout/retrait)
 
