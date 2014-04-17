@@ -1,10 +1,3 @@
-#include <iostream>
-#include <string>
-#include <cstdlib>
-
-#include "../entetes/animal.h"
-#include "../entetes/enclos.h"
-#include "../entetes/parc.h"
 
 int rechercheAnimal(const Parc & Parc1) {
     system("clear");
