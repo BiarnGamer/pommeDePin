@@ -1,3 +1,5 @@
+#include "../entetes/affichage.h" 
+
 int rechercheAnimal(const Parc & Parc1) {
     system("clear");
     int IDAnimal;
@@ -11,6 +13,7 @@ int rechercheAnimal(const Parc & Parc1) {
     if(iRangAnimal != -1) {
         cout << *(Parc1.getAnimal(iRangAnimal));
     }
+    else {cout << "Cet Animal n'existe pas." << endl;}
     return iRangAnimal;
 }
 
@@ -27,6 +30,7 @@ int rechercheEnclos(const Parc & Parc1) {
     if(iRangEnclos != -1) {
         cout << *(Parc1.getAnimal(iRangEnclos));
     }
+    else {cout << "Cet Enclos n'existe pas." << endl;}
     return iRangEnclos;
 }
 
@@ -50,17 +54,17 @@ void afficherTauxRemplissageEnclos(const Parc &Parc1){
 void afficherDetailDeTousLesEnclos(const Parc &Parc1){
 	system("clear");
 	for (int i=0; i<Parc1.getNbEnclos(); i++)
-		cout << Parc1.getEnclos(i) << end;
+		cout << Parc1.getEnclos(i) << endl;
 }
 
 void afficherDetailEnclosEtAnimaux(const Parc &Parc1){
-	int irang = rechercheEnclos(&Parc1);
+	int irang = rechercheEnclos(Parc1);
 	for (int i=0; i<Parc1.getNbAnimaux(); i++)
-		cout << Parc1.getEnclos(irang).getAnimal(i) << end;
+		cout << Parc1.getEnclos(irang).getAnimal(i) << endl;
 }
 
 void afficherDetailEtAnimauxDeTousLesEnclos(const Parc &Parc1){
 	for (int i=0; i<Parc1.getNbEnclos(); i++)
-		for (int j=0; j<Parc1.getEnclos(i).getNbAnimaux() ; j++)
-			cout << Parc1.getEnclos(i).getAnimal(j) << end;
+		for (int j=0; j<Parc1.getEnclos(i).getOccupation() ; j++)
+			cout << Parc1.getEnclos(i).getAnimal(j) << endl;
 }

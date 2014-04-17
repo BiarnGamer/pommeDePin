@@ -8,7 +8,7 @@
 #include "../entetes/set.h"
 #include "../entetes/parc.h"
 #include "../entetes/menu.h"
-
+#include "../entetes/affichage.h"
 
 
 
@@ -20,8 +20,8 @@ int main() {
     /** POUR DE L'ALÉATOIRE **/
     srand(time(NULL));
 
-    //Parc parc;
-    menuPrincipal();
+    Parc Parc1;
+    menuPrincipal(Parc1);
 
 
     return 0;
