@@ -313,7 +313,7 @@ int main() {
 
     cout << "Enclos 7 avant déplacement :" << endl;
     cout << Parc1.getEnclos(5) << endl;
-    cout << "Enclos 6 avant déplacement :" << endl;
+    cout << "Enclos 8 avant déplacement :" << endl;
     cout << Parc1.getEnclos(6) << endl;
 
     Parc1.deplacerAnimal(7,Parc1.getEnclos(5).getAnimal(0).getID(),8);
@@ -337,11 +337,69 @@ int main() {
     cout << "Enclos 8 après déplacement :" << endl;
     cout << Parc1.getEnclos(6) << endl;
 
+
+    /* ************************ */
+    /* Modification d'un enclos */
+    /* ************************ */
+    cout << "****************************" << endl;
+    cout << "* Modification d'un enclos *" << endl;
+    cout << "****************************" << endl;
+    cout << "Enclos 1 avant modification :" << endl;
+    cout << Parc1.getEnclos(0) << endl;
+    Parc1.mofidierEnclos(1, "Nouveau nom enclos");
+    cout << "Enclos 1 avant modification :" << endl;
+    cout << Parc1.getEnclos(0) << endl;
+
+
+    /* ************************************ */
+    /* Opération sur des objets inexistants */
+    /* ************************************ */
+    cout << "****************************************" << endl;
+    cout << "* Opération sur des objets inexistants *" << endl;
+    cout << "****************************************" << endl;
+    // Suppression animal inexistant
+    Parc1.supprimerAnimal(451);
+
+    // Suppression enclos inexistant
+    Parc1.supprimerEnclos(541);
+
+    // déplacer animal inexistant
+    Parc1.deplacerAnimal(1,545,2);
+
+    // déplacer animal dans enclos inexistant
+    Parc1.deplacerAnimal(1,2,5454);
+
+    // modifier animal inexistant
+    Parc1.modifierAnimal(254, &Helico);
+
+    // modifier enclos inexistant
+    Parc1.mofidierEnclos(144, "Nouveau nom enclos");
+
+    // obtenir animal inexistant
+    cout << endl << *Parc1.getAnimal(445) << endl;
+
+    // obtenir enclos inexistant
+    cout << Parc1.getEnclos(545) << endl;
+
+
+    /* ******************************************* */
+    /* Suppression d'enclos contenant des animaux  */
+    /* ******************************************* */
+    cout << "**********************************************" << endl;
+    cout << "* Suppression d'enclos contenant des animaux *" << endl;
+    cout << "**********************************************" << endl;
+    cout << "Nombre d'animaux de l'enclos 1 : ";
+    cout << Parc1.getEnclos(0).getOccupation() << endl;
+    cout << "Nombre d'animaux du parc : ";
+    cout << Parc1.getNbAnimaux() << endl;
+
+    Parc1.supprimerEnclos(1);
+    cout << "Nombre d'animaux du parc après suppression de l'enclos 1 : ";
+    cout << Parc1.getNbAnimaux() << endl << endl;
+
+
 /** Prochains tets :
 
-- déplacement/suppression animaux/enclos inexistants
-
-- modifier enclos
 
 - supprimer enclos contenant des animaux
 
@@ -463,7 +521,7 @@ int main() {
 	Parc2.modifierAnimal(ID,l1);
 	cout << "APRES MODIFICAFICATION " << *Parc2.getEnclos(0).getPtrAnimal(7) <<endl;
 	cout << Parc2.getEnclos(1)<<endl;
-	
+
 	//tri des listes d'animaux (donc listes suffisament variées) et affichage complet à chaque fois
 	cout << "AU DEPART ************************ " << endl;
 	for (int i=0; i< Parc2.getNbAnimaux() ; i++){
@@ -472,28 +530,32 @@ int main() {
 	cout << endl << endl<< endl;
 	cout << "******** TRI ALPHAAAAA ********" << endl;
 	Parc2.triAnimauxAlpha();
-	
+
 	for (int i=0; i< Parc2.getNbAnimaux() ; i++){
 		cout << Parc2.getAnimal(i)->getNom() << endl;
 	}
+
 	cout << endl << endl<< endl;
-	
+
 	cout << "******** TRI ESPECE ********" << endl;
 	Parc2.triAnimauxEspece();
 	for (int i=0; i< Parc2.getNbAnimaux() ; i++){
 		cout << Parc2.getAnimal(i)->getEspece() << endl;
 	}
+
 	cout << endl << endl<< endl;
-	
+
 	cout << "******** TRI ALPHAAAAA d'un IDENCLOS ********" << endl;
 	Parc2.triAnimauxAlpha(1);
 	for (int i=0; i< Parc2.getEnclos(0).getOccupation() ; i++){
 		cout << Parc2.getEnclos(0).getAnimal(i).getNom() << endl;
 	}
+
 	cout << endl << endl<< endl;
-	
+
 	cout << "******** TRI ESPECE d'un IDENCLOS ********" << endl;
 	Parc2.triAnimauxEspece(1);
+
 	for (int i=0; i< Parc2.getEnclos(1).getOccupation() ; i++){
 		cout << Parc2.getEnclos(1).getAnimal(i).getEspece() << endl;
 	}
@@ -502,25 +564,25 @@ int main() {
 		cout << Parc2.getAnimal(i)->getNom() << endl;
 	}
 	cout << endl << endl<< endl;
-	
+
 	cout << "******** TRI ENCLOS OCCUPATION ********" << endl;
 	Parc1.triEnclosOccupation();
 	for (int i=0; i< Parc1.getNbEnclos() ; i++){
 		cout << Parc1.getEnclos(i).getOccupation() << endl;
 	}
 	cout << endl << endl<< endl;
-	
+
 	cout << "******** TRI ENCLOS CAPACITE ********" << endl;
 	Parc1.triEnclosCapacite();
 	for (int i=0; i< Parc1.getNbEnclos() ; i++){
 		cout << Parc1.getEnclos(i).getCapacite() << endl;
 	}
-	
+
 	cout << "******** TRI ALPHAAAAA TAUX OCCUPATION ********" << endl;
 	Parc1.triEnclosTauxOccupation();
 	for (int i=0; i< Parc1.getNbEnclos() ; i++){
 		cout << Parc1.getEnclos(i).getOccupation() << "/" << Parc1.getEnclos(i).getCapacite() << endl;
 	}
-	
+
     return 0;
 }
