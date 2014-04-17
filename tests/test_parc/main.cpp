@@ -1,11 +1,21 @@
 #include <iostream>
 #include <string>
+#include <cstdlib>
+#include <ctime>
 
 #include "../../entetes/parc.h"
 
 using namespace std;
 
 int main() {
+
+
+    /** POUR DE L'ALÉATOIRE **/
+    srand(time(NULL));
+
+
+
+
     /* *************************** */
     /* CRÉATION D'ANIMAUX          */
     /* *************************** */
@@ -105,6 +115,7 @@ int main() {
     cout << Parc1.getEnclos(0);
     cout << Parc1.getEnclos(0).getAnimal(0) << endl;
 
+
     // Test surpeupler enclos
     Parc1.creerAnimal(&Pikachu, 2);
     Parc1.creerAnimal(&Tuture, 2);
@@ -116,8 +127,29 @@ int main() {
 
     // Test ajout aigle dans enclos
     Parc1.creerAnimal(&Roucarnage, 1);
+    Parc1.creerAnimal(&Roucarnage, 1);
     cout << Parc1.getEnclos(0);
     cout << Parc1.getEnclos(0).getAnimal(0) << endl;
+
+    // Test ajout proie dans enclos 1
+    Parc1.creerAnimal(&Valou, 1);
+    cout << Parc1.getEnclos(0);
+    cout << Parc1.getEnclos(0).getAnimal(0) << endl;
+    if(Parc1.getEnclos(0).getOccupation() == 2) {cout << Parc1.getEnclos(0).getAnimal(1) << endl;}
+
+
+    // Test proies doivent se défendre
+    Parc1.creerAnimal(&PHP, 3);
+    Parc1.creerAnimal(&PHP, 3);
+   // Parc1.creerAnimal(&Pikachu, 3);
+  //  Parc1.creerAnimal(&Pikachu, 3);
+    Parc1.creerAnimal(&Pikachu, 3);
+    cout << Parc1.getEnclos(2);
+    Parc1.creerAnimal(&MoiJaiFaim, 3);
+    cout << Parc1.getEnclos(2) << endl;
+    cout << *Parc1.getEnclos(2).getPtrAnimal(0) << endl;
+   // Parc1.creerAnimal(&Helico, 5);
+    //
     //cout << Parc1.getEnclos(0).getAnimal(1) << endl;
    // int a;
    // cin >> a;
