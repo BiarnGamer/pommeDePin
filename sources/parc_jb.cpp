@@ -184,8 +184,8 @@ void Parc::supprimerAnimal(const int ID) {
         Crocodile * ptrCrocodile = NULL;
         Lapin * ptrLapin = NULL;
 
-        // Supprime l'animal de son enclos
-        listeEnclos[iRangEnclos]->supprimerAnimal(ptrAnimal);
+        // Supprime l'animal de son enclos et gère les conséquences de ce retrait
+        enleverAnimalEnclos(ptrAnimal, listeEnclos[iRangEnclos]);
 
         // Supprime l'animal de son tableau d'espèce
         int iEspece = ptrAnimal->getEspece();

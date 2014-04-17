@@ -50,6 +50,9 @@ private:
     void enleverAnimalEnclos(Animal * animalAEnlever, Enclos * enclos);
     // Donne la relations qu'auront les proies et prédateurs indiqués
     int relationsProiesPredateurs(const int iCodePredateur, const int iNbPredateurs, const int iCodeProie, const int iNbProies);
+    // Parcours les animaux d'un enclos et tue les prédateurs/proies de l'espèce indiquée ou alors les animaux de l'espèce
+    // indiquée selon ce que dit relationsProiesPredateurs
+    void animauxMangesOuTuesDansEnclos(const int iCodeEspeceModifiee, Enclos * ptrEnclos);
     // Initialise le tableau de proie
     void initTabProies();
 

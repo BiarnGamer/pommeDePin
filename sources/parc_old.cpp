@@ -4,39 +4,7 @@
 
 using namespace std;
 
-void Parc::animauxMangesOuTuesDansEnclos(const int iCodeEspeceModifiee, Enclos * ptrEnclos)  {
-    int iActionAFaire;
-    int iCodeProie;
-    for(int i=0; i<NB_ESPECES; i++) {
-        for(int j=0; j<tabProies[i].getNbElem(); j++) {
 
-            iCodeProie = tabProies[i][j].iCodeProie;
-            if(iCodeEspeceModifiee==i || iCodeEspeceModifiee==iCodeProie) {
-                iActionAFaire = predateurMangeProie(i, iCodeProie, ptrEnclos->getNombreAnimaux(i), ptrEnclos->getNombreAnimaux(iCodeProie));
-
-                if(iActionAFaire == 1) {
-                    cout << "Les prédateurs mangent les proies" << endl;
-                    for(int k=0; k<ptrEnclos->getOccupation(); k++) {
-                        if(ptrEnclos->getAnimal(k).getEspece() == iCodeProie) {
-                            ptrEnclos->supprimerAnimal(ptrEnclos->getPtrAnimal(k));
-                        }
-                    }
-                }
-                else if(iActionAFaire == 2) {
-                    cout << "Prédateurs et proies s'entendent" << endl;
-                }
-                else {
-                    cout << "Les proies se défendent et tuent leurs prédateurs" << endl;
-                    for(int k=0; k<ptrEnclos->getOccupation(); k++) {
-                        if(ptrEnclos->getAnimal(k).getEspece() == i) {
-                            ptrEnclos->supprimerAnimal(ptrEnclos->getPtrAnimal(k));
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
 
 
 void Parc::supprimerUnEnclos(Enclos * ptrEnclos) {
@@ -181,52 +149,3 @@ void Parc::Barney() {
     }
 }
 
-int Parc::predateurMangeProie(const int iCodePredateur, const int iCodeProie, const int iNbPredateurs, const int iNbProies) const {
-    // On vérifie que le prédateur et la proie donnés sont liés
-    int resultatRand;
-    bool trouve = false;
-    int i=0;
-    int iNbProiesAnimal = tabProies[iCodePredateur].getNbElem();
-    while(i<iNbProiesAnimal && !trouve) {
-        if(tabProies[iCodePredateur][i].iCodeProie == iCodeProie) {
-            trouve = true;
-        }
-        else {
-            i++;
-        }
-    }
-
-    // Si ce n'est pas le cas ou si une espèce est en quantité nulle, on renvoie 2 pour dire qu'il ne se passe rien
-    if(!trouve || iNbPredateurs==0 || iNbProies==0) {
-        return 2;
-    }
-    else {
-        // On prend un nombre aléatoire dans [0; 100[
-        srand(time(NULL));
-        resultatRand = rand()%(100);
-        // Cas où le prédateur mange la proie
-        if(iNbProies < tabProies[iCodePredateur][i].iSeuil1) {
-            // on veut 75% de chances de le manger
-            // 2 il ne se passe rien, 1 il le mange
-            return (resultatRand > 75) ? 2 : 1;
-        }
-        // Cas où tout est possible
-        else if(iNbProies < tabProies[iCodePredateur][i].iSeuil2) {
-            // 50% chances de sympatiser, 25% pour les deux autres cas
-            if(resultatRand < 25) {
-                return 1;
-            }
-            else if(resultatRand <= 75) {
-                return 2;
-            }
-            else {
-                return 3;
-            }
-        }
-        // Cas où les proies se défendent
-        else {
-            // on veut 75% de chances de le tuer
-            return (resultatRand > 75) ? 2 : 3;
-        }
-    }
-}
