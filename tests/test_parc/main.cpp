@@ -401,8 +401,6 @@ int main() {
 /** Prochains tets :
 
 
-- supprimer enclos contenant des animaux
-
 - fonction conséquences déplacement
 **/
 
