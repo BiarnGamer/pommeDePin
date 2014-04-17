@@ -537,7 +537,6 @@ int main() {
 
 	cout << "******** TRI ESPECE ********" << endl;
 	Parc2.triAnimauxEspece();
-
 	for (int i=0; i< Parc2.getNbAnimaux() ; i++){
 		cout << Parc2.getAnimal(i)->getEspece() << endl;
 	}
@@ -545,9 +544,10 @@ int main() {
 	cout << endl << endl<< endl;
 
 	cout << "******** TRI ALPHAAAAA d'un IDENCLOS ********" << endl;
-	Parc1.triAnimauxAlpha(5);
-	for (int i=0; i< Parc1.getEnclos(2).getOccupation() ; i++){
-		cout << Parc1.getEnclos(2).getAnimal(i).getNom() << endl;
+	Parc2.triAnimauxAlpha(1);
+	//cout << "DEBUG    " << Parc2.getEnclos(0).getID()<< endl;
+	for (int i=0; i< Parc2.getEnclos(0).getOccupation() ; i++){
+		cout << Parc2.getEnclos(0).getAnimal(i).getNom() << endl;
 	}
 
 	cout << endl << endl<< endl;
@@ -557,13 +557,11 @@ int main() {
 	for (int i=0; i< Parc2.getEnclos(0).getOccupation() ; i++){
 		cout << Parc2.getEnclos(0).getAnimal(i).getEspece() << endl;
 	}
-
-	cout << endl << "SUITE" << endl;
-	for (int i=0; i< Parc1.getNbAnimaux() ; i++){
-		cout << Parc1.getAnimal(i)->getNom() << endl;
+	cout << "SUITE" << endl;
+	for (int i=0; i< Parc2.getNbAnimaux() ; i++){
+		cout << Parc2.getAnimal(i)->getNom() << endl;
 	}
 	cout << endl << endl<< endl;
-
 
 	cout << "******** TRI ENCLOS OCCUPATION ********" << endl;
 	Parc1.triEnclosOccupation();
