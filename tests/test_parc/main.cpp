@@ -104,7 +104,7 @@ int main() {
 
 
     /* *************************** */
-    /* AJOUT D'ENCLOS              */
+    /* AJOUT D'ANIMAUX              */
     /* *************************** */
     cout << "*************************" << endl;
     cout << "* AJOUT D'ANIMAUX       *" << endl;
