@@ -209,15 +209,19 @@ int Parc::getNbEnclos() const {
 }
 
 Enclos Parc::getEnclos(int i) const {
-    if(0<=i && i<iNbEnclos) {
+    if(0<=i && i<getNbEnclos()) {
         return *listeEnclos[i];
     }
+    Enclos e1;
+    return e1;
 }
 
 Animal const * Parc::getAnimal(int i) const {
     if(0<=i && i<iNbAnimaux) {
         return listeAnimaux[i];
     }
+    Animal a1;
+	return a1;
 }
 
 ostream & operator<<(ostream &, const Parc &);

@@ -276,14 +276,122 @@ int main() {
 **/
 
 // - setters : modifier un animal de chaque espèce et l'afficher
-	cout << *Parc1.getEnclos(0).getPtrAnimal(0) <<endl;
-	int ID = Parc1.getEnclos(0).getPtrAnimal(0)->getID();
+// Je me sert d'un enclos pour Moi
+	cout << "************************************" << endl;
+    cout << "* VALENTIN *" << endl;
+    cout << "************************************" << endl;
+	
+	Parc Parc2;
+	
+	Parc2.creerEnclos("Viens", 3, 23);
+	cout << Parc2 << endl;
+	
+	Tigre Helico1(105, 654, "Diego", 1);
+    Basque Xabi1(125, 63, 1, 9999999, "Xabi", 3);
+    Marmotte Miam1(95, 6544, "Shakira", 5);
+	Elephant Pikachu1(1021, 365, 102, "Valentin", 74);
+	Aigle Piafabec1(95, 6544, "Poussin", 51);
+	Lapin Tuture1(205, "Blanche", "GTi", 205);
+	Tortue Toutou1(135, 11, "Invisible", "Faut pas pousser mes mail dans les ordis !", 17);
+	Crocodile MoiJaiFaim1(212345, 542, "Trotro Rigolo !", 84);
+	Girafe QuiVeutDesTalons1(21, 6854, "Tour Eiffel", 19);
+	Loutre PasDeSequelles1(1,4,"Gnééé !", 150);
+
+	Parc2.creerAnimal(&MoiJaiFaim1, 1); // crocodile 
+	Parc2.creerAnimal(&Helico1, 1);	    // tigre
+	cout << Parc2.getEnclos(0) << endl;
+	
+	cout << " AVANT MODIFICATION " <<*Parc2.getEnclos(0).getPtrAnimal(1) <<endl;
+	int ID = Parc2.getEnclos(0).getPtrAnimal(1)->getID();
 	Tigre * t1;
 	t1 = new Tigre(12.6465456, 125, "valou", ID);
-	Parc1.modifierAnimal(ID,t1);
-	cout << *Parc1.getEnclos(0).getPtrAnimal(0) <<endl;
+	Parc2.modifierAnimal(ID,t1);
+	cout << "APRES MODIFICAFICATION " << *Parc2.getEnclos(0).getPtrAnimal(1) <<endl;
+	
+	cout << "AVANT MODIFICATION " <<*Parc2.getEnclos(0).getPtrAnimal(0) <<endl;
+	ID = Parc2.getEnclos(0).getPtrAnimal(0)->getID();
+	Crocodile * c1;
+	c1 = new Crocodile(12, 15, "moi", ID);
+	Parc2.modifierAnimal(ID,c1);
+	cout << "APRES MODIFICAFICATION " << *Parc2.getEnclos(0).getPtrAnimal(0) <<endl;
+	
+	Parc2.supprimerAnimal(1);
+	Parc2.supprimerAnimal(2);
 
-
+	cout << Parc2.getEnclos(0) << endl;
+	cout << Parc2 << endl;
+	
+	// On fait les 8 derniers 
+	Parc2.creerAnimal(&Xabi1, 1);
+	Parc2.creerAnimal(&Miam1, 1);
+	Parc2.creerAnimal(&Pikachu1, 1);
+	Parc2.creerAnimal(&Piafabec1, 1);
+	Parc2.creerAnimal(&Tuture1, 1);
+	Parc2.creerAnimal(&Toutou1, 1);
+	Parc2.creerAnimal(&QuiVeutDesTalons1, 1);
+	Parc2.creerAnimal(&PasDeSequelles1, 1);
+	
+	cout << Parc2.getEnclos(0) << endl;
+	
+	cout << " AVANT MODIFICATION " <<*Parc2.getEnclos(0).getPtrAnimal(0) <<endl;
+	ID = Parc2.getEnclos(0).getPtrAnimal(0)->getID();
+	Basque * b1;
+	b1 = new Basque(12.6465456, 125,1,5, "valou", ID);
+	Parc2.modifierAnimal(ID,b1);
+	cout << "APRES MODIFICAFICATION " << *Parc2.getEnclos(0).getPtrAnimal(0) <<endl;
+	
+	cout << " AVANT MODIFICATION " <<*Parc2.getEnclos(0).getPtrAnimal(1) <<endl;
+	ID = Parc2.getEnclos(0).getPtrAnimal(1)->getID();
+	Marmotte * m1;
+	m1 = new Marmotte(12.6465456, 125, "valou", ID);
+	Parc2.modifierAnimal(ID,m1);
+	cout << "APRES MODIFICAFICATION " << *Parc2.getEnclos(0).getPtrAnimal(1) <<endl;
+	
+	cout << " AVANT MODIFICATION " <<*Parc2.getEnclos(0).getPtrAnimal(2) <<endl;
+	ID = Parc2.getEnclos(0).getPtrAnimal(2)->getID();
+	Elephant * e1;
+	e1 = new Elephant(12.6465456, 125, 12, "valou", ID);
+	Parc2.modifierAnimal(ID,e1);
+	cout << "APRES MODIFICAFICATION " << *Parc2.getEnclos(0).getPtrAnimal(2) <<endl;
+	
+	cout << " AVANT MODIFICATION " <<*Parc2.getEnclos(0).getPtrAnimal(3) <<endl;
+	ID = Parc2.getEnclos(0).getPtrAnimal(3)->getID();
+	Aigle * A1;
+	A1 = new Aigle(12.6465456, 125, "valou", ID);
+	Parc2.modifierAnimal(ID,A1);
+	cout << "APRES MODIFICAFICATION " << *Parc2.getEnclos(0).getPtrAnimal(3) <<endl;
+	
+	cout << " AVANT MODIFICATION " <<*Parc2.getEnclos(0).getPtrAnimal(4) <<endl;
+	ID = Parc2.getEnclos(0).getPtrAnimal(4)->getID();
+	Lapin * L1;
+	L1 = new Lapin(12, "couleur", "valou", ID);
+	Parc2.modifierAnimal(ID,L1);
+	cout << "APRES MODIFICAFICATION " << *Parc2.getEnclos(0).getPtrAnimal(4) <<endl;
+	
+	cout << " AVANT MODIFICATION " <<*Parc2.getEnclos(0).getPtrAnimal(5) <<endl;
+	ID = Parc2.getEnclos(0).getPtrAnimal(5)->getID();
+	Tortue * T1;
+	T1 = new Tortue (12, 125, "couleur", "valou", ID);
+	Parc2.modifierAnimal(ID,T1);
+	cout << "APRES MODIFICAFICATION " << *Parc2.getEnclos(0).getPtrAnimal(5) <<endl;
+	
+	cout << " AVANT MODIFICATION " <<*Parc2.getEnclos(0).getPtrAnimal(6) <<endl;
+	ID = Parc2.getEnclos(0).getPtrAnimal(6)->getID();
+	Girafe * g1;
+	g1 = new Girafe(12.6465456, 125, "valou", ID);
+	Parc2.modifierAnimal(ID,g1);
+	cout << "APRES MODIFICAFICATION " << *Parc2.getEnclos(0).getPtrAnimal(6) <<endl;
+	
+	cout << " AVANT MODIFICATION " <<*Parc2.getEnclos(0).getPtrAnimal(7) <<endl;
+	ID = Parc2.getEnclos(0).getPtrAnimal(7)->getID();
+	Loutre * l1;
+	l1 = new Loutre(125,12.6465456, "valou", ID);
+	Parc2.modifierAnimal(ID,l1);
+	cout << "APRES MODIFICAFICATION " << *Parc2.getEnclos(0).getPtrAnimal(7) <<endl;
+	
+	cout << Parc2.getNbEnclos() << endl;
+	cout << Parc2.getEnclos(1)<<endl;
+	
     //cout << *Parc1.getEnclos(2).getPtrAnimal(1) << endl;
    // Parc1.creerAnimal(&Helico, 5);
     //
