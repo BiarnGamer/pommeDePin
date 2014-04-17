@@ -592,7 +592,7 @@ void Parc::triAnimauxAlpha(const int IDEnclos) {
                 }
             }
             // Ici, on échange les pointeurs et plus les contenus
-            ptrEnclos->intervertir(ptrEnclos->getAnimal(iRangMin),ptrEnclos->getAnimal(i);
+            ptrEnclos->intervertir(ptrEnclos->getPtrAnimal(iRangMin),ptrEnclos->getPtrAnimal(i));
         }
     }
 }
@@ -612,14 +612,14 @@ void Parc::triAnimauxEspece(const int IDEnclos) {
         for(int i=0; i<iNbAnimaux-1; i++) {
             iRangMin = i;
             for(int j=i+1; j<iNbAnimaux; j++) {
-                if( ptrEnclos->tabAnimaux[j]->getEspece() <= ptrEnclos->tabAnimaux[iRangMin]->getEspece()
-                        && ptrEnclos->tabAnimaux[j]->getNom() < ptrEnclos->tabAnimaux[iRangMin]->getNom()
+                if( ptrEnclos->getAnimal(j).getEspece() <= ptrEnclos->getAnimal(iRangMin).getEspece()
+                        && ptrEnclos->getAnimal(j).getNom() < ptrEnclos->getAnimal(iRangMin).getNom()
                   ) {
                     iRangMin = j;
                 }
             }
             // Ici, on échange les contenus des pointeurs
-            ptrEnclos->intervertir(ptrEnclos->getAnimal(iRangMin),ptrEnclos->getAnimal(i);
+            ptrEnclos->intervertir(ptrEnclos->getPtrAnimal(iRangMin),ptrEnclos->getPtrAnimal(i));
         }
     }
 }

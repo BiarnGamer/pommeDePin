@@ -87,7 +87,7 @@ public:
     // type et avec les mêmes informations, en pensant à mettre le bon Identifiant et pas celui
     // de l'enclos passé en paramètres. L'enclos créé sera vide peut-importe l'informations contenue
     // dans l'enclos passé en paramètres
-    void creerEnclos(const string & nom, const int type, cons int capacite);
+    void creerEnclos(const string & nom, const int type, const int capacite);
 
     // Supprime tous les animaux contenus dans l'enclos indiqué, puis supprime l'enclos
     void supprimerEnclos(const int ID);
