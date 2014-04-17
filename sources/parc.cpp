@@ -220,7 +220,7 @@ Animal const * Parc::getAnimal(int i) const {
     if(0<=i && i<iNbAnimaux) {
         return listeAnimaux[i];
     }
-    Animal a1;
+    Animal * a1;
 	return a1;
 }
 
@@ -538,9 +538,12 @@ void Parc::animauxMangesOuTuesDansEnclos(const int iCodeEspeceModifiee, Enclos *
                 }
                 // Tue les prédateurs
                 else if(iActionAFaire == 3) {
-                    for(int k=0; k<ptrEnclos->getOccupation(); k++) {
+                    while (k < ptrEnclos->getOccupation()) {
                         if(ptrEnclos->getAnimal(k).getEspece() == i) {
                            supprimerAnimalSansControle(ptrEnclos->getAnimal(k).getID());
+                        }
+                        else {
+                            k++;
                         }
                     }
                 }
