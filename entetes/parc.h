@@ -4,6 +4,7 @@
 #include "enclos.h"
 #include "animal.h"
 #include "set.h"
+#include "liste.h"
 
 using namespace std;
 
@@ -40,7 +41,7 @@ private:
     Set <Loutre *> listeLoutre;
     Set <Lapin *> listeLapin;
 
-    Set <Set <Proie> > tabProies;
+    Liste <Set <Proie> > tabProies;
 
     /************************/
     /**  MÉTHODES PRIVÉES  **/
@@ -121,6 +122,7 @@ public:
     // Supprime l'animal indiqué, s'il existe. On commence par le virer de son enclos (après recherche)
     // Puis on dégage l'animal du jardin d'Eden)
     void supprimerAnimal(const int ID);
+    void supprimerAnimalSansControle(const int ID);
 
     // Modifie l'animal dont l'ID est indiqué en recopiant les informations de l'animal donné en paramètres
     // On recherche l'animal à modifier, si on le trouve on modifie, sinon gestion erreurs. On vérifie que

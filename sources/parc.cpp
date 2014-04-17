@@ -42,7 +42,7 @@ void Parc::initTabProies() {
         Proie proie1, proie2, proie3, proie4, proie5, proie6;
 
         // Proies de la girafe : aucune
-        tabProies.ajouter(proiesEspece);
+        tabProies.inserer(proiesEspece,0);
 
         // Proies du tigre
         // girafe
@@ -77,16 +77,16 @@ void Parc::initTabProies() {
         proiesEspece.ajouter(proie5);
         proiesEspece.ajouter(proie6);
         // Enregistrement et initialisation de proiesEspece
-        tabProies.ajouter(proiesEspece);
+        tabProies.inserer(proiesEspece,1);
         proiesEspece = setVide;
 
         // Proies des Basque, Marmotte, Elephant, Aigle, Tortue, Loutre : acune
-        tabProies.ajouter(proiesEspece);
-        tabProies.ajouter(proiesEspece);
-        tabProies.ajouter(proiesEspece);
-        tabProies.ajouter(proiesEspece);
-        tabProies.ajouter(proiesEspece);
-        tabProies.ajouter(proiesEspece);
+        tabProies.inserer(proiesEspece,2);
+        tabProies.inserer(proiesEspece,3);
+        tabProies.inserer(proiesEspece,4);
+        tabProies.inserer(proiesEspece,5);
+        tabProies.inserer(proiesEspece,6);
+        tabProies.inserer(proiesEspece,7);
 
         // Proies du crocodile
         // girafe
@@ -121,11 +121,11 @@ void Parc::initTabProies() {
         proiesEspece.ajouter(proie5);
         proiesEspece.ajouter(proie6);
         // Enregistrement et éinitialisation de proiesEspece
-        tabProies.ajouter(proiesEspece);
+        tabProies.inserer(proiesEspece,8);
         proiesEspece = setVide;
 
         // Proies du lapin : aucune
-        tabProies.ajouter(proiesEspece);
+        tabProies.inserer(proiesEspece,9);
     }
 }
 
@@ -148,7 +148,7 @@ void Parc::initTabProies() {
 /*************************************/
 /**  constructeurs / destructeurs   **/
 /*************************************/
-Parc::Parc():iIDAnimaux(0), iIDEnclos(0), iNbAnimaux(0), iNbEnclos(0) {
+Parc::Parc():iIDAnimaux(1), iIDEnclos(1), iNbAnimaux(0), iNbEnclos(0) {
     initTabProies();
 }
 
@@ -179,12 +179,13 @@ Parc::~Parc() {
     for (int i=0; i<iNbEnclos; i++) {
         delete listeEnclos[i];
     }
+    // Chose bizarre ci-dessous ; coredumped quand décommenté (double free or corruption)
     // On vide le tableau de Proies pour libérer la mémoire
     /** Attention, légère fuite mémoire ici. Les tableau dynamiques des Sets ne sont pas libérés.
     Il faudrait faire une set de pointeurs sur set pour résoudre le souci **/
-    while(tabProies.getNbElem() != 0) {
+   /* while(tabProies.getNbElem() != 0) {
         tabProies.enlever(tabProies[0]);
-    }
+    }*/
 }
 
 
@@ -254,11 +255,12 @@ void Parc::supprimerEnclos(const int ID) {
         Enclos * ptrEnclos = listeEnclos[rang];
         // Suppression des animaux, sans gérer les conséquences car on les tue tous
         for(int i=0; i<ptrEnclos->getOccupation(); i++) {
-            ptrEnclos->supprimerAnimal(ptrEnclos->getPtrAnimal(i));
+            supprimerAnimalSansControle(ptrEnclos->getAnimal(i).getID());
         }
         // Suppression de l'enclos
         listeEnclos.enlever(ptrEnclos);
         delete ptrEnclos;
+        iNbEnclos--;
     }
 }
 
@@ -278,6 +280,15 @@ void Parc::ajouterAnimalDansEnclos(Animal * animalAPlacer, Enclos * enclosDAccue
     }
     else {
         enclosDAccueil->ajoutAnimal(animalAPlacer);
+
+        // Maintenant on regarde si l'animal se noit ou s'envole
+        if(animalAPlacer->getSaitVoler() && (enclosDAccueil->getType() == ENCLOS || enclosDAccueil->getType() == BASSIN) ) {
+            supprimerAnimalSansControle(animalAPlacer->getID());
+        }
+        else if (!animalAPlacer->getSaitNager() && enclosDAccueil->getType() == BASSIN) {
+            supprimerAnimalSansControle(animalAPlacer->getID());
+        }
+
         // gestion des conséquences de cet ajout (notre animal se fait manger par ses prédateurs ou mange ses proies)
         animauxMangesOuTuesDansEnclos(animalAPlacer->getEspece(), enclosDAccueil);
     }
@@ -505,9 +516,9 @@ void Parc::animauxMangesOuTuesDansEnclos(const int iCodeEspeceModifiee, Enclos *
         // Parcours son tableau de proies
         for(int j=0; j<tabProies[i].getNbElem(); j++) {
 
-            iCodeProie = tabProies[i][j].iCodeProie;
-            // Si l'espèce de l'animal ajouté/enlevé est une proie ou un prédateur
-            if(iCodeEspeceModifiee==i || iCodeEspeceModifiee==iCodeProie) {
+           iCodeProie = tabProies[i][j].iCodeProie;
+           // Si l'espèce de l'animal ajouté/enlevé est une proie ou un prédateur
+           if(iCodeEspeceModifiee==i || iCodeEspeceModifiee==iCodeProie) {
                 // On demande quelles relations ont la proie et le prédateur considérés
                 iActionAFaire = relationsProiesPredateurs(i, iCodeProie, ptrEnclos->getNombreAnimaux(i), ptrEnclos->getNombreAnimaux(iCodeProie));
 
@@ -518,7 +529,8 @@ void Parc::animauxMangesOuTuesDansEnclos(const int iCodeEspeceModifiee, Enclos *
                             // Enlève les animaux de l'enclos directement, sans passer par enleverAnimalEnclos
                             // On est obligé car enleverAnimalEnclos appelle cette fonction pour gérer les animaux
                             // à tuer, donc on tournerait un peu en rond
-                            ptrEnclos->supprimerAnimal(ptrEnclos->getPtrAnimal(k));
+                            //ptrEnclos->supprimerAnimal(ptrEnclos->getPtrAnimal(k));
+                            supprimerAnimalSansControle(ptrEnclos->getAnimal(k).getID());
                         }
                     }
                 }
@@ -526,7 +538,7 @@ void Parc::animauxMangesOuTuesDansEnclos(const int iCodeEspeceModifiee, Enclos *
                 else if(iActionAFaire == 3) {
                     for(int k=0; k<ptrEnclos->getOccupation(); k++) {
                         if(ptrEnclos->getAnimal(k).getEspece() == i) {
-                            ptrEnclos->supprimerAnimal(ptrEnclos->getPtrAnimal(k));
+                           supprimerAnimalSansControle(ptrEnclos->getAnimal(k).getID());
                         }
                     }
                 }
@@ -725,6 +737,80 @@ void Parc::supprimerAnimal(const int ID) {
 
         // Supprime l'animal de son enclos et gère les conséquences de ce retrait
         enleverAnimalEnclos(ptrAnimal, listeEnclos[iRangEnclos]);
+
+        // Supprime l'animal de son tableau d'espèce
+        int iEspece = ptrAnimal->getEspece();
+        switch (iEspece) {
+        case GIRAFE:
+            ptrGirafe = listeGirafe[rechercherGirafe(ID)];
+            listeGirafe.enlever(ptrGirafe);
+            break;
+        case TIGRE:
+            ptrTigre = listeTigre[rechercherTigre(ID)];
+            listeTigre.enlever(ptrTigre);
+            break;
+        case BASQUE:
+            ptrBasque = listeBasque[rechercherBasque(ID)];
+            listeBasque.enlever(ptrBasque);
+            break;
+        case MARMOTTE:
+            ptrMarmotte = listeMarmotte[rechercherMarmotte(ID)];
+            listeMarmotte.enlever(ptrMarmotte);
+            break;
+        case ELEPHANT:
+            ptrElephant = listeElephant[rechercherElephant(ID)];
+            listeElephant.enlever(ptrElephant);
+            break;
+        case AIGLE:
+            ptrAigle = listeAigle[rechercherAigle(ID)];
+            listeAigle.enlever(ptrAigle);
+            break;
+        case TORTUE:
+            ptrTortue = listeTortue[rechercherTortue(ID)];
+            listeTortue.enlever(ptrTortue);
+            break;
+        case LOUTRE:
+            ptrLoutre = listeLoutre[rechercherLoutre(ID)];
+            listeLoutre.enlever(ptrLoutre);
+            break;
+        case CROCODILE:
+            ptrCrocodile = listeCrocodile[rechercherCrocodile(ID)];
+            listeCrocodile.enlever(ptrCrocodile);
+            break;
+        case LAPIN:
+            ptrLapin = listeLapin[rechercherLapin(ID)];
+            listeLapin.enlever(ptrLapin);
+            break;
+        }
+
+        // Supprime l'animal
+        listeAnimaux.enlever(ptrAnimal);
+        delete ptrAnimal;
+    }
+}
+
+// Méthode privée pour supprimer un animal sans gérer les conséquences sur les autres animaux
+// Utile pour supprimer tous les animaux d'un enclos ou tous les animaux d'un enclos et de la même espèce
+void Parc::supprimerAnimalSansControle(const int ID) {
+    int iRangEnclos = rechercheEnclosAnimal(ID);
+    if(iRangEnclos == -1) {
+        cout << "Erreur, enclos de l'animal non trouvé." << endl;
+    }
+    else {
+        Animal * ptrAnimal = listeAnimaux[rechercherAnimal(ID)];
+        Girafe * ptrGirafe = NULL;
+        Tigre * ptrTigre = NULL;
+        Basque * ptrBasque = NULL;
+        Marmotte * ptrMarmotte = NULL;
+        Elephant * ptrElephant = NULL;
+        Aigle * ptrAigle = NULL;
+        Tortue * ptrTortue = NULL;
+        Loutre * ptrLoutre = NULL;
+        Crocodile * ptrCrocodile = NULL;
+        Lapin * ptrLapin = NULL;
+
+        // Supprime l'animal de son enclos
+        listeEnclos[iRangEnclos]->supprimerAnimal(ptrAnimal);
 
         // Supprime l'animal de son tableau d'espèce
         int iEspece = ptrAnimal->getEspece();
