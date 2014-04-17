@@ -1240,16 +1240,27 @@ void Parc::triAnimauxAlpha() {
 // tri par sélection du minimum -> À VÉRIFIER CAR DOUBLE CRITÈRE DE TRI !
 void Parc::triAnimauxEspece() {
     int iRangMin = 0;
+    int iCodeEspeceMin = 0;
+
     for(int i=0; i<iNbAnimaux-1; i++) {
+
         iRangMin = i;
+
+        // recherche codeEspeceMin
+        for(int j=i; i<iNbAnimaux; i++) {
+            if(listeAnimaux[j]->getEspece() < listeAnimaux[iRangMin]->getEspece()) {
+                iCodeEspeceMin = listeAnimaux[j]->getEspece();
+            }
+        }
+
         for(int j=i+1; j<iNbAnimaux; j++) {
-            if( listeAnimaux[j]->getEspece() <= listeAnimaux[iRangMin]->getEspece()
-                    && listeAnimaux[j]->getNom() < listeAnimaux[iRangMin]->getNom()
+            if( listeAnimaux[j]->getEspece() = iCodeEspeceMin
+                && listeAnimaux[j]->getNom() < listeAnimaux[iRangMin]->getNom()
               ) {
                 iRangMin = j;
             }
         }
-        listeAnimaux.intervertir(listeAnimaux[iRangMin], listeAnimaux[i]);
+         listeAnimaux.intervertir(listeAnimaux[iRangMin], listeAnimaux[i]);
     }
 }
 

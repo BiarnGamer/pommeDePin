@@ -463,12 +463,6 @@ int main() {
 	l1 = new Loutre(125,12.6465456, "valou", ID);
 	Parc2.modifierAnimal(ID,l1);
 	cout << "APRES MODIFICAFICATION " << *Parc2.getEnclos(0).getPtrAnimal(7) <<endl;
-<<<<<<< HEAD
-
-	cout << Parc2.getNbEnclos() << endl;
-=======
-	
->>>>>>> 5a550c4f0dfb56b7537e8ad7ed79d52abc66f196
 	cout << Parc2.getEnclos(1)<<endl;
 
     //cout << *Parc1.getEnclos(2).getPtrAnimal(1) << endl;
