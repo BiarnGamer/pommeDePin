@@ -1279,6 +1279,7 @@ void Parc::triAnimauxAlpha(const int IDEnclos) {
         // On procède alors a l'échange des pointeurs
         int iRangMin = 0;
         int iNbAnimaux = ptrEnclos->getOccupation();
+
         for(int i=0; i<iNbAnimaux-1; i++) {
             iRangMin = i;
             for(int j=i+1; j<iNbAnimaux; j++) {
@@ -1305,11 +1306,10 @@ void Parc::triAnimauxEspece(const int IDEnclos) {
         int iRangMin = 0;
         int iNbAnimaux = ptrEnclos->getOccupation();
         int iCodeEspeceMin = 0;
-cout << "Nb animaux : " << iNbAnimaux << endl;
+
         for(int i=0; i<iNbAnimaux-1; i++) {
             iRangMin = i;
             iCodeEspeceMin = ptrEnclos->getAnimal(i).getEspece();
-cout << iCodeEspeceMin << " jj "<< endl;
             // recherche codeEspeceMin
             for(int j=i; j<iNbAnimaux; j++) {
                 if(ptrEnclos->getAnimal(j).getEspece() < iCodeEspeceMin) {
