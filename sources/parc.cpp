@@ -295,14 +295,9 @@ void Parc::ajouterAnimalDansEnclos(Animal * animalAPlacer, Enclos * enclosDAccue
 }
 
 void Parc::enleverAnimalEnclos(Animal * animalAEnlever, Enclos * enclos) {
-    if(enclos->getOccupation() == enclos->getCapacite()) {
-        cout << "Erreur, enclos plein." << endl;
-    }
-    else {
-        enclos->supprimerAnimal(animalAEnlever);
-        // gestion des conséquences de ce retrait
-        animauxMangesOuTuesDansEnclos(animalAEnlever->getEspece(), enclos);
-    }
+    enclos->supprimerAnimal(animalAEnlever);
+    // gestion des conséquences de ce retrait
+    animauxMangesOuTuesDansEnclos(animalAEnlever->getEspece(), enclos);
 }
 
 int Parc::relationsProiesPredateurs(const int iCodePredateur, const int iNbPredateurs, const int iCodeProie, const int iNbProies) {
@@ -501,8 +496,9 @@ void Parc::deplacerAnimal(const int IDEnclosDepart, const int IDAnimal, const in
             cout << "Erreur, l'enclos de destination est plein." << endl;
         }
         else {
-            ptrEnclosA->ajoutAnimal(ptrAnimal);
-            ptrEnclosD->supprimerAnimal(ptrAnimal);
+            enleverAnimalEnclos(ptrAnimal, ptrEnclosD);
+            ajouterAnimalDansEnclos(ptrAnimal,ptrEnclosA);
+
         }
     }
 }

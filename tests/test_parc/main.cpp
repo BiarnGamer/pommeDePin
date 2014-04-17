@@ -129,9 +129,9 @@ int main() {
     cout << "* Surpeupler un enclos *" << endl;
     cout << "************************" << endl;
     Parc1.creerAnimal(&Pikachu, 2);
+    Parc1.creerAnimal(&PetiteB, 2);
     Parc1.creerAnimal(&Tuture, 2);
     Parc1.creerAnimal(&Valou, 2);
-    Parc1.creerAnimal(&PetiteB, 2);
     cout << Parc1.getEnclos(1) << endl;
     cout << Parc1.getEnclos(1).getAnimal(0) << endl;
     cout << Parc1.getEnclos(1).getAnimal(1) << endl;
@@ -236,12 +236,12 @@ int main() {
     cout << *Parc1.getEnclos(2).getPtrAnimal(0) << endl;
 
 
-    /* ******************************* */
-    /* Déplacements */
-    /* ******************************* */
-    cout << "************************************" << endl;
-    cout << "* Déplacements *" << endl;
-    cout << "************************************" << endl;
+    /* ****************************** */
+    /* Déplacements sans conséquence  */
+    /* ****************************** */
+    cout << "********************************" << endl;
+    cout << "* Déplacement sans conséquence *" << endl;
+    cout << "********************************" << endl;
 
     cout << "Enclos 1 avant déplacement :" << endl;
     cout << Parc1.getEnclos(0) << endl;
@@ -255,11 +255,78 @@ int main() {
     cout << "Enclos 6 après déplacement :" << endl;
     cout << Parc1.getEnclos(4) << endl;
 
+    // Note si l'enclos de départ ne correspond pas ou que l'enclos d'arrivée n'existe pas, le cas est bien géré
 
+
+    /* *********************************** */
+    /* Déplacements avec noyade / évasion  */
+    /* *********************************** */
+    cout << "*************************************" << endl;
+    cout << "* Déplacement avec noyade / évasion *" << endl;
+    cout << "*************************************" << endl;
+
+    // Déplacement de la girafe de l'enclos 2 vers l'enclos 3
+
+    cout << "Enclos 2 avant déplacement :" << endl;
+    cout << Parc1.getEnclos(1) << endl;
+    cout << "Enclos 3 avant déplacement :" << endl;
+    cout << Parc1.getEnclos(2) << endl;
+
+    Parc1.deplacerAnimal(2,Parc1.getEnclos(1).getAnimal(1).getID(),3);
+
+    cout << "Enclos 2 après déplacement :" << endl;
+    cout << Parc1.getEnclos(1) << endl;
+
+    cout << "Enclos 3 après déplacement :" << endl;
+    cout << Parc1.getEnclos(2) << endl;
+
+    /* ****************************** */
+    /* Déplacements avec conséquence  */
+    /* ****************************** */
+    cout << "********************************" << endl;
+    cout << "* Déplacement avec conséquence *" << endl;
+    cout << "********************************" << endl;
+
+    // On crée un enclos avec 4 éléphants et 1 tigre
+    // On crée un enclos avec 7 éléphants et 1 tigre
+    // Ils sont en paix avec de la chance
+
+    Parc1.creerEnclos("Ça va barder !",1,23);
+    Parc1.creerEnclos("Nutella !!!",1,23);
+
+    Parc1.creerAnimal(&PHP, 7);
+    Parc1.creerAnimal(&PHP, 7);
+    Parc1.creerAnimal(&PHP, 7);
+    Parc1.creerAnimal(&PHP, 7);
+    Parc1.creerAnimal(&Helico, 7);
+
+    Parc1.creerAnimal(&PHP, 8);
+    Parc1.creerAnimal(&PHP, 8);
+    Parc1.creerAnimal(&PHP, 8);
+    Parc1.creerAnimal(&PHP, 8);
+    Parc1.creerAnimal(&PHP, 8);
+    Parc1.creerAnimal(&PHP, 8);
+    Parc1.creerAnimal(&PHP, 8);
+    Parc1.creerAnimal(&Helico, 8);
+
+    // On déplace un éléphant pour en avoir 3 d'un côté et 8 de l'autre : revirement de situation
+
+    cout << "Enclos 7 avant déplacement :" << endl;
+    cout << Parc1.getEnclos(5) << endl;
+    cout << "Enclos 6 avant déplacement :" << endl;
+    cout << Parc1.getEnclos(6) << endl;
+
+    Parc1.deplacerAnimal(7,Parc1.getEnclos(5).getAnimal(0).getID(),8);
+
+    cout << "Enclos 7 après déplacement :" << endl;
+    cout << Parc1.getEnclos(5) << endl;
+
+    cout << "Enclos 8 après déplacement :" << endl;
+    cout << Parc1.getEnclos(6) << endl;
+
+    cout << Parc1;
 /** Prochains tets :
-- déplacement sans conséquence
-- déplacement avec envol/noyade animal
-- déplacement avec conséquences au départ et à l'arrivée
+
 
 - suppression animal sans conséquence
 - suppression animal avec conséquence
