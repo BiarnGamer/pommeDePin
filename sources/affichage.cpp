@@ -1,8 +1,3 @@
-#include "../entetes/affichage.h"
-#include "../entetes/animal.h"
-#include "../entetes/enclos.h"
-#include "../entetes/parc.h"
-
 int rechercheAnimal(const Parc & Parc1) {
     system("clear");
     int IDAnimal;
