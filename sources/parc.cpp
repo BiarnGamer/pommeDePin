@@ -1400,6 +1400,7 @@ Basque const * Parc::getBasque(const int irang) const{
 	return t;
 }
 
+
 Marmotte const * Parc::getMarmotte(const int irang) const{
 	if (irang >= 0 && irang < listeMarmotte.getNbElem())
 		return listeMarmotte[irang];
