@@ -510,6 +510,7 @@ void Parc::deplacerAnimal(const int IDEnclosDepart, const int IDAnimal, const in
 void Parc::animauxMangesOuTuesDansEnclos(const int iCodeEspeceModifiee, Enclos * ptrEnclos)  {
     int iActionAFaire;
     int iCodeProie;
+	int k=0;
     // Pour chaque espèce
     for(int i=0; i<NB_ESPECES; i++) {
         // Parcours son tableau de proies
@@ -522,14 +523,17 @@ void Parc::animauxMangesOuTuesDansEnclos(const int iCodeEspeceModifiee, Enclos *
                 iActionAFaire = relationsProiesPredateurs(i, ptrEnclos->getNombreAnimaux(i), iCodeProie, ptrEnclos->getNombreAnimaux(iCodeProie));
                 // Tue les proies
                 if(iActionAFaire == 1) {
-                    for(int k=0; k<ptrEnclos->getOccupation(); k++) {
+                    while (k < ptrEnclos->getOccupation()) {
+					//for(int k=0; k<ptrEnclos->getOccupation(); k++) {
                         if(ptrEnclos->getAnimal(k).getEspece() == iCodeProie) {
                             // Enlève les animaux de l'enclos directement, sans passer par enleverAnimalEnclos
                             // On est obligé car enleverAnimalEnclos appelle cette fonction pour gérer les animaux
                             // à tuer, donc on tournerait un peu en rond
                             //ptrEnclos->supprimerAnimal(ptrEnclos->getPtrAnimal(k));
                             supprimerAnimalSansControle(ptrEnclos->getAnimal(k).getID());
+							// on incrémente que si on ne supprime pas, car on décale tous les animaux non supprimés vers la gauche
                         }
+                        else k++;
                     }
                 }
                 // Tue les prédateurs
