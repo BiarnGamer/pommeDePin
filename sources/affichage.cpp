@@ -38,6 +38,17 @@ int rechercheEnclos(const Parc & Parc1) {
     return iRangEnclos;
 }
 
+void afficheAnimauxParc(const Parc & Parc1) {
+    system("clear");
+    int iNbAnimaux = Parc1.getNbAnimaux();
+
+    cout << "Affichage de tous les animaux du parc" << endl;
+
+    for(int i=0; i<iNbAnimaux; i++) {
+        cout << *(Parc1.getAnimal(i)) << endl;
+    }
+}
+
 void afficherTauxRemplissageEnclos(Parc &Parc1){
 	for (int i=0; i<Parc1.getNbEnclos(); i++)
 		cout << "Parc n " << i << " : " << Parc1.getEnclos(i).getOccupation() << "/" << Parc1.getEnclos(i).getCapacite() << endl;
