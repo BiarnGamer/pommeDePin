@@ -236,6 +236,25 @@ int main() {
     cout << *Parc1.getEnclos(2).getPtrAnimal(0) << endl;
 
 
+    /* ******************************* */
+    /* Déplacements */
+    /* ******************************* */
+    cout << "************************************" << endl;
+    cout << "* Déplacements *" << endl;
+    cout << "************************************" << endl;
+
+    cout << "Enclos 1 avant déplacement :" << endl;
+    cout << Parc1.getEnclos(0) << endl;
+    cout << "Enclos 6 avant déplacement :" << endl;
+    cout << Parc1.getEnclos(4) << endl;
+
+    Parc1.deplacerAnimal(6,Parc1.getEnclos(4).getAnimal(0).getID(),145);
+
+    cout << "Enclos 1 après déplacement :" << endl;
+    cout << Parc1.getEnclos(0) << endl;
+    cout << "Enclos 6 après déplacement :" << endl;
+    cout << Parc1.getEnclos(4) << endl;
+
 
 /** Prochains tets :
 - déplacement sans conséquence
