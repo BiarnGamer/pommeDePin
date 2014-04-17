@@ -220,7 +220,7 @@ Animal const * Parc::getAnimal(int i) const {
     if(0<=i && i<iNbAnimaux) {
         return listeAnimaux[i];
     }
-    Animal * a1;
+    Animal * a1 = new Animal;
 	return a1;
 }
 
@@ -258,8 +258,8 @@ void Parc::supprimerEnclos(const int ID) {
     else {
         Enclos * ptrEnclos = listeEnclos[rang];
         // Suppression des animaux, sans gérer les conséquences car on les tue tous
-        for(int i=0; i<ptrEnclos->getOccupation(); i++) {
-            supprimerAnimalSansControle(ptrEnclos->getAnimal(i).getID());
+        while(ptrEnclos->getOccupation() != 0) {
+            supprimerAnimalSansControle(ptrEnclos->getAnimal(0).getID());
         }
         // Suppression de l'enclos
         listeEnclos.enlever(ptrEnclos);
@@ -1305,11 +1305,11 @@ void Parc::triAnimauxEspece(const int IDEnclos) {
         int iRangMin = 0;
         int iNbAnimaux = ptrEnclos->getOccupation();
         int iCodeEspeceMin = 0;
-
+cout << "Nb animaux : " << iNbAnimaux << endl;
         for(int i=0; i<iNbAnimaux-1; i++) {
             iRangMin = i;
             iCodeEspeceMin = ptrEnclos->getAnimal(i).getEspece();
-
+cout << iCodeEspeceMin << " jj "<< endl;
             // recherche codeEspeceMin
             for(int j=i; j<iNbAnimaux; j++) {
                 if(ptrEnclos->getAnimal(j).getEspece() < iCodeEspeceMin) {
@@ -1325,7 +1325,7 @@ void Parc::triAnimauxEspece(const int IDEnclos) {
                     iRangMin = j;
                 }
             }
-             listeAnimaux.intervertir(ptrEnclos->getPtrAnimal(i), ptrEnclos->getPtrAnimal(iRangMin));
+             ptrEnclos->intervertir(ptrEnclos->getPtrAnimal(i), ptrEnclos->getPtrAnimal(iRangMin));
         }
     }
 }
