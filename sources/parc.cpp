@@ -1248,20 +1248,21 @@ void Parc::triAnimauxEspece() {
         iCodeEspeceMin = listeAnimaux[i]->getEspece();
 
         // recherche codeEspeceMin
-        for(int j=i; i<iNbAnimaux; i++) {
+        for(int j=i; j<iNbAnimaux; j++) {
             if(listeAnimaux[j]->getEspece() < iCodeEspeceMin) {
                 iCodeEspeceMin = listeAnimaux[j]->getEspece();
             }
         }
-
+		cout << "DEBUG - " << iCodeEspeceMin << endl;
         for(int j=i+1; j<iNbAnimaux; j++) {
+			cout << "DEBUG - " << endl;
             if( listeAnimaux[j]->getEspece() == iCodeEspeceMin
                 && listeAnimaux[j]->getNom() < listeAnimaux[iRangMin]->getNom()
               ) {
                 iRangMin = j;
             }
         }
-         listeAnimaux.intervertir(listeAnimaux[iRangMin], listeAnimaux[i]);
+         listeAnimaux.intervertir(listeAnimaux[i], listeAnimaux[iRangMin]);
     }
 }
 
