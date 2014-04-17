@@ -338,9 +338,8 @@ int main() {
 - supprimer enclos contenant des animaux
 
 - fonction conséquences déplacement
-
-- tri des listes d'animaux (donc listes suffisament variées) et affichage complet à chaque fois
 **/
+
 
 // - setters : modifier un animal de chaque espèce et l'afficher
 // Je me sert d'un enclos pour Moi
@@ -458,6 +457,57 @@ int main() {
 	
 	cout << Parc2.getEnclos(1)<<endl;
 	
+	
+	//tri des listes d'animaux (donc listes suffisament variées) et affichage complet à chaque fois
+	cout << "AU DEPART ************************ " << endl;
+	for (int i=0; i< Parc2.getNbAnimaux() ; i++){
+		cout << Parc2.getAnimal(i)->getNom() << endl;
+	}
+	cout << "******** TRI ALPHAAAAA ********" << endl;
+	Parc2.triAnimauxAlpha();
+	
+	for (int i=0; i< Parc2.getNbAnimaux() ; i++){
+		cout << Parc2.getAnimal(i)->getNom() << endl;
+	}
+	
+	cout << "******** TRI ESPECE ********" << endl;
+	Parc2.triAnimauxEspece();
+	
+	for (int i=0; i< Parc2.getNbAnimaux() ; i++){
+		cout << Parc2.getAnimal(i)->getEspece() << endl;
+	}
+	
+	cout << "******** TRI ALPHAAAAA d'un IDENCLOS ********" << endl;
+	Parc1.triAnimauxAlpha(6);
+	for (int i=0; i< Parc1.getEnclos(4).getOccupation() ; i++){
+		cout << Parc1.getEnclos(4).getAnimal(i).getNom() << endl;
+	}
+	
+	cout << "******** TRI ESPECE d'un IDENCLOS ********" << endl;
+	Parc1.triAnimauxEspece(6);
+	for (int i=0; i< Parc1.getEnclos(4).getOccupation() ; i++){
+		cout << Parc1.getEnclos(4).getAnimal(i).getEspece() << endl;
+	}
+	/*
+	cout << "******** TRI ENCLOS OCCUPATION ********" << endl;
+
+	for (int i=0; i< Parc1.getNbAnimaux() ; i++){
+		cout << Parc1.getAnimal(i)->getNom() << endl;
+	}
+	
+	cout << "******** TRI ENCLOS CAPACITE ********" << endl;
+	
+	for (int i=0; i< Parc2.getNbAnimaux() ; i++){
+		cout << Parc2.getAnimal(i)->getNom() << endl;
+	}
+	
+	cout << "******** TRI ALPHAAAAA TAUX OCCUPATION ********" << endl;
+	
+	for (int i=0; i< Parc2.getNbAnimaux() ; i++){
+		cout << Parc2.getAnimal(i)->getNom() << endl;
+	}
+	
+	*/
     //cout << *Parc1.getEnclos(2).getPtrAnimal(1) << endl;
    // Parc1.creerAnimal(&Helico, 5);
     //

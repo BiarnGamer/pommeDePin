@@ -1375,70 +1375,80 @@ ostream & operator<<(ostream & flot, const Parc & p) {
 Tigre const * Parc::getTigre(const int irang) const{
 	if (irang >= 0 && irang < listeTigre.getNbElem())
 		return listeTigre[irang];
-	Tigre t;
+	Tigre * t;
+	t = new Tigre();
 	return t;
 }
 
 Basque const * Parc::getBasque(const int irang) const{
 	if (irang >= 0 && irang < listeBasque.getNbElem())
 		return listeBasque[irang];
-	Basque t;
+	Basque * t;
+	t = new Basque();
 	return t;
 }
 
 Marmotte const * Parc::getMarmotte(const int irang) const{
 	if (irang >= 0 && irang < listeMarmotte.getNbElem())
 		return listeMarmotte[irang];
-	Marmotte t;
+	Marmotte * t;
+	t = new Marmotte();
 	return t;
 }
 
 Elephant const * Parc::getElephant(const int irang) const{
 	if (irang >= 0 && irang < listeElephant.getNbElem())
 		return listeElephant[irang];
-	Elephant t;
+	Elephant * t;
+	t = new Elephant();
 	return t;
 }
 
 Aigle const * Parc::getAigle(const int irang) const{
 	if (irang >= 0 && irang < listeAigle.getNbElem())
 		return listeAigle[irang];
-	Aigle t;
+	Aigle * t;
+	t = new Aigle();
 	return t;
 }
 
 Lapin const * Parc::getLapin(const int irang) const{
 	if (irang >= 0 && irang < listeLapin.getNbElem())
 		return listeLapin[irang];
-	Lapin t;
+	Lapin * t;
+	t = new Lapin();
 	return t;
 }
 
-Tortue const * Parc::getLapin(const int irang) const{
+Tortue const * Parc::getTortue(const int irang) const{
 	if (irang >= 0 && irang < listeTortue.getNbElem())
 		return listeTortue[irang];
-	Tortue t;
+	Tortue *t;
+	t = new Tortue();
 	return t;
 }
 
-Crocodile const * Parc::getLapin(const int irang) const{
+Crocodile const * Parc::getCrocodile(const int irang) const{
 	if (irang >= 0 && irang < listeCrocodile.getNbElem())
 		return listeCrocodile[irang];
-	Crocodile t;
+	Crocodile * t;
+	t = new Crocodile();
 	return t;
 }
 
-Girafe const * Parc::getLapin(const int irang) const{
+Girafe const * Parc::getGirafe(const int irang) const{
 	if (irang >= 0 && irang < listeGirafe.getNbElem())
 		return listeGirafe[irang];
-	Girafe t;
+	Girafe * t;
+	t = new Girafe();
 	return t;
 }
 
-Loutre const * Parc::getLapin(const int irang) const{
+Loutre const * Parc::getLoutre(const int irang) const{
 	if (irang >= 0 && irang < listeLoutre.getNbElem())
-		return listeGirafe[irang];
-	Loutre t;
+		return listeLoutre[irang];
+	Loutre * t;
+	t = new Loutre();
 	return t;
 }
 

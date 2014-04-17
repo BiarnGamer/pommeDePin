@@ -128,6 +128,23 @@ public:
     void modifierAnimal(const int IDAnimalAModifier, Crocodile const * nouvelAnimal);
     void modifierAnimal(const int IDAnimalAModifier, Lapin const * nouvelAnimal);
 
+	
+	// Getters pour les listes spécifiques des animaux
+	Tigre const * getTigre(const int) const;
+	Girafe const * getGirafe(const int) const;
+	Marmotte const * getMarmotte(const int) const;
+	Aigle const * getAigle(const int) const;
+	Elephant const * getElephant(const int) const;
+	Tortue const * getTortue(const int) const;
+	Loutre const * getLoutre(const int) const;
+	Crocodile const * getCrocodile(const int) const;
+	Lapin const * getLapin(const int) const;
+	Basque const * getBasque(const int) const;
+	
+	
+	
+	
+	
     // Retourne le rang dans la liste de l'animal dont l'ID est donné. Gestion erreur si absent
     int rechercherAnimal(const int ID) const;
 
