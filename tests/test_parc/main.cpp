@@ -104,51 +104,107 @@ int main() {
 
 
     /* *************************** */
-    /* AJOUT D'ENCLOS              */
+    /* AJOUT D'ANIMAUX             */
     /* *************************** */
     cout << "*************************" << endl;
     cout << "* AJOUT D'ANIMAUX       *" << endl;
     cout << "*************************" << endl;
 
     // Test ajout 1 animal dans 1 enclos
+    cout << "**  Ajout d'un animal dans 1 enclos  **" << endl;
     Parc1.creerAnimal(&Helico, 1);
-    cout << Parc1.getEnclos(0);
+    cout << Parc1.getEnclos(0) << endl;
     cout << Parc1.getEnclos(0).getAnimal(0) << endl;
 
 
     // Test surpeupler enclos
+    cout << "**  Surpeupler un enclos **" << endl;
     Parc1.creerAnimal(&Pikachu, 2);
     Parc1.creerAnimal(&Tuture, 2);
     Parc1.creerAnimal(&Valou, 2);
     Parc1.creerAnimal(&PetiteB, 2);
-    cout << Parc1.getEnclos(1);
+    cout << Parc1.getEnclos(1) << endl;
     cout << Parc1.getEnclos(1).getAnimal(0) << endl;
     cout << Parc1.getEnclos(1).getAnimal(1) << endl;
 
     // Test ajout aigle dans enclos
+    cout << "**  Ajout d'un animal qui s'échappe  **" << endl;
     Parc1.creerAnimal(&Roucarnage, 1);
     Parc1.creerAnimal(&Roucarnage, 1);
-    cout << Parc1.getEnclos(0);
+    cout << Parc1.getEnclos(0) << endl;
     cout << Parc1.getEnclos(0).getAnimal(0) << endl;
 
     // Test ajout proie dans enclos 1
+    cout << "**  Ajout d'une proie qui se fait manger 75% des fois **" << endl;
     Parc1.creerAnimal(&Valou, 1);
-    cout << Parc1.getEnclos(0);
+    cout << Parc1.getEnclos(0) << endl;
     cout << Parc1.getEnclos(0).getAnimal(0) << endl;
     if(Parc1.getEnclos(0).getOccupation() == 2) {cout << Parc1.getEnclos(0).getAnimal(1) << endl;}
 
 
+    // Tests nombreuses proies se font manger
+    cout << "**  De nombreuses proies vont se faire manger  **" << endl;
+    Parc1.creerAnimal(&Xabi, 6);
+    Parc1.creerAnimal(&Ninicolas, 6);
+    Parc1.creerAnimal(&Ninicolas, 6);
+    Parc1.creerAnimal(&Ninicolas, 6);
+    Parc1.creerAnimal(&Xabi, 6);
+    Parc1.creerAnimal(&Xabi, 6);
+    Parc1.creerAnimal(&Ninicolas, 6);
+    Parc1.creerAnimal(&Ninicolas, 6);
+    Parc1.creerAnimal(&Xabi, 6);
+
+    cout << "Enclos avant ajout prédateur : " << endl;
+    cout << Parc1.getEnclos(4) << endl;
+
+
+    Parc1.creerAnimal(&Paul, 6);
+
+    cout << "Enclos après ajout prédateur : " << endl;
+    cout << Parc1.getEnclos(4) << endl;
+    cout << *Parc1.getEnclos(4).getPtrAnimal(0) << endl;
+
+
+    // Test situation équilibre
+    cout << "**  Situation d'équilibre entre proies et prédateurs  **" << endl;
+    Parc1.creerAnimal(&QuiVeutDesTalons, 5);
+    Parc1.creerAnimal(&QuiVeutDesTalons, 5);
+    Parc1.creerAnimal(&PetiteB, 5);
+    Parc1.creerAnimal(&PetiteB, 5);
+    Parc1.creerAnimal(&QuiVeutDesTalons, 5);
+    Parc1.creerAnimal(&PetiteB, 5);
+    Parc1.creerAnimal(&QuiVeutDesTalons, 5);
+
+    cout << "Enclos avant ajout prédateur : " << endl;
+    cout << Parc1.getEnclos(4) << endl;
+
+
+    Parc1.creerAnimal(&Paul, 5);
+
+    cout << "Enclos après ajout prédateur : " << endl;
+    cout << Parc1.getEnclos(4) << endl;
+    cout << *Parc1.getEnclos(4).getPtrAnimal(0) << endl;
+
+
     // Test proies doivent se défendre
+    cout << "**  Tel est pris qui croyait prendre **" << endl;
     Parc1.creerAnimal(&PHP, 3);
     Parc1.creerAnimal(&PHP, 3);
-   // Parc1.creerAnimal(&Pikachu, 3);
-  //  Parc1.creerAnimal(&Pikachu, 3);
     Parc1.creerAnimal(&Pikachu, 3);
-    cout << Parc1.getEnclos(2);
+    Parc1.creerAnimal(&Pikachu, 3);
+    Parc1.creerAnimal(&Pikachu, 3);
+
+    cout << "Enclos avant ajout prédateur : " << endl;
+    cout << Parc1.getEnclos(2) << endl;
+
     Parc1.creerAnimal(&MoiJaiFaim, 3);
+
+    cout << "Enclos après ajout prédateur : " << endl;
     cout << Parc1.getEnclos(2) << endl;
     cout << *Parc1.getEnclos(2).getPtrAnimal(0) << endl;
-    cout << *Parc1.getEnclos(2).getPtrAnimal(1) << endl;
+
+
+    //cout << *Parc1.getEnclos(2).getPtrAnimal(1) << endl;
    // Parc1.creerAnimal(&Helico, 5);
     //
     //cout << Parc1.getEnclos(0).getAnimal(1) << endl;
