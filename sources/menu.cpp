@@ -7,7 +7,7 @@
 using namespace std;
 
 void retourMenu() {
-    cout << "Appuyez sur entrée pour revenir au menu principal.";
+    cout << "Appuyez sur entrée pour revenir au menu précédent.";
     scanf("%*c%*c");
 }
 
