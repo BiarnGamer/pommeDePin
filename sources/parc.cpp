@@ -1243,7 +1243,6 @@ void Parc::triAnimauxEspece() {
     int iCodeEspeceMin = 0;
 
     for(int i=0; i<iNbAnimaux-1; i++) {
-
         iRangMin = i;
         iCodeEspeceMin = listeAnimaux[i]->getEspece();
 
@@ -1251,11 +1250,11 @@ void Parc::triAnimauxEspece() {
         for(int j=i; j<iNbAnimaux; j++) {
             if(listeAnimaux[j]->getEspece() < iCodeEspeceMin) {
                 iCodeEspeceMin = listeAnimaux[j]->getEspece();
+                iRangMin = j;
             }
         }
-		cout << "DEBUG - " << iCodeEspeceMin << endl;
+
         for(int j=i+1; j<iNbAnimaux; j++) {
-			cout << "DEBUG - " << endl;
             if( listeAnimaux[j]->getEspece() == iCodeEspeceMin
                 && listeAnimaux[j]->getNom() < listeAnimaux[iRangMin]->getNom()
               ) {
@@ -1305,17 +1304,28 @@ void Parc::triAnimauxEspece(const int IDEnclos) {
         Enclos * ptrEnclos = listeEnclos[iRangEnclos];
         int iRangMin = 0;
         int iNbAnimaux = ptrEnclos->getOccupation();
+        int iCodeEspeceMin = 0;
+
         for(int i=0; i<iNbAnimaux-1; i++) {
             iRangMin = i;
+            iCodeEspeceMin = ptrEnclos->getAnimal(i).getEspece();
+
+            // recherche codeEspeceMin
+            for(int j=i; j<iNbAnimaux; j++) {
+                if(ptrEnclos->getAnimal(j).getEspece() < iCodeEspeceMin) {
+                    iCodeEspeceMin = ptrEnclos->getAnimal(j).getEspece();
+                    iRangMin = j;
+                }
+            }
+
             for(int j=i+1; j<iNbAnimaux; j++) {
-                if( ptrEnclos->getAnimal(j).getEspece() <= ptrEnclos->getAnimal(iRangMin).getEspece()
-                        && ptrEnclos->getAnimal(j).getNom() < ptrEnclos->getAnimal(iRangMin).getNom()
+                if( ptrEnclos->getAnimal(j).getEspece() == iCodeEspeceMin
+                    && ptrEnclos->getAnimal(j).getNom() < ptrEnclos->getAnimal(iRangMin).getNom()
                   ) {
                     iRangMin = j;
                 }
             }
-            // Ici, on échange les contenus des pointeurs
-            ptrEnclos->intervertir(ptrEnclos->getPtrAnimal(iRangMin),ptrEnclos->getPtrAnimal(i));
+             listeAnimaux.intervertir(ptrEnclos->getPtrAnimal(i), ptrEnclos->getPtrAnimal(iRangMin));
         }
     }
 }
