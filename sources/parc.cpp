@@ -158,6 +158,16 @@ Parc::Parc(const Parc & p) {
     iNbAnimaux = p.iNbAnimaux;
     iNbEnclos = p.iNbEnclos;
     listeAnimaux = p.listeAnimaux;
+    listeGirafe = p.listeGirafe;
+    listeTigre = p.listeTigre;
+    listeTortue = p.listeTortue;
+    listeMarmotte = p.listeMarmotte;
+    listeLoutre = p.listeLoutre;
+    listeLapin = p.listeLapin;
+    listeBasque = p.listeBasque;
+    listeCrocodile = p.listeCrocodile;
+    listeElephant = p.listeElephant;
+    listeAigle = p.listeAigle;
     listeEnclos = p.listeEnclos;
     tabProies = p.tabProies;
 }
@@ -170,6 +180,8 @@ Parc::~Parc() {
         delete listeEnclos[i];
     }
     // On vide le tableau de Proies pour libérer la mémoire
+    /** Attention, légère fuite mémoire ici. Les tableau dynamiques des Sets ne sont pas libérés.
+    Il faudrait faire une set de pointeurs sur set pour résoudre le souci **/
     while(tabProies.getNbElem() != 0) {
         tabProies.enlever(tabProies[0]);
     }
@@ -224,34 +236,60 @@ void Parc::creerEnclos(const string & nom, const int type, cons int capacite) {
 }
 
 int Parc::rechercherEnclos(const int ID) const {
-    bool trouver=false;
-    int i =0;
-    while ( !trouver && i < getNbEnclos()) {
-        if (listeEnclos[i].getIDEnclos() == ID) {
-            trouver = true;
+   for(int i=0; i < getNbEnclos(); i++) {
+        if (listeEnclos[i]->getID() == ID) {
             return i;
-        } else return -1;
+        }
+    }
+    return -1;
+}
+
+// Supprime tous les animaux contenus dans l'enclos puis supprime l'enclos
+void Parc::supprimerEnclos(const int ID) {
+    int rang = rechercherEnclos(ID);
+    if (rang == -1) {
+        cout >> "Cet ID d'enclos n'existe pas." << endl;
+    }
+    else {
+        Enclos * ptrEnclos = listeEnclos[rang];
+        // Suppression des animaux
+        for(int i=0; i<ptrEnclos->getOccupation()) {
+            supprimerAnimal(ptrEnclos->getAnimal(i).getID())
+        }
+        // Suppression de l'enclos
+        listeEnclos.enlever(ptrEnclos);
+        delete ptrEnclos;
     }
 }
 
-void Parc::supprimerEnclos(const int ID) {
-    int rang = rechercherEnclos(ID);
-    if (rang == -1)
-        cout >> "Cet ID d'enclos n'existe pas." << endl;
-    else
-        listeEnclos.enlever(listeEnclos[rang]);
-}
-
 void Parc::mofidierEnclos(const int IDEnclosAModifier, const string nom) {
-    listeEnclos[rechercherEnclos(IDEnclosAModifier)]->setNom(nom);
+    int iRang = rechercherEnclos(IDEnclosAModifier);
+    if(iRang == -1) {
+        cout >> "Cet ID d'enclos n'existe pas." << endl;
+    }
+    else {
+        listeEnclos[iRang]->setNom(nom);
+    }
 }
 
 void Parc::ajouterAnimalDansEnclos(Animal * animalAPlacer, Enclos * enclosDAccueil) {
-    enclosDAccueil->ajoutAnimal(animalAPlacer);
+    if(enclosDAccueil->getOccupation == enclosDAccueil->getCapacite) {
+        cout << "Erreur, enclos plein." << endl;
+    }
+    else {
+        enclosDAccueil->ajoutAnimal(animalAPlacer);
+        /** GÉRER LES CONSÉQUENCES DE CET AJOUT **/
+    }
 }
 
 void Parc::enleverAnimalEnclos(Animal * animalAEnlever, Enclos * enclos) {
-    enclos->supprimerAnimal(animalAEnlever);
+    if(enclos->getOccupation == enclos->getCapacite) {
+        cout << "Erreur, enclos plein." << endl;
+    }
+    else {
+        enclos->supprimerAnimal(animalAEnlever);
+        /** GÉRER LES CONSÉQUENCES DE CETTE SUPPRESSION **/
+    }
 }
 
 void Parc::relationsProiesPredateurs(const int iCodePredateur, const int iNbPredateurs, const int iCodeProie, const int iNbProies) {
