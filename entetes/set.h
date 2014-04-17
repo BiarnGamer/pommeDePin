@@ -92,7 +92,7 @@ template <class T> void Set<T>::intervertir(const T & t1, const T & t2) {
     int iRangT2 = 0;
     int i=0;
 
-    while(!t1Trouve && !t2Trouve && i<getNbElem()) {
+    while((!t1Trouve || !t2Trouve) && i<getNbElem()) {
         if(tab[i] == t1) {
             t1Trouve = true;
             iRangT1 = i;

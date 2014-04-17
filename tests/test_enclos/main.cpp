@@ -57,18 +57,45 @@ int main() {
     cout << Zozo << endl;
 
     // Redéfinition de tous les attributs
-    Animal toto, tata;
+    Tigre toto(14,15,"diego",4), titi(25,12,"robert",5);
+    Elephant tata(41,52,125,"babar",2);
     cout << endl << "*** Setters ***" << endl;
     Zozo.setNom("Paul, l'enclos");
     Zozo.ajoutAnimal(&toto);
     Zozo.ajoutAnimal(&toto);
+    Zozo.ajoutAnimal(&titi);
     Zozo.ajoutAnimal(&tata);
     cout << Zozo << endl;
-    cout << Zozo.getAnimal(0);
+
+    // Test des getters sur Animal et comptage des espèces
+    cout << endl << "*** Animaux 0 et 2 ***" << endl;
+    cout << *(Zozo.getPtrAnimal(0)) << endl;
+    cout << *(Zozo.getPtrAnimal(2));
+
+    cout << endl << "*** Comptage espèces ***" << endl;
+    cout << "Nombre de tigres : " << Zozo.getNombreAnimaux(1) << endl;
+    cout << "Nombre d'éléphants : " << Zozo.getNombreAnimaux(4) << endl;
+    cout << "Nombre de girafes : " << Zozo.getNombreAnimaux(3) << endl;
+    cout << "Nombre de on sait pas quoi : " << Zozo.getNombreAnimaux(25) << endl;
+
+    // On interverti
+    cout << endl << "*** Interverti 0 et 1, affiche 0 puis 1 ***" << endl;
+    Zozo.intervertir(Zozo.getPtrAnimal(0), Zozo.getPtrAnimal(1));
+    cout << *(Zozo.getPtrAnimal(0)) << endl;
+    cout << *(Zozo.getPtrAnimal(1));
+
+    // Suppression
+    cout << endl << "*** Suppression d'un animal (un tigre : diego) ***" << endl;
     Zozo.supprimerAnimal(&toto);
     Zozo.supprimerAnimal(&toto);
     Zozo.supprimerAnimal(&toto);
     cout << Zozo << endl;
+    cout << "Nombre de tigres : " << Zozo.getNombreAnimaux(1) << endl;
+    cout << "Nombre d'éléphants : " << Zozo.getNombreAnimaux(4) << endl;
+    cout << "Nombre de girafes : " << Zozo.getNombreAnimaux(3) << endl;
 
+     cout << endl << "*** Animaux 0 et 1 ***" << endl;
+    cout << *(Zozo.getPtrAnimal(0)) << endl;
+    cout << *(Zozo.getPtrAnimal(1));
     return 0;
 }
