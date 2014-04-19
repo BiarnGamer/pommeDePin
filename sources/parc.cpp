@@ -1265,8 +1265,6 @@ void Parc::triAnimauxEspece() {
     }
 }
 
-
-// tri dans un enclos impossible pour le moment, rajouter la méthode pour intervertir dans Enclos
 // tri par sélection du minimum
 void Parc::triAnimauxAlpha(const int IDEnclos) {
     int iRangEnclos = rechercherEnclos(IDEnclos);
