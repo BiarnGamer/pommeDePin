@@ -6,6 +6,15 @@
 
 using namespace std;
 
+
+/***********************************************************/
+/*********** Declaration des variables *********************/
+/***********************************************************/
+
+string sNom = "";
+int iType;
+int iCapacite;
+
 void retourMenu() {
     cout << "Appuyez sur entrée pour revenir au menu précédent.";
     scanf("%*c%*c");
@@ -83,6 +92,12 @@ void menuGestion(Parc &Parc1) {
 
         switch (iChoix) {
         case MENU_GESTION_CREER_ENCLOS:
+			
+			sNom = selectionNomEnclos();
+			iType = selectionTypeEnclos();
+			iCapacite = selectionCapaciteEnclos();
+			Enclos e1(sNom,iType,iCapacite);
+			
             retourMenu();
             break;
         case MENU_GESTION_SUPPR_ENCLOS:

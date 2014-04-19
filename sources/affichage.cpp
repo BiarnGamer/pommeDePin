@@ -58,6 +58,7 @@ void afficherDetailDeTousLesEnclos(const Parc &Parc1){
 }
 
 void afficherDetailEnclosEtAnimaux(const Parc &Parc1){
+	// pas de demande a l'utilisateur car rechercheEnclos s'en charge
 	int irang = rechercheEnclos(Parc1);
 	for (int i=0; i<Parc1.getNbAnimaux(); i++)
 		cout << Parc1.getEnclos(irang).getAnimal(i) << endl;

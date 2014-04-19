@@ -9,6 +9,7 @@
 #include "../entetes/parc.h"
 #include "../entetes/menu.h"
 #include "../entetes/affichage.h"
+#include "../entetes/utilisateur.h"
 
 
 
@@ -22,7 +23,6 @@ int main() {
 
     Parc Parc1;
     menuPrincipal(Parc1);
-
 
     return 0;
 }
