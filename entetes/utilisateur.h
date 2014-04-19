@@ -4,7 +4,7 @@
 
 //Afin d'utiliser les constantes ENCLOS
 #include "../entetes/enclos.h"
-//#include "../entetes/animal.h"
+#include "../entetes/parc.h"
 
 using namespace std;
 
@@ -14,4 +14,12 @@ int selectionCapaciteEnclos();
 int selectionChoixAnimal();
 Loutre * creerLoutre();
 Girafe * creerGirafe();
-int choixEnclosCreerAnimal();
+Crocodile * creerCrocodile();
+Tortue * creerTortue();
+Aigle * creerAigle();
+Tigre * creerTigre();
+Elephant * creerElephant();
+Lapin * creerLapin();
+Marmotte * creerMarmotte();
+Basque * creerBasque();
+int choixEnclosCreerAnimal(Parc & Parc1);
