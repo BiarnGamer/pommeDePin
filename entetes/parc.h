@@ -57,7 +57,7 @@ private:
     // Initialise le tableau de proie
     void initTabProies();
 
-    
+
 
 public:
 
@@ -128,7 +128,7 @@ public:
     void modifierAnimal(const int IDAnimalAModifier, Crocodile const * nouvelAnimal);
     void modifierAnimal(const int IDAnimalAModifier, Lapin const * nouvelAnimal);
 
-	
+
 	// Getters pour les listes spécifiques des animaux
 	Tigre const * getTigre(const int) const;
 	Girafe const * getGirafe(const int) const;
@@ -140,11 +140,11 @@ public:
 	Crocodile const * getCrocodile(const int) const;
 	Lapin const * getLapin(const int) const;
 	Basque const * getBasque(const int) const;
-	
-	
-	
-	
-	
+
+
+
+
+
     // Retourne le rang dans la liste de l'animal dont l'ID est donné. Gestion erreur si absent
     int rechercherAnimal(const int ID) const;
 
@@ -170,6 +170,14 @@ public:
     // - Si l’animal poss`de des proies et des pr ́dateurs dans l’enclos : 6
     int consequenceDeplacementAnimal(Animal const *, const int IDEnclos) const;
 
+    // On reçoit en paramètres le code espèce de l’animal et l’ID de l’enclos de départ
+    // On effectue ensuite les tests appropriés et on retourne une valeur pour chacun des cas suivants :
+    //	Invalide (enclos inexistant) : -1
+    //	Tout est ok : 0
+    //	Animal possède proies et/ou prédateurs : 1
+    int consequenceDansEnclosDepartDeplacementAnimal(Animal const * a1, const int IDEnclos) const;
+
+
 	// Retourne le rang de l'animal recherché dans la liste de son espèce
     int rechercherGirafe(const int ID) const;
     int rechercherTigre(const int ID) const;
@@ -181,8 +189,8 @@ public:
     int rechercherLoutre(const int ID) const;
     int rechercherCrocodile(const int ID) const;
     int rechercherLapin(const int ID) const;
-	
-	
+
+
     // Les fonctions suivantes trient la liste d'animaux/d'enclos selon le critère indiqué
     void triAnimauxAlpha();
     void triAnimauxEspece();
