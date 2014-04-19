@@ -371,60 +371,13 @@ int Parc::consequenceDeplacementAnimal(Animal const * a1, const int IDEnclos) co
     	Animal possède des proies et des prédateurs dans l'enclos : 6
     */
     int iRangEnclos = rechercherEnclos(IDEnclos);
-   /** Ne sert plus maintenant que le clandestin est mort : int i=0; **/
     bool YaTilDesProies = false;
     bool YaTilDesPredateurs =false;
     int nbProiesDeAnimal = tabProies[a1->getEspece()].getNbElem();
     int iEspeceA = a1->getEspece();
     int nbElemTabProies = tabProies.getNbElem();
     int nbElem;
-/*
-    if (iRangEnclos == -1)
-        return -1;
-    else {
-        if (listeEnclos[iRangEnclos]->getOccupation() == listeEnclos[iRangEnclos]->getCapacite() )
-            return 1;
-        else {
-            if (a1->getSaitVoler && (listeEnclos[iRangEnclos].getType() == ENCLOS || listeEnclos[iRangEnclos].getType() == BASSIN) )
-                return 3;
-            else {
-                if (!a1->getSaitNager() && listeEnclos[iRangEnclos].getType() == BASSIN)
-                    return 2;
-                else {
-                    // Pour chacun des animaux dans l'enclos, regarder si l'animal a1 est une proie et si a1 possède des proies présentes
-                    */
-                    /** CE WHILE EST UN CLANDESTIN !!!!!! AU BUCHET !!! **/ /*
-                    while (i < listeEnclos[iRangEnclos].getOccupation() && !YaTilDesPredateurs) {
-                        // je cherche dans quels tableaux a1 est une proie et je vérifie si l'animal est présent, si oui bool = true sinon on continue jusqu'a bool = true ou fin du tableau
-                        for (int j = 0; j < nbElemTabProies; j++) {
-                            nbElem = tabProies[j].getNbElem();
-                            for(int k = 0; k < nbElem; k++) {
-                                if (tabProies[j][k].iCodeProie == a1.getEspece()) {
-                                    // On regarde maintenant si le prédateur est présent dans l'enclos
-                                    if (listeEnclos[iRangEnclos].getNombreAnimaux(tabProies[j][k].iCodeProie) != 0)
-                                        YaTilDesPredateurs = true;
-                                }
-                            }
-                        }
-                        i++;
-                    }
-                    // maintenant je cherche donc si y'a des proies de notre animal
-                    for (int j = 0; j  < nbProiesDeAnimal; j++) {
-                        // pour chaque proies, on regarde si elle est présente dans le tableau
-                        if (listeEnclos[iRangEnclos].getNombreAnimaux(tabProies[iEspeceA][j].iCodeEspece) != 0)
-                            YaTilDesProies = true;
-                    }
-                    // maintenant on sait si y'a des proies et si y'a des prédateurs
-                    if (YaTilDesPredateurs && YaTilDesProies)
-                        return 6;
-                    else if (YaTilDesPredateurs)
-                        return 4;
-                    else return 5;
-                }
-            }
-        }
-    }
-    */
+
     if (iRangEnclos == -1) {
         return -1;
     }
@@ -470,6 +423,54 @@ int Parc::consequenceDeplacementAnimal(Animal const * a1, const int IDEnclos) co
         else
             return 0;
     }
+}
+
+int Parc::consequenceDansEnclosDepartDeplacementAnimal(Animal const * a1, const int IDEnclos) const {
+    /* 	Invalide (enclos inexistant) : -1
+    	Tout est ok : 0
+    	Animal possède proies et/ou prédateurs : 1
+    */
+    int iRangEnclos = rechercherEnclos(IDEnclos);
+    int nbProiesDeAnimal = tabProies[a1->getEspece()].getNbElem();
+    int iEspeceA = a1->getEspece();
+    int nbElemTabProies = tabProies.getNbElem();
+    int nbElem;
+
+   // Si enclos non trouvé
+    if (iRangEnclos == -1) {
+        return -1;
+    }
+    // Si l'animal est le dernier de son espèce, pas de souci
+    else if (listeEnclos[iRangEnclos]->getNombreAnimaux(a1->getEspece()) <= 1) {
+      return 0;
+    }
+    // Sinon, on cherche s'il a au moins un prédateur ou au moins une proie
+    else {
+        // Pour chacune des espèces dans l'enclos, regarder si c'est un prédateur de a1 et s'il est présent
+        // je pour quels espèces a1 est une proie et je vérifie si l'animal est présent, si oui returne 1 sinon on continue
+        // Pour chaque espèce
+        for (int j = 0; j < nbElemTabProies; j++) {
+            nbElem = tabProies[j].getNbElem();
+            // Pour chaque proie de cette espèce
+            for(int k = 0; k < nbElem; k++) {
+                // Si c'est un prédateur de a1
+                if (tabProies[j][k].iCodeProie == a1->getEspece()) {
+                    // On regarde maintenant si le prédateur est présent dans l'enclos
+                    if (listeEnclos[iRangEnclos]->getNombreAnimaux(tabProies[j][k].iCodeProie) != 0)
+                        return 1;
+                }
+            }
+        }
+
+        // maintenant je cherche s'il y a des proies de notre animal
+        for (int j = 0; j  < nbProiesDeAnimal; j++) {
+            // pour chaque proies, on regarde si elle est présente dans le tableau
+            if (listeEnclos[iRangEnclos]->getNombreAnimaux(tabProies[iEspeceA][j].iCodeProie) != 0)
+                return 1;
+        }
+    }
+
+    return 0;
 }
 
 // Ici on vérifie que les trois éléments existent, que l'animal est bien dans l'enclos de départ et qu'il y a de la
