@@ -7,6 +7,7 @@
 #include "../entetes/utilisateur.h"
 #include "../entetes/enclos.h"
 
+
 using namespace std;
 
 
@@ -17,6 +18,8 @@ using namespace std;
 string sNom = "";
 int iType;
 int iCapacite;
+int iChoixAnimal;
+int iIDEnclos=0;
 
 void retourMenu() {
     cout << "Appuyez sur entrée pour revenir au menu précédent.";
@@ -111,6 +114,47 @@ void menuGestion(Parc &Parc1) {
             retourMenu();
             break;
         case MENU_GESTION_BARNEY:
+			iChoixAnimal = selectionChoixAnimal();
+			switch (iChoixAnimal) {
+				case GIRAFE:
+					//créer une girafe
+					Girafe * g1;
+					g1 = creerGirafe();
+					// Choix de l'enclos
+															//Gestion d'erreur car choixEnclos peut retourner -1
+					iIDEnclos = choixEnclosCreerAnimal();
+					//Création de l'animal dans l'enclos
+					(if iIDEnclos != -1)
+						Parc1.creerAnimal(g1, iIDEnclos);
+					break;
+				case TIGRE :
+					//créer un tigre 
+					break;
+				case BASQUE : 
+					
+					break;
+				case MARMOTTE :
+					
+					break;
+				case ELEPHANT :
+					
+					break;
+				case AIGLE :
+					
+					break;
+				case TORTUE :
+					
+					break;
+				case LOUTRE :
+					
+					break;
+				case CROCODILE :
+					
+					break;
+				case LAPIN :
+					
+					break;
+			}
             retourMenu();
             break;
         case MENU_GESTION_DEPLACER:
