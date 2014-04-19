@@ -1,8 +1,11 @@
 #include <iostream>
 #include <stdio.h>
 #include <cstdlib>
+#include <string>
 
 #include "../entetes/menu.h"
+#include "../entetes/utilisateur.h"
+#include "../entetes/enclos.h"
 
 using namespace std;
 
@@ -96,7 +99,11 @@ void menuGestion(Parc &Parc1) {
 			sNom = selectionNomEnclos();
 			iType = selectionTypeEnclos();
 			iCapacite = selectionCapaciteEnclos();
-			Enclos e1(sNom,iType,iCapacite);
+			Parc1.creerEnclos(sNom,iType,iCapacite);
+			
+			// Gestion d'erreur ici
+			cout << "L'enclos a bien été crée. " << endl;
+			
 			
             retourMenu();
             break;

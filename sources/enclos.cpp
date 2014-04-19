@@ -24,7 +24,7 @@ Enclos::Enclos() {
 }
 
 
-Enclos::Enclos(const string & nom, const int & type, const int& capacite, const int & ID) {
+Enclos::Enclos(const string & nom, const int & type, const int & capacite, const int & ID) {
     iOccupation = 0;
     sNom = nom;
     iTypeEnclos = type;

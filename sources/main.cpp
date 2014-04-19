@@ -4,12 +4,14 @@
 #include <ctime>
 
 #include "../entetes/animal.h"
-#include "../entetes/enclos.h"
+//Déja inclut dans menu.h
+//#include "../entetes/enclos.h"
 #include "../entetes/set.h"
 #include "../entetes/parc.h"
 #include "../entetes/menu.h"
 #include "../entetes/affichage.h"
-#include "../entetes/utilisateur.h"
+// Pas besoin de utilisateur.h car il est inclut dans menu.h 
+//#include "../entetes/utilisateur.h"
 
 
 

@@ -1,7 +1,3 @@
-#include <iostream>
-#include <stdio.h>
-#include <cstdlib>
-
 #include "../entetes/utilisateur.h"
 
 /**********************/
@@ -31,7 +27,7 @@ int selectionTypeEnclos(){
 	else return (iType);
 }
 
-int selectionCapactieEnclos(){
+int selectionCapaciteEnclos(){
 	int iCapacite;
 	cout << "Entrez la valeur de la capacite de l'Enclos : ";
 	cin >> iCapacite;

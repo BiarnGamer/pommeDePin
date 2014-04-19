@@ -1,5 +1,5 @@
-all: objets/animal.o objets/enclos.o objets/parc.o objets/menu.o objets/affichage.o objets/main.o 
-	g++  objets/animal.o objets/enclos.o objets/parc.o objets/menu.o objets/affichage.o objets/main.o -o launch
+all: objets/animal.o objets/enclos.o objets/parc.o objets/menu.o objets/affichage.o objets/utilisateur.o objets/main.o 
+	g++  objets/animal.o objets/enclos.o objets/parc.o objets/menu.o objets/affichage.o objets/utilisateur.o objets/main.o -o launch
 
 objets/animal.o: entetes/animal.h sources/animal.cpp
 	g++ -c sources/animal.cpp -o objets/animal.o
@@ -20,3 +20,6 @@ objets/menu.o: entetes/menu.h sources/menu.cpp
 	
 objets/main.o: entetes/animal.h sources/main.cpp
 	g++ -c sources/main.cpp -o objets/main.o
+
+objets/utilisateur.o : entetes/utilisateur.h sources/utilisateur.cpp
+	g++ -c sources/utilisateur.cpp -o objets/utilisateur.o
