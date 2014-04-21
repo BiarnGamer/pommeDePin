@@ -249,7 +249,9 @@ int choixEnclos(Parc & Parc1, Animal * a) {
          // Affiche la liste des enclos disponibles et demande du choix
          cout << "Enclos disponibles : " << endl;
          for (int i=0; i< iNbEnclos; i++) {
-             cout <</* "Enclos " << i+1 << " -*/"** ID : " << Parc1.getEnclos(i).getID() << " - Occupation : " << Parc1.getEnclos(i).getOccupation() << " / " << Parc1.getEnclos(i).getCapacite() << endl;
+            if (Parc1.getEnclos(i).getOccupation() < Parc1.getEnclos(i).getCapacite()) {
+                cout << "- ID : " << Parc1.getEnclos(i).getID() << " - " << Parc1.getEnclos(i).getNom() << " - Occupation : " << Parc1.getEnclos(i).getOccupation() << " / " << Parc1.getEnclos(i).getCapacite() << endl;
+            }
          }
          cout << endl << "Entrez l'ID de l'enclos choisi ou -5 pour en créer un nouveau : ";
          cin >> iIDEnclos;
@@ -729,4 +731,104 @@ Basque * creerBasque() {
     Basque * l;
     l = new Basque(fLong,fTemps,iNbRicard,iNbPartie,sNom);
     return l;
+}
+
+
+void deplacerAnimal(Parc & Parc1) {
+
+
+
+
+
+
+
+   // si pas enclos avec animaux, on quitte
+
+
+
+
+   system("clear");
+   cout << "********************************" << endl;
+   cout << "***  Déplacement dun animal  ***" << endl;
+   cout << "********************************" << endl << endl;
+
+   int iRangEnclos = -1;
+   int iIDEnclos = 0;
+   int iNbEnclos = 0;
+   int iIDAnimal = 0;
+   int iNbAnimaux = 0;
+   int iIDEnclosArrivee = -1;
+   bool animalExiste = false;
+   bool annuler = false;
+   int iConsequencesDansEnclosDepart;
+   int j;
+   Animal * ptrAnimal;
+
+
+    // On le nombre d'enclos non vides
+    int iNbEnclosNonVides = 0;
+    for (int i =0; i < Parc1.getNbEnclos() ; i++) {
+        if (Parc1.getEnclos(i).getOccupation() >0 ) {
+            iNbEnclosNonVides ++;
+        }
+    }
+
+    // S'il n'y en a aucun, on quitte
+    if(iNbEnclosNonVides == 0) {
+      cout << "Il n'y a aucun enclos avec des animaux à déplacer." << endl;
+   }
+   else {
+      // Choix de l'enclos
+      iNbEnclos =  Parc1.getNbEnclos();
+      cout << "Veuillez choisir l'enclos dans lequel se trouve l'animal à déplacer : " << endl;
+      cout << "Enclos disponibles : " << endl;
+      for (int i=0; i< iNbEnclos; i++) {
+         if( Parc1.getEnclos(i).getOccupation() > 0)
+            cout << "- ID : " << Parc1.getEnclos(i).getID() << " - " << Parc1.getEnclos(i).getNom() << endl;
+      }
+      do{
+         cout << endl << "Entrez l'ID de l'enclos choisi : ";
+         cin >> iIDEnclos;
+         iRangEnclos = Parc1.rechercherEnclos(iIDEnclos);
+      }while(iRangEnclos == -1);
+
+      // Choix de l'animal à déplacer
+      iNbAnimaux = Parc1.getEnclos(iRangEnclos).getOccupation();
+      cout << "Veuillez choisir l'animal à déplacer : " << endl;
+      cout << "Animaux disponibles : " << endl;
+      for (int i=0; i< iNbAnimaux; i++) {
+         cout << "- ID : " << Parc1.getEnclos(iRangEnclos).getAnimal(i).getID() << " - " << Parc1.getEnclos(iRangEnclos).getAnimal(i).getNom() << endl;
+      }
+      do{
+         cout << endl << "Entrez l'ID de l'animal choisi : ";
+         cin >> iIDAnimal;
+         j=0;
+         while(!animalExiste && j<iNbAnimaux) {
+            if(Parc1.getEnclos(iRangEnclos).getAnimal(j).getID() == iIDAnimal) {
+               animalExiste = true;
+            }
+            else {
+               j++;
+            }
+         }
+      }while(!animalExiste);
+
+      // Vérification des conséquences dans l'enclos de départ
+      ptrAnimal = Parc1.getEnclos(iRangEnclos).getPtrAnimal(j);
+      iConsequencesDansEnclosDepart = Parc1.consequenceDansEnclosDepartDeplacementAnimal(ptrAnimal, iIDEnclos);
+      if(iConsequencesDansEnclosDepart == 1) {
+         cout <<  endl << "Attention, cet animal possède des proies et/ou des prédateurs dans l'enclos. Il est possible que cela crée un déséquilibre et que des animaux s'entretuent dans cette enclos. Voulez-vous annuler ce déplacement ? (O / N)";
+         annuler = choix();
+      }
+
+      if(!annuler) {
+         // Choix de l'enclos d'arrivée
+         iIDEnclosArrivee = choixEnclos(Parc1, ptrAnimal);
+
+         // Déplacement
+         Parc1.deplacerAnimal(iIDEnclos, iIDAnimal, iIDEnclosArrivee);
+
+         cout << "L'animal a bien été déplacé. Les possibles conséquences de ce déplacement ont été prises en compte." << endl;
+      }
+   }
 }

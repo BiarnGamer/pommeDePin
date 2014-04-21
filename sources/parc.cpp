@@ -401,7 +401,7 @@ int Parc::consequenceDeplacementAnimal(Animal const * a1, const int IDEnclos) co
                 // Si c'est un prédateur de a1
                 if (tabProies[j][k].iCodeProie == a1->getEspece()) {
                     // On regarde maintenant si le prédateur est présent dans l'enclos
-                    if (listeEnclos[iRangEnclos]->getNombreAnimaux(tabProies[j][k].iCodeProie) != 0)
+                    if (listeEnclos[iRangEnclos]->getNombreAnimaux(j) != 0)
                         YaTilDesPredateurs = true;
                 }
             }

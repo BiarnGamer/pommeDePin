@@ -14,6 +14,7 @@ void creationEnclos(Parc & Parc1);
 void videBuffer();
 void Barney(Parc & Parc1);
 bool choix();
+void deplacerAnimal(Parc & Parc1);
 
 
 string selectionNomEnclos();
