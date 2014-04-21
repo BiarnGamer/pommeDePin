@@ -11,6 +11,11 @@ void videBuffer() {
 }
 
 void creationEnclos(Parc & Parc1) {
+    system("clear");
+    cout << "******************************" << endl;
+    cout << "***  Création d'un enclos  ***" << endl;
+    cout << "******************************" << endl << endl;
+
     string sNom = "";
     int iType;
     int iCapacite;
@@ -19,11 +24,11 @@ void creationEnclos(Parc & Parc1) {
     videBuffer();
     getline(cin, sNom);
 
-    cout << "Entrez "<< ENCLOS << " pour un Enclos, " << BASSIN << " pour un Bassin ou "<< CAGE <<" pour une cage : ";
+    cout << "Type de l'enclos ("<< ENCLOS << " : Enclos, " << BASSIN << " : Bassin, "<< CAGE <<" : Cage) : ";
     cin >> iType;
     while (iType != ENCLOS && iType != BASSIN && iType != CAGE) {
         cout << "Erreur de Saisie, veuillez recommencer." << endl;
-        cout << "Entrez "<< ENCLOS << " pour un Enclos, " << BASSIN << " pour un Bassin ou "<< CAGE <<" pour une cage : ";
+        cout << "Type de l'enclos ( "<< ENCLOS << " : Enclos, " << BASSIN << " : Bassin, "<< CAGE <<" : Cage) : ";
         cin >> iType;
     }
 
@@ -42,6 +47,11 @@ void creationEnclos(Parc & Parc1) {
 }
 
 int selectionChoixAnimal() {
+    system("clear");
+    cout << "*****************************" << endl;
+    cout << "***  Capture d'un animal  ***" << endl;
+    cout << "*****************************" << endl << endl;
+
     int iChoix = -1;
     cout << "Voici les choix possibles d'animaux : " << endl;
     cout << "Tapez " << GIRAFE << " pour la Girafe" << endl;
@@ -57,7 +67,11 @@ int selectionChoixAnimal() {
     cout << "Votre choix : ";
     cin >> iChoix;
     while (iChoix <0 || iChoix > 9) {
-        cout << "Erreur de saisie, veuillez recommencer." << endl;
+        system("clear");
+        cout << "*****************************" << endl;
+        cout << "***  Capture d'un animal  ***" << endl;
+        cout << "*****************************" << endl << endl;
+        cout << "Erreur de saisie, veuillez recommencer." << endl << endl;
         cout << "Voici les choix possibles d'animaux : " << endl;
         cout << "Tapez 0 pour la Girafe" << endl;
         cout << "Tapez 1 pour le Tigre" << endl;
@@ -72,6 +86,7 @@ int selectionChoixAnimal() {
         cout << "Votre choix : ";
         cin >> iChoix;
     }
+    cout << endl;
     return iChoix;
 }
 
@@ -206,6 +221,11 @@ void Barney(Parc & Parc1) {
 
 
 int choixEnclos(Parc & Parc1, Animal * a) {
+    system("clear");
+    cout << "***************************" << endl;
+    cout << "***  Choix d'un enclos  ***" << endl;
+    cout << "***************************" << endl << endl;
+
     string sChoix;
     int iIDEnclos;
 	 int iIDDernierEnclos;
@@ -227,10 +247,11 @@ int choixEnclos(Parc & Parc1, Animal * a) {
     if (iNbEnclosNonPlein !=0) {
       do {
          // Affiche la liste des enclos disponibles et demande du choix
+         cout << "Enclos disponibles : " << endl;
          for (int i=0; i< iNbEnclos; i++) {
-             cout << "Enclos " << i+1 << " - ID : " << Parc1.getEnclos(i).getID() << " - Taux Occupation : " << Parc1.getEnclos(i).getOccupation() << " / " << Parc1.getEnclos(i).getCapacite() << endl;
+             cout <</* "Enclos " << i+1 << " -*/"** ID : " << Parc1.getEnclos(i).getID() << " - Occupation : " << Parc1.getEnclos(i).getOccupation() << " / " << Parc1.getEnclos(i).getCapacite() << endl;
          }
-         cout <<"Entrez l'ID (ATTENTION choisissez l'identifiant) de l'enclos choisi ou -5 si vous voulez en créer un nouveau : ";
+         cout << endl << "Entrez l'ID de l'enclos choisi ou -5 pour en créer un nouveau : ";
          cin >> iIDEnclos;
          existe = Parc1.rechercherEnclos(iIDEnclos);
 
@@ -257,6 +278,7 @@ int choixEnclos(Parc & Parc1, Animal * a) {
            if(consequence == 2 || consequence == 3) {
                if(choix()) {
                   valide = false;
+                  system("clear");
                }
                else {
                   valide = true;
@@ -265,6 +287,7 @@ int choixEnclos(Parc & Parc1, Animal * a) {
          }
          // Si l'enclos choisi n'existe pas
          else if (existe == -1) {
+             system("clear");
              cout << "Erreur de saisie (enclos non trouvé), veuillez recommencer." << endl;
              valide = false;
          }
@@ -282,7 +305,8 @@ int choixEnclos(Parc & Parc1, Animal * a) {
                break;
            case 1 :
                valide = false;
-               cout << "L'enclos est plein, veuillez en choisir un autre." << endl;
+               system("clear");
+               cout << "L'enclos est plein, veuillez en choisir un autre." << endl << endl;
                break;
            case 2 :
                cout << "L'animal se noiera, voulez vous choisir un autre enclos ? (O / N) : ";
@@ -307,6 +331,7 @@ int choixEnclos(Parc & Parc1, Animal * a) {
            if(consequence == 2 || consequence == 3 || consequence == 4 || consequence == 5 || consequence == 6) {
                if(choix()) {
                   valide = false;
+                  system("clear");
                }
                else {
                   valide = true;
@@ -345,7 +370,8 @@ int choixEnclos(Parc & Parc1, Animal * a) {
                }
             }
             if (!valide) {
-                cout << "Faites Attention dans le type d'enclos choisi. " << endl;
+                system("clear");
+                cout << "Faites Attention dans le type d'enclos choisi. " << endl << endl;
                 creationEnclos(Parc1);
             }
         } while (!valide);
