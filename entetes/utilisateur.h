@@ -13,6 +13,7 @@ using namespace std;
 void creationEnclos(Parc & Parc1);
 void videBuffer();
 void Barney(Parc & Parc1);
+bool choix();
 
 
 string selectionNomEnclos();
