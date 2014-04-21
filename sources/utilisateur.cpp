@@ -78,6 +78,19 @@ int selectionChoixAnimal(){
 void Barney(Parc & Parc1) {
    int iChoixAnimal = selectionChoixAnimal();
    int iIDEnclos;
+   // On va compter combien il ya d'enclos non plein, et si il n'y en a aucun de disponible alors on en crée un.
+   int iNbEnclosNonPlein = 0;
+   for (int i =0; i < Parc1.getNbEnclos() ; i++){
+	   if (Parc1.getEnclos(i).getOccupation() < Parc1.getEnclos(i).getCapacite()){
+		   iNbEnclosNonPlein ++;
+	   }
+   }
+   //Si aucun enclos n'est crée iNbEnclosNonPlein restera nul
+   if (iNbEnclosNonPlein == 0){
+	   cout << "Aucun enclos n'est disponible, il vous faut donc en créer un. "<< endl;
+	   // On crée alors un enclos
+	   creationEnclos(Parc1);
+   }
    switch (iChoixAnimal) {
       case GIRAFE:
          //créer une girafe
