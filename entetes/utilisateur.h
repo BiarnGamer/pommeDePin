@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <cstdlib>
 #include <limits>
+#include <string>
 
 //Afin d'utiliser les constantes ENCLOS
 #include "../entetes/enclos.h"
@@ -28,4 +29,4 @@ Elephant * creerElephant();
 Lapin * creerLapin();
 Marmotte * creerMarmotte();
 Basque * creerBasque();
-int choixEnclosCreerAnimal(Parc & Parc1);
+int choixEnclos(Parc & Parc1,Animal * a);

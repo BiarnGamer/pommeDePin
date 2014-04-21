@@ -234,7 +234,7 @@ int choixEnclos(Parc & Parc1, Animal * a){
 				valide = false;
 			}
 			else {
-				consequence = consequenceDeplacementAnimal(a,iIDEnclos);
+				consequence = Parc1.consequenceDeplacementAnimal(a,iIDEnclos);
 				switch (consequence) {
 					case -1 :
 						// L'enclos n'existe pas 
@@ -251,13 +251,13 @@ int choixEnclos(Parc & Parc1, Animal * a){
 						break;
 					case 2 :
 						// L'animal se noierai
-						cout << "L'animal se noiera, voulez vous choisir un autre enclos ? (O / N)"
+						cout << "L'animal se noiera, voulez vous choisir un autre enclos ? (O / N) : ";
 						do{
 							cin >> sChoix;
-							if (!(sChoix == 'o' || sChoix == 'O' || sChoix == 'n' || sChoix == 'N'))
+							if (!(sChoix == "o" || sChoix == "O" || sChoix == "n" || sChoix == "N"))
 								cout << "Erreur de saisie, veuillez recommencer." << endl;
-						}while(!(sChoix == 'o' || sChoix == 'O' || sChoix == 'n' || sChoix == 'N'));
-							if (sChoix == 'o' || sChoix == 'O')
+						}while(!(sChoix == "o" || sChoix == "O" || sChoix == "n" || sChoix == "N"));
+							if (sChoix == "o" || sChoix == "O")
 								valide = false;
 							else {
 								valide = true;
@@ -265,13 +265,13 @@ int choixEnclos(Parc & Parc1, Animal * a){
 						break;
 					case 3 :
 						// L'animal s'envolerai
-						cout << "L'animal s'envolera, voulez vous choisir un autre enclos ? (O / N)"
+						cout << "L'animal s'envolera, voulez vous choisir un autre enclos ? (O / N) : ";
 						do{
 							cin >> sChoix;
-							if (!(sChoix == 'o' || sChoix == 'O' || sChoix == 'n' || sChoix == 'N'))
+							if (!(sChoix == "o" || sChoix == "O" || sChoix == "n" || sChoix == "N"))
 								cout << "Erreur de saisie, veuillez recommencer." << endl;
-						}while(!(sChoix == 'o' || sChoix == 'O' || sChoix == 'n' || sChoix == 'N'));
-							if (sChoix == 'o' || sChoix == 'O')
+						}while(!(sChoix == "o" || sChoix == "O" || sChoix == "n" || sChoix == "N"));
+							if (sChoix == "o" || sChoix == "O")
 								valide = false;
 							else {
 								valide = true;
@@ -279,13 +279,13 @@ int choixEnclos(Parc & Parc1, Animal * a){
 						break;
 					case 4 :
 						// L'animal possède des prédateurs dans l'enclos
-						cout << "L'animal possède des prédateurs dans l'enclos de destination, voulez vous choisir un autre enclos ? (O / N)"
+						cout << "L'animal possède des prédateurs dans l'enclos de destination, voulez vous choisir un autre enclos ? (O / N) : ";
 						do{
 							cin >> sChoix;
-							if (!(sChoix == 'o' || sChoix == 'O' || sChoix == 'n' || sChoix == 'N'))
+							if (!(sChoix == "o" || sChoix == "O" || sChoix == "n" || sChoix == "N"))
 								cout << "Erreur de saisie, veuillez recommencer." << endl;
-						}while(!(sChoix == 'o' || sChoix == 'O' || sChoix == 'n' || sChoix == 'N'));
-							if (sChoix == 'o' || sChoix == 'O')
+						}while(!(sChoix == "o" || sChoix == "O" || sChoix == "n" || sChoix == "N"));
+							if (sChoix == "o" || sChoix == "O")
 								valide = false;
 							else {
 								valide = true;
@@ -293,13 +293,13 @@ int choixEnclos(Parc & Parc1, Animal * a){
 						break;
 					case 5 :
 						// Il possède des proies
-						cout << "L'animal possède des proies dans l'enclos de destination, voulez vous choisir un autre enclos ? (O / N)"
+						cout << "L'animal possède des proies dans l'enclos de destination, voulez vous choisir un autre enclos ? (O / N) : ";
 						do{
 							cin >> sChoix;
-							if (!(sChoix == 'o' || sChoix == 'O' || sChoix == 'n' || sChoix == 'N'))
+							if (!(sChoix == "o" || sChoix == "O" || sChoix == "n" || sChoix == "N"))
 								cout << "Erreur de saisie, veuillez recommencer." << endl;
-						}while(!(sChoix == 'o' || sChoix == 'O' || sChoix == 'n' || sChoix == 'N'));
-							if (sChoix == 'o' || sChoix == 'O')
+						}while(!(sChoix == "o" || sChoix == "O" || sChoix == "n" || sChoix == "N"));
+							if (sChoix == "o" || sChoix == "O")
 								valide = false;
 							else {
 								valide = true;
@@ -307,13 +307,13 @@ int choixEnclos(Parc & Parc1, Animal * a){
 						break;
 					case 6 :
 						// Possède des proies et des prédateurs
-						cout << "L'animal possède des proies et des prédateurs dans l'enclos de destination, voulez vous choisir un autre enclos ? (O / N)"
+						cout << "L'animal possède des proies et des prédateurs dans l'enclos de destination, voulez vous choisir un autre enclos ? (O / N) : ";
 						do{
 							cin >> sChoix;
-							if (!(sChoix == 'o' || sChoix == 'O' || sChoix == 'n' || sChoix == 'N'))
+							if (!(sChoix == "o" || sChoix == "O" || sChoix == "n" || sChoix == "N"))
 								cout << "Erreur de saisie, veuillez recommencer." << endl;
-						}while(!(sChoix == 'o' || sChoix == 'O' || sChoix == 'n' || sChoix == 'N'));
-							if (sChoix == 'o' || sChoix == 'O')
+						}while(!(sChoix == "o" || sChoix == "O" || sChoix == "n" || sChoix == "N"));
+							if (sChoix == "o" || sChoix == "O")
 								valide = false;
 							else {
 								valide = true;
@@ -330,7 +330,6 @@ int choixEnclos(Parc & Parc1, Animal * a){
 			creationEnclos(Parc1);
 			// on gardera cet enclos pour l'animal
 			return (Parc1.getIDEnclos() -1);
-		}
 	}
 }
 
