@@ -227,7 +227,7 @@ int choixEnclosCreerAnimal(Parc & Parc1){
 		if (existe)
 			return iIDEnclos;
 		else {
-			cout << "Erreur de saisie, veuillez recommencer.";
+			cout << "Erreur de saisie, veuillez recommencer." << endl;
 			do{
 				for (int i=0; i< iNbEnclos; i++){
 					cout << "Enclos " << i << " - ID : " << Parc1.getEnclos(i).getID() << " - Taux Occupation : " << Parc1.getEnclos(i).getOccupation() << " / " << Parc1.getEnclos(i).getCapacite() << endl;
@@ -266,7 +266,7 @@ Girafe * creerGirafe(){
 	cin >> fTaille;
 	if (fTaille < 0 || fTaille > 10){
 		do{
-			cout << "Erreur de saisie, veuillez recommencer.";
+			cout << "Erreur de saisie, veuillez recommencer." << endl;
 			cout << "Entrez sa taille en m (entre 0 et 10) : ";
 			cin >> fTaille;
 		}while (fTaille < 0 || fTaille > 10);
@@ -275,7 +275,7 @@ Girafe * creerGirafe(){
 	cin >> iNbTaches;
 	if (iNbTaches < 0){
 		do{
-			cout << "Erreur de saisie, veuillez recommencer.";
+			cout << "Erreur de saisie, veuillez recommencer." << endl;
 			cout << "Entrez le nombre de tâche de l'animal : ";
 			cin >> iNbTaches;
 		}while (iNbTaches < 0);
@@ -297,7 +297,7 @@ Loutre * creerLoutre(){
 	cin >> fTaille;
 	if (fTaille < 0 || fTaille > 500){
 		do{
-			cout << "Erreur de saisie, veuillez recommencer.";
+			cout << "Erreur de saisie, veuillez recommencer." << endl;
 			cout << "Entrez sa taille en cm (entre 0 et 500) : ";
 			cin >> fTaille;
 		}while (fTaille < 0 || fTaille > 500);
@@ -306,7 +306,7 @@ Loutre * creerLoutre(){
 	cin >> iNbAmis;
 	if (iNbAmis < 0){
 		do{
-			cout << "Erreur de saisie, veuillez recommencer.";
+			cout << "Erreur de saisie, veuillez recommencer." << endl;
 			cout << "Entrez le nombre d'amis de l'animal : ";
 			cin >> iNbAmis;
 		}while (iNbAmis < 0);
@@ -329,7 +329,7 @@ Crocodile * creerCrocodile(){
 	cin >> iEnfantMange;
 	if (iEnfantMange < 0){
 		do{
-			cout << "Erreur de saisie, veuillez recommencer.";
+			cout << "Erreur de saisie, veuillez recommencer." << endl;
 			cout << "Entrez le nombre d'enfant mangé par le crocodile : ";
 			cin >> iEnfantMange;
 		}while (iEnfantMange < 0);
@@ -338,7 +338,7 @@ Crocodile * creerCrocodile(){
 	cin >> iNbDent;
 	if (iNbDent < 0){
 		do{
-			cout << "Erreur de saisie, veuillez recommencer.";
+			cout << "Erreur de saisie, veuillez recommencer." << endl;
 			cout << "Entrez le nombre de dents de l'animal : ";
 			cin >> iNbDent;
 		}while (iNbDent < 0);
@@ -363,7 +363,7 @@ Tortue * creerTortue(){
 	cin >> iVitesseMax;
 	if (iVitesseMax < 0){
 		do{
-			cout << "Erreur de saisie, veuillez recommencer.";
+			cout << "Erreur de saisie, veuillez recommencer." << endl;
 			cout << "Entrez la vitesse maximal de la tortue en km/h  : ";
 			cin >> iVitesseMax;
 		}while (iVitesseMax < 0);
@@ -372,7 +372,7 @@ Tortue * creerTortue(){
 	cin >> iAge;
 	if (iAge < 0){
 		do{
-			cout << "Erreur de saisie, veuillez recommencer.";
+			cout << "Erreur de saisie, veuillez recommencer." << endl;
 			cout << "Entrez l'age l'animal : ";
 			cin >> iAge;
 		}while (iAge < 0);
@@ -394,7 +394,7 @@ Aigle * creerAigle(){
 	cin >> iNb;
 	if (iNb < 0){
 		do{
-			cout << "Erreur de saisie, veuillez recommencer.";
+			cout << "Erreur de saisie, veuillez recommencer." << endl;
 			cout << "Entrez le nombre de Looping de l'aigle  : ";
 			cin >> iNb;
 		}while (iNb < 0);
@@ -403,7 +403,7 @@ Aigle * creerAigle(){
 	cin >> fLong;
 	if (fLong < 0){
 		do{
-			cout << "Erreur de saisie, veuillez recommencer.";
+			cout << "Erreur de saisie, veuillez recommencer." << endl;
 			cout << "Entrez la longueur du bec de l'aigle : ";
 			cin >> fLong;
 		}while (fLong < 0);
@@ -426,7 +426,7 @@ Tigre * creerTigre(){
 	cin >> iNb;
 	if (iNb < 0){
 		do{
-			cout << "Erreur de saisie, veuillez recommencer.";
+			cout << "Erreur de saisie, veuillez recommencer." << endl;
 			cout << "Entrez le nombre de gazelles croquées : ";
 			cin >> iNb;
 		}while (iNb < 0);
@@ -435,7 +435,7 @@ Tigre * creerTigre(){
 	cin >> fLong;
 	if (fLong < 0){
 		do{
-			cout << "Erreur de saisie, veuillez recommencer.";
+			cout << "Erreur de saisie, veuillez recommencer." << endl;
 			cout << "Entrez la hauteur du tigre au garot en cm : ";
 			cin >> fLong;
 		}while (fLong < 0);
@@ -458,7 +458,7 @@ Elephant * creerElephant(){
 	cin >> iNb;
 	if (iNb < 0){
 		do{
-			cout << "Erreur de saisie, veuillez recommencer.";
+			cout << "Erreur de saisie, veuillez recommencer." << endl;
 			cout << "Entrez le nombre de braconniers empalés : ";
 			cin >> iNb;
 		}while (iNb < 0);
@@ -467,7 +467,7 @@ Elephant * creerElephant(){
 	cin >> fTromp;
 	if (fTromp < 0){
 		do{
-			cout << "Erreur de saisie, veuillez recommencer.";
+			cout << "Erreur de saisie, veuillez recommencer." << endl;
 			cout << "Entrez la longueur de la trompe en cm : ";
 			cin >> fTromp;
 		}while (fTromp < 0);
@@ -476,7 +476,7 @@ Elephant * creerElephant(){
 	cin >> fLong;
 	if (fLong < 0){
 		do{
-			cout << "Erreur de saisie, veuillez recommencer.";
+			cout << "Erreur de saisie, veuillez recommencer." << endl;
 			cout << "Entrez le poids de l'éléphant en kg : ";
 			cin >> fLong;
 		}while (fLong < 0);
@@ -498,7 +498,7 @@ Lapin * creerLapin(){
 	cin >> iNb;
 	if (iNb < 0){
 		do{
-			cout << "Erreur de saisie, veuillez recommencer.";
+			cout << "Erreur de saisie, veuillez recommencer." << endl;
 			cout << "Entrez le nombre de carotte mangées par le lapin: ";
 			cin >> iNb;
 		}while (iNb < 0);
@@ -522,7 +522,7 @@ Marmotte * creerMarmotte(){
 	cin >> iNb;
 	if (iNb < 0){
 		do{
-			cout << "Erreur de saisie, veuillez recommencer.";
+			cout << "Erreur de saisie, veuillez recommencer." << endl;
 			cout << "Entrez le nombre de tablettes de chocolat emballées (on ne comptera que les Milka's) : ";
 			cin >> iNb;
 		}while (iNb < 0);
@@ -531,7 +531,7 @@ Marmotte * creerMarmotte(){
 	cin >> fLong;
 	if (fLong < 0){
 		do{
-			cout << "Erreur de saisie, veuillez recommencer.";
+			cout << "Erreur de saisie, veuillez recommencer." << endl;
 			cout << "Entrez la taille de la marmotte en cm : ";
 			cin >> fLong;
 		}while (fLong < 0);
@@ -555,7 +555,7 @@ Basque * creerBasque(){
 	cin >> iNbRicard;
 	if (iNbRicard < 0){
 		do{
-			cout << "Erreur de saisie, veuillez recommencer.";
+			cout << "Erreur de saisie, veuillez recommencer." << endl;
 			cout << "Entrez le nombre de Ricard bu par le basque : ";
 			cin >> iNbRicard;
 		}while (iNbRicard < 0);
@@ -564,7 +564,7 @@ Basque * creerBasque(){
 	cin >> iNbPartie;
 	if (iNbPartie < 0){
 		do{
-			cout << "Erreur de saisie, veuillez recommencer.";
+			cout << "Erreur de saisie, veuillez recommencer." << endl;
 			cout << "Entrez le nombre de parties de pelotte gagnées : ";
 			cin >> iNbPartie;
 		}while (iNbPartie < 0);
@@ -573,7 +573,7 @@ Basque * creerBasque(){
 	cin >> fLong;
 	if (fLong < 0){
 		do{
-			cout << "Erreur de saisie, veuillez recommencer.";
+			cout << "Erreur de saisie, veuillez recommencer." << endl;
 			cout << "Entrez la taille de la largeur du beret en cm : ";
 			cin >> fLong;
 		}while (fLong < 0);
@@ -582,7 +582,7 @@ Basque * creerBasque(){
 	cin >> fTemps;
 	if (fTemps < 0){
 		do{
-			cout << "Erreur de saisie, veuillez recommencer.";
+			cout << "Erreur de saisie, veuillez recommencer." << endl;
 			cout << "Entrez le temps de cuisson du basque en minute(s): ";
 			cin >> fTemps;
 		}while (fTemps < 0);
