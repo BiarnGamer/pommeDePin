@@ -4,88 +4,211 @@
 /****** POUR ENCLOS ***/
 /**********************/
 
-// Fonction de demande à l'utilisateur
 
-string selectionNomEnclos(){
-	string sNom;
-	cout << "Entrez le nom pour l'Enclos : ";
-	cin >> sNom;
-	return sNom;
+void videBuffer() {
+   cin.clear();
+   cin.ignore(numeric_limits<int>::max(), '\n');
 }
 
-int selectionTypeEnclos(){
-	int iType;
-	cout << "Entrez "<< ENCLOS << " pour un Enclos, " << BASSIN << " pour un Bassin ou "<< CAGE <<" pour une cage : ";
+void creationEnclos(Parc & Parc1) {
+   string sNom = "";
+   int iType;
+   int iCapacite;
+
+   cout << "Nom de l'Enclos : ";
+   videBuffer();
+	getline(cin, sNom);
+
+   cout << "Entrez "<< ENCLOS << " pour un Enclos, " << BASSIN << " pour un Bassin ou "<< CAGE <<" pour une cage : ";
 	cin >> iType;
-	if (iType != ENCLOS && iType != BASSIN && iType != CAGE){
-		do {
+	while (iType != ENCLOS && iType != BASSIN && iType != CAGE){
 		cout << "Erreur de Saisie, veuillez recommencer." << endl;
 		cout << "Entrez "<< ENCLOS << " pour un Enclos, " << BASSIN << " pour un Bassin ou "<< CAGE <<" pour une cage : ";
 		cin >> iType;
-		} while (iType != ENCLOS && iType != BASSIN && iType != CAGE);
-		return iType;
 	}
-	else return (iType);
-}
 
-int selectionCapaciteEnclos(){
-	int iCapacite;
-	cout << "Entrez la valeur de la capacite de l'Enclos : ";
+	cout << "Capacite de l'Enclos : ";
 	cin >> iCapacite;
-	if (iCapacite > 0)
-		return iCapacite;
-	else {
-		do{
-			cout << "Erreur de Saisie, veuillez recommencer." << endl;
-			cout << "Entrez la valeur de la capacite de l'Enclos : ";
-			cin >> iCapacite;
-		}while (iCapacite <= 0);
-		return iCapacite;
+	while (iCapacite <= 0) {
+      cout << "Erreur de Saisie, veuillez recommencer." << endl;
+      cout << "Capacite de l'Enclos : ";
+      cin >> iCapacite;
 	}
+
+   Parc1.creerEnclos(sNom,iType,iCapacite);
+
+   // GESTION D'ERREUR ICI
+   cout << "L'enclos a bien été crée. " << endl;
 }
 
 int selectionChoixAnimal(){
 	int iChoix = -1;
 	cout << "Voici les choix possibles d'animaux : " << endl;
-	cout << "Tapez 0 pour la Girafe" << endl;
-	cout << "Tapez 1 pour le Tigre" << endl;
-	cout << "Tapez 2 pour le Basque" << endl;
-	cout << "Tapez 3 pour la Marmotte" << endl;
-	cout << "Tapez 4 pour l'Elephant" << endl;
-	cout << "Tapez 5 pour l'Aigle" << endl;
-	cout << "Tapez 6 pour la Tortue" << endl;
-	cout << "Tapez 7 pour la Loutre" << endl;
-	cout << "Tapez 8 pour le Crocodile" << endl;
-	cout << "Tapez 9 pour le Lapin" << endl;
+	cout << "Tapez " << GIRAFE << " pour la Girafe" << endl;
+	cout << "Tapez " << TIGRE << " pour le Tigre" << endl;
+	cout << "Tapez " << BASQUE << " pour le Basque" << endl;
+	cout << "Tapez " << MARMOTTE << " pour la Marmotte" << endl;
+	cout << "Tapez " << ELEPHANT << " pour l'Elephant" << endl;
+	cout << "Tapez " << AIGLE << " pour l'Aigle" << endl;
+	cout << "Tapez " << TORTUE << " pour la Tortue" << endl;
+	cout << "Tapez " << LOUTRE << " pour la Loutre" << endl;
+	cout << "Tapez " << CROCODILE << " pour le Crocodile" << endl;
+	cout << "Tapez " << LAPIN << " pour le Lapin" << endl;
 	cout << "Votre choix : ";
 	cin >> iChoix;
-	if (iChoix >=0 && iChoix <10)
-		return iChoix;
-	else {
-		do{
-			cout << "Erreur de saisie, veuillez recommencer." << endl;
-			cout << "Voici les choix possibles d'animaux : " << endl;
-			cout << "Tapez 0 pour la Girafe" << endl;
-			cout << "Tapez 1 pour le Tigre" << endl;
-			cout << "Tapez 2 pour le Basque" << endl;
-			cout << "Tapez 3 pour la Marmotte" << endl;
-			cout << "Tapez 4 pour l'Elephant" << endl;
-			cout << "Tapez 5 pour l'Aigle" << endl;
-			cout << "Tapez 6 pour la Tortue" << endl;
-			cout << "Tapez 7 pour la Loutre" << endl;
-			cout << "Tapez 8 pour le Crocodile" << endl;
-			cout << "Tapez 9 pour le Lapin" << endl;
-			cout << "Votre choix : ";
-			cin >> iChoix;
-		}while (iChoix <0 || iChoix > 9);
-		return iChoix;
-	}
+	while (iChoix <0 || iChoix > 9){
+      cout << "Erreur de saisie, veuillez recommencer." << endl;
+      cout << "Voici les choix possibles d'animaux : " << endl;
+      cout << "Tapez 0 pour la Girafe" << endl;
+      cout << "Tapez 1 pour le Tigre" << endl;
+      cout << "Tapez 2 pour le Basque" << endl;
+      cout << "Tapez 3 pour la Marmotte" << endl;
+      cout << "Tapez 4 pour l'Elephant" << endl;
+      cout << "Tapez 5 pour l'Aigle" << endl;
+      cout << "Tapez 6 pour la Tortue" << endl;
+      cout << "Tapez 7 pour la Loutre" << endl;
+      cout << "Tapez 8 pour le Crocodile" << endl;
+      cout << "Tapez 9 pour le Lapin" << endl;
+      cout << "Votre choix : ";
+      cin >> iChoix;
+   }
+   return iChoix;
 }
+
+void Barney(Parc & Parc1) {
+   int iChoixAnimal = selectionChoixAnimal();
+   int iIDEnclos;
+   switch (iChoixAnimal) {
+      case GIRAFE:
+         //créer une girafe
+         Girafe * g1;
+         g1 = creerGirafe();
+         // Choix de l'enclos
+                                       //Gestion d'erreur car choixEnclos peut retourner -1
+         iIDEnclos = choixEnclosCreerAnimal(Parc1);
+         //Création de l'animal dans l'enclos
+         if (iIDEnclos != -1){
+            Parc1.creerAnimal(g1, iIDEnclos);
+            cout << "L'animal a bien été capturé et mis dans l'enclos." << endl;
+         }
+         break;
+      case TIGRE :
+         //créer un tigre
+         Tigre * t1;
+         t1 = creerTigre();
+         // Choix de l'enclos
+                                       //Gestion d'erreur car choixEnclos peut retourner -1
+         iIDEnclos = choixEnclosCreerAnimal(Parc1);
+         //Création de l'animal dans l'enclos
+         if (iIDEnclos != -1){
+            Parc1.creerAnimal(t1, iIDEnclos);
+            cout << "L'animal a bien été capturé et mis dans l'enclos." << endl;
+         }
+         break;
+      case BASQUE :
+         Basque * b1;
+         b1 = creerBasque();
+         // Choix de l'enclos
+                                       //Gestion d'erreur car choixEnclos peut retourner -1
+         iIDEnclos = choixEnclosCreerAnimal(Parc1);
+         //Création de l'animal dans l'enclos
+         if (iIDEnclos != -1){
+            Parc1.creerAnimal(b1, iIDEnclos);
+            cout << "L'animal a bien été capturé et mis dans l'enclos." << endl;
+         }
+         break;
+      case MARMOTTE :
+         Marmotte * m1;
+         m1 = creerMarmotte();
+         // Choix de l'enclos
+                                       //Gestion d'erreur car choixEnclos peut retourner -1
+         iIDEnclos = choixEnclosCreerAnimal(Parc1);
+         //Création de l'animal dans l'enclos
+         if (iIDEnclos != -1){
+            Parc1.creerAnimal(m1, iIDEnclos);
+            cout << "L'animal a bien été capturé et mis dans l'enclos." << endl;
+         }
+         break;
+      case ELEPHANT :
+         Elephant * E1;
+         E1 = creerElephant();
+         // Choix de l'enclos
+                                       //Gestion d'erreur car choixEnclos peut retourner -1
+         iIDEnclos = choixEnclosCreerAnimal(Parc1);
+         //Création de l'animal dans l'enclos
+         if (iIDEnclos != -1){
+            Parc1.creerAnimal(E1, iIDEnclos);
+            cout << "L'animal a bien été capturé et mis dans l'enclos." << endl;
+         }
+         break;
+      case AIGLE :
+         Aigle * a1;
+         a1 = creerAigle();
+         // Choix de l'enclos
+                                       //Gestion d'erreur car choixEnclos peut retourner -1
+         iIDEnclos = choixEnclosCreerAnimal(Parc1);
+         //Création de l'animal dans l'enclos
+         if (iIDEnclos != -1){
+            Parc1.creerAnimal(a1, iIDEnclos);
+            cout << "L'animal a bien été capturé et mis dans l'enclos." << endl;
+         }
+         break;
+      case TORTUE :
+         Tortue * T1;
+         T1 = creerTortue();
+         // Choix de l'enclos
+                                       //Gestion d'erreur car choixEnclos peut retourner -1
+         iIDEnclos = choixEnclosCreerAnimal(Parc1);
+         //Création de l'animal dans l'enclos
+         if (iIDEnclos != -1){
+            Parc1.creerAnimal(T1, iIDEnclos);
+            cout << "L'animal a bien été capturé et mis dans l'enclos." << endl;
+         }
+         break;
+      case LOUTRE :
+         Loutre * L1;
+         L1 = creerLoutre();
+         // Choix de l'enclos
+                                       //Gestion d'erreur car choixEnclos peut retourner -1
+         iIDEnclos = choixEnclosCreerAnimal(Parc1);
+         //Création de l'animal dans l'enclos
+         if (iIDEnclos != -1){
+            Parc1.creerAnimal(L1, iIDEnclos);
+            cout << "L'animal a bien été capturé et mis dans l'enclos." << endl;
+         }
+         break;
+      case CROCODILE :
+         Crocodile * C1;
+         C1 = creerCrocodile();
+         // Choix de l'enclos
+                                       //Gestion d'erreur car choixEnclos peut retourner -1
+         iIDEnclos = choixEnclosCreerAnimal(Parc1);
+         //Création de l'animal dans l'enclos
+         if (iIDEnclos != -1){
+            Parc1.creerAnimal(C1, iIDEnclos);
+            cout << "L'animal a bien été capturé et mis dans l'enclos." << endl;
+         }
+         break;
+      case LAPIN :
+         Lapin * l1;
+         l1 = creerLapin();
+         // Choix de l'enclos
+                                       //Gestion d'erreur car choixEnclos peut retourner -1
+         iIDEnclos = choixEnclosCreerAnimal(Parc1);
+         //Création de l'animal dans l'enclos
+         if (iIDEnclos != -1){
+            Parc1.creerAnimal(l1, iIDEnclos);
+            cout << "L'animal a bien été capturé et mis dans l'enclos." << endl;
+         }
+         break;
+   }
+}
+
 
 int choixEnclosCreerAnimal(Parc & Parc1){
 	int iIDEnclos;
 	bool existe = false;
-	int j=0; 
+	int j=0;
 	// Affichage des enclos et de leur occupation
 	int iNbEnclos = Parc1.getNbEnclos();
 	if (iNbEnclos !=0){
@@ -135,9 +258,10 @@ Girafe * creerGirafe(){
 	float fTaille;
 	int iNbTaches;
 	string sNom;
-	
+
 	cout << "Entrez le nom de l'animal : ";
-	cin >> sNom;
+   videBuffer();
+   getline(cin,sNom);
 	cout << "Entrez sa taille en m (entre 0 et 10) : ";
 	cin >> fTaille;
 	if (fTaille < 0 || fTaille > 10){
@@ -165,9 +289,10 @@ Loutre * creerLoutre(){
 	float fTaille;
 	int iNbAmis;
 	string sNom;
-	
+
 	cout << "Entrez le nom de l'animal : ";
-	cin >> sNom;
+   videBuffer();
+   getline(cin,sNom);
 	cout << "Entrez sa taille en cm (entre 0 et 500) : ";
 	cin >> fTaille;
 	if (fTaille < 0 || fTaille > 500){
@@ -196,9 +321,10 @@ Crocodile * creerCrocodile(){
 	int iEnfantMange;
 	int iNbDent;
 	string sNom;
-	
+
 	cout << "Entrez le nom de l'animal : ";
-	cin >> sNom;
+	videBuffer();
+   getline(cin,sNom);
 	cout << "Entrez le nombre d'enfant mangé par le crocodile : ";
 	cin >> iEnfantMange;
 	if (iEnfantMange < 0){
@@ -227,9 +353,10 @@ Tortue * creerTortue(){
 	int iAge;
 	string sCouleur;
 	string sNom;
-	
+
 	cout << "Entrez le nom de l'animal : ";
-	cin >> sNom;
+	videBuffer();
+   getline(cin,sNom);
 	cout << "Entrez la couleur de l'animal : ";
 	cin >> sCouleur;
 	cout << "Entrez la vitesse maximal de la tortue en km/h  : ";
@@ -259,9 +386,10 @@ Aigle * creerAigle(){
 	float fLong;
 	int iNb;
 	string sNom;
-	
+
 	cout << "Entrez le nom de l'animal : ";
-	cin >> sNom;
+	videBuffer();
+   getline(cin,sNom);
 	cout << "Entrez le nombre de Looping de l'aigle  : ";
 	cin >> iNb;
 	if (iNb < 0){
@@ -290,9 +418,10 @@ Tigre * creerTigre(){
 	float fLong;
 	int iNb;
 	string sNom;
-	
+
 	cout << "Entrez le nom de l'animal : ";
-	cin >> sNom;
+	videBuffer();
+   getline(cin,sNom);
 	cout << "Entrez le nombre de gazelles croquées : ";
 	cin >> iNb;
 	if (iNb < 0){
@@ -321,9 +450,10 @@ Elephant * creerElephant(){
 	float fTromp;
 	int iNb;
 	string sNom;
-	
+
 	cout << "Entrez le nom de l'animal : ";
-	cin >> sNom;
+	videBuffer();
+   getline(cin,sNom);
 	cout << "Entrez le nombre de braconniers empalés : ";
 	cin >> iNb;
 	if (iNb < 0){
@@ -360,9 +490,10 @@ Lapin * creerLapin(){
 	string sCouleur;
 	int iNb;
 	string sNom;
-	
+
 	cout << "Entrez le nom de l'animal : ";
-	cin >> sNom;
+	videBuffer();
+   getline(cin,sNom);
 	cout << "Entrez le nombre de carotte mangées par le lapin: ";
 	cin >> iNb;
 	if (iNb < 0){
@@ -383,9 +514,10 @@ Marmotte * creerMarmotte(){
 	float fLong;
 	int iNb;
 	string sNom;
-	
+
 	cout << "Entrez le nom de l'animal : ";
-	cin >> sNom;
+	videBuffer();
+   getline(cin,sNom);
 	cout << "Entrez le nombre de tablettes de chocolat emballées (on ne comptera que les Milka's) : ";
 	cin >> iNb;
 	if (iNb < 0){
@@ -415,9 +547,10 @@ Basque * creerBasque(){
 	int iNbRicard;
 	int iNbPartie;
 	string sNom;
-	
+
 	cout << "Entrez le nom de l'animal : ";
-	cin >> sNom;
+	videBuffer();
+   getline(cin,sNom);
 	cout << "Entrez le nombre de Ricard bu par le basque : ";
 	cin >> iNbRicard;
 	if (iNbRicard < 0){

@@ -15,16 +15,16 @@ using namespace std;
 /*********** Declaration des variables *********************/
 /***********************************************************/
 
-string sNom = "";
-int iType;
-int iCapacite;
+
 int iChoixAnimal;
-int iIDEnclos=0;
+
 
 void retourMenu() {
     cout << "Appuyez sur entrée pour revenir au menu précédent.";
     scanf("%*c%*c");
 }
+
+
 
 void menuPrincipal(Parc &Parc1){
     int iChoix;
@@ -73,6 +73,7 @@ void menuPrincipal(Parc &Parc1){
 }
 
 void menuGestion(Parc &Parc1) {
+    int iIDEnclos;
     int iChoix;
     do {
         system("clear");
@@ -98,147 +99,14 @@ void menuGestion(Parc &Parc1) {
 
         switch (iChoix) {
         case MENU_GESTION_CREER_ENCLOS:
-			
-			sNom = selectionNomEnclos();
-			iType = selectionTypeEnclos();
-			iCapacite = selectionCapaciteEnclos();
-			Parc1.creerEnclos(sNom,iType,iCapacite);
-			
-			// Gestion d'erreur ici
-			cout << "L'enclos a bien été crée. " << endl;
-			
-			
+            creationEnclos(Parc1);
             retourMenu();
             break;
         case MENU_GESTION_SUPPR_ENCLOS:
             retourMenu();
             break;
         case MENU_GESTION_BARNEY:
-			iChoixAnimal = selectionChoixAnimal();
-			switch (iChoixAnimal) {
-				case GIRAFE:
-					//créer une girafe
-					Girafe * g1;
-					g1 = creerGirafe();
-					// Choix de l'enclos
-															//Gestion d'erreur car choixEnclos peut retourner -1
-					iIDEnclos = choixEnclosCreerAnimal(Parc1);
-					//Création de l'animal dans l'enclos
-					if (iIDEnclos != -1){
-						Parc1.creerAnimal(g1, iIDEnclos);
-						cout << "L'animal a bien été capturé et mis dans l'enclos." << endl;
-					}
-					break;
-				case TIGRE :
-					//créer un tigre 
-					Tigre * t1;
-					t1 = creerTigre();
-					// Choix de l'enclos
-															//Gestion d'erreur car choixEnclos peut retourner -1
-					iIDEnclos = choixEnclosCreerAnimal(Parc1);
-					//Création de l'animal dans l'enclos
-					if (iIDEnclos != -1){
-						Parc1.creerAnimal(t1, iIDEnclos);
-						cout << "L'animal a bien été capturé et mis dans l'enclos." << endl;
-					}
-					break;
-				case BASQUE : 
-					Basque * b1;
-					b1 = creerBasque();
-					// Choix de l'enclos
-															//Gestion d'erreur car choixEnclos peut retourner -1
-					iIDEnclos = choixEnclosCreerAnimal(Parc1);
-					//Création de l'animal dans l'enclos
-					if (iIDEnclos != -1){
-						Parc1.creerAnimal(b1, iIDEnclos);
-						cout << "L'animal a bien été capturé et mis dans l'enclos." << endl;
-					}
-					break;
-				case MARMOTTE :
-					Marmotte * m1;
-					m1 = creerMarmotte();
-					// Choix de l'enclos
-															//Gestion d'erreur car choixEnclos peut retourner -1
-					iIDEnclos = choixEnclosCreerAnimal(Parc1);
-					//Création de l'animal dans l'enclos
-					if (iIDEnclos != -1){
-						Parc1.creerAnimal(m1, iIDEnclos);
-						cout << "L'animal a bien été capturé et mis dans l'enclos." << endl;
-					}
-					break;
-				case ELEPHANT :
-					Elephant * E1;
-					E1 = creerElephant();
-					// Choix de l'enclos
-															//Gestion d'erreur car choixEnclos peut retourner -1
-					iIDEnclos = choixEnclosCreerAnimal(Parc1);
-					//Création de l'animal dans l'enclos
-					if (iIDEnclos != -1){
-						Parc1.creerAnimal(E1, iIDEnclos);
-						cout << "L'animal a bien été capturé et mis dans l'enclos." << endl;
-					}
-					break;
-				case AIGLE :
-					Aigle * a1;
-					a1 = creerAigle();
-					// Choix de l'enclos
-															//Gestion d'erreur car choixEnclos peut retourner -1
-					iIDEnclos = choixEnclosCreerAnimal(Parc1);
-					//Création de l'animal dans l'enclos
-					if (iIDEnclos != -1){
-						Parc1.creerAnimal(a1, iIDEnclos);
-						cout << "L'animal a bien été capturé et mis dans l'enclos." << endl;
-					}
-					break;
-				case TORTUE :
-					Tortue * T1;
-					T1 = creerTortue();
-					// Choix de l'enclos
-															//Gestion d'erreur car choixEnclos peut retourner -1
-					iIDEnclos = choixEnclosCreerAnimal(Parc1);
-					//Création de l'animal dans l'enclos
-					if (iIDEnclos != -1){
-						Parc1.creerAnimal(T1, iIDEnclos);
-						cout << "L'animal a bien été capturé et mis dans l'enclos." << endl;
-					}
-					break;
-				case LOUTRE :
-					Loutre * L1;
-					L1 = creerLoutre();
-					// Choix de l'enclos
-															//Gestion d'erreur car choixEnclos peut retourner -1
-					iIDEnclos = choixEnclosCreerAnimal(Parc1);
-					//Création de l'animal dans l'enclos
-					if (iIDEnclos != -1){
-						Parc1.creerAnimal(L1, iIDEnclos);
-						cout << "L'animal a bien été capturé et mis dans l'enclos." << endl;
-					}
-					break;
-				case CROCODILE :
-					Crocodile * C1;
-					C1 = creerCrocodile();
-					// Choix de l'enclos
-															//Gestion d'erreur car choixEnclos peut retourner -1
-					iIDEnclos = choixEnclosCreerAnimal(Parc1);
-					//Création de l'animal dans l'enclos
-					if (iIDEnclos != -1){
-						Parc1.creerAnimal(C1, iIDEnclos);
-						cout << "L'animal a bien été capturé et mis dans l'enclos." << endl;
-					}
-					break;
-				case LAPIN :
-					Lapin * l1;
-					l1 = creerLapin();
-					// Choix de l'enclos
-															//Gestion d'erreur car choixEnclos peut retourner -1
-					iIDEnclos = choixEnclosCreerAnimal(Parc1);
-					//Création de l'animal dans l'enclos
-					if (iIDEnclos != -1){
-						Parc1.creerAnimal(l1, iIDEnclos);
-						cout << "L'animal a bien été capturé et mis dans l'enclos." << endl;
-					}
-					break;
-			}
+            Barney(Parc1);
             retourMenu();
             break;
         case MENU_GESTION_DEPLACER:
@@ -277,11 +145,11 @@ void menuAffichageEnclos(Parc &Parc1) {
 
         switch (iChoix) {
         case MENU_AFFICHE_ENCLOS_TAUX:
-			afficherTauxRemplissageEnclos(Parc1);
+            afficherTauxRemplissageEnclos(Parc1);
             retourMenu();
             break;
         case MENU_AFFICHE_ENCLOS_DETAIL_UN:
-			rechercheEnclos(Parc1);
+            rechercheEnclos(Parc1);
             retourMenu();
             break;
         case MENU_AFFICHE_ENCLOS_DETAIL_TOUS:

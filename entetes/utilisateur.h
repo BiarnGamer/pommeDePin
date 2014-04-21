@@ -1,12 +1,18 @@
 #include <iostream>
 #include <stdio.h>
 #include <cstdlib>
+#include <limits>
 
 //Afin d'utiliser les constantes ENCLOS
 #include "../entetes/enclos.h"
 #include "../entetes/parc.h"
 
 using namespace std;
+
+void creationEnclos(Parc & Parc1);
+void videBuffer();
+void Barney(Parc & Parc1);
+
 
 string selectionNomEnclos();
 int selectionTypeEnclos();

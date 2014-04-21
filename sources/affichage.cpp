@@ -1,4 +1,4 @@
-#include "../entetes/affichage.h" 
+#include "../entetes/affichage.h"
 
 int rechercheAnimal(const Parc & Parc1) {
     system("clear");
@@ -25,10 +25,10 @@ int rechercheEnclos(const Parc & Parc1) {
     cout << "Identifiant de l'enclos recherché : ";
     cin >> IDEnclos;
 
-    iRangEnclos = Parc1.rechercherAnimal(IDEnclos);
+    iRangEnclos = Parc1.rechercherEnclos(IDEnclos);
 
     if(iRangEnclos != -1) {
-        cout << *(Parc1.getAnimal(iRangEnclos));
+        cout << Parc1.getEnclos(iRangEnclos);
     }
     else {cout << "Cet Enclos n'existe pas." << endl;}
     return iRangEnclos;
