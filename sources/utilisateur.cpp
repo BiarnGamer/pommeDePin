@@ -78,19 +78,6 @@ int selectionChoixAnimal(){
 void Barney(Parc & Parc1) {
    int iChoixAnimal = selectionChoixAnimal();
    int iIDEnclos;
-   // On va compter combien il ya d'enclos non plein, et si il n'y en a aucun de disponible alors on en crée un.
-   int iNbEnclosNonPlein = 0;
-   for (int i =0; i < Parc1.getNbEnclos() ; i++){
-	   if (Parc1.getEnclos(i).getOccupation() < Parc1.getEnclos(i).getCapacite()){
-		   iNbEnclosNonPlein ++;
-	   }
-   }
-   //Si aucun enclos n'est crée iNbEnclosNonPlein restera nul
-   if (iNbEnclosNonPlein == 0){
-	   cout << "Aucun enclos n'est disponible, il vous faut donc en créer un. "<< endl;
-	   // On crée alors un enclos
-	   creationEnclos(Parc1);
-   }
    switch (iChoixAnimal) {
       case GIRAFE:
          //créer une girafe
@@ -98,7 +85,7 @@ void Barney(Parc & Parc1) {
          g1 = creerGirafe();
          // Choix de l'enclos
                                        //Gestion d'erreur car choixEnclos peut retourner -1
-         iIDEnclos = choixEnclosCreerAnimal(Parc1);
+         iIDEnclos = choixEnclos(Parc1,g1);
          //Création de l'animal dans l'enclos
          if (iIDEnclos != -1){
             Parc1.creerAnimal(g1, iIDEnclos);
@@ -111,7 +98,7 @@ void Barney(Parc & Parc1) {
          t1 = creerTigre();
          // Choix de l'enclos
                                        //Gestion d'erreur car choixEnclos peut retourner -1
-         iIDEnclos = choixEnclosCreerAnimal(Parc1);
+         iIDEnclos = choixEnclos(Parc1,t1);
          //Création de l'animal dans l'enclos
          if (iIDEnclos != -1){
             Parc1.creerAnimal(t1, iIDEnclos);
@@ -123,7 +110,7 @@ void Barney(Parc & Parc1) {
          b1 = creerBasque();
          // Choix de l'enclos
                                        //Gestion d'erreur car choixEnclos peut retourner -1
-         iIDEnclos = choixEnclosCreerAnimal(Parc1);
+         iIDEnclos = choixEnclos(Parc1,b1);
          //Création de l'animal dans l'enclos
          if (iIDEnclos != -1){
             Parc1.creerAnimal(b1, iIDEnclos);
@@ -135,7 +122,7 @@ void Barney(Parc & Parc1) {
          m1 = creerMarmotte();
          // Choix de l'enclos
                                        //Gestion d'erreur car choixEnclos peut retourner -1
-         iIDEnclos = choixEnclosCreerAnimal(Parc1);
+         iIDEnclos = choixEnclos(Parc1,m1);
          //Création de l'animal dans l'enclos
          if (iIDEnclos != -1){
             Parc1.creerAnimal(m1, iIDEnclos);
@@ -147,7 +134,7 @@ void Barney(Parc & Parc1) {
          E1 = creerElephant();
          // Choix de l'enclos
                                        //Gestion d'erreur car choixEnclos peut retourner -1
-         iIDEnclos = choixEnclosCreerAnimal(Parc1);
+         iIDEnclos = choixEnclos(Parc1,E1);
          //Création de l'animal dans l'enclos
          if (iIDEnclos != -1){
             Parc1.creerAnimal(E1, iIDEnclos);
@@ -159,7 +146,7 @@ void Barney(Parc & Parc1) {
          a1 = creerAigle();
          // Choix de l'enclos
                                        //Gestion d'erreur car choixEnclos peut retourner -1
-         iIDEnclos = choixEnclosCreerAnimal(Parc1);
+         iIDEnclos = choixEnclos(Parc1,a1);
          //Création de l'animal dans l'enclos
          if (iIDEnclos != -1){
             Parc1.creerAnimal(a1, iIDEnclos);
@@ -171,7 +158,7 @@ void Barney(Parc & Parc1) {
          T1 = creerTortue();
          // Choix de l'enclos
                                        //Gestion d'erreur car choixEnclos peut retourner -1
-         iIDEnclos = choixEnclosCreerAnimal(Parc1);
+         iIDEnclos = choixEnclos(Parc1,T1);
          //Création de l'animal dans l'enclos
          if (iIDEnclos != -1){
             Parc1.creerAnimal(T1, iIDEnclos);
@@ -183,7 +170,7 @@ void Barney(Parc & Parc1) {
          L1 = creerLoutre();
          // Choix de l'enclos
                                        //Gestion d'erreur car choixEnclos peut retourner -1
-         iIDEnclos = choixEnclosCreerAnimal(Parc1);
+         iIDEnclos = choixEnclos(Parc1,L1);
          //Création de l'animal dans l'enclos
          if (iIDEnclos != -1){
             Parc1.creerAnimal(L1, iIDEnclos);
@@ -195,7 +182,7 @@ void Barney(Parc & Parc1) {
          C1 = creerCrocodile();
          // Choix de l'enclos
                                        //Gestion d'erreur car choixEnclos peut retourner -1
-         iIDEnclos = choixEnclosCreerAnimal(Parc1);
+         iIDEnclos = choixEnclos(Parc1,C1);
          //Création de l'animal dans l'enclos
          if (iIDEnclos != -1){
             Parc1.creerAnimal(C1, iIDEnclos);
@@ -207,7 +194,7 @@ void Barney(Parc & Parc1) {
          l1 = creerLapin();
          // Choix de l'enclos
                                        //Gestion d'erreur car choixEnclos peut retourner -1
-         iIDEnclos = choixEnclosCreerAnimal(Parc1);
+         iIDEnclos = choixEnclos(Parc1,l1);
          //Création de l'animal dans l'enclos
          if (iIDEnclos != -1){
             Parc1.creerAnimal(l1, iIDEnclos);
@@ -218,50 +205,132 @@ void Barney(Parc & Parc1) {
 }
 
 
-int choixEnclosCreerAnimal(Parc & Parc1){
+int choixEnclos(Parc & Parc1, Animal * a){
+	string sChoix;
 	int iIDEnclos;
-	bool existe = false;
+	int consequence;
+	bool valide = false;
+	int existe = -1;
 	int j=0;
 	// Affichage des enclos et de leur occupation
 	int iNbEnclos = Parc1.getNbEnclos();
-	if (iNbEnclos !=0){
-		for (int i=0; i< iNbEnclos; i++){
-			cout << "Enclos " << i << " - ID : " << Parc1.getEnclos(i).getID() << " - Taux Occupation : " << Parc1.getEnclos(i).getOccupation() << " / " << Parc1.getEnclos(i).getCapacite() << endl;
-		}
-		// Choix de l'enclos
-		cout <<"Entrez l'ID (ATTENTION choisissez l'identifiant) de l'enclos choisi : ";
-		cin >> iIDEnclos;
-		// vérification que l'ID existe
-		while (!existe && j < iNbEnclos){
-			if (Parc1.getEnclos(j).getID() == iIDEnclos)
-				existe=true;
-			else j++;
-		}
-		if (existe)
-			return iIDEnclos;
-		else {
-			cout << "Erreur de saisie, veuillez recommencer." << endl;
-			do{
-				for (int i=0; i< iNbEnclos; i++){
-					cout << "Enclos " << i << " - ID : " << Parc1.getEnclos(i).getID() << " - Taux Occupation : " << Parc1.getEnclos(i).getOccupation() << " / " << Parc1.getEnclos(i).getCapacite() << endl;
-				}
-				cout <<"Entrez l'ID (ATTENTION choisissez l'identifiant) de l'enclos choisi : ";
-				cin >> iIDEnclos;
-				//Ne pas oublier de réinitialiser j a zéro pour le parcours de vérification
-				j=0;
-				while (!existe && j < iNbEnclos){
-					if (Parc1.getEnclos(j).getID() == iIDEnclos)
-						existe=true;
-					else j++;
-				}
-				// Pas besoin de RAZ de existe car si on recommence c'est qu'il est toujours a faux
-			}while (!existe);
-			return iIDEnclos;
+	// On va compter combien il ya d'enclos non plein, et si il n'y en a aucun de disponible alors on en crée un.
+	int iNbEnclosNonPlein = 0;
+	for (int i =0; i < Parc1.getNbEnclos() ; i++){
+		if (Parc1.getEnclos(i).getOccupation() < Parc1.getEnclos(i).getCapacite()){
+			iNbEnclosNonPlein ++;
 		}
 	}
-	else{
-		cout << "Il n'existe aucun enclos." << endl;
-		return -1;
+	if (iNbEnclosNonPlein !=0){
+		do{
+			for (int i=0; i< iNbEnclos; i++){
+				cout << "Enclos " << i << " - ID : " << Parc1.getEnclos(i).getID() << " - Taux Occupation : " << Parc1.getEnclos(i).getOccupation() << " / " << Parc1.getEnclos(i).getCapacite() << endl;
+			}
+			cout <<"Entrez l'ID (ATTENTION choisissez l'identifiant) de l'enclos choisi ou -5 si vous voulez en créer un nouveau : ";
+			cin >> iIDEnclos;
+			existe = Parc1.rechercherEnclos(iIDEnclos);
+			if (existe == -1){
+				cout << "Erreur de saisie, veuillez recommencer." << endl;
+				valide = false;
+			}
+			else {
+				consequence = consequenceDeplacementAnimal(a,iIDEnclos);
+				switch (consequence) {
+					case -1 :
+						// L'enclos n'existe pas 
+						// CAS IMPOSSIBLE
+						break;
+					case 0 :
+						// Tout est ok
+						valide = true;
+						break;
+					case 1 :
+						// L'enclos est plein
+						valide = false;
+						cout << "L'enclos est plein, veuillez en choisir un autre." << endl;
+						break;
+					case 2 :
+						// L'animal se noierai
+						cout << "L'animal se noiera, voulez vous choisir un autre enclos ? (O / N)"
+						do{
+							cin >> sChoix;
+							if (!(sChoix == 'o' || sChoix == 'O' || sChoix == 'n' || sChoix == 'N'))
+								cout << "Erreur de saisie, veuillez recommencer." << endl;
+						}while(!(sChoix == 'o' || sChoix == 'O' || sChoix == 'n' || sChoix == 'N'));
+							if (sChoix == 'o' || sChoix == 'O')
+								valide = false;
+							else {
+								valide = true;
+							}
+						break;
+					case 3 :
+						// L'animal s'envolerai
+						cout << "L'animal s'envolera, voulez vous choisir un autre enclos ? (O / N)"
+						do{
+							cin >> sChoix;
+							if (!(sChoix == 'o' || sChoix == 'O' || sChoix == 'n' || sChoix == 'N'))
+								cout << "Erreur de saisie, veuillez recommencer." << endl;
+						}while(!(sChoix == 'o' || sChoix == 'O' || sChoix == 'n' || sChoix == 'N'));
+							if (sChoix == 'o' || sChoix == 'O')
+								valide = false;
+							else {
+								valide = true;
+							}
+						break;
+					case 4 :
+						// L'animal possède des prédateurs dans l'enclos
+						cout << "L'animal possède des prédateurs dans l'enclos de destination, voulez vous choisir un autre enclos ? (O / N)"
+						do{
+							cin >> sChoix;
+							if (!(sChoix == 'o' || sChoix == 'O' || sChoix == 'n' || sChoix == 'N'))
+								cout << "Erreur de saisie, veuillez recommencer." << endl;
+						}while(!(sChoix == 'o' || sChoix == 'O' || sChoix == 'n' || sChoix == 'N'));
+							if (sChoix == 'o' || sChoix == 'O')
+								valide = false;
+							else {
+								valide = true;
+							}
+						break;
+					case 5 :
+						// Il possède des proies
+						cout << "L'animal possède des proies dans l'enclos de destination, voulez vous choisir un autre enclos ? (O / N)"
+						do{
+							cin >> sChoix;
+							if (!(sChoix == 'o' || sChoix == 'O' || sChoix == 'n' || sChoix == 'N'))
+								cout << "Erreur de saisie, veuillez recommencer." << endl;
+						}while(!(sChoix == 'o' || sChoix == 'O' || sChoix == 'n' || sChoix == 'N'));
+							if (sChoix == 'o' || sChoix == 'O')
+								valide = false;
+							else {
+								valide = true;
+							}
+						break;
+					case 6 :
+						// Possède des proies et des prédateurs
+						cout << "L'animal possède des proies et des prédateurs dans l'enclos de destination, voulez vous choisir un autre enclos ? (O / N)"
+						do{
+							cin >> sChoix;
+							if (!(sChoix == 'o' || sChoix == 'O' || sChoix == 'n' || sChoix == 'N'))
+								cout << "Erreur de saisie, veuillez recommencer." << endl;
+						}while(!(sChoix == 'o' || sChoix == 'O' || sChoix == 'n' || sChoix == 'N'));
+							if (sChoix == 'o' || sChoix == 'O')
+								valide = false;
+							else {
+								valide = true;
+							}
+						break;
+					}
+				}
+			}while (!valide);
+			return iIDEnclos;
+		}
+		else{
+			cout << "Aucun enclos n'est disponible, il vous faut en creer un." << endl;
+			// On crée alors un enclos
+			creationEnclos(Parc1);
+			// on gardera cet enclos pour l'animal
+			return (Parc1.getIDEnclos() -1);
+		}
 	}
 }
 
