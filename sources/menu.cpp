@@ -153,7 +153,7 @@ void menuAffichageEnclos(Parc &Parc1) {
             retourMenu();
             break;
         case MENU_AFFICHE_ENCLOS_DETAIL_TOUS:
-			afficherDetailDeTousLesEnclos(Parc1);
+            afficherDetailDeTousLesEnclos(Parc1);
             retourMenu();
             break;
         case MENU_AFFICHE_ENCLOS_ANIMAUX_UN:
