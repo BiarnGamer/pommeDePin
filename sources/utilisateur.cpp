@@ -735,22 +735,10 @@ Basque * creerBasque() {
 
 
 void deplacerAnimal(Parc & Parc1) {
-
-
-
-
-
-
-
-   // si pas enclos avec animaux, on quitte
-
-
-
-
    system("clear");
-   cout << "********************************" << endl;
-   cout << "***  Déplacement dun animal  ***" << endl;
-   cout << "********************************" << endl << endl;
+   cout << "*********************************" << endl;
+   cout << "***  Déplacement d'un animal  ***" << endl;
+   cout << "*********************************" << endl << endl;
 
    int iRangEnclos = -1;
    int iIDEnclos = 0;
@@ -829,6 +817,96 @@ void deplacerAnimal(Parc & Parc1) {
          Parc1.deplacerAnimal(iIDEnclos, iIDAnimal, iIDEnclosArrivee);
 
          cout << "L'animal a bien été déplacé. Les possibles conséquences de ce déplacement ont été prises en compte." << endl;
+      }
+   }
+}
+
+
+void supprimerEnclos(Parc & Parc1) {
+   system("clear");
+   cout << "*********************************" << endl;
+   cout << "***  Suppression d'un enclos  ***" << endl;
+   cout << "*********************************" << endl << endl;
+
+
+   int iRangEnclos = -1;
+   int iIDEnclos = 0;
+   int iNbEnclos = 0;
+   int iNbAnimaux = 0;
+   int iChoix = 0;
+   bool iConfirmationSuppression = false;
+   int iIDEnclosArrivee = -1;
+   Animal * ptrAnimal;
+
+   if(Parc1.getNbEnclos() == 0) {
+      cout << "Aucun enclos à supprimer" << endl;
+   }
+   else {
+      // Choix de l'enclos
+      iNbEnclos =  Parc1.getNbEnclos();
+      cout << "Veuillez choisir l'enclos à supprimer : " << endl;
+      cout << "Enclos disponibles : " << endl;
+      for (int i=0; i< iNbEnclos; i++) {
+         cout << "- ID : " << Parc1.getEnclos(i).getID() << " - " << Parc1.getEnclos(i).getNom() << endl;
+      }
+      do{
+         cout << endl << "Entrez l'ID de l'enclos choisi : ";
+         cin >> iIDEnclos;
+         iRangEnclos = Parc1.rechercherEnclos(iIDEnclos);
+      }while(iRangEnclos == -1);
+
+
+      // Demande confirmation
+      cout << "Voulez-vous vraiment supprimer cet enclos ? (O / N)" << endl;
+      iConfirmationSuppression = choix();
+
+      if(iConfirmationSuppression) {
+         // traite les animaux présents
+         iNbAnimaux = Parc1.getEnclos(iRangEnclos).getOccupation();
+         if(iNbAnimaux != 0) {
+            cout << "Attention, l'enclos choisi contient " << iNbAnimaux << " animal(aux). Il faut les déplacer ou les relâcher. Comme il peut y avoir des conflits entre espèces, les déplacement ne peuvent pas être automatisés." << endl;
+            cout << "1. Relâcher tous les animaux" << endl;
+            cout << "2. Déplacer un à un les animaux" << endl;
+
+            do {
+               cout << "Choix :";
+               cin >> iChoix;
+            }while(iChoix != 1 && iChoix != 2);
+
+            // Les animaux seront automatiquement relâché par Parc lors de la suppression
+
+            if(iChoix == 2) {
+               while(Parc1.getEnclos(iRangEnclos).getOccupation() != 0) {
+
+                  ptrAnimal = Parc1.getEnclos(iRangEnclos).getPtrAnimal(0);
+
+                  // Demande de l'action à effectuer
+                  cout << "Animal à traiter : "<< endl;
+                  cout << *ptrAnimal;
+                  cout << endl << "Que faire ?" << endl;
+                  cout << "1. Le relâcher" << endl;
+                  cout << "2. Le déplacer" << endl;
+                  do {
+                     cout << "Choix :";
+                     cin >> iChoix;
+                  }while(iChoix != 1 && iChoix != 2);
+
+                  // Si relacher
+                  if(iChoix == 1) {
+                     Parc1.supprimerAnimal(ptrAnimal->getID());
+                  }
+                  // Si on le déplace
+                  else {
+                     iIDEnclosArrivee = choixEnclos(Parc1, ptrAnimal);
+                     Parc1.deplacerAnimal(iIDEnclos, ptrAnimal->getID(), iIDEnclosArrivee);
+                  }
+               }
+            }
+         }
+
+         // Supprime l'enclos
+         Parc1.supprimerEnclos(iIDEnclos);
+         cout << "L'enclos a bien été supprimé." << endl;
       }
    }
 }

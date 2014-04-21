@@ -103,6 +103,7 @@ void menuGestion(Parc &Parc1) {
             retourMenu();
             break;
         case MENU_GESTION_SUPPR_ENCLOS:
+            supprimerEnclos(Parc1);
             retourMenu();
             break;
         case MENU_GESTION_BARNEY:
