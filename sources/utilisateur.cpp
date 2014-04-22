@@ -1010,7 +1010,109 @@ void supprimerAnimal(Parc & Parc1) {
       else {
          cout << "Erreur, enclos de l'animal non trouvé."<< endl;
       }
-
    }
+}
 
+
+void trisDesAnimaux(Parc & Parc1) {
+   system("clear");
+   cout << "*************************" << endl;
+   cout << "***  Tri des animaux  ***" << endl;
+   cout << "*************************" << endl << endl;
+
+   int iChoix;
+   int iRangEnclos;
+   int iIDEnclos;
+
+   cout << "Choix du tri : " << endl;
+   cout << "1. Aucun tri" << endl;
+   cout << "2. Tri alphabétique" << endl;
+   cout << "3. Tri alphabétique et regroupement par espèce" << endl;
+   cout << "4. Tri alphabétique dans un enclos" << endl;
+   cout << "5. Tri alphabétique et regroupement par espèce dans un enclos" << endl;
+
+   do {
+      cout << "Choix : ";
+      cin >> iChoix;
+   }while(iChoix != 1 && iChoix != 2 && iChoix != 3 && iChoix != 4 && iChoix != 5);
+
+   switch(iChoix) {
+      case 1:
+         break;
+
+      case 2:
+         Parc1.triAnimauxAlpha();
+         break;
+
+      case 3:
+         Parc1.triAnimauxEspece();
+         break;
+
+      case 4:
+         iRangEnclos = rechercheEnclos(Parc1);
+         if(iRangEnclos != -1) {
+            iIDEnclos = Parc1.getEnclos(iRangEnclos).getID();
+            Parc1.triAnimauxAlpha(iIDEnclos);
+         }
+         break;
+
+      case 5:
+         iRangEnclos = rechercheEnclos(Parc1);
+         if(iRangEnclos != -1) {
+            iIDEnclos = Parc1.getEnclos(iRangEnclos).getID();
+            Parc1.triAnimauxEspece(iIDEnclos);
+         }
+         break;
+
+      default :
+         break;
+   }
+}
+
+
+void trisDesEnclos(Parc & Parc1) {
+   system("clear");
+   cout << "************************" << endl;
+   cout << "***  Tri des enclos  ***" << endl;
+   cout << "************************" << endl << endl;
+
+   int iChoix;
+   int iRangEnclos;
+   int iIDEnclos;
+
+   cout << "Choix du tri : " << endl;
+   cout << "1. Aucun tri" << endl;
+   cout << "2. Tri alphabétique" << endl;
+   cout << "3. Tri par occupation" << endl;
+   cout << "4. Tri par capacité" << endl;
+   cout << "5. Tri par taux d'occupation" << endl;
+
+   do {
+      cout << "Choix : ";
+      cin >> iChoix;
+   }while(iChoix != 1 && iChoix != 2 && iChoix != 3 && iChoix != 4 && iChoix != 5);
+
+   switch(iChoix) {
+      case 1:
+         break;
+
+      case 2:
+         Parc1.triEnclosAlpha();
+         break;
+
+      case 3:
+         Parc1.triEnclosOccupation();
+         break;
+
+      case 4:
+         Parc1.triEnclosCapacite();
+         break;
+
+      case 5:
+         Parc1.triEnclosTauxOccupation();
+         break;
+
+      default :
+         break;
+   }
 }

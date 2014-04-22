@@ -148,6 +148,7 @@ void menuAffichageEnclos(Parc &Parc1) {
 
         switch (iChoix) {
         case MENU_AFFICHE_ENCLOS_TAUX:
+            trisDesEnclos(Parc1);
             afficherTauxRemplissageEnclos(Parc1);
             retourMenu();
             break;
@@ -156,15 +157,17 @@ void menuAffichageEnclos(Parc &Parc1) {
             retourMenu();
             break;
         case MENU_AFFICHE_ENCLOS_DETAIL_TOUS:
+            trisDesEnclos(Parc1);
             afficherDetailDeTousLesEnclos(Parc1);
             retourMenu();
             break;
         case MENU_AFFICHE_ENCLOS_ANIMAUX_UN:
-			afficherDetailEnclosEtAnimaux(Parc1);
+            afficherDetailEnclosEtAnimaux(Parc1);
             retourMenu();
             break;
         case MENU_AFFICHE_ENCLOS_ANIMAUX_TOUS:
-			afficherDetailEtAnimauxDeTousLesEnclos(Parc1);
+           trisDesEnclos(Parc1);
+            afficherDetailEtAnimauxDeTousLesEnclos(Parc1);
             retourMenu();
             break;
         }
@@ -194,15 +197,16 @@ void menuAffichageAnimaux(Parc &Parc1) {
 
         switch (iChoix) {
         case MENU_AFFICHE_ANIMAUX_UN:
-			rechercheAnimal(Parc1);
+            rechercheAnimal(Parc1);
             retourMenu();
             break;
         case MENU_AFFICHE_ANIMAUX_TOUS_ENCLOS:
-			afficherDetailEnclosEtAnimaux(Parc1);
+            afficherDetailEnclosEtAnimaux(Parc1);
             retourMenu();
             break;
         case MENU_AFFICHE_ANIMAUX_TOUS_PARC:
-			afficheAnimauxParc(Parc1);
+            trisDesAnimaux(Parc1);
+            afficheAnimauxParc(Parc1);
             retourMenu();
             break;
         }
