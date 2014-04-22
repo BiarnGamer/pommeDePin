@@ -7,6 +7,7 @@
 //Afin d'utiliser les constantes ENCLOS
 #include "../entetes/enclos.h"
 #include "../entetes/parc.h"
+#include "../entetes/affichage.h"
 
 using namespace std;
 
@@ -16,6 +17,7 @@ void Barney(Parc & Parc1);
 bool choix();
 void deplacerAnimal(Parc & Parc1);
 void supprimerEnclos(Parc & Parc1);
+void supprimerAnimal(Parc & Parc1);
 
 
 string selectionNomEnclos();

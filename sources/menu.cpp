@@ -115,6 +115,7 @@ void menuGestion(Parc &Parc1) {
             retourMenu();
             break;
         case MENU_GESTION_RELACHER:
+            supprimerAnimal(Parc1);
             retourMenu();
             break;
         }

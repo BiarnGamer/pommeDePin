@@ -441,7 +441,7 @@ int Parc::consequenceDansEnclosDepartDeplacementAnimal(Animal const * a1, const 
         return -1;
     }
     // Si l'animal est le dernier de son espèce, pas de souci
-    else if (listeEnclos[iRangEnclos]->getNombreAnimaux(a1->getEspece()) <= 1) {
+    else if (listeEnclos[iRangEnclos]->getNombreAnimaux(iEspeceA) <= 1) {
       return 0;
     }
     // Sinon, on cherche s'il a au moins un prédateur ou au moins une proie

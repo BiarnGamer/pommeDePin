@@ -869,7 +869,7 @@ void supprimerEnclos(Parc & Parc1) {
             cout << "2. Déplacer un à un les animaux" << endl;
 
             do {
-               cout << "Choix :";
+               cout << "Choix : ";
                cin >> iChoix;
             }while(iChoix != 1 && iChoix != 2);
 
@@ -909,4 +909,108 @@ void supprimerEnclos(Parc & Parc1) {
          cout << "L'enclos a bien été supprimé." << endl;
       }
    }
+}
+
+void supprimerAnimal(Parc & Parc1) {
+   system("clear");
+   cout << "*********************************" << endl;
+   cout << "***  Suppression d'un animal  ***" << endl;
+   cout << "*********************************" << endl << endl;
+
+   int iChoix = 0;
+   int iIDAnimal = 0;
+   int iIDEnclos = 0;
+   int iRangAnimal = 0;
+   int iRangEnclos = 0;
+   bool validerSuppression = false;
+   int consequencesEnclosDepart = 0;
+   Animal const * ptrAnimal;
+
+   // Choix du mode de recherche
+   cout << "1. Rechercher l'animal à supprimer" << endl;
+   cout << "2. Afficher les animaux d'un enclos" << endl;
+   cout << "3. Afficher les animaux du parc" << endl;
+   do {
+      cout << "Choix : ";
+      cin >> iChoix;
+   }while(iChoix != 1 && iChoix != 2 && iChoix != 3);
+
+
+   // Récupération de l'ID de l'animal à supprimer
+   if(iChoix == 1) {
+      iRangAnimal = rechercheAnimal(Parc1);
+      if(iRangAnimal != -1) {
+         ptrAnimal = Parc1.getAnimal(iRangAnimal);
+         iIDAnimal = ptrAnimal->getID();
+         validerSuppression = true;
+      }
+      else {
+         validerSuppression = false;
+      }
+   }
+   else if(iChoix == 2) {
+      // Affiche les animaux d'un enclos
+      afficherDetailEnclosEtAnimaux(Parc1);
+
+      // Choix de celui à supprimer et vérification qu'il existe (pas forcément dans l'enclos affiché)
+      cout << endl << "ID de l'animal à supprimer : ";
+      cin >> iIDAnimal;
+      iRangAnimal = Parc1.rechercherAnimal(iIDAnimal);
+      if(iRangAnimal != -1) {
+         ptrAnimal = Parc1.getAnimal(iRangAnimal);
+         validerSuppression = true;
+      }
+      else {
+         cout << "Cet animal n'existe pas." << endl;
+         validerSuppression = false;
+      }
+   }
+   else {
+      // Affiche les animaux du parc
+      afficherDetailEtAnimauxDeTousLesEnclos(Parc1);
+
+      // Choix de celui à supprimer et vérification qu'il existe (pas forcément dans l'enclos affiché)
+      cout << endl << "ID de l'animal à supprimer : ";
+      cin >> iIDAnimal;
+      iRangAnimal = Parc1.rechercherAnimal(iIDAnimal);
+      if(iRangAnimal != -1) {
+         ptrAnimal = Parc1.getAnimal(iRangAnimal);
+         validerSuppression = true;
+      }
+      else {
+         cout << "Cet animal n'existe pas." << endl;
+         validerSuppression = false;
+      }
+   }
+
+   // Si on a un ID valide
+   if(validerSuppression) {
+      iRangEnclos = Parc1.rechercheEnclosAnimal(iIDAnimal);
+
+      // Si on a trouvé l'enclos de l'animal
+      if(iRangEnclos != -1) {
+         // On vérifie les conséquences de la suppression
+         iIDEnclos = Parc1.getEnclos(iRangEnclos).getID();
+         consequencesEnclosDepart = Parc1.consequenceDansEnclosDepartDeplacementAnimal(ptrAnimal, iIDEnclos);
+
+         // On demande confirmation
+         if(consequencesEnclosDepart == 1) {
+             cout <<  endl << "Attention, cet animal possède des proies et/ou des prédateurs dans l'enclos. Il est possible que cela crée un déséquilibre et que des animaux s'entretuent dans cette enclos. Voulez-vous vraiment le supprimer ? (O / N)";
+         }
+         else {
+            cout << "Voulez-vous vraiment supprimer cet animal ? (O / N)";
+         }
+         validerSuppression = choix();
+
+         // On supprime l'animal si tout est OK
+         if(validerSuppression) {
+            Parc1.supprimerAnimal(iIDAnimal);
+         }
+      }
+      else {
+         cout << "Erreur, enclos de l'animal non trouvé."<< endl;
+      }
+
+   }
+
 }
