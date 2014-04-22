@@ -21,6 +21,7 @@ void supprimerAnimal(Parc & Parc1);
 void trisDesEnclos(Parc & Parc1);
 void trisDesAnimaux(Parc & Parc1);
 void modifierEnclos(Parc & Parc1);
+void modifierAnimaux(Parc & Parc1);
 
 
 string selectionNomEnclos();

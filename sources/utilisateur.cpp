@@ -967,7 +967,7 @@ void supprimerAnimal(Parc & Parc1) {
    }
    else {
       // Affiche les animaux du parc
-      afficherDetailEtAnimauxDeTousLesEnclos(Parc1);
+      afficheAnimauxParc(Parc1);
 
       // Choix de celui à supprimer et vérification qu'il existe (pas forcément dans l'enclos affiché)
       cout << endl << "ID de l'animal à supprimer : ";
@@ -1142,4 +1142,245 @@ void modifierEnclos(Parc & Parc1) {
 
       cout << "Enclos modifié." << endl;
    }
+}
+
+void modifierAnimaux(Parc & Parc1) {
+
+   system("clear");
+   cout << "**********************************" << endl;
+   cout << "***  Modification d'un animal  ***" << endl;
+   cout << "**********************************" << endl << endl;
+
+   int iChoix = 0;
+   int iIDAnimal = 0;
+   int iRangAnimal = 0;
+   int iEspece = 0;
+   bool validerModification = false;
+   Animal const * ptrAnimal;
+
+   ///////////////////////////
+   // Variables tammpons
+   ///////////////////////////
+
+    string sNom;
+    float fTaille;
+    int iNbTaches;
+    int iNbVict;
+    float fBeret;
+    float fCuisson;
+    int iNbBelote;
+    int iNbRicard;
+    int iNbChocolat;
+    float fTrompe;
+    float fPoids;
+    int iVitesse;
+    int iAge;
+    string sCouleur;
+    int iNbAmis;
+    float fTailleBec;
+    int iNbLoopings;
+    int iEnfants;
+    int iDents;
+    int iCarottes;
+
+    Girafe gigi;
+    Tigre titi;
+    Basque belloir;
+    Marmotte milka;
+    Elephant babar;
+    Aigle avion;
+    Tortue franklin;
+    Loutre loulou;
+    Crocodile crocro;
+    Lapin bunny;
+
+   ///////////////////////////
+   ///////////////////////////
+
+   // Choix du mode de recherche
+   cout << "1. Rechercher l'animal à modifier" << endl;
+   cout << "2. Afficher les animaux d'un enclos" << endl;
+   cout << "3. Afficher les animaux du parc" << endl;
+   do {
+      cout << "Choix : ";
+      cin >> iChoix;
+   }while(iChoix != 1 && iChoix != 2 && iChoix != 3);
+
+
+   // Récupération de l'ID de l'animal à modifier
+   if(iChoix == 1) {
+      iRangAnimal = rechercheAnimal(Parc1);
+      if(iRangAnimal != -1) {
+         ptrAnimal = Parc1.getAnimal(iRangAnimal);
+         iIDAnimal = ptrAnimal->getID();
+         validerModification = true;
+      }
+      else {
+         validerModification = false;
+      }
+   }
+   else if(iChoix == 2) {
+      // Affiche les animaux d'un enclos
+      afficherDetailEnclosEtAnimaux(Parc1);
+
+      // Choix de celui à modifier et vérification qu'il existe (pas forcément dans l'enclos affiché)
+      cout << endl << "ID de l'animal à modifier : ";
+      cin >> iIDAnimal;
+      iRangAnimal = Parc1.rechercherAnimal(iIDAnimal);
+      if(iRangAnimal != -1) {
+         ptrAnimal = Parc1.getAnimal(iRangAnimal);
+         validerModification = true;
+      }
+      else {
+         cout << "Cet animal n'existe pas." << endl;
+         validerModification = false;
+      }
+   }
+   else {
+      // Affiche les animaux du parc
+      afficheAnimauxParc(Parc1);
+
+      // Choix de celui à modifier et vérification qu'il existe (pas forcément dans l'enclos affiché)
+      cout << endl << "ID de l'animal à modifier : ";
+      cin >> iIDAnimal;
+      iRangAnimal = Parc1.rechercherAnimal(iIDAnimal);
+      if(iRangAnimal != -1) {
+         ptrAnimal = Parc1.getAnimal(iRangAnimal);
+         validerModification = true;
+      }
+      else {
+         cout << "Cet animal n'existe pas." << endl;
+         validerModification = false;
+      }
+   }
+
+   // Si on a un ID valide
+   if(validerModification) {
+      iEspece = ptrAnimal->getEspece();
+
+      cout << "Nom: ";
+      videBuffer();
+      getline(cin,sNom);
+
+
+      switch(iEspece) {
+       case 0:
+           cout << "Taille (m) : ";
+           cin >> fTaille;
+           cout << "Nombre de tâches : ";
+           cin >> iNbTaches;
+           gigi.setTaille(fTaille);
+           gigi.setNbTaches(iNbTaches);
+           gigi.setNom(sNom);
+           Parc1.modifierAnimal(iIDAnimal, &gigi);
+           break;
+       case 1:
+           cout << "Hauteur au garot (cm) : ";
+           cin >> fTaille;
+           cout << "Nombre de gazelles croquées : ";
+           cin >> iNbVict;
+           titi.setGarot(fTaille);
+           titi.setNbVictimes(iNbVict);
+           titi.setNom(sNom);
+           Parc1.modifierAnimal(iIDAnimal, &titi);
+           break;
+       case 2:
+           cout << "Largeur du béret (cm) : ";
+           cin >> fBeret;
+           cout << "Temps de cuisson (min) : ";
+           cin >> fCuisson;
+           cout << "Nombre de parties de belote gagnées : ";
+           cin >> iNbBelote;
+           cout << "Nombre de Ricards bus : ";
+           cin >> iNbRicard;
+           belloir.setLargeurBeret(fBeret);
+           belloir.setTempsCuisson(fCuisson);
+           belloir.setNbVictoires(iNbBelote);
+           belloir.setNbRicard(iNbRicard);
+           belloir.setNom(sNom);
+           Parc1.modifierAnimal(iIDAnimal, &belloir);
+           break;
+       case 3:
+           cout << "Taille (cm) : ";
+           cin >> fTaille;
+           cout << "Nombre de tablettes de chocolat emballées : ";
+           cin >> iNbChocolat;
+           milka.setTaille(fTaille);
+           milka.setNbTabChocolat(iNbChocolat);
+           milka.setNom(sNom);
+           Parc1.modifierAnimal(iIDAnimal, &milka);
+           break;
+       case 4:
+           cout << "Poids (kg) : ";
+           cin >> fPoids;
+           cout << "Longueur de la trompe (cm) : ";
+           cin >> fTrompe;
+           cout << "Nombre de braconniers empalés: ";
+           cin >> iNbVict;
+           babar.setPoids(fPoids);
+           babar.setLongTrompe(fTrompe);
+           babar.setNbVictimes(iNbVict);
+           babar.setNom(sNom);
+           Parc1.modifierAnimal(iIDAnimal, &babar);
+           break;
+       case 5:
+           cout << "Longueur du bec (cm) : ";
+           cin >> fTailleBec;
+           cout << "Nombre de loopings en vol : ";
+           cin >> iNbLoopings;
+           avion.setLongueurBec(fTailleBec);
+           avion.setNbLoopings(iNbLoopings);
+           avion.setNom(sNom);
+           Parc1.modifierAnimal(iIDAnimal, &avion);
+           break;
+       case 6:
+           cout << "Vitesse (km/h) : ";
+           cin >> iVitesse;
+           cout << "Age : ";
+           cin >> iAge;
+           cout << "Couleur : ";
+           cin >> sCouleur;
+           franklin.setVitesseMax(iVitesse);
+           franklin.setAge(iAge);
+           franklin.setCouleur(sCouleur);
+           franklin.setNom(sNom);
+           Parc1.modifierAnimal(iIDAnimal, &franklin);
+           break;
+       case 7:
+           cout << "Taille (cm) : ";
+           cin >> fTaille;
+           cout << "Nombre d'amis : ";
+           cin >> iNbAmis;
+           loulou.setNbAmis(iNbAmis);
+           loulou.setTaille(fTaille);
+           loulou.setNom(sNom);
+           Parc1.modifierAnimal(iIDAnimal, &loulou);
+           break;
+       case 8:
+           cout << "Nombre d'enfants mangés : ";
+           cin >> iEnfants;
+           cout << "Nombre de dents: ";
+           cin >> iDents;
+           crocro.setEnfantMange(iEnfants);
+           crocro.setNbDents(iDents);
+           crocro.setNom(sNom);
+           Parc1.modifierAnimal(iIDAnimal, &crocro);
+           break;
+       case 9:
+           cout << "Nombre de carottes mangées : ";
+           cin >> iCarottes;
+           cout << "Couleur : ";
+           cin >> sCouleur;
+           bunny.setNbCarotteMange(iCarottes);
+           bunny.setCouleur(sCouleur);
+           bunny.setNom(sNom);
+           Parc1.modifierAnimal(iIDAnimal, &bunny);
+           break;
+       default:
+           break;
+       }
+
+      cout << "Modification effectuée."<< endl;
+   }
+
 }

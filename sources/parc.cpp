@@ -954,6 +954,7 @@ void Parc::modifierAnimal(const int IDAnimalAModifier, Tigre const * nouvelAnima
     }
     else {
         Tigre * ptrAnimal = listeTigre[iRangAnimal];
+        ptrAnimal->setNom(nouvelAnimal->getNom());
         ptrAnimal->setGarot(nouvelAnimal->getGarot());
         ptrAnimal->setNbVictimes(nouvelAnimal->getNbVictimes());
     }
@@ -967,6 +968,7 @@ void Parc::modifierAnimal(const int IDAnimalAModifier, Basque const * nouvelAnim
     }
     else {
         Basque * ptrAnimal = listeBasque[iRangAnimal];
+        ptrAnimal->setNom(nouvelAnimal->getNom());
         ptrAnimal->setLargeurBeret(nouvelAnimal->getLargeurBeret());
         ptrAnimal->setTempsCuisson(nouvelAnimal->getTempsCuisson());
         ptrAnimal->setNbVictoires(nouvelAnimal->getNbVictoires());
@@ -983,6 +985,7 @@ void Parc::modifierAnimal(const int IDAnimalAModifier, Marmotte const * nouvelAn
     }
     else {
         Marmotte * ptrAnimal = listeMarmotte[iRangAnimal];
+        ptrAnimal->setNom(nouvelAnimal->getNom());
         ptrAnimal->setTaille(nouvelAnimal->getTaille());
         ptrAnimal->setNbTabChocolat(nouvelAnimal->getNbTabChocolat());
 
@@ -997,6 +1000,7 @@ void Parc::modifierAnimal(const int IDAnimalAModifier, Elephant const * nouvelAn
     }
     else {
         Elephant * ptrAnimal = listeElephant[iRangAnimal];
+        ptrAnimal->setNom(nouvelAnimal->getNom());
         ptrAnimal->setPoids(nouvelAnimal->getPoids());
         ptrAnimal->setLongTrompe(nouvelAnimal->getLongTrompe());
         ptrAnimal->setNbVictimes(nouvelAnimal->getNbVictimes());
@@ -1012,6 +1016,7 @@ void Parc::modifierAnimal(const int IDAnimalAModifier, Aigle const * nouvelAnima
     }
     else {
         Aigle * ptrAnimal = listeAigle[iRangAnimal];
+        ptrAnimal->setNom(nouvelAnimal->getNom());
         ptrAnimal->setLongueurBec(nouvelAnimal->getLongueurBec());
         ptrAnimal->setNbLoopings(nouvelAnimal->getNbLoopings());
 
@@ -1026,6 +1031,7 @@ void Parc::modifierAnimal(const int IDAnimalAModifier, Tortue const * nouvelAnim
     }
     else {
         Tortue * ptrAnimal = listeTortue[iRangAnimal];
+        ptrAnimal->setNom(nouvelAnimal->getNom());
         ptrAnimal->setVitesseMax(nouvelAnimal->getVitesseMax());
         ptrAnimal->setAge(nouvelAnimal->getAge());
         ptrAnimal->setCouleur(nouvelAnimal->getCouleur());
@@ -1041,6 +1047,7 @@ void Parc::modifierAnimal(const int IDAnimalAModifier, Loutre const * nouvelAnim
     }
     else {
         Loutre * ptrAnimal = listeLoutre[iRangAnimal];
+        ptrAnimal->setNom(nouvelAnimal->getNom());
         ptrAnimal->setNbAmis(nouvelAnimal->getNbAmis());
         ptrAnimal->setTaille(nouvelAnimal->getTaille());
 
@@ -1055,6 +1062,7 @@ void Parc::modifierAnimal(const int IDAnimalAModifier, Crocodile const * nouvelA
     }
     else {
         Crocodile * ptrAnimal = listeCrocodile[iRangAnimal];
+        ptrAnimal->setNom(nouvelAnimal->getNom());
         ptrAnimal->setEnfantMange(nouvelAnimal->getEnfantMange());
         ptrAnimal->setNbDents(nouvelAnimal->getNbDents());
 
@@ -1069,6 +1077,7 @@ void Parc::modifierAnimal(const int IDAnimalAModifier, Lapin const * nouvelAnima
     }
     else {
         Lapin * ptrAnimal = listeLapin[iRangAnimal];
+        ptrAnimal->setNom(nouvelAnimal->getNom());
         ptrAnimal->setNbCarotteMange(nouvelAnimal->getNbCarotteMange());
         ptrAnimal->setCouleur(nouvelAnimal->getCouleur());
 

@@ -21,6 +21,7 @@ int iChoixAnimal;
 
 void retourMenu() {
     cout << "Appuyez sur entrée pour revenir au menu précédent.";
+    videBuffer();
     scanf("%*c");
 }
 
@@ -120,6 +121,7 @@ void menuGestion(Parc &Parc1) {
             retourMenu();
             break;
         case MENU_GESTION_MODIF_ANIMAL:
+            modifierAnimaux(Parc1);
             retourMenu();
             break;
         case MENU_GESTION_DEPLACER:
