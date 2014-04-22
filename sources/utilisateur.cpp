@@ -1116,3 +1116,30 @@ void trisDesEnclos(Parc & Parc1) {
          break;
    }
 }
+
+
+void modifierEnclos(Parc & Parc1) {
+   int iRangEnclos = 0;
+   int iIDEnclos = 0;
+   string sNom;
+
+   iRangEnclos = rechercheEnclos(Parc1);
+
+   if(iRangEnclos != -1) {
+      system("clear");
+      cout << "**********************************" << endl;
+      cout << "***  Modification d'un enclos  ***" << endl;
+      cout << "**********************************" << endl << endl;
+
+      cout << Parc1.getEnclos(iRangEnclos) << endl;
+
+      cout << "Nouveau nom de cet enclos : ";
+      videBuffer();
+      getline(cin,sNom);
+
+      iIDEnclos = Parc1.getEnclos(iRangEnclos).getID();
+      Parc1.mofidierEnclos(iIDEnclos, sNom);
+
+      cout << "Enclos modifié." << endl;
+   }
+}

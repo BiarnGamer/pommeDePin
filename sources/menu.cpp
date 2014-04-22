@@ -21,7 +21,7 @@ int iChoixAnimal;
 
 void retourMenu() {
     cout << "Appuyez sur entrée pour revenir au menu précédent.";
-    scanf("%*c%*c");
+    scanf("%*c");
 }
 
 
@@ -30,6 +30,7 @@ void menuPrincipal(Parc &Parc1){
     int iChoix;
     do {
         system("clear");
+        cout << Parc1 << endl;
         cout << "************************" << endl;
         cout << "***  Menu principal  ***" << endl;
         cout << "************************" << endl << endl;
@@ -82,7 +83,9 @@ void menuGestion(Parc &Parc1) {
         cout << "*******************************************" << endl << endl;
         cout << MENU_GESTION_CREER_ENCLOS << ". Créer un enclos" << endl;
         cout << MENU_GESTION_SUPPR_ENCLOS << ". Supprimer un enclos" << endl;
+        cout << MENU_GESTION_MODIF_ENCLOS << ". Modifier un enclos" << endl;
         cout << MENU_GESTION_BARNEY << ". Demander à Barney de capturer un animal" << endl;
+        cout << MENU_GESTION_MODIF_ANIMAL << ". Modifier les informations d'un animal" << endl;
         cout << MENU_GESTION_DEPLACER << ". Déplacer un animal" << endl;
         cout << MENU_GESTION_RELACHER << ". Relâcher un animal" << endl;
         cout << MENU_GESTION_RETOUR << ". Retour" << endl;
@@ -92,7 +95,9 @@ void menuGestion(Parc &Parc1) {
             cin >> iChoix;
         } while( iChoix != MENU_GESTION_CREER_ENCLOS
                  && iChoix != MENU_GESTION_SUPPR_ENCLOS
+                 && iChoix != MENU_GESTION_MODIF_ENCLOS
                  && iChoix != MENU_GESTION_BARNEY
+                 && iChoix != MENU_GESTION_MODIF_ANIMAL
                  && iChoix != MENU_GESTION_DEPLACER
                  && iChoix != MENU_GESTION_RELACHER
                  && iChoix != MENU_GESTION_RETOUR);
@@ -106,8 +111,15 @@ void menuGestion(Parc &Parc1) {
             supprimerEnclos(Parc1);
             retourMenu();
             break;
+        case MENU_GESTION_MODIF_ENCLOS:
+            modifierEnclos(Parc1);
+            retourMenu();
+            break;
         case MENU_GESTION_BARNEY:
             Barney(Parc1);
+            retourMenu();
+            break;
+        case MENU_GESTION_MODIF_ANIMAL:
             retourMenu();
             break;
         case MENU_GESTION_DEPLACER:
