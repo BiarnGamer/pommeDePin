@@ -183,9 +183,9 @@ Parc::~Parc() {
     // On vide le tableau de Proies pour libérer la mémoire
     /** Attention, légère fuite mémoire ici. Les tableau dynamiques des Sets ne sont pas libérés.
     Il faudrait faire une set de pointeurs sur set pour résoudre le souci **/
-   /* while(tabProies.getNbElem() != 0) {
-        tabProies.enlever(tabProies[0]);
-    }*/
+    /* while(tabProies.getNbElem() != 0) {
+         tabProies.enlever(tabProies[0]);
+     }*/
 }
 
 
@@ -213,7 +213,7 @@ Enclos Parc::getEnclos(int i) const {
         return *listeEnclos[i];
     }
     else {
-		throw string("Le rang de l'enclos est invalide.");
+        throw string("Le rang de l'enclos est invalide.");
     }
 }
 
@@ -222,10 +222,10 @@ Animal const * Parc::getAnimal(int i) const {
         return listeAnimaux[i];
     }
     else {
-      throw string("Le rang de l'animal est invalide.\n");
+        throw string("Le rang de l'animal est invalide.\n");
     }
-   /* Animal * a1 = new Animal;
-	return a1;*/
+    /* Animal * a1 = new Animal;
+    return a1;*/
 }
 
 ostream & operator<<(ostream &, const Parc &);
@@ -245,7 +245,7 @@ void Parc::creerEnclos(const string & nom, const int type, const int capacite) {
 }
 
 int Parc::rechercherEnclos(const int ID) const {
-   for(int i=0; i < getNbEnclos(); i++) {
+    for(int i=0; i < getNbEnclos(); i++) {
         if (listeEnclos[i]->getID() == ID) {
             return i;
         }
@@ -263,11 +263,11 @@ void Parc::supprimerEnclos(const int ID) {
         Enclos * ptrEnclos = listeEnclos[rang];
         // Suppression des animaux, sans gérer les conséquences car on les tue tous
         while(ptrEnclos->getOccupation() != 0) {
-            try{
-               supprimerAnimalSansControle(ptrEnclos->getAnimal(0).getID());
+            try {
+                supprimerAnimalSansControle(ptrEnclos->getAnimal(0).getID());
             }
             catch(const string & s) {
-               cerr << s;
+                cerr << s;
             }
         }
         // Suppression de l'enclos
@@ -445,13 +445,13 @@ int Parc::consequenceDansEnclosDepartDeplacementAnimal(Animal const * a1, const 
     int nbElemTabProies = tabProies.getNbElem();
     int nbElem;
 
-   // Si enclos non trouvé
+    // Si enclos non trouvé
     if (iRangEnclos == -1) {
         return -1;
     }
     // Si l'animal est le dernier de son espèce, pas de souci
     else if (listeEnclos[iRangEnclos]->getNombreAnimaux(iEspeceA) <= 1) {
-      return 0;
+        return 0;
     }
     // Sinon, on cherche s'il a au moins un prédateur ou au moins une proie
     else {
@@ -493,13 +493,13 @@ void Parc::deplacerAnimal(const int IDEnclosDepart, const int IDAnimal, const in
     Enclos * ptrEnclosA = NULL;
 
     if(iRangEnclosDepart == -1
-       || iRangAnimal == -1
-       || iRangEnclosArrivee == -1
-    ) {
-       cout << "Erreur, enclos ou animal non trouvés." << endl;
+            || iRangAnimal == -1
+            || iRangEnclosArrivee == -1
+      ) {
+        cout << "Erreur, enclos ou animal non trouvés." << endl;
     }
     else if(rechercheEnclosAnimal(IDAnimal) != iRangEnclosDepart) {
-       cout << "Erreur, l'animal à déplacer n'est pas dans l'enclos indiqué." << endl;
+        cout << "Erreur, l'animal à déplacer n'est pas dans l'enclos indiqué." << endl;
     }
     else {
         ptrEnclosD = listeEnclos[iRangEnclosDepart];
@@ -520,49 +520,49 @@ void Parc::deplacerAnimal(const int IDEnclosDepart, const int IDAnimal, const in
 void Parc::animauxMangesOuTuesDansEnclos(const int iCodeEspeceModifiee, Enclos * ptrEnclos)  {
     int iActionAFaire;
     int iCodeProie;
-	int k=0;
+    int k=0;
     // Pour chaque espèce
     for(int i=0; i<NB_ESPECES; i++) {
         // Parcours son tableau de proies
         for(int j=0; j<tabProies[i].getNbElem(); j++) {
 
-           iCodeProie = tabProies[i][j].iCodeProie;
-           // Si l'espèce de l'animal ajouté/enlevé est une proie ou un prédateur
-           if(iCodeEspeceModifiee==i || iCodeEspeceModifiee==iCodeProie) {
+            iCodeProie = tabProies[i][j].iCodeProie;
+            // Si l'espèce de l'animal ajouté/enlevé est une proie ou un prédateur
+            if(iCodeEspeceModifiee==i || iCodeEspeceModifiee==iCodeProie) {
                 // On demande quelles relations ont la proie et le prédateur considérés
                 iActionAFaire = relationsProiesPredateurs(i, ptrEnclos->getNombreAnimaux(i), iCodeProie, ptrEnclos->getNombreAnimaux(iCodeProie));
                 // Tue les proies
                 if(iActionAFaire == 1) {
                     while (k < ptrEnclos->getOccupation()) {
-                       try{
-                           if(ptrEnclos->getAnimal(k).getEspece() == iCodeProie) {
-                            // Enlève les animaux de l'enclos directement, sans passer par enleverAnimalEnclos
-                            // On est obligé car enleverAnimalEnclos appelle cette fonction pour gérer les animaux
-                            // à tuer, donc on tournerait un peu en rond
-                            //ptrEnclos->supprimerAnimal(ptrEnclos->getPtrAnimal(k));
-                            supprimerAnimalSansControle(ptrEnclos->getAnimal(k).getID());
-                        // on incrémente que si on ne supprime pas, car on décale tous les animaux non supprimés vers la gauche
-                           }
-                           else k++;
+                        try {
+                            if(ptrEnclos->getAnimal(k).getEspece() == iCodeProie) {
+                                // Enlève les animaux de l'enclos directement, sans passer par enleverAnimalEnclos
+                                // On est obligé car enleverAnimalEnclos appelle cette fonction pour gérer les animaux
+                                // à tuer, donc on tournerait un peu en rond
+                                //ptrEnclos->supprimerAnimal(ptrEnclos->getPtrAnimal(k));
+                                supprimerAnimalSansControle(ptrEnclos->getAnimal(k).getID());
+                                // on incrémente que si on ne supprime pas, car on décale tous les animaux non supprimés vers la gauche
+                            }
+                            else k++;
                         }
                         catch(const string & s) {
-                           cerr << s;
+                            cerr << s;
                         }
                     }
                 }
                 // Tue les prédateurs
                 else if(iActionAFaire == 3) {
                     while (k < ptrEnclos->getOccupation()) {
-                       try{
-                           if(ptrEnclos->getAnimal(k).getEspece() == i) {
-                           supprimerAnimalSansControle(ptrEnclos->getAnimal(k).getID());
-                           }
-                           else {
-                               k++;
-                           }
+                        try {
+                            if(ptrEnclos->getAnimal(k).getEspece() == i) {
+                                supprimerAnimalSansControle(ptrEnclos->getAnimal(k).getID());
+                            }
+                            else {
+                                k++;
+                            }
                         }
                         catch(const string & s) {
-                           cerr << s;
+                            cerr << s;
                         }
                     }
                 }
@@ -585,7 +585,7 @@ void Parc::animauxMangesOuTuesDansEnclos(const int iCodeEspeceModifiee, Enclos *
 
 void Parc::creerAnimal(Girafe const * a, const int IDEnclosAccueil) {
     int iRangEnclos = rechercherEnclos(IDEnclosAccueil);
-    if(iRangEnclos != -1){
+    if(iRangEnclos != -1) {
         Enclos * ptrEnclos = listeEnclos[iRangEnclos];
 
         if(ptrEnclos->getOccupation() < ptrEnclos->getCapacite()) {
@@ -604,7 +604,7 @@ void Parc::creerAnimal(Girafe const * a, const int IDEnclosAccueil) {
 }
 void Parc::creerAnimal(Tigre const * a, const int IDEnclosAccueil) {
     int iRangEnclos = rechercherEnclos(IDEnclosAccueil);
-    if(iRangEnclos != -1){
+    if(iRangEnclos != -1) {
         Enclos * ptrEnclos = listeEnclos[iRangEnclos];
 
         if(ptrEnclos->getOccupation() < ptrEnclos->getCapacite()) {
@@ -624,7 +624,7 @@ void Parc::creerAnimal(Tigre const * a, const int IDEnclosAccueil) {
 
 void Parc::creerAnimal(Basque const * a, const int IDEnclosAccueil) {
     int iRangEnclos = rechercherEnclos(IDEnclosAccueil);
-    if(iRangEnclos != -1){
+    if(iRangEnclos != -1) {
         Enclos * ptrEnclos = listeEnclos[iRangEnclos];
 
         if(ptrEnclos->getOccupation() < ptrEnclos->getCapacite()) {
@@ -644,7 +644,7 @@ void Parc::creerAnimal(Basque const * a, const int IDEnclosAccueil) {
 
 void Parc::creerAnimal(Marmotte const * a, const int IDEnclosAccueil) {
     int iRangEnclos = rechercherEnclos(IDEnclosAccueil);
-    if(iRangEnclos != -1){
+    if(iRangEnclos != -1) {
         Enclos * ptrEnclos = listeEnclos[iRangEnclos];
 
         if(ptrEnclos->getOccupation() < ptrEnclos->getCapacite()) {
@@ -664,7 +664,7 @@ void Parc::creerAnimal(Marmotte const * a, const int IDEnclosAccueil) {
 
 void Parc::creerAnimal(Elephant const * a, const int IDEnclosAccueil) {
     int iRangEnclos = rechercherEnclos(IDEnclosAccueil);
-    if(iRangEnclos != -1){
+    if(iRangEnclos != -1) {
         Enclos * ptrEnclos = listeEnclos[iRangEnclos];
 
         if(ptrEnclos->getOccupation() < ptrEnclos->getCapacite()) {
@@ -684,7 +684,7 @@ void Parc::creerAnimal(Elephant const * a, const int IDEnclosAccueil) {
 
 void Parc::creerAnimal(Aigle const * a, const int IDEnclosAccueil) {
     int iRangEnclos = rechercherEnclos(IDEnclosAccueil);
-    if(iRangEnclos != -1){
+    if(iRangEnclos != -1) {
         Enclos * ptrEnclos = listeEnclos[iRangEnclos];
 
         if(ptrEnclos->getOccupation() < ptrEnclos->getCapacite()) {
@@ -704,7 +704,7 @@ void Parc::creerAnimal(Aigle const * a, const int IDEnclosAccueil) {
 
 void Parc::creerAnimal(Tortue const * a, const int IDEnclosAccueil) {
     int iRangEnclos = rechercherEnclos(IDEnclosAccueil);
-    if(iRangEnclos != -1){
+    if(iRangEnclos != -1) {
         Enclos * ptrEnclos = listeEnclos[iRangEnclos];
 
         if(ptrEnclos->getOccupation() < ptrEnclos->getCapacite()) {
@@ -724,7 +724,7 @@ void Parc::creerAnimal(Tortue const * a, const int IDEnclosAccueil) {
 
 void Parc::creerAnimal(Loutre const * a, const int IDEnclosAccueil) {
     int iRangEnclos = rechercherEnclos(IDEnclosAccueil);
-    if(iRangEnclos != -1){
+    if(iRangEnclos != -1) {
         Enclos * ptrEnclos = listeEnclos[iRangEnclos];
 
         if(ptrEnclos->getOccupation() < ptrEnclos->getCapacite()) {
@@ -744,7 +744,7 @@ void Parc::creerAnimal(Loutre const * a, const int IDEnclosAccueil) {
 
 void Parc::creerAnimal(Crocodile const * a, const int IDEnclosAccueil) {
     int iRangEnclos = rechercherEnclos(IDEnclosAccueil);
-    if(iRangEnclos != -1){
+    if(iRangEnclos != -1) {
         Enclos * ptrEnclos = listeEnclos[iRangEnclos];
 
         if(ptrEnclos->getOccupation() < ptrEnclos->getCapacite()) {
@@ -764,7 +764,7 @@ void Parc::creerAnimal(Crocodile const * a, const int IDEnclosAccueil) {
 
 void Parc::creerAnimal(Lapin const * a, const int IDEnclosAccueil) {
     int iRangEnclos = rechercherEnclos(IDEnclosAccueil);
-    if(iRangEnclos != -1){
+    if(iRangEnclos != -1) {
         Enclos * ptrEnclos = listeEnclos[iRangEnclos];
 
         if(ptrEnclos->getOccupation() < ptrEnclos->getCapacite()) {
@@ -1234,13 +1234,13 @@ int Parc::rechercheEnclosAnimal(const int ID) {
         // Parcours chaque animal de cet enclos
         for(int j=0; j<listeEnclos[i]->getOccupation(); j++) {
             // Si on a trouvé l'animal cherché
-            try{
-               if(listeEnclos[i]->getAnimal(j).getID() == ID) {
-                return i;
-               }
+            try {
+                if(listeEnclos[i]->getAnimal(j).getID() == ID) {
+                    return i;
+                }
             }
             catch(const string & s) {
-               cerr << s;
+                cerr << s;
             }
         }
     }
@@ -1289,12 +1289,12 @@ void Parc::triAnimauxEspece() {
 
         for(int j=i+1; j<iNbAnimaux; j++) {
             if( listeAnimaux[j]->getEspece() == iCodeEspeceMin
-                && listeAnimaux[j]->getNom() < listeAnimaux[iRangMin]->getNom()
+                    && listeAnimaux[j]->getNom() < listeAnimaux[iRangMin]->getNom()
               ) {
                 iRangMin = j;
             }
         }
-         listeAnimaux.intervertir(listeAnimaux[i], listeAnimaux[iRangMin]);
+        listeAnimaux.intervertir(listeAnimaux[i], listeAnimaux[iRangMin]);
     }
 }
 
@@ -1314,14 +1314,14 @@ void Parc::triAnimauxAlpha(const int IDEnclos) {
         for(int i=0; i<iNbAnimaux-1; i++) {
             iRangMin = i;
             for(int j=i+1; j<iNbAnimaux; j++) {
-               try{
-                  if(ptrEnclos->getAnimal(j).getNom() < ptrEnclos->getAnimal(iRangMin).getNom()) {
-                    iRangMin = j;
-                  }
-               }
-               catch(const string & s) {
-                  cerr << s;
-               }
+                try {
+                    if(ptrEnclos->getAnimal(j).getNom() < ptrEnclos->getAnimal(iRangMin).getNom()) {
+                        iRangMin = j;
+                    }
+                }
+                catch(const string & s) {
+                    cerr << s;
+                }
             }
             // Ici, on échange les pointeurs et plus les contenus
             ptrEnclos->intervertir(ptrEnclos->getPtrAnimal(iRangMin),ptrEnclos->getPtrAnimal(i));
@@ -1345,39 +1345,39 @@ void Parc::triAnimauxEspece(const int IDEnclos) {
 
         for(int i=0; i<iNbAnimaux-1; i++) {
             iRangMin = i;
-            try{
-               iCodeEspeceMin = ptrEnclos->getAnimal(i).getEspece();
+            try {
+                iCodeEspeceMin = ptrEnclos->getAnimal(i).getEspece();
             }
             catch(const string & s) {
-               cerr << s;
+                cerr << s;
             }
 
             // recherche codeEspeceMin
             for(int j=i; j<iNbAnimaux; j++) {
-               try{
-                  if(ptrEnclos->getAnimal(j).getEspece() < iCodeEspeceMin) {
-                       iCodeEspeceMin = ptrEnclos->getAnimal(j).getEspece();
-                       iRangMin = j;
-                   }
-               }
-               catch(const string & s) {
-                  cerr << s;
-               }
+                try {
+                    if(ptrEnclos->getAnimal(j).getEspece() < iCodeEspeceMin) {
+                        iCodeEspeceMin = ptrEnclos->getAnimal(j).getEspece();
+                        iRangMin = j;
+                    }
+                }
+                catch(const string & s) {
+                    cerr << s;
+                }
             }
 
             for(int j=i+1; j<iNbAnimaux; j++) {
-               try{
-                  if( ptrEnclos->getAnimal(j).getEspece() == iCodeEspeceMin
-                       && ptrEnclos->getAnimal(j).getNom() < ptrEnclos->getAnimal(iRangMin).getNom()
-                     ) {
-                       iRangMin = j;
-                   }
-               }
-               catch(const string & s) {
-                  cerr << s;
-               }
+                try {
+                    if( ptrEnclos->getAnimal(j).getEspece() == iCodeEspeceMin
+                            && ptrEnclos->getAnimal(j).getNom() < ptrEnclos->getAnimal(iRangMin).getNom()
+                      ) {
+                        iRangMin = j;
+                    }
+                }
+                catch(const string & s) {
+                    cerr << s;
+                }
             }
-             ptrEnclos->intervertir(ptrEnclos->getPtrAnimal(i), ptrEnclos->getPtrAnimal(iRangMin));
+            ptrEnclos->intervertir(ptrEnclos->getPtrAnimal(i), ptrEnclos->getPtrAnimal(iRangMin));
         }
     }
 }
@@ -1450,85 +1450,85 @@ ostream & operator<<(ostream & flot, const Parc & p) {
     return flot;
 }
 
-Tigre const * Parc::getTigre(const int irang) const{
-	if (irang >= 0 && irang < listeTigre.getNbElem())
-		return listeTigre[irang];
-	Tigre * t;
-	t = new Tigre();
-	return t;
+Tigre const * Parc::getTigre(const int irang) const {
+    if (irang >= 0 && irang < listeTigre.getNbElem())
+        return listeTigre[irang];
+    Tigre * t;
+    t = new Tigre();
+    return t;
 }
 
-Basque const * Parc::getBasque(const int irang) const{
-	if (irang >= 0 && irang < listeBasque.getNbElem())
-		return listeBasque[irang];
-	Basque * t;
-	t = new Basque();
-	return t;
+Basque const * Parc::getBasque(const int irang) const {
+    if (irang >= 0 && irang < listeBasque.getNbElem())
+        return listeBasque[irang];
+    Basque * t;
+    t = new Basque();
+    return t;
 }
 
 
-Marmotte const * Parc::getMarmotte(const int irang) const{
-	if (irang >= 0 && irang < listeMarmotte.getNbElem())
-		return listeMarmotte[irang];
-	Marmotte * t;
-	t = new Marmotte();
-	return t;
+Marmotte const * Parc::getMarmotte(const int irang) const {
+    if (irang >= 0 && irang < listeMarmotte.getNbElem())
+        return listeMarmotte[irang];
+    Marmotte * t;
+    t = new Marmotte();
+    return t;
 }
 
-Elephant const * Parc::getElephant(const int irang) const{
-	if (irang >= 0 && irang < listeElephant.getNbElem())
-		return listeElephant[irang];
-	Elephant * t;
-	t = new Elephant();
-	return t;
+Elephant const * Parc::getElephant(const int irang) const {
+    if (irang >= 0 && irang < listeElephant.getNbElem())
+        return listeElephant[irang];
+    Elephant * t;
+    t = new Elephant();
+    return t;
 }
 
-Aigle const * Parc::getAigle(const int irang) const{
-	if (irang >= 0 && irang < listeAigle.getNbElem())
-		return listeAigle[irang];
-	Aigle * t;
-	t = new Aigle();
-	return t;
+Aigle const * Parc::getAigle(const int irang) const {
+    if (irang >= 0 && irang < listeAigle.getNbElem())
+        return listeAigle[irang];
+    Aigle * t;
+    t = new Aigle();
+    return t;
 }
 
-Lapin const * Parc::getLapin(const int irang) const{
-	if (irang >= 0 && irang < listeLapin.getNbElem())
-		return listeLapin[irang];
-	Lapin * t;
-	t = new Lapin();
-	return t;
+Lapin const * Parc::getLapin(const int irang) const {
+    if (irang >= 0 && irang < listeLapin.getNbElem())
+        return listeLapin[irang];
+    Lapin * t;
+    t = new Lapin();
+    return t;
 }
 
-Tortue const * Parc::getTortue(const int irang) const{
-	if (irang >= 0 && irang < listeTortue.getNbElem())
-		return listeTortue[irang];
-	Tortue * t;
-	t = new Tortue();
-	return t;
+Tortue const * Parc::getTortue(const int irang) const {
+    if (irang >= 0 && irang < listeTortue.getNbElem())
+        return listeTortue[irang];
+    Tortue * t;
+    t = new Tortue();
+    return t;
 }
 
-Crocodile const * Parc::getCrocodile(const int irang) const{
-	if (irang >= 0 && irang < listeCrocodile.getNbElem())
-		return listeCrocodile[irang];
-	Crocodile * t;
-	t = new Crocodile();
-	return t;
+Crocodile const * Parc::getCrocodile(const int irang) const {
+    if (irang >= 0 && irang < listeCrocodile.getNbElem())
+        return listeCrocodile[irang];
+    Crocodile * t;
+    t = new Crocodile();
+    return t;
 }
 
-Girafe const * Parc::getGirafe(const int irang) const{
-	if (irang >= 0 && irang < listeGirafe.getNbElem())
-		return listeGirafe[irang];
-	Girafe * t;
-	t = new Girafe();
-	return t;
+Girafe const * Parc::getGirafe(const int irang) const {
+    if (irang >= 0 && irang < listeGirafe.getNbElem())
+        return listeGirafe[irang];
+    Girafe * t;
+    t = new Girafe();
+    return t;
 }
 
-Loutre const * Parc::getLoutre(const int irang) const{
-	if (irang >= 0 && irang < listeLoutre.getNbElem())
-		return listeLoutre[irang];
-	Loutre * t;
-	t = new Loutre();
-	return t;
+Loutre const * Parc::getLoutre(const int irang) const {
+    if (irang >= 0 && irang < listeLoutre.getNbElem())
+        return listeLoutre[irang];
+    Loutre * t;
+    t = new Loutre();
+    return t;
 }
 
 

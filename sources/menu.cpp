@@ -27,7 +27,7 @@ void retourMenu() {
 
 
 
-void menuPrincipal(Parc &Parc1){
+void menuPrincipal(Parc &Parc1) {
     int iChoix;
     do {
         system("clear");
@@ -180,7 +180,7 @@ void menuAffichageEnclos(Parc &Parc1) {
             retourMenu();
             break;
         case MENU_AFFICHE_ENCLOS_ANIMAUX_TOUS:
-           trisDesEnclos(Parc1);
+            trisDesEnclos(Parc1);
             afficherDetailEtAnimauxDeTousLesEnclos(Parc1);
             retourMenu();
             break;
