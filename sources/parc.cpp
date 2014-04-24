@@ -221,8 +221,11 @@ Animal const * Parc::getAnimal(int i) const {
     if(0<=i && i<iNbAnimaux) {
         return listeAnimaux[i];
     }
-    Animal * a1 = new Animal;
-	return a1;
+    else {
+      throw string("Le rang de l'animal est invalide.\n");
+    }
+   /* Animal * a1 = new Animal;
+	return a1;*/
 }
 
 ostream & operator<<(ostream &, const Parc &);
@@ -260,7 +263,12 @@ void Parc::supprimerEnclos(const int ID) {
         Enclos * ptrEnclos = listeEnclos[rang];
         // Suppression des animaux, sans gérer les conséquences car on les tue tous
         while(ptrEnclos->getOccupation() != 0) {
-            supprimerAnimalSansControle(ptrEnclos->getAnimal(0).getID());
+            try{
+               supprimerAnimalSansControle(ptrEnclos->getAnimal(0).getID());
+            }
+            catch(const string & s) {
+               cerr << s;
+            }
         }
         // Suppression de l'enclos
         listeEnclos.enlever(ptrEnclos);
@@ -526,26 +534,35 @@ void Parc::animauxMangesOuTuesDansEnclos(const int iCodeEspeceModifiee, Enclos *
                 // Tue les proies
                 if(iActionAFaire == 1) {
                     while (k < ptrEnclos->getOccupation()) {
-					//for(int k=0; k<ptrEnclos->getOccupation(); k++) {
-                        if(ptrEnclos->getAnimal(k).getEspece() == iCodeProie) {
+                       try{
+                           if(ptrEnclos->getAnimal(k).getEspece() == iCodeProie) {
                             // Enlève les animaux de l'enclos directement, sans passer par enleverAnimalEnclos
                             // On est obligé car enleverAnimalEnclos appelle cette fonction pour gérer les animaux
                             // à tuer, donc on tournerait un peu en rond
                             //ptrEnclos->supprimerAnimal(ptrEnclos->getPtrAnimal(k));
                             supprimerAnimalSansControle(ptrEnclos->getAnimal(k).getID());
-							// on incrémente que si on ne supprime pas, car on décale tous les animaux non supprimés vers la gauche
+                        // on incrémente que si on ne supprime pas, car on décale tous les animaux non supprimés vers la gauche
+                           }
+                           else k++;
                         }
-                        else k++;
+                        catch(const string & s) {
+                           cerr << s;
+                        }
                     }
                 }
                 // Tue les prédateurs
                 else if(iActionAFaire == 3) {
                     while (k < ptrEnclos->getOccupation()) {
-                        if(ptrEnclos->getAnimal(k).getEspece() == i) {
+                       try{
+                           if(ptrEnclos->getAnimal(k).getEspece() == i) {
                            supprimerAnimalSansControle(ptrEnclos->getAnimal(k).getID());
+                           }
+                           else {
+                               k++;
+                           }
                         }
-                        else {
-                            k++;
+                        catch(const string & s) {
+                           cerr << s;
                         }
                     }
                 }
@@ -1217,8 +1234,13 @@ int Parc::rechercheEnclosAnimal(const int ID) {
         // Parcours chaque animal de cet enclos
         for(int j=0; j<listeEnclos[i]->getOccupation(); j++) {
             // Si on a trouvé l'animal cherché
-            if(listeEnclos[i]->getAnimal(j).getID() == ID) {
+            try{
+               if(listeEnclos[i]->getAnimal(j).getID() == ID) {
                 return i;
+               }
+            }
+            catch(const string & s) {
+               cerr << s;
             }
         }
     }
@@ -1292,9 +1314,14 @@ void Parc::triAnimauxAlpha(const int IDEnclos) {
         for(int i=0; i<iNbAnimaux-1; i++) {
             iRangMin = i;
             for(int j=i+1; j<iNbAnimaux; j++) {
-                if(ptrEnclos->getAnimal(j).getNom() < ptrEnclos->getAnimal(iRangMin).getNom()) {
+               try{
+                  if(ptrEnclos->getAnimal(j).getNom() < ptrEnclos->getAnimal(iRangMin).getNom()) {
                     iRangMin = j;
-                }
+                  }
+               }
+               catch(const string & s) {
+                  cerr << s;
+               }
             }
             // Ici, on échange les pointeurs et plus les contenus
             ptrEnclos->intervertir(ptrEnclos->getPtrAnimal(iRangMin),ptrEnclos->getPtrAnimal(i));
@@ -1318,21 +1345,37 @@ void Parc::triAnimauxEspece(const int IDEnclos) {
 
         for(int i=0; i<iNbAnimaux-1; i++) {
             iRangMin = i;
-            iCodeEspeceMin = ptrEnclos->getAnimal(i).getEspece();
+            try{
+               iCodeEspeceMin = ptrEnclos->getAnimal(i).getEspece();
+            }
+            catch(const string & s) {
+               cerr << s;
+            }
+
             // recherche codeEspeceMin
             for(int j=i; j<iNbAnimaux; j++) {
-                if(ptrEnclos->getAnimal(j).getEspece() < iCodeEspeceMin) {
-                    iCodeEspeceMin = ptrEnclos->getAnimal(j).getEspece();
-                    iRangMin = j;
-                }
+               try{
+                  if(ptrEnclos->getAnimal(j).getEspece() < iCodeEspeceMin) {
+                       iCodeEspeceMin = ptrEnclos->getAnimal(j).getEspece();
+                       iRangMin = j;
+                   }
+               }
+               catch(const string & s) {
+                  cerr << s;
+               }
             }
 
             for(int j=i+1; j<iNbAnimaux; j++) {
-                if( ptrEnclos->getAnimal(j).getEspece() == iCodeEspeceMin
-                    && ptrEnclos->getAnimal(j).getNom() < ptrEnclos->getAnimal(iRangMin).getNom()
-                  ) {
-                    iRangMin = j;
-                }
+               try{
+                  if( ptrEnclos->getAnimal(j).getEspece() == iCodeEspeceMin
+                       && ptrEnclos->getAnimal(j).getNom() < ptrEnclos->getAnimal(iRangMin).getNom()
+                     ) {
+                       iRangMin = j;
+                   }
+               }
+               catch(const string & s) {
+                  cerr << s;
+               }
             }
              ptrEnclos->intervertir(ptrEnclos->getPtrAnimal(i), ptrEnclos->getPtrAnimal(iRangMin));
         }

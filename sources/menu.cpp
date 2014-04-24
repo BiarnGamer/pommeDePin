@@ -38,8 +38,8 @@ void menuPrincipal(Parc &Parc1){
         cout << MENU_PRINCIPAL_GESTION << ". Gestion des enclos et des animaux" << endl;
         cout << MENU_PRINCIPAL_AFFICHAGE_ENCLOS << ". Affichage des informations sur les enclos" << endl;
         cout << MENU_PRINCIPAL_AFFICHAGE_ANIMAUX << ". Affichage des informations sur les animaux" << endl;
-        cout << MENU_PRINCIPAL_SAUVEGARDE << ". Sauvegarder le parc" << endl;
-        cout << MENU_PRINCIPAL_CHARGER << ". Charger un parc" << endl;
+        /*cout << MENU_PRINCIPAL_SAUVEGARDE << ". Sauvegarder le parc" << endl;
+        cout << MENU_PRINCIPAL_CHARGER << ". Charger un parc" << endl;*/
         cout << MENU_PRINCIPAL_QUITTER << ". Quitter" << endl;
 
         do {
