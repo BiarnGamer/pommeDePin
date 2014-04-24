@@ -864,9 +864,10 @@ void deplacerAnimal(Parc & Parc1) {
             iIDEnclosArrivee = choixEnclos(Parc1, ptrAnimal);
 
             // Déplacement
+            cout << endl;
             Parc1.deplacerAnimal(iIDEnclos, iIDAnimal, iIDEnclosArrivee);
 
-            cout << "L'animal a bien été déplacé. Les possibles conséquences de ce déplacement ont été prises en compte." << endl;
+            cout << endl << "L'animal a bien été déplacé. Les possibles conséquences de ce déplacement ont été prises en compte." << endl;
         }
     }
 }

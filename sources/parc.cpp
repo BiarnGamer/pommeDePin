@@ -517,6 +517,44 @@ void Parc::deplacerAnimal(const int IDEnclosDepart, const int IDAnimal, const in
     }
 }
 
+void afficheEspece(int iCodeEspce) {
+   switch(iCodeEspce) {
+      case GIRAFE:
+         cout << "Girafe";
+         break;
+      case TIGRE:
+         cout << "Tigre";
+         break;
+      case BASQUE:
+         cout << "Basque";
+         break;
+      case MARMOTTE:
+         cout << "Marmotte";
+         break;
+      case ELEPHANT:
+         cout << "Éléphant";
+         break;
+      case AIGLE:
+         cout << "Aigle";
+         break;
+      case TORTUE:
+         cout << "Tortue";
+         break;
+      case CROCODILE:
+         cout << "Crococile";
+         break;
+      case LAPIN:
+         cout << "Lapin";
+         break;
+      case LOUTRE:
+         cout << "Loutre";
+         break;
+      default:
+         cout << "Èspèce inconnue";
+         break;
+   }
+}
+
 void Parc::animauxMangesOuTuesDansEnclos(const int iCodeEspeceModifiee, Enclos * ptrEnclos)  {
     int iActionAFaire;
     int iCodeProie;
@@ -539,6 +577,9 @@ void Parc::animauxMangesOuTuesDansEnclos(const int iCodeEspeceModifiee, Enclos *
                                 // Enlève les animaux de l'enclos directement, sans passer par enleverAnimalEnclos
                                 // On est obligé car enleverAnimalEnclos appelle cette fonction pour gérer les animaux
                                 // à tuer, donc on tournerait un peu en rond
+                                cout << "Animal tué : " << ptrEnclos->getAnimal(k).getNom() << " (";
+                                afficheEspece(ptrEnclos->getAnimal(k).getEspece());
+                                cout << ")" << endl;
                                 supprimerAnimalSansControle(ptrEnclos->getAnimal(k).getID());
                                 // on incrémente que si on ne supprime pas, car on décale tous les animaux non supprimés vers la gauche
                             }
@@ -554,6 +595,9 @@ void Parc::animauxMangesOuTuesDansEnclos(const int iCodeEspeceModifiee, Enclos *
                     while (k < ptrEnclos->getOccupation()) {
                         try {
                             if(ptrEnclos->getAnimal(k).getEspece() == i) {
+                                cout << "Animal tué : " << ptrEnclos->getAnimal(k).getNom() << " (";
+                                afficheEspece(ptrEnclos->getAnimal(k).getEspece());
+                                cout << ")" << endl;
                                 supprimerAnimalSansControle(ptrEnclos->getAnimal(k).getID());
                             }
                             else {
