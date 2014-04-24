@@ -47,6 +47,7 @@ public:
     void supprimerAnimal(Animal * ptrAnimal);
     void intervertir(Animal *, Animal *);
     Enclos & operator=(const Enclos &);
+	void afficheType() const;
     bool operator==(const Enclos &) const;
     bool operator!=(const Enclos &) const;
     friend ostream & operator<<(ostream & flot, const Enclos & e);

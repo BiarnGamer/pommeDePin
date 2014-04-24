@@ -3,7 +3,6 @@
 
 #include "../entetes/enclos.h"
 
-
 using namespace std;
 
 void Enclos::setID(const int & d) {
@@ -173,6 +172,13 @@ void Enclos::intervertir(Animal * a1, Animal * a2) {
     tabAnimaux.intervertir(a1,a2);
 }
 
+void Enclos::afficheType() const{
+	if (iTypeEnclos == 1)
+		cout << "Enclos" << endl;
+	else if (iTypeEnclos == 2)
+		cout << "Bassin" << endl;
+	else cout << "Cage" << endl;
+}
 ostream & operator<<(ostream & flot, const Enclos & e) {
     flot << "N° Enclos : " << e.getID() << endl;
     flot << "Nom : " << e.getNom() << endl;

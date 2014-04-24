@@ -256,7 +256,9 @@ int choixEnclos(Parc & Parc1, Animal * a) {
             for (int i=0; i< iNbEnclos; i++) {
                 try {
                     if (Parc1.getEnclos(i).getOccupation() < Parc1.getEnclos(i).getCapacite()) {
-                        cout << "- ID : " << Parc1.getEnclos(i).getID() << " - " << Parc1.getEnclos(i).getNom() << " - Occupation : " << Parc1.getEnclos(i).getOccupation() << " / " << Parc1.getEnclos(i).getCapacite() << endl;
+                        cout << "- ID : " << Parc1.getEnclos(i).getID() << " - " << Parc1.getEnclos(i).getNom() << " - Occupation : " << Parc1.getEnclos(i).getOccupation() << " / " << Parc1.getEnclos(i).getCapacite() << " - Type ";
+						Parc1.getEnclos(i).afficheType();
+						cout << endl;
                     }
                 }
                 catch(string const& chaine) {
