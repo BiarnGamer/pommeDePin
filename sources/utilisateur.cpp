@@ -238,9 +238,14 @@ int choixEnclos(Parc & Parc1, Animal * a) {
     // On va compter combien il ya d'enclos non plein
     int iNbEnclosNonPlein = 0;
     for (int i =0; i < Parc1.getNbEnclos() ; i++) {
-        if (Parc1.getEnclos(i).getOccupation() < Parc1.getEnclos(i).getCapacite()) {
-            iNbEnclosNonPlein ++;
-        }
+        try{
+			if (Parc1.getEnclos(i).getOccupation() < Parc1.getEnclos(i).getCapacite()) {
+				iNbEnclosNonPlein ++;
+			}
+		}
+		catch(string const& chaine){
+			cerr << chaine << endl;
+		}
     }
 
     // S'il y a des enclos avec de la place
@@ -249,9 +254,14 @@ int choixEnclos(Parc & Parc1, Animal * a) {
          // Affiche la liste des enclos disponibles et demande du choix
          cout << "Enclos disponibles : " << endl;
          for (int i=0; i< iNbEnclos; i++) {
-            if (Parc1.getEnclos(i).getOccupation() < Parc1.getEnclos(i).getCapacite()) {
-                cout << "- ID : " << Parc1.getEnclos(i).getID() << " - " << Parc1.getEnclos(i).getNom() << " - Occupation : " << Parc1.getEnclos(i).getOccupation() << " / " << Parc1.getEnclos(i).getCapacite() << endl;
-            }
+            try {
+				if (Parc1.getEnclos(i).getOccupation() < Parc1.getEnclos(i).getCapacite()) {
+					cout << "- ID : " << Parc1.getEnclos(i).getID() << " - " << Parc1.getEnclos(i).getNom() << " - Occupation : " << Parc1.getEnclos(i).getOccupation() << " / " << Parc1.getEnclos(i).getCapacite() << endl;
+				}
+			}
+			catch(string const& chaine){
+				cerr << chaine << endl;
+			}
          }
          cout << endl << "Entrez l'ID de l'enclos choisi ou -5 pour en créer un nouveau : ";
          cin >> iIDEnclos;
@@ -756,9 +766,14 @@ void deplacerAnimal(Parc & Parc1) {
     // On le nombre d'enclos non vides
     int iNbEnclosNonVides = 0;
     for (int i =0; i < Parc1.getNbEnclos() ; i++) {
-        if (Parc1.getEnclos(i).getOccupation() >0 ) {
+        try{
+		if (Parc1.getEnclos(i).getOccupation() >0 ) {
             iNbEnclosNonVides ++;
         }
+		}
+		catch(string const& chaine){
+			cerr << chaine << endl;
+		}
     }
 
     // S'il n'y en a aucun, on quitte
@@ -771,8 +786,15 @@ void deplacerAnimal(Parc & Parc1) {
       cout << "Veuillez choisir l'enclos dans lequel se trouve l'animal à déplacer : " << endl;
       cout << "Enclos disponibles : " << endl;
       for (int i=0; i< iNbEnclos; i++) {
-         if( Parc1.getEnclos(i).getOccupation() > 0)
-            cout << "- ID : " << Parc1.getEnclos(i).getID() << " - " << Parc1.getEnclos(i).getNom() << endl;
+		try{	
+		  if( Parc1.getEnclos(i).getOccupation() > 0){
+				cout << "- ID : " << Parc1.getEnclos(i).getID() << " - " << Parc1.getEnclos(i).getNom() << endl;
+			}
+			i++;
+		}
+		catch(string const& chaine){
+			cerr << chaine << endl;
+		}
       }
       do{
          cout << endl << "Entrez l'ID de l'enclos choisi : ";
@@ -781,28 +803,48 @@ void deplacerAnimal(Parc & Parc1) {
       }while(iRangEnclos == -1);
 
       // Choix de l'animal à déplacer
-      iNbAnimaux = Parc1.getEnclos(iRangEnclos).getOccupation();
+      try{ 
+		  iNbAnimaux = Parc1.getEnclos(iRangEnclos).getOccupation();
+	  }
+	  catch(string const& chaine){
+			cerr << chaine << endl;
+	}
       cout << "Veuillez choisir l'animal à déplacer : " << endl;
       cout << "Animaux disponibles : " << endl;
       for (int i=0; i< iNbAnimaux; i++) {
-         cout << "- ID : " << Parc1.getEnclos(iRangEnclos).getAnimal(i).getID() << " - " << Parc1.getEnclos(iRangEnclos).getAnimal(i).getNom() << endl;
+         try {
+			 cout << "- ID : " << Parc1.getEnclos(iRangEnclos).getAnimal(i).getID() << " - " << Parc1.getEnclos(iRangEnclos).getAnimal(i).getNom() << endl;
+		 }
+		 catch(string const& chaine){
+			cerr << chaine << endl;
+		 }
       }
       do{
          cout << endl << "Entrez l'ID de l'animal choisi : ";
          cin >> iIDAnimal;
          j=0;
          while(!animalExiste && j<iNbAnimaux) {
-            if(Parc1.getEnclos(iRangEnclos).getAnimal(j).getID() == iIDAnimal) {
-               animalExiste = true;
-            }
-            else {
-               j++;
-            }
+            try {
+				if(Parc1.getEnclos(iRangEnclos).getAnimal(j).getID() == iIDAnimal) {
+					animalExiste = true;
+				}
+				else {
+				j++;
+				}
+			}
+			catch(string const& chaine){
+				cerr << chaine << endl;
+			}
          }
       }while(!animalExiste);
 
       // Vérification des conséquences dans l'enclos de départ
-      ptrAnimal = Parc1.getEnclos(iRangEnclos).getPtrAnimal(j);
+      try {
+		  ptrAnimal = Parc1.getEnclos(iRangEnclos).getPtrAnimal(j);
+	  }
+	  catch(string const& chaine){
+			cerr << chaine << endl;
+		}
       iConsequencesDansEnclosDepart = Parc1.consequenceDansEnclosDepartDeplacementAnimal(ptrAnimal, iIDEnclos);
       if(iConsequencesDansEnclosDepart == 1) {
          cout <<  endl << "Attention, cet animal possède des proies et/ou des prédateurs dans l'enclos. Il est possible que cela crée un déséquilibre et que des animaux s'entretuent dans cette enclos. Voulez-vous annuler ce déplacement ? (O / N)";
@@ -847,7 +889,12 @@ void supprimerEnclos(Parc & Parc1) {
       cout << "Veuillez choisir l'enclos à supprimer : " << endl;
       cout << "Enclos disponibles : " << endl;
       for (int i=0; i< iNbEnclos; i++) {
-         cout << "- ID : " << Parc1.getEnclos(i).getID() << " - " << Parc1.getEnclos(i).getNom() << endl;
+         try {
+			 cout << "- ID : " << Parc1.getEnclos(i).getID() << " - " << Parc1.getEnclos(i).getNom() << endl;
+		 }
+		 catch(string const& chaine){
+			cerr << chaine << endl;
+		}
       }
       do{
          cout << endl << "Entrez l'ID de l'enclos choisi : ";
@@ -862,7 +909,12 @@ void supprimerEnclos(Parc & Parc1) {
 
       if(iConfirmationSuppression) {
          // traite les animaux présents
-         iNbAnimaux = Parc1.getEnclos(iRangEnclos).getOccupation();
+         try {
+			 iNbAnimaux = Parc1.getEnclos(iRangEnclos).getOccupation();
+		 }
+		 catch(string const& chaine){
+			cerr << chaine << endl;
+		}
          if(iNbAnimaux != 0) {
             cout << "Attention, l'enclos choisi contient " << iNbAnimaux << " animal(aux). Il faut les déplacer ou les relâcher. Comme il peut y avoir des conflits entre espèces, les déplacement ne peuvent pas être automatisés." << endl;
             cout << "1. Relâcher tous les animaux" << endl;
@@ -876,31 +928,36 @@ void supprimerEnclos(Parc & Parc1) {
             // Les animaux seront automatiquement relâché par Parc lors de la suppression
 
             if(iChoix == 2) {
-               while(Parc1.getEnclos(iRangEnclos).getOccupation() != 0) {
+               try {
+				while(Parc1.getEnclos(iRangEnclos).getOccupation() != 0) {
 
-                  ptrAnimal = Parc1.getEnclos(iRangEnclos).getPtrAnimal(0);
+					ptrAnimal = Parc1.getEnclos(iRangEnclos).getPtrAnimal(0);
 
-                  // Demande de l'action à effectuer
-                  cout << "Animal à traiter : "<< endl;
-                  cout << *ptrAnimal;
-                  cout << endl << "Que faire ?" << endl;
-                  cout << "1. Le relâcher" << endl;
-                  cout << "2. Le déplacer" << endl;
-                  do {
-                     cout << "Choix :";
-                     cin >> iChoix;
-                  }while(iChoix != 1 && iChoix != 2);
+					// Demande de l'action à effectuer
+					cout << "Animal à traiter : "<< endl;
+					cout << *ptrAnimal;
+					cout << endl << "Que faire ?" << endl;
+					cout << "1. Le relâcher" << endl;
+					cout << "2. Le déplacer" << endl;
+					do {
+						cout << "Choix :";
+						cin >> iChoix;
+					}while(iChoix != 1 && iChoix != 2);
 
-                  // Si relacher
-                  if(iChoix == 1) {
-                     Parc1.supprimerAnimal(ptrAnimal->getID());
-                  }
-                  // Si on le déplace
-                  else {
-                     iIDEnclosArrivee = choixEnclos(Parc1, ptrAnimal);
-                     Parc1.deplacerAnimal(iIDEnclos, ptrAnimal->getID(), iIDEnclosArrivee);
-                  }
-               }
+					// Si relacher
+					if(iChoix == 1) {
+						Parc1.supprimerAnimal(ptrAnimal->getID());
+					}
+					// Si on le déplace
+					else {
+						iIDEnclosArrivee = choixEnclos(Parc1, ptrAnimal);
+						Parc1.deplacerAnimal(iIDEnclos, ptrAnimal->getID(), iIDEnclosArrivee);
+					}
+				}
+			   }
+               catch(string const& chaine){
+					cerr << chaine << endl;
+				}
             }
          }
 
@@ -990,7 +1047,12 @@ void supprimerAnimal(Parc & Parc1) {
       // Si on a trouvé l'enclos de l'animal
       if(iRangEnclos != -1) {
          // On vérifie les conséquences de la suppression
-         iIDEnclos = Parc1.getEnclos(iRangEnclos).getID();
+         try {
+		  iIDEnclos = Parc1.getEnclos(iRangEnclos).getID();
+		 }
+		 catch(string const& chaine){
+			cerr << chaine << endl;
+		}
          consequencesEnclosDepart = Parc1.consequenceDansEnclosDepartDeplacementAnimal(ptrAnimal, iIDEnclos);
 
          // On demande confirmation
@@ -1051,19 +1113,29 @@ void trisDesAnimaux(Parc & Parc1) {
       case 4:
          iRangEnclos = rechercheEnclos(Parc1);
          if(iRangEnclos != -1) {
-            iIDEnclos = Parc1.getEnclos(iRangEnclos).getID();
-            Parc1.triAnimauxAlpha(iIDEnclos);
+            try {
+			 iIDEnclos = Parc1.getEnclos(iRangEnclos).getID();
+			 Parc1.triAnimauxAlpha(iIDEnclos);
+			}
+			catch(string const& chaine){
+				cerr << chaine << endl;
+			}
          }
          break;
 
       case 5:
          iRangEnclos = rechercheEnclos(Parc1);
          if(iRangEnclos != -1) {
+		try {
             iIDEnclos = Parc1.getEnclos(iRangEnclos).getID();
             Parc1.triAnimauxEspece(iIDEnclos);
-         }
+			}
+		 catch(string const& chaine){
+				cerr << chaine << endl;
+			}
+		}
+		 
          break;
-
       default :
          break;
    }
@@ -1130,14 +1202,22 @@ void modifierEnclos(Parc & Parc1) {
       cout << "**********************************" << endl;
       cout << "***  Modification d'un enclos  ***" << endl;
       cout << "**********************************" << endl << endl;
-
+	try {
       cout << Parc1.getEnclos(iRangEnclos) << endl;
-
+	}
+	catch(string const& chaine){
+				cerr << chaine << endl;
+			}
+	
       cout << "Nouveau nom de cet enclos : ";
       videBuffer();
       getline(cin,sNom);
-
+	try {
       iIDEnclos = Parc1.getEnclos(iRangEnclos).getID();
+	}
+	catch(string const& chaine){
+				cerr << chaine << endl;
+			}
       Parc1.mofidierEnclos(iIDEnclos, sNom);
 
       cout << "Enclos modifié." << endl;
