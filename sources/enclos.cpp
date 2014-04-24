@@ -174,10 +174,10 @@ void Enclos::intervertir(Animal * a1, Animal * a2) {
 
 void Enclos::afficheType() const{
 	if (iTypeEnclos == 1)
-		cout << "Enclos" << endl;
+		cout << "Enclos";
 	else if (iTypeEnclos == 2)
-		cout << "Bassin" << endl;
-	else cout << "Cage" << endl;
+		cout << "Bassin";
+	else cout << "Cage";
 }
 
 ostream & operator<<(ostream & flot, const Enclos & e) {
