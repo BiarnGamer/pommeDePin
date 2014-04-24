@@ -148,7 +148,7 @@ bool Enclos::operator!=(const Enclos & e1) const {
     }
 }
 Animal Enclos::getAnimal(const int & rang) const {
-   if(0<=i && i<iNbAnimaux) {
+   if(0<=rang && rang<iOccupation) {
         return *tabAnimaux[rang];
     }
     else {
@@ -157,7 +157,7 @@ Animal Enclos::getAnimal(const int & rang) const {
 }
 // Retourner un pointeur facilite les traitements dans la classe enclos
 Animal * Enclos::getPtrAnimal(const int & rang) const {
-   if(0<=i && i<iNbAnimaux) {
+   if(0<=rang && rang<iOccupation) {
         return tabAnimaux[rang];
     }
     else {
