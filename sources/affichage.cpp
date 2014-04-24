@@ -35,7 +35,12 @@ int rechercheEnclos(const Parc & Parc1) {
     iRangEnclos = Parc1.rechercherEnclos(IDEnclos);
 
     if(iRangEnclos != -1) {
-        cout << endl << Parc1.getEnclos(iRangEnclos);
+        try {
+            cout << endl << Parc1.getEnclos(iRangEnclos);
+        }
+        catch(string const& chaine) {
+            cerr << chaine << endl;
+        }
     }
     else {
         cout << "Cet enclos n'existe pas." << endl;
@@ -66,50 +71,72 @@ void afficherTauxRemplissageEnclos(const Parc &Parc1) {
     cout << "***  Affichage du taux de remplissage des enclos  ***" << endl;
     cout << "*****************************************************" << endl << endl;
 
-    for (int i=0; i<Parc1.getNbEnclos(); i++)
-        cout << "- " << Parc1.getEnclos(i).getNom() << " : " << Parc1.getEnclos(i).getOccupation() << "/" << Parc1.getEnclos(i).getCapacite() << endl;
-}
-
-void afficherDetailDeTousLesEnclos(const Parc &Parc1) {
-    system("clear");
-    cout << "***********************************************" << endl;
-    cout << "***  Affichage des informations des enclos  ***" << endl;
-    cout << "***********************************************" << endl << endl;
-
-    for (int i=0; i<Parc1.getNbEnclos(); i++)
-        cout << Parc1.getEnclos(i) << endl;
-}
-
-void afficherDetailEnclosEtAnimaux(const Parc &Parc1) {
-    int irang = rechercheEnclos(Parc1);
-    if(irang != -1) {
-        cout << endl << "Animaux de cet enclos : " << endl;
-        int iNbAnimaux = Parc1.getEnclos(irang).getOccupation();
-        for (int i=0; i<iNbAnimaux; i++)
-            cout << *(Parc1.getEnclos(irang).getPtrAnimal(i)) << endl;
-    }
-}
-
-void afficherDetailEtAnimauxDeTousLesEnclos(const Parc &Parc1) {
-    system("clear");
-    cout << "**************************************************************" << endl;
-    cout << "***  Affichage des informations et des animaux des enclos  ***" << endl;
-    cout << "**************************************************************" << endl << endl;
-
-    int iNbAnimauxEnclos;
-
     for (int i=0; i<Parc1.getNbEnclos(); i++) {
-        cout << Parc1.getEnclos(i);
+        try {
+            cout << "- " << Parc1.getEnclos(i).getNom() << " : " << Parc1.getEnclos(i).getOccupation() << "/" << Parc1.getEnclos(i).getCapacite() << endl;
 
-        iNbAnimauxEnclos =Parc1.getEnclos(i).getOccupation();
-        if(iNbAnimauxEnclos > 0) {
-            cout << endl << "Animaux de cet enclos : " << endl;
+            catch(string const& chaine) {
+                cerr << chaine << endl;
+            }
         }
-
-        for (int j=0; j<iNbAnimauxEnclos ; j++) {
-            cout << *(Parc1.getEnclos(i).getPtrAnimal(j)) << endl << endl;
-        }
-        cout << endl << "*******************************************" << endl << endl;
     }
 
-}
+    void afficherDetailDeTousLesEnclos(const Parc &Parc1) {
+        system("clear");
+        cout << "***********************************************" << endl;
+        cout << "***  Affichage des informations des enclos  ***" << endl;
+        cout << "***********************************************" << endl << endl;
+
+        for (int i=0; i<Parc1.getNbEnclos(); i++) {
+            try {
+                cout << Parc1.getEnclos(i) << endl;
+            }
+            catch(string const& chaine) {
+                cerr << chaine << endl;
+            }
+        }
+    }
+
+    void afficherDetailEnclosEtAnimaux(const Parc &Parc1) {
+        int irang = rechercheEnclos(Parc1);
+        if(irang != -1) {
+            cout << endl << "Animaux de cet enclos : " << endl;
+            try {
+                int iNbAnimaux = Parc1.getEnclos(irang).getOccupation();
+                for (int i=0; i<iNbAnimaux; i++)
+                    cout << *(Parc1.getEnclos(irang).getPtrAnimal(i)) << endl;
+            }
+            catch(string const& chaine) {
+                cerr << chaine << endl;
+            }
+        }
+    }
+
+    void afficherDetailEtAnimauxDeTousLesEnclos(const Parc &Parc1) {
+        system("clear");
+        cout << "**************************************************************" << endl;
+        cout << "***  Affichage des informations et des animaux des enclos  ***" << endl;
+        cout << "**************************************************************" << endl << endl;
+
+        int iNbAnimauxEnclos;
+
+        for (int i=0; i<Parc1.getNbEnclos(); i++) {
+            try {
+                cout << Parc1.getEnclos(i);
+
+                iNbAnimauxEnclos =Parc1.getEnclos(i).getOccupation();
+                if(iNbAnimauxEnclos > 0) {
+                    cout << endl << "Animaux de cet enclos : " << endl;
+                }
+
+                for (int j=0; j<iNbAnimauxEnclos ; j++) {
+                    cout << *(Parc1.getEnclos(i).getPtrAnimal(j)) << endl << endl;
+                }
+                cout << endl << "*******************************************" << endl << endl;
+            }
+            catch(string const& chaine) {
+                cerr << chaine << endl;
+            }
+        }
+
+    }
