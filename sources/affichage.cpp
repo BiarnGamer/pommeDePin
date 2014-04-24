@@ -74,7 +74,7 @@ void afficherTauxRemplissageEnclos(const Parc &Parc1) {
     for (int i=0; i<Parc1.getNbEnclos(); i++) {
         try {
             cout << "- " << Parc1.getEnclos(i).getNom() << " : " << Parc1.getEnclos(i).getOccupation() << "/" << Parc1.getEnclos(i).getCapacite() << endl;
-
+		}
             catch(string const& chaine) {
                 cerr << chaine << endl;
             }
