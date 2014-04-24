@@ -997,7 +997,13 @@ void supprimerAnimal(Parc & Parc1) {
    if(iChoix == 1) {
       iRangAnimal = rechercheAnimal(Parc1);
       if(iRangAnimal != -1) {
-         ptrAnimal = Parc1.getAnimal(iRangAnimal);
+         try{
+            ptrAnimal = Parc1.getAnimal(iRangAnimal);
+         }
+         catch(const string & s) {
+            cerr << s;
+         }
+
          iIDAnimal = ptrAnimal->getID();
          validerSuppression = true;
       }
@@ -1014,7 +1020,12 @@ void supprimerAnimal(Parc & Parc1) {
       cin >> iIDAnimal;
       iRangAnimal = Parc1.rechercherAnimal(iIDAnimal);
       if(iRangAnimal != -1) {
-         ptrAnimal = Parc1.getAnimal(iRangAnimal);
+         try{
+            ptrAnimal = Parc1.getAnimal(iRangAnimal);
+         }
+         catch(const string & s) {
+            cerr << s;
+         }
          validerSuppression = true;
       }
       else {
@@ -1031,7 +1042,12 @@ void supprimerAnimal(Parc & Parc1) {
       cin >> iIDAnimal;
       iRangAnimal = Parc1.rechercherAnimal(iIDAnimal);
       if(iRangAnimal != -1) {
-         ptrAnimal = Parc1.getAnimal(iRangAnimal);
+         try{
+            ptrAnimal = Parc1.getAnimal(iRangAnimal);
+         }
+         catch(const string & s) {
+            cerr << s;
+         }
          validerSuppression = true;
       }
       else {
@@ -1291,7 +1307,12 @@ void modifierAnimaux(Parc & Parc1) {
    if(iChoix == 1) {
       iRangAnimal = rechercheAnimal(Parc1);
       if(iRangAnimal != -1) {
-         ptrAnimal = Parc1.getAnimal(iRangAnimal);
+         try{
+            ptrAnimal = Parc1.getAnimal(iRangAnimal);
+         }
+         catch(const string & s) {
+            cerr << s;
+         }
          iIDAnimal = ptrAnimal->getID();
          validerModification = true;
       }
@@ -1308,7 +1329,12 @@ void modifierAnimaux(Parc & Parc1) {
       cin >> iIDAnimal;
       iRangAnimal = Parc1.rechercherAnimal(iIDAnimal);
       if(iRangAnimal != -1) {
-         ptrAnimal = Parc1.getAnimal(iRangAnimal);
+         try{
+            ptrAnimal = Parc1.getAnimal(iRangAnimal);
+         }
+         catch(const string & s) {
+            cerr << s;
+         }
          validerModification = true;
       }
       else {
@@ -1325,7 +1351,12 @@ void modifierAnimaux(Parc & Parc1) {
       cin >> iIDAnimal;
       iRangAnimal = Parc1.rechercherAnimal(iIDAnimal);
       if(iRangAnimal != -1) {
-         ptrAnimal = Parc1.getAnimal(iRangAnimal);
+         try{
+            ptrAnimal = Parc1.getAnimal(iRangAnimal);
+         }
+         catch(const string & s) {
+            cerr << s;
+         }
          validerModification = true;
       }
       else {

@@ -11,7 +11,12 @@ int rechercheAnimal(const Parc & Parc1) {
     iRangAnimal = Parc1.rechercherAnimal(IDAnimal);
 
     if(iRangAnimal != -1) {
-        cout << endl << *(Parc1.getAnimal(iRangAnimal));
+     try{
+          cout << endl << *(Parc1.getAnimal(iRangAnimal));
+      }
+      catch(const string & s) {
+         cerr << s;
+      }
     }
     else {cout << "Cet Animal n'existe pas." << endl;}
     return iRangAnimal;
@@ -42,7 +47,12 @@ void afficheAnimauxParc(const Parc & Parc1) {
 
     int iNbAnimaux = Parc1.getNbAnimaux();
     for(int i=0; i<iNbAnimaux; i++) {
-        cout << *(Parc1.getAnimal(i)) << endl << endl;
+      try{
+          cout << *(Parc1.getAnimal(i)) << endl << endl;
+      }
+      catch(const string & s) {
+         cerr << s;
+      }
     }
 }
 
