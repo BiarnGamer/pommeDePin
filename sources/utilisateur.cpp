@@ -930,8 +930,14 @@ void supprimerEnclos(Parc & Parc1) {
                 if(iChoix == 2) {
                     try {
                         while(Parc1.getEnclos(iRangEnclos).getOccupation() != 0) {
+                           try {
+                             ptrAnimal = Parc1.getEnclos(iRangEnclos).getPtrAnimal(0);
+                          }
+                          catch(string const& chaine) {
+                              cerr << chaine << endl;
+                          }
 
-                            ptrAnimal = Parc1.getEnclos(iRangEnclos).getPtrAnimal(0);
+
 
                             // Demande de l'action à effectuer
                             cout << "Animal à traiter : "<< endl;

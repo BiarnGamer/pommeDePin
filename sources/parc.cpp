@@ -539,7 +539,6 @@ void Parc::animauxMangesOuTuesDansEnclos(const int iCodeEspeceModifiee, Enclos *
                                 // Enlève les animaux de l'enclos directement, sans passer par enleverAnimalEnclos
                                 // On est obligé car enleverAnimalEnclos appelle cette fonction pour gérer les animaux
                                 // à tuer, donc on tournerait un peu en rond
-                                //ptrEnclos->supprimerAnimal(ptrEnclos->getPtrAnimal(k));
                                 supprimerAnimalSansControle(ptrEnclos->getAnimal(k).getID());
                                 // on incrémente que si on ne supprime pas, car on décale tous les animaux non supprimés vers la gauche
                             }
@@ -1324,7 +1323,12 @@ void Parc::triAnimauxAlpha(const int IDEnclos) {
                 }
             }
             // Ici, on échange les pointeurs et plus les contenus
+            try {
             ptrEnclos->intervertir(ptrEnclos->getPtrAnimal(iRangMin),ptrEnclos->getPtrAnimal(i));
+           }
+           catch(const string & s) {
+               cerr << s;
+           }
         }
     }
 }
@@ -1377,7 +1381,13 @@ void Parc::triAnimauxEspece(const int IDEnclos) {
                     cerr << s;
                 }
             }
+            try {
             ptrEnclos->intervertir(ptrEnclos->getPtrAnimal(i), ptrEnclos->getPtrAnimal(iRangMin));
+           }
+           catch(const string & s) {
+               cerr << s;
+           }
+
         }
     }
 }

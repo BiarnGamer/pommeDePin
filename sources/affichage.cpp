@@ -104,7 +104,12 @@ void afficherTauxRemplissageEnclos(const Parc &Parc1) {
             try {
                 int iNbAnimaux = Parc1.getEnclos(irang).getOccupation();
                 for (int i=0; i<iNbAnimaux; i++)
-                    cout << *(Parc1.getEnclos(irang).getPtrAnimal(i)) << endl;
+                  try {
+                     cout << *(Parc1.getEnclos(irang).getPtrAnimal(i)) << endl;
+                    }
+                    catch(const string & s) {
+                        cerr << s;
+                    }
             }
             catch(string const& chaine) {
                 cerr << chaine << endl;
@@ -130,7 +135,12 @@ void afficherTauxRemplissageEnclos(const Parc &Parc1) {
                 }
 
                 for (int j=0; j<iNbAnimauxEnclos ; j++) {
-                    cout << *(Parc1.getEnclos(i).getPtrAnimal(j)) << endl << endl;
+                   try {
+                     cout << *(Parc1.getEnclos(i).getPtrAnimal(j)) << endl << endl;
+                    }
+                    catch(const string & s) {
+                        cerr << s;
+                    }
                 }
                 cout << endl << "*******************************************" << endl << endl;
             }

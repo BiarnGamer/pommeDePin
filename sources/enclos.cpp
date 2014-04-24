@@ -147,13 +147,22 @@ bool Enclos::operator!=(const Enclos & e1) const {
         return false;
     }
 }
-
 Animal Enclos::getAnimal(const int & rang) const {
-    return *tabAnimaux[rang];
+   if(0<=i && i<iNbAnimaux) {
+        return *tabAnimaux[rang];
+    }
+    else {
+        throw string("Le rang de l'animal est invalide.\n");
+    }
 }
 // Retourner un pointeur facilite les traitements dans la classe enclos
 Animal * Enclos::getPtrAnimal(const int & rang) const {
-    return tabAnimaux[rang];
+   if(0<=i && i<iNbAnimaux) {
+        return tabAnimaux[rang];
+    }
+    else {
+        throw string("Le rang de l'animal est invalide.\n");
+    }
 }
 
 int Enclos::getNombreAnimaux(const int &codeEspece) const {
