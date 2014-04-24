@@ -785,18 +785,28 @@ void deplacerAnimal(Parc & Parc1) {
       cout << "Veuillez choisir l'animal à déplacer : " << endl;
       cout << "Animaux disponibles : " << endl;
       for (int i=0; i< iNbAnimaux; i++) {
-         cout << "- ID : " << Parc1.getEnclos(iRangEnclos).getAnimal(i).getID() << " - " << Parc1.getEnclos(iRangEnclos).getAnimal(i).getNom() << endl;
+         try{
+            cout << "- ID : " << Parc1.getEnclos(iRangEnclos).getAnimal(i).getID() << " - " << Parc1.getEnclos(iRangEnclos).getAnimal(i).getNom() << endl;
+         }
+         catch(const string & s) {
+            cerr << s;
+         }
       }
       do{
          cout << endl << "Entrez l'ID de l'animal choisi : ";
          cin >> iIDAnimal;
          j=0;
          while(!animalExiste && j<iNbAnimaux) {
-            if(Parc1.getEnclos(iRangEnclos).getAnimal(j).getID() == iIDAnimal) {
-               animalExiste = true;
+            try{
+               if(Parc1.getEnclos(iRangEnclos).getAnimal(j).getID() == iIDAnimal) {
+                  animalExiste = true;
+               }
+               else {
+                  j++;
+               }
             }
-            else {
-               j++;
+            catch(const string & s) {
+               cerr << s;
             }
          }
       }while(!animalExiste);
@@ -940,7 +950,13 @@ void supprimerAnimal(Parc & Parc1) {
    if(iChoix == 1) {
       iRangAnimal = rechercheAnimal(Parc1);
       if(iRangAnimal != -1) {
-         ptrAnimal = Parc1.getAnimal(iRangAnimal);
+         try{
+            ptrAnimal = Parc1.getAnimal(iRangAnimal);
+         }
+         catch(const string & s) {
+            cerr << s;
+         }
+
          iIDAnimal = ptrAnimal->getID();
          validerSuppression = true;
       }
@@ -957,7 +973,12 @@ void supprimerAnimal(Parc & Parc1) {
       cin >> iIDAnimal;
       iRangAnimal = Parc1.rechercherAnimal(iIDAnimal);
       if(iRangAnimal != -1) {
-         ptrAnimal = Parc1.getAnimal(iRangAnimal);
+         try{
+            ptrAnimal = Parc1.getAnimal(iRangAnimal);
+         }
+         catch(const string & s) {
+            cerr << s;
+         }
          validerSuppression = true;
       }
       else {
@@ -974,7 +995,12 @@ void supprimerAnimal(Parc & Parc1) {
       cin >> iIDAnimal;
       iRangAnimal = Parc1.rechercherAnimal(iIDAnimal);
       if(iRangAnimal != -1) {
-         ptrAnimal = Parc1.getAnimal(iRangAnimal);
+         try{
+            ptrAnimal = Parc1.getAnimal(iRangAnimal);
+         }
+         catch(const string & s) {
+            cerr << s;
+         }
          validerSuppression = true;
       }
       else {
@@ -1211,7 +1237,12 @@ void modifierAnimaux(Parc & Parc1) {
    if(iChoix == 1) {
       iRangAnimal = rechercheAnimal(Parc1);
       if(iRangAnimal != -1) {
-         ptrAnimal = Parc1.getAnimal(iRangAnimal);
+         try{
+            ptrAnimal = Parc1.getAnimal(iRangAnimal);
+         }
+         catch(const string & s) {
+            cerr << s;
+         }
          iIDAnimal = ptrAnimal->getID();
          validerModification = true;
       }
@@ -1228,7 +1259,12 @@ void modifierAnimaux(Parc & Parc1) {
       cin >> iIDAnimal;
       iRangAnimal = Parc1.rechercherAnimal(iIDAnimal);
       if(iRangAnimal != -1) {
-         ptrAnimal = Parc1.getAnimal(iRangAnimal);
+         try{
+            ptrAnimal = Parc1.getAnimal(iRangAnimal);
+         }
+         catch(const string & s) {
+            cerr << s;
+         }
          validerModification = true;
       }
       else {
@@ -1245,7 +1281,12 @@ void modifierAnimaux(Parc & Parc1) {
       cin >> iIDAnimal;
       iRangAnimal = Parc1.rechercherAnimal(iIDAnimal);
       if(iRangAnimal != -1) {
-         ptrAnimal = Parc1.getAnimal(iRangAnimal);
+         try{
+            ptrAnimal = Parc1.getAnimal(iRangAnimal);
+         }
+         catch(const string & s) {
+            cerr << s;
+         }
          validerModification = true;
       }
       else {
