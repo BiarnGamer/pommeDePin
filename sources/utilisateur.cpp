@@ -757,6 +757,7 @@ void deplacerAnimal(Parc & Parc1) {
     int iNbEnclos = 0;
     int iIDAnimal = 0;
     int iNbAnimaux = 0;
+    int iNbAnimauxEnclos = 0;
     int iIDEnclosArrivee = -1;
     bool animalExiste = false;
     bool annuler = false;
@@ -765,7 +766,7 @@ void deplacerAnimal(Parc & Parc1) {
     Animal * ptrAnimal;
 
 
-    // On le nombre d'enclos non vides
+    // On compte le nombre d'enclos non vides
     int iNbEnclosNonVides = 0;
     for (int i =0; i < Parc1.getNbEnclos() ; i++) {
         try {
@@ -792,7 +793,6 @@ void deplacerAnimal(Parc & Parc1) {
                 if( Parc1.getEnclos(i).getOccupation() > 0) {
                     cout << "- ID : " << Parc1.getEnclos(i).getID() << " - " << Parc1.getEnclos(i).getNom() << endl;
                 }
-                i++;
             }
             catch(string const& chaine) {
                 cerr << chaine << endl;
@@ -802,7 +802,13 @@ void deplacerAnimal(Parc & Parc1) {
             cout << endl << "Entrez l'ID de l'enclos choisi : ";
             cin >> iIDEnclos;
             iRangEnclos = Parc1.rechercherEnclos(iIDEnclos);
-        } while(iRangEnclos == -1);
+            try {
+               iNbAnimaux = Parc1.getEnclos(iRangEnclos).getOccupation();
+            }
+            catch(string const& chaine) {
+                iNbAnimaux = 0;
+            }
+        } while(iRangEnclos == -1 || iNbAnimaux < 1);
 
         // Choix de l'animal à déplacer
         try {
