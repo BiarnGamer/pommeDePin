@@ -123,8 +123,7 @@ template <class T> bool Set<T>::appartient(const T & t1) const {
 template <class T> bool Set<T>::estVide() const {
     if(iNbElem == 0) {
         return true;
-    }
-    else {
+    } else {
         return false;
     }
 }
@@ -145,8 +144,7 @@ template <class T> bool Set<T>::inclut(const Set & s1) const {
 template <class T> bool Set<T>::operator==(const Set & s1) const {
     if(inclut(s1) && s1.inclut(*this)) {
         return true;
-    }
-    else {
+    } else {
         return false;
     }
 }
@@ -154,8 +152,7 @@ template <class T> bool Set<T>::operator==(const Set & s1) const {
 template <class T> bool Set<T>::operator!=(const Set & s1) const {
     if( (!inclut(s1)) || (!s1.inclut(*this)) )  {
         return true;
-    }
-    else {
+    } else {
         return false;
     }
 }
@@ -193,8 +190,7 @@ template <class T>
 void afficheSiVide(const Set <T> & s, const int & n) {
     if(s.estVide()) {
         cout << "Set" << n << " est vide" << endl;
-    }
-    else {
+    } else {
         cout << "Set" << n << " n'est pas vide" << endl;
     }
 }
@@ -203,8 +199,7 @@ template <class T>
 void afficheSiEgaux(const Set <T> & s1, const int & n1, const Set <T> & s2, const int & n2) {
     if(s1 == s2) {
         cout << "Set" << n1 << " == Set" << n2 << endl;
-    }
-    else {
+    } else {
         cout << "Set" << n1 << " != Set" << n2 << endl;
     }
 }
@@ -213,8 +208,7 @@ template <class T>
 void afficheSiInlcut(const Set <T> & s1, const int & n1, const Set <T> & s2, const int & n2) {
     if(s1.inclut(s2)) {
         cout << "Set" << n1 << " est inclut dans Set" << n2 << endl;
-    }
-    else {
+    } else {
         cout << "Set" << n1 << " n'est pas inclut dans Set" << n2 << endl;
     }
 }
@@ -223,8 +217,7 @@ template <class T>
 void afficheSiAppartient(const Set <T> & s, const int & n, const T & e) {
     if(s.appartient(e)) {
         cout << e << " appatient à Set" << n<< endl;
-    }
-    else {
+    } else {
         cout << e << " n'appatient pas à Set" << n<< endl;
     }
 }

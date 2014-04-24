@@ -129,17 +129,17 @@ public:
     void modifierAnimal(const int IDAnimalAModifier, Lapin const * nouvelAnimal);
 
 
-	// Getters pour les listes spécifiques des animaux
-	Tigre const * getTigre(const int) const;
-	Girafe const * getGirafe(const int) const;
-	Marmotte const * getMarmotte(const int) const;
-	Aigle const * getAigle(const int) const;
-	Elephant const * getElephant(const int) const;
-	Tortue const * getTortue(const int) const;
-	Loutre const * getLoutre(const int) const;
-	Crocodile const * getCrocodile(const int) const;
-	Lapin const * getLapin(const int) const;
-	Basque const * getBasque(const int) const;
+    // Getters pour les listes spécifiques des animaux
+    Tigre const * getTigre(const int) const;
+    Girafe const * getGirafe(const int) const;
+    Marmotte const * getMarmotte(const int) const;
+    Aigle const * getAigle(const int) const;
+    Elephant const * getElephant(const int) const;
+    Tortue const * getTortue(const int) const;
+    Loutre const * getLoutre(const int) const;
+    Crocodile const * getCrocodile(const int) const;
+    Lapin const * getLapin(const int) const;
+    Basque const * getBasque(const int) const;
 
 
 
@@ -178,7 +178,7 @@ public:
     int consequenceDansEnclosDepartDeplacementAnimal(Animal const * a1, const int IDEnclos) const;
 
 
-	// Retourne le rang de l'animal recherché dans la liste de son espèce
+    // Retourne le rang de l'animal recherché dans la liste de son espèce
     int rechercherGirafe(const int ID) const;
     int rechercherTigre(const int ID) const;
     int rechercherBasque(const int ID) const;
