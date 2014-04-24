@@ -179,6 +179,7 @@ void Enclos::afficheType() const{
 		cout << "Bassin" << endl;
 	else cout << "Cage" << endl;
 }
+
 ostream & operator<<(ostream & flot, const Enclos & e) {
     flot << "N° Enclos : " << e.getID() << endl;
     flot << "Nom : " << e.getNom() << endl;
