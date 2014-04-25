@@ -441,7 +441,6 @@ bool Marmotte::operator!=(const Marmotte & t) const {
 
 void Marmotte::affiche(ostream & flot) const {
 	Animal::affiche(flot);
-	flot << "Espèce : Basque" << endl;
 	flot << "Espèce : Marmotte" << endl;
 	flot << "Taille : " << getTaille() << "cm" << endl;
 	flot << "Nombre de plaquettes de chocolat emballées : " << getNbTabChocolat() << endl;
