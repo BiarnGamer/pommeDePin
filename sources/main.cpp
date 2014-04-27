@@ -27,9 +27,9 @@ void chargerJeuTest(Parc & Parc1) {
 	Tigre Paul(241, 3321, "Pau'Pol", 2);
 	Tigre Paul2(541, 12, "Chicos", 2);
 
-	Basque Xabi(125, 63, 1, 9999999, "Xabi", 3);
+	Basque Xabi(125, 63, 1, 9999, "Xabi", 3);
 	Basque Ninicolas(12, 125, 14, 4419, "Nicolas Belloir", 4);
-	Basque Solaberrieta(36, 4512, 124, 874, "Vincent Solaberrieta", 4);
+	Basque Antoine(36, 4512, 124, 874, "Antoine Lefier", 4);
 
 	Marmotte Miam(95, 6544, "Shakira", 5);
 	Marmotte Tekitoi(245, 20, "Rihanna", 6);
@@ -68,10 +68,10 @@ void chargerJeuTest(Parc & Parc1) {
 	/* *************************** */
 	Parc1.creerEnclos("Attrapez-les tous !",1,23);
 	Parc1.creerEnclos("Zone 51",3,2);
-	Parc1.creerEnclos("Ça peut dégénérer en liste...",2,53);
+	Parc1.creerEnclos("Fac Informatique",2,53);
 	Parc1.creerEnclos("La planète des singes",3,5);
 	Parc1.creerEnclos("Qwerty",1,21);
-	Parc1.creerEnclos("Hasta la victoria siempre",3,4);
+	Parc1.creerEnclos("Cours Structure de Donnée",3,4);
 	Parc1.creerEnclos("La pension",2,85);
 	Parc1.creerEnclos("Pikachu Island",2,3);
 	Parc1.creerEnclos("Enclos R2D2",1,42);
