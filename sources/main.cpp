@@ -99,7 +99,7 @@ void chargerJeuTest(Parc & Parc1) {
 
 	Parc1.creerAnimal(&Xabi,6);
 	Parc1.creerAnimal(&Ninicolas,2);
-	Parc1.creerAnimal(&Solaberrieta,4);
+	Parc1.creerAnimal(&Antoine,4);
 
 	Parc1.creerAnimal(&Miam,7);
 	Parc1.creerAnimal(&Tekitoi,9);
